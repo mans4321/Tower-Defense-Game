@@ -2,8 +2,8 @@
 
 **Team Member:**
 
--Dj
--Jason
--Jennifer
+- Dj
+- Jason
+- Jennifer
 
 
