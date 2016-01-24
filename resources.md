@@ -16,4 +16,7 @@ http://www.flasharcade.com/tower-defence-games/play/choose-your-weapon-tower-def
 Tutorial about Swing and AWT:
 http://zetcode.com/tutorials/javagamestutorial/
 
+------------------------------------------------------------------------------------------
+https://www.dropbox.com/s/4rwoeyhtt52928u/gamescoremethod.zip?dl=0                 example for the basic methods used in most games
+
 
