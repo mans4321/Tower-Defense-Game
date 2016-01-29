@@ -19,4 +19,14 @@ http://zetcode.com/tutorials/javagamestutorial/
 ------------------------------------------------------------------------------------------
 https://www.dropbox.com/s/4rwoeyhtt52928u/gamescoremethod.zip?dl=0                 example for the basic methods used in most games
 
+---
+##Code conventions
+### Let's pick Oracle's ?
+http://eclipse-cs.sourceforge.net/#!/install
+
+Checkstyle is a development tool to help programmers write Java code that adheres to a coding standard. It automates the process of checking Java code to spare humans of this boring (but important) task. This makes it ideal for projects that want to enforce a coding standard.
+
+Checkstyle is highly configurable and can be made to support almost any coding standard. An example configuration files are supplied supporting the Sun Code Conventions, Google Java Style.
+
+A good example of a report that can be produced using Checkstyle and Maven can be seen here.
 
