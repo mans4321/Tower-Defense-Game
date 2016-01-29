@@ -18,8 +18,10 @@ http://zetcode.com/tutorials/javagamestutorial/
 
 ------------------------------------------------------------------------------------------
 https://www.dropbox.com/s/4rwoeyhtt52928u/gamescoremethod.zip?dl=0                 example for the basic methods used in most games
+### Tile map
+http://www.cokeandcode.com/main/tutorials/tile-maps/
 
----
+----
 ##Code conventions
 ### Let's pick Oracle's ?
 http://eclipse-cs.sourceforge.net/#!/install
