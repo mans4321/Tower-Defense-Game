@@ -21,6 +21,11 @@ https://www.dropbox.com/s/4rwoeyhtt52928u/gamescoremethod.zip?dl=0              
 ### Tile map
 http://www.cokeandcode.com/main/tutorials/tile-maps/
 
+### Github material
+GitHub Flow is a lightweight, branch-based workflow that supports teams and projects where deployments are made regularly. This guide explains how and why GitHub Flow works.
+
+https://guides.github.com/introduction/flow/
+
 ----
 ##Code conventions
 ### Let's pick Oracle's ?
