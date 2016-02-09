@@ -1,11 +1,10 @@
 import javax.swing.*;
+
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by yongpinggao on 1/24/16.
- */
 public class MainMenuWindow extends JFrame {
 
     private final static int WINDOW_WIDTH = 400;
