@@ -69,8 +69,8 @@ public class MapEditorWindow extends BaseWindow {
     	System.out.println("右边是  "+ (cellList.indexOf(CellState.PATH)+1));
     	
     	
-    	
-    	if(pathList.contains((cellList.indexOf(CellState.PATH)+1)) ){//cellList.iterator().next().equals(CellState.PATH)
+    	int i = cellList.indexOf(CellState.PATH);
+    	if(pathList.contains(cellList.get(i+1)) ){//cellList.iterator().next().equals(CellState.PATH)
     		System.out.println("pathList中有  "+ (cellList.indexOf(CellState.PATH)+1));
     	}else{
     		System.out.println("pathList中没有  "+ (cellList.indexOf(CellState.PATH)+1));
