@@ -1,0 +1,82 @@
+package viewcontroller;
+import javax.swing.*;
+
+/**
+ * Created by yongpinggao on 1/24/16.
+ */
+public class TowerSpecificationPanel extends JPanel {
+
+    private JLabel specificationLabel;
+    private JLabel buyPriceLabel;
+    private JLabel sellPriceLabel;
+    private JLabel rangeLabel;
+    private JLabel powerLabel;
+    private JLabel rateOfFireLabel;
+
+    private String specification;
+    private double buyPrice;
+    private double sellPrice;
+    private int range;
+    private int power;
+    private int rateOfFire;
+
+    public TowerSpecificationPanel(){
+         specificationLabel = new JLabel("");
+         buyPriceLabel = new JLabel("");
+         sellPriceLabel = new JLabel("");
+         rangeLabel = new JLabel("");
+         powerLabel = new JLabel("");
+         rateOfFireLabel = new JLabel("");
+
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        add(specificationLabel);
+        add(buyPriceLabel);
+        add(sellPriceLabel);
+        add(rangeLabel);
+        add(powerLabel);
+        add(rateOfFireLabel);
+
+
+    }
+
+    public void setSpecification(String specification) {
+        this.specification = specification;
+        this.specificationLabel.setText(specification);
+    }
+
+    public void setBuyPrice(double buyPrice) {
+        this.buyPrice = buyPrice;
+        this.buyPriceLabel.setText("Buy Price: " + buyPrice + "");
+    }
+
+    public void setSellPrice(double sellPrice) {
+        this.sellPrice = sellPrice;
+        this.sellPriceLabel.setText("Sell Price: " + sellPrice + "");
+    }
+
+    public void setRange(int range) {
+        this.range = range;
+        this.rangeLabel.setText("Range: " + range + "");
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+        this.powerLabel.setText("Power: " +power + "");
+    }
+
+    public void setRateOfFire(int rateOfFire) {
+        this.rateOfFire = rateOfFire;
+        this.rateOfFireLabel.setText("Rate Of Fire: " + rateOfFire + "");
+    }
+
+    public void clearPanel(){
+        this.specificationLabel.setText("");
+        this.buyPriceLabel.setText("");
+        this.sellPriceLabel.setText("");
+        this.rangeLabel.setText("");
+        this.powerLabel.setText("");
+        this.rateOfFireLabel.setText("");
+    }
+}
+
+
