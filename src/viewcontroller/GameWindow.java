@@ -11,11 +11,11 @@ import java.util.ArrayList;
  */
 public class GameWindow extends BaseWindow {
 
-    private GamePanel gamePanel;
+    private GameController gamePanel;
 
     public GameWindow(int mapNum){
         super("Tower Defence Game");
-        gamePanel = new GamePanel(WINDOW_WIDTH,WINDOW_HEIGHT,mapNum);
+        gamePanel = new GameController(WINDOW_WIDTH,WINDOW_HEIGHT,mapNum);
 
         Container c = this.getContentPane();
         c.add(gamePanel);

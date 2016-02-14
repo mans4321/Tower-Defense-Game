@@ -1,5 +1,4 @@
-package viewcontroller;
-import gamemodel.tower.TowerID;
+package gamemodel.tower;
 
 /**
  * Created by yongpinggao on 2/2/16.

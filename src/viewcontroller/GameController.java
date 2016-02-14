@@ -16,7 +16,7 @@ import java.util.HashMap;
 /**
  * Created by yongpinggao on 1/30/16.
  */
-public class GamePanel extends JPanel implements ActionListener{
+public class GameController extends JPanel implements ActionListener{
 
     private int panelWidth;
     private int panelHeight;
@@ -47,7 +47,7 @@ public class GamePanel extends JPanel implements ActionListener{
 
     private boolean isGameOver = false;
 
-    public GamePanel(int panelWidth, int panelHeight, int mapNum){
+    public GameController(int panelWidth, int panelHeight, int mapNum){
 
         this.mapNum = mapNum;
         this.panelHeight = panelHeight;
@@ -219,7 +219,7 @@ public class GamePanel extends JPanel implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
                 clearGame();
-                SwingUtilities.getWindowAncestor(GamePanel.this).setVisible(false);
+                SwingUtilities.getWindowAncestor(GameController.this).setVisible(false);
                 new MainMenuWindow().setVisible(true);
             }
         });
@@ -234,7 +234,7 @@ public class GamePanel extends JPanel implements ActionListener{
                     isGameOver = true;
 
                     Object[] options = {"Back to main menu",  "Play again!"};
-                    int n = JOptionPane.showOptionDialog(GamePanel.this,
+                    int n = JOptionPane.showOptionDialog(GameController.this,
                             "Sorry, Game over...",
                             "Oops!",
                             JOptionPane.YES_NO_OPTION,
@@ -244,12 +244,12 @@ public class GamePanel extends JPanel implements ActionListener{
                             options[0]); //default button title
                     if(n == 0){
                         clearGame();
-                        SwingUtilities.getWindowAncestor(GamePanel.this).setVisible(false);
+                        SwingUtilities.getWindowAncestor(GameController.this).setVisible(false);
                         new MainMenuWindow().setVisible(true);
                     } else {
                         clearGame();
-                        SwingUtilities.getWindowAncestor(GamePanel.this).setVisible(false);
-                        new GameWindow(GamePanel.this.mapNum).setVisible(true);
+                        SwingUtilities.getWindowAncestor(GameController.this).setVisible(false);
+                        new GameWindow(GameController.this.mapNum).setVisible(true);
                     }
 
 
@@ -265,7 +265,7 @@ public class GamePanel extends JPanel implements ActionListener{
                 if(waveNum > WaveStore.waves.size()){
                     // User Win
                     Object[] options = {"Back to main menu"};
-                    int n = JOptionPane.showOptionDialog(GamePanel.this,
+                    int n = JOptionPane.showOptionDialog(GameController.this,
                             "Nice Work! You win!",
                             "Congrats!",
                             JOptionPane.YES_NO_OPTION,
@@ -275,7 +275,7 @@ public class GamePanel extends JPanel implements ActionListener{
                             options[0]); //default button title
                     if(n == 0){
                         clearGame();
-                        SwingUtilities.getWindowAncestor(GamePanel.this).setVisible(false);
+                        SwingUtilities.getWindowAncestor(GameController.this).setVisible(false);
                         new MainMenuWindow().setVisible(true);
                     }
                 }
