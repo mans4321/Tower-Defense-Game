@@ -9,7 +9,14 @@ import java.net.URL;
 import java.util.ArrayList;
 
 /**
- * Created by yongpinggao on 2/2/16.
+ * This class is a model for the Critters.
+ *  
+ *  In this class we define the main charactistics that all the Critters shares.
+ *  such as the current x&y coordinate of the Critter.
+ *  Also, this class implements CritterBehavior. 
+ *  
+ *@author yongpinggao
+ *@since  
  */
 public class Critter implements CritterBehavior{
 
