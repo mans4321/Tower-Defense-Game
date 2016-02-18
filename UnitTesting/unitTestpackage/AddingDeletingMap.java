@@ -1,4 +1,4 @@
-package theprojecrer;
+package unitTestpackage;
 
 import static org.junit.Assert.*;
 
@@ -11,11 +11,6 @@ import gamemodel.gamemap.GameMapCollection;
 public class AddingDeletingMap {
 
 	
-	@BeforeClass
-    public static void onceExecutedBeforeAll() {
-		
-		
-	}
 
 	@Test
 	public void testAddMap() {
