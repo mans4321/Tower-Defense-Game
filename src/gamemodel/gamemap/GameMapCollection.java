@@ -3,14 +3,15 @@ import java.util.ArrayList;
 
 
 /**
- * This class  story all saved maps by the player.
+ * This class  story all saved maps by the player .
  * 
- * when the player save a new game it is added to Arraylist.
- * And the player removed it removed from that Arraylist.
+ * when the player save a new game it is added to Arraylist Type GameMAp.
+ * and when  player remove it removed from that Arraylist.
  *  
  * @author Mansour 
  * @since 1/26/16.
  *@version 1.0
+ *@see {@link gamemodel.gamemap.GameMap GameMap}
  */
 public class GameMapCollection {
 
@@ -39,9 +40,9 @@ public class GameMapCollection {
     }
 /**
  * delete the map from the game map collection
- * @param index
+ * @param index   the map index in the Arraylist.
  */
-    public void deleteMap(int index){                    // what index means
+    public void deleteMap(int index){                   
         this.maps.remove(index);
     }
 
