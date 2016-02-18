@@ -1,13 +1,21 @@
 package gamemodel.critter;
 /**
- * Created by yongpinggao on 2/6/16.
+ *This class initialize the fourth Critter(CritterD) and set it's characteristics.
+ *
+ * CritterC extend the class Critter
+ * @author yongpinggao
  */
 public class CritterD extends Critter {
 
+/**
+* A constructor calls the method initCritter();
+*/	
     public CritterD() {
         initCritter();
     }
-
+/**
+* initialize the characteristics of the CritterC
+*/
     private void initCritter() {
         imgURL = "res/critterD.png";
         moveSpeed = 5;

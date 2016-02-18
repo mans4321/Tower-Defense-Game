@@ -3,7 +3,14 @@ import gamemodel.critter.*;
  
 
 /**
- * Created by yongpinggao on 2/4/16.
+ *This class create the third Tower(TowerA) and initialize it's characteristics. 
+ *
+ *TowerC extends Tower
+ *
+ *@author yongpinggao
+ *@see Tower 
+ *@since 2/4/16.
+ *@version 1.0
  */
 public class TowerC extends Tower{
 
@@ -16,6 +23,9 @@ public class TowerC extends Tower{
         }
     }
 
+/**
+*  Initialize the tower specification base on tower level   
+*/   
     private void initTower(){
         switch(level){
             case 1:
@@ -50,7 +60,9 @@ public class TowerC extends Tower{
                 rateOfFire = 0;
         }
     }
-
+/**
+ *{@inheritDoc}
+ */
     @Override
     public Critter shoot() {
         if(this.isPowerOn()){ //if tower is working instead of in the middle of shooting )

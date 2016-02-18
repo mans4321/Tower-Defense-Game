@@ -1,9 +1,13 @@
 package gamemodel.critter;
 /**
- * Created by yongpinggao on 2/8/16.
+ *  An interface class set the method that will handle the Critter death
+ *  @author  yongpinggao
  */
 public interface CritterGotKilledListener {
-
+/**
+ * 
+ * @param c  the critter type
+ */
     void critterGotKilled(Critter c);
 
 }

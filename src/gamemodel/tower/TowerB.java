@@ -4,7 +4,11 @@ import java.util.Set;
 import gamemodel.critter.*;
 
 /**
- * Created by yongpinggao on 2/4/16.
+ *This class initialize the second Tower(TowerB) and initialize it's characteristics. 
+ *
+ *TowerB extends Tower implements TowerShootingBehavior
+ *
+ *@author yongpinggao on 2/4/16.
  */
 public class TowerB extends Tower implements TowerShootingBehavior{
 
@@ -18,7 +22,9 @@ public class TowerB extends Tower implements TowerShootingBehavior{
     }
 
 
-
+/**
+*  Initialize the tower specification base on tower level   
+*/
     private void initTower(){
         switch(level){
             case 1:
@@ -53,7 +59,9 @@ public class TowerB extends Tower implements TowerShootingBehavior{
                 rateOfFire = 0;
         }
     }
-
+/**
+ *{@inheritDoc}
+ */
     @Override
     public Critter shoot() {
         if(this.isPowerOn()){ //if tower is working instead of in the middle of shooting )
@@ -68,17 +76,23 @@ public class TowerB extends Tower implements TowerShootingBehavior{
 
 
 
-
+/**
+ *{@inheritDoc} 
+ */
     @Override
     public Critter targetBasedOnWeakest(Set<Critter> crittersInRange) {
         return super.targetBasedOnWeakest(crittersInRange);
     }
-
+/**
+*{@inheritDoc} 
+*/
     @Override
     public Critter targetBasedOnStrongest(Set<Critter> crittersInRange) {
         return super.targetBasedOnStrongest(crittersInRange);
     }
-
+/**
+*{@inheritDoc} 
+*/
     @Override
     public Critter targetBasedOnNearestToEnd(Set<Critter> crittersInRange) {
         return super.targetBasedOnNearestToEnd(crittersInRange);

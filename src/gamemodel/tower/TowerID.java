@@ -1,6 +1,10 @@
 package gamemodel.tower;
 /**
- * Created by yongpinggao on 1/30/16.
+ * An enumerate  list tower id
+ * 
+ *@author yongpinggao 
+ *@since  1/30/16
+ *@version 1.0  
  */
 public enum TowerID {
     TOWERNULL(""),
@@ -22,14 +26,25 @@ public enum TowerID {
 
 
     private String name;
+/**
+ * A constructor assign name to towerName     
+ * @param towerName tower name
+ */
     TowerID(String towerName) {
         this.name = towerName;
     }
-
+/**
+ * get tower name 
+ * @return tower name 
+ */
     public String getName() {
         return name;
     }
-
+/**
+ * get tower id
+ * @param name tower name
+ * @return tower id
+ */
     public static TowerID getTowerIDFrom(String name){
         TowerID id = null;
 

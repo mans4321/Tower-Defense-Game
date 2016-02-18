@@ -4,7 +4,13 @@ import java.awt.Image;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
-
+/**
+ * This class assign each tower to it's image icon
+ * 
+ *@author yongpinggao
+ *@since  1/31/16
+ *@version 1.0
+ */
 public class TowerImageCollection {
 
 
@@ -33,11 +39,19 @@ public class TowerImageCollection {
         towerImageCollection.put(TowerID.TOWERC3.getName(), new ImageIcon(URL + TowerID.TOWERC3.getName() + format));
         towerImageCollection.put(TowerID.TOWERCH.getName(), new ImageIcon(URL + TowerID.TOWERCH.getName() + format));
     }
-
+/**
+ * get the tower icon
+ * @param name tower name
+ * @return tower image
+ */
     public Image getImage(String name) {
         return towerImageCollection.get(name).getImage();
     }
-
+/**
+ *get tower  name 
+ * @param  name tower name
+ * @return the image icon                                         //whta
+ */
     public ImageIcon getImageIcon(String name){
         return towerImageCollection.get(name);
     }
