@@ -8,13 +8,17 @@ import gamemodel.critter.*;
  *TowerC extends Tower
  *
  *@author yongpinggao
- *@see Tower 
+ *@see {@link gamemodel.tower.Tower Tower} 
  *@since 2/4/16.
  *@version 1.0
  */
 public class TowerC extends Tower{
 
-
+/**
+ * Constructor
+ * 
+ * @param level tower level 
+ */
     public TowerC(int level){
         this.level = level;
         if(level <= super.level){

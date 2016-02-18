@@ -28,7 +28,7 @@ public interface TowerShootingBehavior {
  */
     Critter targetBasedOnWeakest(Set<Critter> crittersInRange);
 /**
- * Shooting the strogest critter in the set
+ * Shooting the strongest critter in the set
  * 
  * @param crittersInRange a set of the critter in the tower range
  * 

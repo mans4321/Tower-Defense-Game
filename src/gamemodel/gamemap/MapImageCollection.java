@@ -35,7 +35,7 @@ public class MapImageCollection {
     }
 
 /**
- * 
+ * get map image name 
  * @param name tower name
  * @return     tower image
  */
@@ -43,7 +43,7 @@ public class MapImageCollection {
         return mapImageCollection.get(name).getImage();
     }
 /**
- * 
+ * get map image icon 
  * @param name tower name
  * @return     tower name 
  */

@@ -15,6 +15,7 @@ import java.util.Set;
  * A model that define the all tower parameters.
  * 
  * Tower class implements TowerShootingBehavior and  ActionListener
+ * 
  *@author yongpinggao
  *@see TowerShootingBehavior 
  *@since 2/4/16.
@@ -56,7 +57,7 @@ public class Tower implements TowerShootingBehavior, ActionListener{
 
     protected boolean powerOn;
 /**
- * A constuctor to assign tower parameters
+ * A Constructor to assign tower parameters
  */
     public Tower(){
 
@@ -193,14 +194,14 @@ public class Tower implements TowerShootingBehavior, ActionListener{
         isShooting = shooting;
     }
 /**
- * 
- * @return                                                 //what 
+ *get  tower shooting status.   
+ * @return tower shooting status                                                
  */
     public boolean isPowerOn() {
         return powerOn;
     }
 /**
- * 
+ * set tower shooting status.
  * @param powerOn
  */
     public void setPowerOn(boolean powerOn) {

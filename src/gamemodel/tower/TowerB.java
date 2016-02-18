@@ -8,11 +8,18 @@ import gamemodel.critter.*;
  *
  *TowerB extends Tower implements TowerShootingBehavior
  *
- *@author yongpinggao on 2/4/16.
+ *@author yongpinggao 
+ *@since 2/4/16.
+ *@version 1.0
+ *@see {@link gamemodel.tower.Tower Tower}
  */
 public class TowerB extends Tower implements TowerShootingBehavior{
 
-
+/**
+ * Constructor  
+ * 
+ * @param level tower level
+ */
     public TowerB(int level){
         this.level = level;
         if(level <= super.level){
@@ -23,7 +30,7 @@ public class TowerB extends Tower implements TowerShootingBehavior{
 
 
 /**
-*  Initialize the tower specification base on tower level   
+*  Initialize the TowerB specification for each level   
 */
     private void initTower(){
         switch(level){

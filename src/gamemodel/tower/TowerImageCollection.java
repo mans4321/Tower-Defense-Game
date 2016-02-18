@@ -50,7 +50,7 @@ public class TowerImageCollection {
 /**
  *get tower  name 
  * @param  name tower name
- * @return the image icon                                         //whta
+ * @return the image icon                                        
  */
     public ImageIcon getImageIcon(String name){
         return towerImageCollection.get(name);
