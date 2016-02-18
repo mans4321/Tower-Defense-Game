@@ -8,6 +8,8 @@ import gamemodel.gamemap.CellState;
 /**
  * This class is to validate whether Entrance or Exit is in the middle of the path
  *
+ * @version 1.2
+ * 
  * @author LiChong
  *
  */
@@ -17,6 +19,13 @@ public class EntranceExitInMiddlePathValidator implements MapValidator {
 	private ArrayList<CellState> cellList;
 	private HashMap<Integer, Integer> countMap;
 	
+	/**
+	 * This method validate() overrides the method validate() of parent class MapValidator. 
+	 * And it checks whether the entrance or the exit locate in the middle of path.
+	 * 
+	 * @return boolean A boolean values that represent whether the entrance or the exit locate in the middle of path.
+	 * 
+	 */	
 	@Override
 	public boolean validate() {
 		// TODO Auto-generated method stub

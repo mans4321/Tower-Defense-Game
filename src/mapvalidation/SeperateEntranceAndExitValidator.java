@@ -11,7 +11,8 @@ import gamemodel.gamemap.CellState;
  * If they are neighbours of each other, it is illegal.
  * 
  * @author LiChong
- *
+ * 
+ * @version 1.1
  */
 public class SeperateEntranceAndExitValidator implements MapValidator{
 
@@ -20,6 +21,13 @@ public class SeperateEntranceAndExitValidator implements MapValidator{
 	private int indexOfExit;
 	private int seaeCols;
 	
+	/**
+	 * This method validate() overrides the method validate() of parent class MapValidator. 
+	 * And it checks whether the entrance and exit are neighbour of each other.
+	 * 
+	 * @return boolean A boolean values that represent whether the entrance and exit are neighbour of each other.
+	 * 
+	 */	
 	@Override
 	public boolean validate() {
 		// TODO Auto-generated method stub

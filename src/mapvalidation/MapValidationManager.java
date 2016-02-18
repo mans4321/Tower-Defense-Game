@@ -6,7 +6,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-
+/**
+ * This class is to manager various situations of map validations.
+ * And providing neccessary variables and methods.
+ * 
+ * @version 1.1
+ *  
+ * @author LiChong
+ * 
+ */
 public class MapValidationManager {
 	
 	private ArrayList<CellState> cellList;
@@ -31,6 +39,10 @@ public class MapValidationManager {
 		setCountMap();
 	}
 	
+	/**
+	 * This method give each of cellList a flag according to the cell grid's location.
+	 * 
+	 */
 	private void setFlag(){
 		for(int i=0;i<cellList.size();i++){
 			if(0 < i && i < Cols){
@@ -56,6 +68,12 @@ public class MapValidationManager {
 		}
 	}
 
+	/**
+	 * This is a additional method of setflag(),which can help to obtain the specific location of cell grid.
+	 * 
+	 * @return i a integer which can be used in setflag(), to dedicate the grid location which
+	 * 			 on the left edge of map or on the right edge of map.
+	 */
 	private int leftOrRightEdge(){
 		int i = 1;
 		while(i < Rows){
@@ -64,6 +82,10 @@ public class MapValidationManager {
 		return i;
 	}
 
+	/**
+	 * This method is to gather PATH,ENTRANCE and EXIT into an arraylist.
+	 * 
+	 */
 	private void setPathList(){
 		for(int i = 0;i<cellList.size();i++){//know the index of CellState.PATH
 			if(cellList.get(i)== CellState.PATH || cellList.get(i)== CellState.ENTRANCE 
@@ -73,6 +95,11 @@ public class MapValidationManager {
 		}
 	}
 	
+	/**
+	 * This method is to calculate the number of each path grid's neighbours who are also PATH
+	 * According to the grid's flag to know the neighbour.
+	 * 
+	 */
 	public void setCountMap(){//
 
 		int iL = -1;//neighbour
@@ -185,18 +212,7 @@ public class MapValidationManager {
 	public HashMap<Integer, Integer> getCountMap() {
 		return countMap;
 	}
-/*
-	public int getCountEntranceOrExit(){
-		for(int i=0;i<cellList.size();i++){
-			if(cellList.get(i) == CellState.ENTRANCE) numberOfEntrance++;
-			if(cellList.get(i) == CellState.EXIT) numberOfExit++;
-		}
-		if(numberOfEntrance == 0 || numberOfEntrance > 1 || numberOfExit == 0 || numberOfExit > 1){
-			numberOfEntranceOrExit++;
-		}
-		return numberOfEntranceOrExit;
-	}*/
-	
+
 	
 	public String getErrorMessage(){
 		return errorMessage;
@@ -219,7 +235,12 @@ public class MapValidationManager {
 	 * @return true if it's validate
 	 */
 
-	
+	/**
+	 * This is a method that check various situations of map validations and give different 
+	 * feedback of results of them.
+	 * 
+	 * @return boolean A to check the validation.
+	 */
 	public boolean checkValidate(){
 		
 		if (!new NoEntranceNoExitMoreEntranceMoreExitValidator(cellList).validate()){
@@ -237,7 +258,7 @@ public class MapValidationManager {
 		}else if(! new ExtraPathValidator(countMap, cellList).validate()){
 			errorMessage = "There is extra path in your map!";
 			return false;
-		}else if(! new ContinousPathValidator(countMap).validate()){
+		}else if(! new ContinousPathValidator(countMap,cellList,Cols).validate()){
 			errorMessage = "Your path is not continous!";
 			return false;	
 		}else if(! new SeperateEntranceAndExitValidator(Cols, cellList).validate()){

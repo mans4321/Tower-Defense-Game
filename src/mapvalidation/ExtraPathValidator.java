@@ -10,14 +10,23 @@ import gamemodel.gamemap.CellState;
  * Having circle path in map is illegal.
  * Having extra path in map is illegal.
  * 
+ * @version 1.2
+ * 
  * @author LiChong
- *
+ * 
  */
 public class ExtraPathValidator implements MapValidator{
 
 	private ArrayList<CellState> cellList;
 	private HashMap<Integer,Integer> ceMap;
 	
+	/**
+	 * This method validate() overrides the method validate() of parent class MapValidator. 
+	 * And it checks whether the path is extra path.
+	 * 
+	 * @return boolean A boolean values that represent whether the path is extra path.
+	 * 
+	 */	
 	@Override
 	public boolean validate() {
 		// TODO Auto-generated method stub
