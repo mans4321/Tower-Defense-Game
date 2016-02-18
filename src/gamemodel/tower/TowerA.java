@@ -2,7 +2,14 @@ package gamemodel.tower;
 import gamemodel.critter.*;
 
 /**
- * Created by yongpinggao on 2/4/16.
+ *This class create the first Tower(TowerA) and initialize it's characteristics. 
+ *
+ *TowerA extends Tower implements TowerShootingBehavior
+ *
+ *@author yongpinggao on 2/4/16.
+ *@see Tower 
+ *@since 2/4/16.
+ *@version 1.0
  */
 public class TowerA extends Tower implements TowerShootingBehavior{
 
@@ -19,7 +26,9 @@ public class TowerA extends Tower implements TowerShootingBehavior{
 
 
     }
-
+/**
+ *  Initialize the tower specification base on tower level   
+ */
     private void initTower(){
         switch(level){
             case 1:
@@ -55,7 +64,9 @@ public class TowerA extends Tower implements TowerShootingBehavior{
     }
 
 
-
+/**
+ * {@inheritDoc}
+ */
     @Override
     public Critter shoot() {
 

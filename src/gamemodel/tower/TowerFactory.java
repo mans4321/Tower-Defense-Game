@@ -7,13 +7,20 @@ public class TowerFactory {
     // singleton + Factory
 
     private static TowerFactory ourInstance = new TowerFactory();
-
+/**
+ * 
+ * @return
+ */
     public static TowerFactory getInstance() {
         return ourInstance;
     }
 
     private TowerFactory() {}
-
+/**
+ * 
+ * @param id tower id 
+ * @return
+ */
     public Tower getTower(TowerID id){
         switch (id) {
             case TOWERA1:
