@@ -1,12 +1,15 @@
-2.1 File name 
+#We are basing our code standards off Google' code standard at https://google.github.io/styleguide/javaguide.html
+There are slight changes but the majority of items are copied as is. That's why we are keeping the reference numbers
+
+##2.1 File name 
 
 The source file name consists of the case-sensitive name of the top-level class it contains, plus the .java extension.
 
-4.1.1 Braces are used where optional 
+##4.1.1 Braces are used where optional 
 
 Braces are used with if, else, for, do and while statements, even when the body is empty or contains only a single statement.
 
-4.1.2 Nonempty blocks: K & R style 
+##4.1.2 Nonempty blocks: K & R style 
 
 Braces follow the Kernighan and Ritchie style ("Egyptian brackets") for nonempty blocks and block-like constructs:
 
@@ -15,23 +18,23 @@ Line break after the opening brace.
 Line break before the closing brace.
 Line break after the closing brace if that brace terminates a statement or the body of a method, constructor or named class. For example, there is no line break after the brace if it is followed by else or a comma.
 
-4.2 Block indentation: +4 spaces (originally 2)
+##4.2 Block indentation: +4 spaces (originally 2)
 
 Each time a new block or block-like construct is opened, the indent increases by two spaces. When the block ends, the indent returns to the previous indent level. The indent level applies to both code and comments throughout the block. (See the example in Section 4.1.2, Nonempty blocks: K & R Style.)
 
-4.4 Column limit: 100 or 130 
+##4.4 Column limit: 100 or 130 
 
 Projects are free to choose a column limit of either 80 or 100 characters. Except as noted below, any line that would exceed this limit must be line-wrapped, as explained in Section 4.5, Line-wrapping.
 
-4.8.2.1 One variable per declaration 
+##4.8.2.1 One variable per declaration 
 
 Every variable declaration (field or local) declares only one variable: declarations such as int a, b; are not used.
 
-4.8.5 Annotations 
+##4.8.5 Annotations 
 
 Annotations applying to a class, method or constructor appear immediately after the documentation block, and each annotation is listed on a line of its own (that is, one annotation per line). These line breaks do not constitute line-wrapping (Section 4.5, Line-wrapping), so the indentation level is not increased. 
 
-5.2.2 Class names 
+##5.2.2 Class names 
 
 Class names are written in UpperCamelCase.
 
@@ -41,7 +44,7 @@ There are no specific rules or even well-established conventions for naming anno
 
 Test classes are named starting with the name of the class they are testing, and ending with Test. For example, HashTest or HashIntegrationTest.
 
-5.2.3 Method names 
+##5.2.3 Method names 
 
 Method names are written in lowerCamelCase.
 
@@ -49,7 +52,7 @@ Method names are typically verbs or verb phrases. For example, sendMessage or st
 
 Underscores may appear in JUnit test method names to separate logical components of the name. One typical pattern is test<MethodUnderTest>_<state>, for example testPop_emptyStack. There is no One Correct Way to name test methods.
 
-5.2.6 Parameter names 
+##5.2.6 Parameter names 
 
 Parameter names are written in lowerCamelCase.
 
