@@ -26,26 +26,29 @@ public enum TowerId {
 
 
     private String name;
-/**
- * A constructor assign name to towerName     
- * @param towerName tower name
- */
+    
+    /**
+     * A constructor assign name to towerName.
+     * @param towerName tower name
+     */
     TowerId(String towerName) {
         this.name = towerName;
     }
-/**
- * get tower name 
- * @return tower name 
- */
+    
+    /**
+     * get tower name.
+     * @return tower name 
+     */
     public String getName() {
         return name;
     }
-/**
- * get tower id
- * @param name tower name
- * @return tower id
- */
-    public static TowerId getTowerIDFrom(String name) {
+    
+    /**
+     * get tower id.
+     * @param name tower name
+     * @return tower id
+     */
+    public static TowerId getTowerIdFrom(String name) {
         TowerId id = null;
 
         for(TowerId tid: TowerId.values()) {

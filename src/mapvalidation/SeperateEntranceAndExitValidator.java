@@ -15,36 +15,45 @@ import gamemodel.gamemap.CellState;
  */
 public class SeperateEntranceAndExitValidator implements MapValidator{
 
-	private ArrayList<CellState> cellList;
-	private int indexOfEntrance;
-	private int indexOfExit;
-	private int seaeCols;
-	
-	@Override
-	public boolean validate() {
-		// TODO Auto-generated method stub
-		
-		for(int i = 0; i < cellList.size(); i++) {
-			if (cellList.get(i) == CellState.ENTRANCE) {
-				indexOfEntrance = i;
-			}else if (cellList.get(i) == CellState.EXIT) {
-				indexOfExit = i;
-			}
-		}
-		
-		if (indexOfEntrance - seaeCols == indexOfExit || indexOfEntrance + seaeCols == indexOfExit
-				||indexOfEntrance - 1 == indexOfExit || indexOfEntrance + 1 == indexOfExit) {
-			return false;
-		}else{
-			return true;
-		}
-		
-		
-	}
-	
-	public SeperateEntranceAndExitValidator(int Cols, ArrayList<CellState> cellList) {
-		this.cellList = cellList;
-		this.seaeCols = Cols;
-	}
-	
+    private ArrayList<CellState> cellList;
+    private int indexOfEntrance;
+    private int indexOfExit;
+    private int seaeCols;
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean validate() {
+        // TODO Auto-generated method stub
+        
+        for (int i = 0; i < cellList.size(); i++) {
+            if (cellList.get(i) == CellState.ENTRANCE) {
+                indexOfEntrance = i;
+            } else if (cellList.get(i) == CellState.EXIT) {
+                indexOfExit = i;
+            }
+        }
+        
+        if (
+                indexOfEntrance - seaeCols == indexOfExit 
+                || indexOfEntrance + seaeCols == indexOfExit
+                || indexOfEntrance - 1 == indexOfExit 
+                || indexOfEntrance + 1 == indexOfExit
+            ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    /**
+     * Constructor receives the number of columns and the tiles list.
+     * @param cols number of cols in a map
+     * @param cellList list of tiles in the map
+     */
+    public SeperateEntranceAndExitValidator(int cols, ArrayList<CellState> cellList) {
+        this.cellList = cellList;
+        this.seaeCols = cols;
+    }
 }

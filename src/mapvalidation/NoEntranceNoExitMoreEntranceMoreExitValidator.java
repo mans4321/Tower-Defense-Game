@@ -15,33 +15,42 @@ import gamemodel.gamemap.CellState;
  */
 public class NoEntranceNoExitMoreEntranceMoreExitValidator implements MapValidator{
 
-	private ArrayList<CellState> cellList;
-	private int numberOfEntranceOrExit;
-	
-	@Override
-	public boolean validate() {
-		// TODO Auto-generated method stub
-
-		int numberOfEntrance = 0;
-		int numberOfExit = 0;
-
-		for(int i=0;i<cellList.size();i++) {
-			if (cellList.get(i) == CellState.ENTRANCE) numberOfEntrance++;
-			if (cellList.get(i) == CellState.EXIT) numberOfExit++;
-		}
-		
-		if (numberOfEntrance == 0 || numberOfEntrance > 1 || numberOfExit == 0 || numberOfExit > 1) {
-			return false;
-		} else {
-			return true;
-		}
-		
-	}
-	
-	public NoEntranceNoExitMoreEntranceMoreExitValidator(ArrayList<CellState> cellList) {
-		// TODO Auto-generated constructor stub
-		this.cellList = cellList;
-	}
-	
-	 
+    private ArrayList<CellState> cellList;
+    private int numberOfEntranceOrExit;
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean validate() {
+        // TODO Auto-generated method stub
+        
+        int numberOfEntrance = 0;
+        int numberOfExit = 0;
+        
+        for (int i = 0; i < cellList.size(); i++) {
+            if (cellList.get(i) == CellState.ENTRANCE) {
+                numberOfEntrance++;
+            }
+            if (cellList.get(i) == CellState.EXIT) {
+                numberOfExit++;
+            }
+        }
+        
+        if (numberOfEntrance == 0 || numberOfEntrance > 1 || numberOfExit == 0 || numberOfExit > 1) {
+            return false;
+        } else {
+            return true;
+        }
+        
+    }
+    
+    /**
+     * Contructor receives a list of tiles to validate
+     * @param cellList list of tiles
+     */
+    public NoEntranceNoExitMoreEntranceMoreExitValidator(ArrayList<CellState> cellList) {
+        // TODO Auto-generated constructor stub
+        this.cellList = cellList;
+    }
 }

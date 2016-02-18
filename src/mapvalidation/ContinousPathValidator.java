@@ -12,25 +12,31 @@ import gamemodel.gamemap.CellState;
  * @author LiChong
  *
  */
-public class ContinousPathValidator implements MapValidator{
+public class ContinousPathValidator implements MapValidator {
 
-	private HashMap<Integer,Integer> cMap;
- 
-	
-	@Override
-	public boolean validate() {
-		// TODO Auto-generated method stub
-		
-		for(int i : cMap.values()) {
-			if (i == 0) return false;
-		}
-		
-		return true;
-	}
-	
-	public ContinousPathValidator(HashMap<Integer,Integer> countMap) {
-		this.cMap = countMap;
- 
-	}
-	
+    private HashMap<Integer,Integer> cMap;
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean validate() {
+        // TODO Auto-generated method stub
+
+        for (int i : cMap.values()) {
+            if (i == 0) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    /**
+     * Setter to the validator property.
+     * @param countMap HashMap validator
+     */
+    public ContinousPathValidator(HashMap<Integer,Integer> countMap) {
+        this.cMap = countMap;
+    }
 }

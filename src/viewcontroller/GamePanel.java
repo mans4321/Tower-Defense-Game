@@ -172,7 +172,7 @@ public class GamePanel extends JPanel implements ActionListener{
                             level ++;
                             String newName = oldName.split("_")[0] + "_" + level;
 
-                            TowerId newID = TowerId.getTowerIDFrom(newName);
+                            TowerId newID = TowerId.getTowerIdFrom(newName);
                             Tower newTower = TowerFactory.getInstance().getTower(newID);
                             double newTowerBuyPrice = newTower.getBuyPrice();
                             double updatePrice = newTowerBuyPrice - oldTowerBuyPrice;
