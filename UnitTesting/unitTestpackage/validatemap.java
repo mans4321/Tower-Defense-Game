@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import gamemodel.gamemap.CellState;
+import mapvalidation.ExtraPathValidator;
 import mapvalidation.NoEntranceNoExitMoreEntranceMoreExitValidator;
 import mapvalidation.SeperateEntranceAndExitValidator;
 
@@ -36,7 +37,7 @@ public class validatemap {
 	@Test
 	public void testToshort() {
 		
-ArrayList<CellState> cellListtest= new ArrayList<CellState>();
+		ArrayList<CellState> cellListtest= new ArrayList<CellState>();
 		
 		for (int i = 0; i < 20; i++) {
 			
@@ -52,6 +53,7 @@ ArrayList<CellState> cellListtest= new ArrayList<CellState>();
 		assertTrue(Re);
 	}
 	
+ 
 
 
 }
