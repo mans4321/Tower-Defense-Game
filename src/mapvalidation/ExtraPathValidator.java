@@ -17,7 +17,9 @@ public class ExtraPathValidator implements MapValidator{
 
 	private ArrayList<CellState> cellList;
 	private HashMap<Integer,Integer> ceMap;
-	
+/**
+ * {@inheritDoc}	
+ */
 	@Override
 	public boolean validate() {
 		// TODO Auto-generated method stub
@@ -31,7 +33,12 @@ public class ExtraPathValidator implements MapValidator{
 		
 		return true;
 	}
-
+/**
+ *Class constructor validate whether there is circle or extra path in map.
+ * 
+ * @param countMap
+ * @param cellList   cell states of each cell
+ */
 	public ExtraPathValidator(HashMap<Integer,Integer> countMap, ArrayList<CellState> cellList){
 		this.cellList = cellList;
 		this.ceMap = countMap;

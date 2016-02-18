@@ -17,7 +17,9 @@ public class LengthValidator implements MapValidator {
 	//public static final String TOO_LONG_ERROR = "Sorry,path is too long";
 	
 	private ArrayList<CellState> cellList;//how to simplize it?
-	
+/**
+ * {@inheritDoc}	
+ */
 	@Override
 	public boolean validate() {
 		// TODO Auto-generated method stub
@@ -33,7 +35,11 @@ public class LengthValidator implements MapValidator {
 		}
 		
 	}
-	
+/**
+ * Class constructor whether the length of path in map is legal.	
+ * 
+ * @param cellList   cell states of each cell
+ */
 	public LengthValidator(ArrayList<CellState> cellList){
 		this.cellList = cellList;
 	}

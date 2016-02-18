@@ -16,7 +16,9 @@ public class ContinousPathValidator implements MapValidator{
 
 	private HashMap<Integer,Integer> cMap;
  
-	
+/**
+ * {@inheritDoc}	
+ */
 	@Override
 	public boolean validate() {
 		// TODO Auto-generated method stub
@@ -27,7 +29,11 @@ public class ContinousPathValidator implements MapValidator{
 		
 		return true;
 	}
-	
+/**
+ *Class constructor  validate whether Entrance or Exit is in the middle of the path
+ *  	
+ * @param countMap
+ */
 	public ContinousPathValidator(HashMap<Integer,Integer> countMap){
 		this.cMap = countMap;
  

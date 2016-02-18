@@ -12,7 +12,9 @@ import java.util.HashMap;
 public class CirclePathValidator implements MapValidator{
 
 	private HashMap<Integer, Integer> countMap;
-	
+/**
+ * {@inheritDoc}	
+ */
 	@Override
 	public boolean validate() {
 		// TODO Auto-generated method stub
@@ -23,7 +25,11 @@ public class CirclePathValidator implements MapValidator{
 		
 		return false;
 	}
-	
+/**
+ *Class constructor validate whether the path is in a circle.
+ * 	
+ * @param countMap
+ */
 	public CirclePathValidator(HashMap<Integer, Integer> countMap){
 		this.countMap = countMap;
 	}
