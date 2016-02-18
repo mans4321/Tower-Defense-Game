@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+
+
 import gamemodel.critter.Critter;
 import gamemodel.critter.CritterA;
 import gamemodel.critter.CritterB;
@@ -51,14 +53,9 @@ public class Addingcrittertostory {
 	
 	@Test
 	public void testbuildingcritterwave() {
-		Builder buildcrittera = new Builder();
 		
-		buildcrittera.critterA(2);
 		
-		Wave wave1test = new Wave(buildcrittera.critterB(2));
-		
-	}
-	}
+	
 	/**
 	 public Builder critterB(int num) {
          for (int i = 0; i < num; i++) {
@@ -69,8 +66,6 @@ public class Addingcrittertostory {
      }
 */
 
-	private void asssertTrue() {
-		// TODO Auto-generated method stub
 		
 	}
 }
