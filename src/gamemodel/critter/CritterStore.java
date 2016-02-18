@@ -2,7 +2,12 @@ package gamemodel.critter;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * Created by yongpinggao on 2/6/16.
+ * Story  critters in CopyOnWriteArrayList(see link) to start waves.
+ *  
+ *@author yongpinggao 
+ *@since 2/6/16.
+ *@version 1.0
+ *@see {@link <a href="http://google.com">CopyOnWriteArrayList</a> }
  */
 public class CritterStore {
 
