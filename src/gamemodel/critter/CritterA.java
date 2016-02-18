@@ -11,7 +11,7 @@ package gamemodel.critter;
 public class CritterA extends Critter {
 
 /**
- * A constructor calls the method initCritter();
+ * A constructor calls the method initCritter() to initialize the critter parameters .
  */
   public CritterA(){
         initCritter();

@@ -17,7 +17,7 @@ public class CritterC extends Critter{
         initCritter();
     }
 /**
-* initialize the characteristics of the CritterC
+*  constructor calls the method initCritter() to initialize the critter parameters .
 */
     private void initCritter() {
         imgURL = "res/critterC.png";

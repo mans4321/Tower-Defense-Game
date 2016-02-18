@@ -15,7 +15,7 @@ public class BankAccout {
 
     private double balance;
     /**
-     * A constructor.
+     * A constructor for initializing the player balance.
      * @param initialBalance the initial amount of money the player has 
      */
     public BankAccout(int initialBalance){
