@@ -20,7 +20,7 @@ public class GameMap {
     private String imageName;
 
 /**
- * A constructor.
+ * A constructor initialize the parameters for the game maps.
  * @param mapRows   number of Rows
  * @param mapCols   number of columns 
  * @param cells     ArrayList for the map cells state  

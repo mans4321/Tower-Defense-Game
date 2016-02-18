@@ -16,7 +16,7 @@ import gamemodel.critter.*;
 public class TowerB extends Tower implements TowerShootingBehavior{
 
 /**
- * Constructor  
+ * Constructor call  initTower() which Initialize the towerB specification for each level . 
  * 
  * @param level tower level
  */

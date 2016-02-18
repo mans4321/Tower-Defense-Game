@@ -20,7 +20,7 @@ public class TowerFactory {
         return ourInstance;
     }
 /**
- * Constructor. 
+ * Constructor make TowerFactory Private.  
  */
     private TowerFactory() {}
 /**

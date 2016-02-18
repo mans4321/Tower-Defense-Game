@@ -15,7 +15,7 @@ public class TowerA extends Tower implements TowerShootingBehavior{
 
 
 /**
- * Constructor
+ * Constructor call  initTower() which Initialize the towerA specification for each level .
  *  
  * @param level tower level
  */

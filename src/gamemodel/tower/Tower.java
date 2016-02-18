@@ -12,7 +12,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * A model that define the all tower parameters.
+ * A model that initialize  the all tower parameters.
  * 
  * Tower class implements TowerShootingBehavior and  ActionListener
  * 
@@ -57,7 +57,7 @@ public class Tower implements TowerShootingBehavior, ActionListener{
 
     protected boolean powerOn;
 /**
- * A Constructor to assign tower parameters
+ * A Constructor to initialize  tower parameters
  */
     public Tower(){
 

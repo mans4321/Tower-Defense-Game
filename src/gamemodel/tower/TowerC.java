@@ -15,7 +15,7 @@ import gamemodel.critter.*;
 public class TowerC extends Tower{
 
 /**
- * Constructor
+ * Constructor call  initTower() which Initialize the towerC specification for each level .
  * 
  * @param level tower level 
  */

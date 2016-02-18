@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 
 /**
- * This class  story all saved maps by the player .
+ * This class  story all saved maps by the player in Arraylist .
  * 
  * when the player save a new game it is added to Arraylist Type GameMAp.
  * and when  player remove it removed from that Arraylist.
@@ -18,7 +18,7 @@ public class GameMapCollection {
     private ArrayList<GameMap> maps;
 
 /**
- * Constructor fot game map collection.
+ * Constructor story all saved maps by the player in Arraylist.
  * 
  */
     public GameMapCollection(){
