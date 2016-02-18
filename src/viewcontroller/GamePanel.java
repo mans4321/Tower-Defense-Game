@@ -14,7 +14,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by yongpinggao on 1/30/16.
+ * Class for the game area
+ * @author yongpinggao
+ * @since 1/30/16
+ *
  */
 public class GamePanel extends JPanel implements ActionListener{
 
@@ -46,7 +49,13 @@ public class GamePanel extends JPanel implements ActionListener{
     private int waveNum;
 
     private boolean isGameOver = false;
-
+    
+    /**
+     * Constructor for teh game panel, sets initial game values like currency and lifes and others
+     * @param panelWidth
+     * @param panelHeight
+     * @param mapNum
+     */
     public GamePanel(int panelWidth, int panelHeight, int mapNum) {
 
         this.mapNum = mapNum;
@@ -296,7 +305,10 @@ public class GamePanel extends JPanel implements ActionListener{
             }
         });
     }
-
+    
+    /**
+     * Initiates the panel
+     */
     private void initPanel() {
 
         setLayout(null);
@@ -308,12 +320,12 @@ public class GamePanel extends JPanel implements ActionListener{
         mapAreaHeight = panelHeight - topAreaHeight;
 
         // Debug:
-        System.out.println("topAreaWidth: " + topAreaWidth); //1200
-        System.out.println("topAreaHeight: " + topAreaHeight); //144
-        System.out.println("endAreaWidth: " + endAreaWidth); //240
-        System.out.println("endAreaHeight: " + endAreaHeight); //578
-        System.out.println("mapAreaWidth: " + mapAreaWidth); //960
-        System.out.println("mapAreaHeight: " + mapAreaHeight); //578
+//        System.out.println("topAreaWidth: " + topAreaWidth); //1200
+//        System.out.println("topAreaHeight: " + topAreaHeight); //144
+//        System.out.println("endAreaWidth: " + endAreaWidth); //240
+//        System.out.println("endAreaHeight: " + endAreaHeight); //578
+//        System.out.println("mapAreaWidth: " + mapAreaWidth); //960
+//        System.out.println("mapAreaHeight: " + mapAreaHeight); //578
 
 
 
@@ -329,7 +341,11 @@ public class GamePanel extends JPanel implements ActionListener{
 
 
     }
-
+    
+    /**
+     * Updates info for specified tower
+     * @param id tower id
+     */
     private void updateInfoOfTower(TowerId id) {
         Tower tower = TowerFactory.getInstance().getTower(id);
         endPanel.getTowerSpecificationPanel().setBuyPrice(tower.getBuyPrice());
@@ -339,14 +355,19 @@ public class GamePanel extends JPanel implements ActionListener{
         endPanel.getTowerSpecificationPanel().setRange(tower.getRange());
         endPanel.getTowerSpecificationPanel().setRateOfFire(tower.getRateOfFire());
     }
-
+    
+    /**
+     * Clears all the events 
+     */
     private void clearGame() {
     	CritterStore.critters.clear();
         mapPanel.getMapArea().getRepaintMapTimer().stop();
         wavePrepareTimer.stop();
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 

@@ -107,7 +107,7 @@ public class DataPanel extends JPanel {
     }
 
     /**
-     * Setter for the currency balance
+     * Setter for the currency balance.
      * @param balance currency value
      */
     public void setBalance(double balance) {
@@ -116,26 +116,37 @@ public class DataPanel extends JPanel {
     }
     
     /**
-     * 
-     * @param coins
+     * Setter for the number of coins the player has.
+     * @param coins number of life coins
      */
     public void setCoins(int coins) {
         this.coins = coins;
         coinsLabel.setText("Coin Left: " + coins);
     }
 
-
+    /**
+     * Setter for the number of the wave that is running.
+     * @param waveNum number of the wave
+     */
     public void setWaveNum(int waveNum) {
         this.waveNum = waveNum;
         waveStartLabel.setText("Wave " + waveNum + " starts!");
         waveNumLabel.setText("Wave: " + waveNum + "/" + totalWaveNum);
     }
 
+    /**
+     * Setter for the total number of waves for the game
+     * @param totalWaveNum
+     */
     public void setTotalWaveNum(int totalWaveNum) {
         this.totalWaveNum = totalWaveNum;
         waveNumLabel.setText("Wave: " + waveNum + "/" + totalWaveNum);
     }
-
+    
+    /**
+     * Setter for warning messages
+     * @param warningMsg
+     */
     public void setWarningMsg(String warningMsg) {
         this.warningMsg = warningMsg;
         this.warningLabel.setText(warningMsg);

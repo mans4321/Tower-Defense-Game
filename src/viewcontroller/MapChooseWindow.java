@@ -14,7 +14,9 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Created by yongpinggao on 1/26/16.
+ * Window for selecting the game map
+ * @author yongpinggao
+ * @since 1/26/16
  */
 public class MapChooseWindow extends BaseWindow {
 
@@ -26,7 +28,10 @@ public class MapChooseWindow extends BaseWindow {
     public static final int nCols = 2;
 
     private int mapNum;
-
+    
+    /**
+     * Constructor, will get a list of the 4 last created maps and display as option for the player to select
+     */
     public MapChooseWindow() {
 
         super("Choose Game Map");
@@ -98,12 +103,21 @@ public class MapChooseWindow extends BaseWindow {
 
 
     }
-
+    
+    /**
+     * Class to define each image that will be displayed in the map selection window
+     * @author yongpinggao
+     *
+     */
     private class MapImagePanel extends JPanel {
 
         private JLabel label;
         private ImagePanel imagePanel;
-
+        
+        /**
+         * Constructor, creates a panel with image to take over a section of the selection window
+         * @param imageName
+         */
         public MapImagePanel(String imageName) {
 
             this.setPreferredSize(new Dimension(GameWindow. WINDOW_WIDTH / nCols, GameWindow. WINDOW_HEIGHT / nRows));
@@ -121,9 +135,19 @@ public class MapChooseWindow extends BaseWindow {
 
 
         }
-
+        
+        /**
+         * The images that will be placed in the map selection window
+         * @author yongpinggao
+         *
+         */
         private class ImagePanel extends JPanel {
             private ImageIcon imageIcon;
+            
+            /**
+             * Creates an icon from map archive
+             * @param name
+             */
             public ImagePanel(String name) {
                 this.setPreferredSize(new Dimension(GameWindow. WINDOW_WIDTH / nCols, GameWindow. WINDOW_HEIGHT / nRows - label.getHeight()));
 
@@ -132,7 +156,10 @@ public class MapChooseWindow extends BaseWindow {
                 }
 
             }
-
+            
+            /**
+             * {@inheritDoc}
+             */
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -143,17 +170,7 @@ public class MapChooseWindow extends BaseWindow {
                     Dimension d = Utility.getScaledDimension(new Dimension(imageIcon.getIconWidth(), imageIcon.getIconHeight()), new Dimension(getWidth(),getHeight()));
                     g2.drawImage(imageIcon.getImage(), 5, 5, d.width , d.height, this);
                 }
-
-
-
             }
-
         }
-
-
     }
-
-
-
-
 }

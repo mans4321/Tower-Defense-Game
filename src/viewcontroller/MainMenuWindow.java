@@ -7,8 +7,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 /**
- * Created by yongpinggao on 1/24/16.
+ * Class that draws the window selection between mapeditor and game
+ * @author yongpinggao
+ *
  */
 public class MainMenuWindow extends JFrame {
 
@@ -17,10 +20,17 @@ public class MainMenuWindow extends JFrame {
     private final static int WINDOW_HEIGHT = 222;
 
     private String menuTitle = "Defence of the Tower";
+    
+    /**
+     * Starts window
+     */
     public MainMenuWindow() {
         initMenuWindow();
     }
-
+    
+    /**
+     * Sets events and information to initiate window with default values
+     */
     private void initMenuWindow() {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,6 +43,9 @@ public class MainMenuWindow extends JFrame {
         addComponents();
     }
 
+    /**
+     * Add buttons to the window
+     */
     private void addComponents() {
 
         JButton b1 = new JButton("Map Editor");

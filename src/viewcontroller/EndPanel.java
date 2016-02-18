@@ -7,7 +7,10 @@ import gamemodel.tower.TowerImageCollection;
 import java.awt.*;
 
 /**
- * Created by yongpinggao on 1/30/16.
+ * This class will hold the upgrades and sell info as well as specifications
+ * @author yongpinggao
+ * @since 1/30/16
+ *
  */
 public class EndPanel extends JPanel {
 
@@ -15,7 +18,10 @@ public class EndPanel extends JPanel {
     private  TowerSpecificationPanel towerSpecificationPanel;
 
     private TowerId currentChosenTowerID;
-
+    
+    /**
+     * Constructor starts the 'market' panel and the info panel
+     */
     public EndPanel() {
 
 
@@ -31,18 +37,28 @@ public class EndPanel extends JPanel {
         this.add(towerSpecificationPanel);
 
     }
-
-
-
+    
+    /**
+     * Getter for the info panel
+     * @return
+     */
     public TowerSpecificationPanel getTowerSpecificationPanel() {
         return towerSpecificationPanel;
     }
-
+    
+    /**
+     * Getter for the market panel
+     * @return
+     */
     public TowerUpgradeSellPanel getTowerUpgradeSellPanel() {
 
         return towerUpgradeSellPanel;
     }
-
+    
+    /**
+     * receives the tower object to be inspect, to show info and market
+     * @param currentChosenTowerID
+     */
     public void setCurrentChosenTowerID(TowerId currentChosenTowerID) {
         this.currentChosenTowerID = currentChosenTowerID;
         // Property Observer:
