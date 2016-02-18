@@ -12,8 +12,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 /**
- * Created by yongpinggao on 1/30/16.
+ * 
+ * @author yongpinggao
+ * @since 1/30/16
+ *
  */
 public class MapPanel extends JPanel {
 
@@ -31,53 +35,92 @@ public class MapPanel extends JPanel {
 
     private int[] extrancePos;
     private int[] exitPos;
-
-
-
-
-
+    
+    /**
+     * Getter for columns
+     * @return number of columns
+     */
     public int getCols() {
         return cols;
     }
 
+    /**
+     * Getter for entrance position
+     * @return entrance position
+     */
     public int[] getExtrancePos() {
         return extrancePos;
     }
-
+    
+    /**
+     * Getter for the exit position
+     * @return exit position
+     */
     public int[] getExitPos() {
         return exitPos;
     }
-
+    
+    /**
+     * Set the id of a specific tower
+     * @param currentTowerID TowerId of the selected tower
+     */
     public void setCurrentTowerID(TowerId currentTowerID) {
         this.currentTowerID = currentTowerID;
     }
-
+    
+    /**
+     * Getter for cellList
+     * @return the cellList
+     */
     public ArrayList<CellState> getCellList() {
         return cellList;
     }
 
+    /**
+     * Set the cell List
+     * @param cellList
+     */
     public void setCellList(ArrayList<CellState> cellList) {
         this.cellList = cellList;
     }
-
+    
+    /**
+     * Getter for the map of towers
+     * @return tower map
+     */
     public HashMap<Integer, Tower> getTowerMap() {
         return towerMap;
     }
-
+    
+    /**
+     * Setter for the tower map
+     * @param towerMap
+     */
     public void setTowerMap(HashMap<Integer, Tower> towerMap) {
         this.towerMap = towerMap;
     }
-
+    
+    /**
+     * Getter for teh path list
+     * @return path list
+     */
     public ArrayList<Integer> getPathList() {
         return pathList;
     }
 
+    /**
+     * Getter for the map area
+     * @return map area
+     */
     public MapArea getMapArea() {
         return mapArea;
     }
 
 
-
+    /**
+     * Constructor for the map panel
+     * @param mapNum number of the map
+     */
     public MapPanel(int mapNum) {
 
         // read data from saved files
@@ -107,7 +150,10 @@ public class MapPanel extends JPanel {
         initComponent();
 
     }
-
+    
+    /**
+     * Initiates the Map panel 
+     */
     private void initComponent() {
         mapArea = new MapArea();
         setBackground(Color.BLACK);
@@ -118,7 +164,12 @@ public class MapPanel extends JPanel {
         add(mapArea, c);
     }
 
-    // inner class
+
+    /**
+     * Enables all listeners and tracks mouse for game interation
+     * @author yongpinggao
+     *
+     */
     public class MapArea extends JPanel implements ActionListener {
 
         private TowerChosenListener listener;
@@ -230,7 +281,9 @@ public class MapPanel extends JPanel {
 
         }
 
-
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public Dimension getPreferredSize() {
             return new Dimension(DrawMap.CELL_SIZE * cols, DrawMap.CELL_SIZE * rows);
@@ -251,7 +304,10 @@ public class MapPanel extends JPanel {
         public void addCritterGotKilledListener(CritterGotKilledListener listener) {
             this.critterGotKilledListener = listener;
         }
-
+        
+        /**
+         * {@inheritDoc}
+         */
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
@@ -280,7 +336,10 @@ public class MapPanel extends JPanel {
 
 
         }
-
+        
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
 

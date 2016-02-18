@@ -7,12 +7,18 @@ import gamemodel.gamemap.FileProcessing;
 import java.io.File;
 
 /**
- * Created by yongpinggao on 1/24/16.
+ * Main game execution
+ * @author yongpinggao
+ * @since 1/24/16
+ *
  */
 public class TDGameExe {
-
+    
+    /**
+     * main method starts game and make main menu visible
+     * @param args
+     */
     public static void main(String[] args) {
-
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -25,8 +31,6 @@ public class TDGameExe {
                 mapThumbnailDir.mkdir();
 
                 FileProcessing.sync();
-
-
 
                 new MainMenuWindow().setVisible(true);
 

@@ -2,7 +2,9 @@ package viewcontroller;
 import gamemodel.tower.TowerId;
 
 /**
- * Created by yongpinggao on 2/2/16.
+ * Interface for the tower placing listener
+ * @author yongpinggao
+ * @since 2/2/16
  */
 public interface PlaceTowerFinishedListener {
     void accountShouldChange(TowerId id);

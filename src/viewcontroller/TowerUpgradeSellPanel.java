@@ -8,7 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by yongpinggao on 1/24/16.
+ * Class that implements the upgrade and sell panel
+ * @author yongpinggao
+ * @since 1/24/16
  */
 public class TowerUpgradeSellPanel extends JPanel{
 
@@ -20,7 +22,10 @@ public class TowerUpgradeSellPanel extends JPanel{
     private ImageIcon icon;
 
     private TowerManipulationListener listener;
-
+    
+    /**
+     * Constructor, creates buy and sell buttons and attach listeners 
+     */
     public TowerUpgradeSellPanel() {
 
         bSell = new JButton("Sell");
@@ -44,12 +49,16 @@ public class TowerUpgradeSellPanel extends JPanel{
         placeComponents();
     }
 
-
-
+    /**
+     * Getter for the tower image
+     */
     public JLabel getTowerImage() {
         return towerImage;
     }
-
+    
+    /**
+     * Display panel components
+     */
     public void placeComponents() {
         setLayout(null);
         add(bSell);
@@ -64,12 +73,19 @@ public class TowerUpgradeSellPanel extends JPanel{
         towerImage.setBounds(0, 58 , 240, 174);
         bUpgrade.setBounds(0, 231, 240, 58);
     }
-
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
     }
-
+    
+    /**
+     * Associated a listener for the manipulation of the tower
+     * @param listener
+     */
     public void addTowerManipulationListener(TowerManipulationListener listener) {
         this.listener = listener;
     }

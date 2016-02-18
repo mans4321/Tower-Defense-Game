@@ -8,7 +8,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by yongpinggao on 1/24/16.
+ * Class that describes the tower selection panel
+ * @author yongpinggao
+ * @since 1/24/16
+ *
  */
 public class TowerSelectionPanel extends JPanel {
 
@@ -18,7 +21,10 @@ public class TowerSelectionPanel extends JPanel {
     private TowerSelectionListener slistener;
     private TowerChosenListener cListener;
     private TowerImageCollection towerImageCollection;
-
+    
+    /**
+     * Constructor creates basic 3 tower selection
+     */
     public TowerSelectionPanel() {
         tRows = 1;
         tCols = 3;
@@ -29,7 +35,10 @@ public class TowerSelectionPanel extends JPanel {
         initComponents();
 
     }
-
+    
+    /**
+     * Creates a button for each tower displaying it's image
+     */
     void initComponents() {
         // Starts with the first level of the tower
         TowerButton buttonTowerA = new TowerButton(towerImageCollection.getImageIcon(TowerId.TOWERAH.getName()));
@@ -65,16 +74,28 @@ public class TowerSelectionPanel extends JPanel {
         add(buttonTowerC);
 
     }
-
+    
+    /**
+     * Register a listener
+     * @param listener
+     */
     public void addTowerSelectionListener(TowerSelectionListener listener) {
         this.slistener = listener;
     }
 
+    /**
+     * Register a listener
+     * @param listener
+     */
     public void addTowerChosenListener(TowerChosenListener listener) {
         this.cListener = listener;
     }
 
-
+    /**
+     * Displays the associated image to the tower button
+     * @author yongpinggao
+     *
+     */
     private class TowerButton extends JButton {
         private ImageIcon towerImageIcon;
 
