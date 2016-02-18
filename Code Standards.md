@@ -28,6 +28,13 @@ Each time a new block or block-like construct is opened, the indent increases by
 
 Projects are free to choose a column limit of either 80 or 100 characters. Except as noted below, any line that would exceed this limit must be line-wrapped, as explained in Section 4.5, Line-wrapping.
 
+##4.6.2 Horizontal whitespace 
+
+Beyond where required by the language or other style rules, and apart from literals, comments and Javadoc, a single ASCII space also appears in the following places only.
+
+* Separating any reserved word, such as if, for or catch, from an open parenthesis (() that follows it on that line
+* Separating any reserved word, such as else or catch, from a closing curly brace (}) that precedes it on that line
+
 ##4.8.2.1 One variable per declaration 
 
 Every variable declaration (field or local) declares only one variable: declarations such as int a, b; are not used.
