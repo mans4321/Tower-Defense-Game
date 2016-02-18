@@ -1,8 +1,12 @@
 package gamemodel.wave;
+
 import java.util.HashMap;
 
 /**
- * Created by yongpinggao on 2/7/16.
+ * 
+ * @author yongpinggao
+ * @since 2/7/16
+ *
  */
 public class WaveStore {
 

@@ -1,24 +1,27 @@
 package gamemodel.wave;
-import javax.swing.*;
 
 import gamemodel.critter.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 
 /**
- * Created by yongpinggao on 2/6/16.
+ * 
+ * @author yongpinggao
+ * @see ActionListener
  */
 public class Wave implements ActionListener{
 
     private Timer generateCritterTimer;
     private int index;
     private WaveStartListener listener;
-
- 
-
-
-
+    
+    /**
+     * Constructor will set the timer and start it.
+     * @param builder Builder object from the Gson package
+     * @see GsonBuilder
+     */
     private Wave(Builder builder) {
  
 
@@ -30,7 +33,11 @@ public class Wave implements ActionListener{
 
     public static class Builder {
  
-
+        /**
+         * Spawns 'num' number of critters of type A.
+         * @param num number of critters
+         * @return Builder class
+         */
         public Builder critterA(int num) {
             for (int i = 0; i < num; i++) {
                 CritterA critterA = new CritterA();
@@ -38,7 +45,12 @@ public class Wave implements ActionListener{
             }
             return this;
         }
-
+        
+        /**
+         * Spawns 'num' number of critters of type B.
+         * @param num number of critters
+         * @return Builder class
+         */
         public Builder critterB(int num) {
             for (int i = 0; i < num; i++) {
                 CritterB critterB = new CritterB();
@@ -46,7 +58,12 @@ public class Wave implements ActionListener{
             }
             return this;
         }
-
+        
+        /**
+         * Spawns 'num' number of critters of type C.
+         * @param num number of critters
+         * @return Builder class
+         */
         public Builder critterC(int num) {
             for (int i = 0; i < num; i++) {
                 CritterC critterC = new CritterC();
@@ -54,7 +71,12 @@ public class Wave implements ActionListener{
             }
             return this;
         }
-
+        
+        /**
+         * Spawns 'num' number of critters of type D.
+         * @param num number of critters
+         * @return Builder class
+         */
         public Builder critterD(int num) {
             for (int i = 0; i < num; i++) {
                 CritterD critterD = new CritterD();
@@ -62,17 +84,28 @@ public class Wave implements ActionListener{
             }
             return this;
         }
-
+        
+        /**
+         * builder method to return the new Wave.
+         * @return Wave object
+         */
         public Wave build() {
             return new Wave(this);
         }
 
     }
-
+    
+    /**
+     * Adds a listener to when the wave start.
+     * @param listener WaveStartListener 
+     */
     public void addWaveStartListener(WaveStartListener listener) {
         this.listener = listener;
     }
-
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
