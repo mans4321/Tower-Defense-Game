@@ -13,13 +13,13 @@ public class CritterA extends Critter {
 /**
  * A constructor calls the method initCritter() to initialize the critter parameters .
  */
-  public CritterA(){
+    public CritterA() {
         initCritter();
     }
 /**
  * initialize the specifications  of the CritterA
  */
-    private void initCritter(){
+    private void initCritter() {
         imgURL = "res/critterA.png";
         moveSpeed = 5;
         initHealth = 30;

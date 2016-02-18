@@ -21,7 +21,7 @@ public class GameMapCollection {
  * Constructor story all saved maps by the player in Arraylist.
  * 
  */
-    public GameMapCollection(){
+    public GameMapCollection() {
         this.maps = new ArrayList<>();
     }
 /**
@@ -35,14 +35,14 @@ public class GameMapCollection {
  * adding the map to game map collection 
  * @param map  the saved map by the player
  */
-    public void addMap(GameMap map){
+    public void addMap(GameMap map) {
         this.maps.add(map);
     }
 /**
  * delete the map from the game map collection
  * @param index   the map index in the Arraylist.
  */
-    public void deleteMap(int index){                   
+    public void deleteMap(int index) {
         this.maps.remove(index);
     }
 

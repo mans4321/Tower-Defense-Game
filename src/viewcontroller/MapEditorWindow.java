@@ -11,7 +11,9 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
- * Created by yongpinggao on 1/24/16.
+ * The window that holds the map editor
+ * @author yongpinggao
+ * @since 1/24/16
  */
 public class MapEditorWindow extends BaseWindow {
 
@@ -31,11 +33,13 @@ public class MapEditorWindow extends BaseWindow {
 
     private int mapNum;
 
-
-
     private GameMap aMap;
 
-    public MapEditorWindow(){
+    /**
+     * Constructor, creates the cellList for the map and sets cols and rows
+     * sets map num to -1
+     */
+    public MapEditorWindow() {
         super("Map Editor");
 
         this.mapNum = -1;
@@ -45,8 +49,12 @@ public class MapEditorWindow extends BaseWindow {
 
         initMapEditorWindow();
     }
-
-    public MapEditorWindow(int mapNum){
+    
+    /**
+     * Constructor opens the map editor for a saved map
+     * @param mapNum
+     */
+    public MapEditorWindow(int mapNum) {
         super("Map Editor");
 
         this.mapNum = mapNum;
@@ -61,7 +69,10 @@ public class MapEditorWindow extends BaseWindow {
 
 
     }
-
+    
+    /**
+     * Initiates the map editor window
+     */
     private void initMapEditorWindow() {
 
         editArea = new EditArea();
@@ -72,16 +83,28 @@ public class MapEditorWindow extends BaseWindow {
         c.add(editArea, BorderLayout.LINE_START);
     }
 
+    /**
+     * Panel for the top area, holds the options to the map
+     * @author yongpinggao
+     *
+     */
     private class TopArea extends JPanel {
-
-        public TopArea(){
+        
+        /**
+         * Constructor to the top area
+         */
+        public TopArea() {
 
             this.setBackground(Color.DARK_GRAY);
             this.setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT / 10));
             initComponents();
         }
-
-        void initComponents(){
+        
+        /**
+         * Initiates the components and applies the settings selected by the user
+         * also draws the control buttons
+         */
+        void initComponents() {
             JComboBox widthList;
             JComboBox heightList;
 
@@ -107,7 +130,7 @@ public class MapEditorWindow extends BaseWindow {
                 public void actionPerformed(ActionEvent e) {
                 	
                 	MapValidationManager manager = new MapValidationManager(cellList, mapCols, mapRows);
-                	if(manager.checkValidate()){
+                	if (manager.checkValidate()) {
                 		 saveDataToFile();
                 	} else {
                 		//TODO AlertWindow!
@@ -115,7 +138,7 @@ public class MapEditorWindow extends BaseWindow {
                 	}
             	 
             	 
-//                    if(checkPathValidate()){
+//                    if (checkPathValidate()) {
 //                        saveDataToFile();
 //                    } else {//TODO: Dialog!!! -> what went wrong?
 //
@@ -124,7 +147,7 @@ public class MapEditorWindow extends BaseWindow {
             });
 
             JButton discardButton = new JButton("Discard");
-            discardButton.addActionListener(new ActionListener(){
+            discardButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
 
@@ -134,7 +157,7 @@ public class MapEditorWindow extends BaseWindow {
                             "Warning",
                             JOptionPane.YES_NO_OPTION);
 
-                    if(n == 0){ // User select "yes"
+                    if (n == 0) { // User select "yes"
                         editArea.mapPanel.clearMap();
                         MapEditorWindow.this.setVisible(false);
                         new MainMenuWindow().setVisible(true);
@@ -154,15 +177,23 @@ public class MapEditorWindow extends BaseWindow {
             this.add(discardButton);
         }
     }
-
+    
+    /**
+     * Edit area for the map to be created
+     * @author yongpinggao
+     *
+     */
     private class EditArea extends JPanel {
 
         private MapPanel mapPanel;
 
         private final String OPTION_ENTRANCE = "Set as an Entrance";
         private final String OPTION_EXIT = "Set as an Exit";
-
-        public EditArea(){
+        
+        /**
+         * Creates the area where the user will be able to click to create a path
+         */
+        public EditArea() {
             this.setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT / 10 * 9));
             mapPanel = new MapPanel();
 
@@ -174,12 +205,21 @@ public class MapEditorWindow extends BaseWindow {
             for(int i = 0; i < mapRows * mapCols; i++)
                 cellList.add(CellState.GRASS);
         }
-
+        
+        /**
+         * Create the map based on the places where the user clicks
+         * @author yongpinggao
+         *
+         */
         private class MapPanel extends JPanel implements ActionListener {
 
 
             private int index;
-
+            
+            /**
+             * Constructor, uses mouse listeners to track places where user is clicking
+             * Turns the click into different types of tiles for the map and display the new images
+             */
             public MapPanel() {
                 addMouseListener(new MouseAdapter() {
                     @Override
@@ -193,11 +233,11 @@ public class MapEditorWindow extends BaseWindow {
 
                         if (e.getButton() == MouseEvent.BUTTON1) {
                             // Left Click to set maps path
-                            if(cellList.get(index) == CellState.GRASS){
+                            if (cellList.get(index) == CellState.GRASS) {
                                 cellList.set(index, CellState.PATH);
-                            } else if(cellList.get(index) == CellState.PATH){
+                            } else if (cellList.get(index) == CellState.PATH) {
                                 cellList.set(index, CellState.GRASS);
-                            } else if(cellList.get(index) == CellState.ENTRANCE || cellList.get(index) == CellState.EXIT) {
+                            } else if (cellList.get(index) == CellState.ENTRANCE || cellList.get(index) == CellState.EXIT) {
                                 cellList.set(index, CellState.PATH);
                             }
 
@@ -218,45 +258,57 @@ public class MapEditorWindow extends BaseWindow {
                     }
                 });
             }
+            /**
+             * {@inheritDoc}
+             */
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 DrawMap.drawMap(g, mapCols, mapRows, cellList, this);
             }
-
+            
+            /**
+             * {@inheritDoc}
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if(e.getSource() instanceof JMenuItem){
+                if (e.getSource() instanceof JMenuItem) {
                     // If the signal is from MenuItem of PopupMenu
                     JMenuItem source = (JMenuItem)(e.getSource());
-                    if(source.getText().equals(OPTION_ENTRANCE)){
+                    if (source.getText().equals(OPTION_ENTRANCE)) {
                         cellList.set(index, CellState.ENTRANCE);
-                    } else if (source.getText().equals(OPTION_EXIT)){
+                    } else if (source.getText().equals(OPTION_EXIT)) {
                         cellList.set(index, CellState.EXIT);
                     }
                     repaint();
 
-                } else if (e.getSource() instanceof JComboBox){
+                } else if (e.getSource() instanceof JComboBox) {
 
                     // If the signal is from JComboBox
                     JComboBox cb = (JComboBox)(e.getSource());
                     String string = (String)cb.getSelectedItem();
-                    if(e.getActionCommand().equals("width")){
+                    if (e.getActionCommand().equals("width")) {
                         mapCols = Integer.parseInt(string);
-                    } else if (e.getActionCommand().equals("height")){
+                    } else if (e.getActionCommand().equals("height")) {
                         mapRows = Integer.parseInt(string);
                     }
                     clearMap();
                 }
             }
-
+            
+            /**
+             * {@inheritDoc}
+             */
             @Override
             public Dimension getPreferredSize() {
                 return new Dimension(DrawMap.CELL_SIZE * mapCols, DrawMap.CELL_SIZE * mapRows);
             }
-
-            public void clearMap(){
+            
+            /**
+             * Clean the map so the user can start a new map
+             */
+            public void clearMap() {
                 // it will let layout manager run again!
                 mapPanel.revalidate();
                 cellList.clear();
@@ -264,7 +316,11 @@ public class MapEditorWindow extends BaseWindow {
                     cellList.add(CellState.GRASS);
                 repaint();
             }
-
+            
+            /**
+             * Saves an image of the map
+             * @return
+             */
             private BufferedImage mapCaptureShot() {
                 BufferedImage image = new BufferedImage(DrawMap.CELL_SIZE * mapCols, DrawMap.CELL_SIZE * mapRows, BufferedImage.TYPE_INT_RGB);
                 Graphics g = image.createGraphics();
@@ -272,17 +328,20 @@ public class MapEditorWindow extends BaseWindow {
                 g.dispose();
                 return image;
             }
-
         }
-
-
-
     }
-
-    boolean checkPathValidate(){
+    
+    /**
+     * Enables validation of the map
+     * @return
+     */
+    boolean checkPathValidate() {
         return true;
     }
-
+    
+    /**
+     * Gets the list of cells and saves the map to Json file
+     */
     public void saveDataToFile() {
 
         boolean isReadyToCreate = true;
@@ -293,11 +352,11 @@ public class MapEditorWindow extends BaseWindow {
                 null,
                 null,
                 "map1");
-        if (mapName != null){ // if user choose cancel, mapName -> null
+        if (mapName != null) { // if user choose cancel, mapName -> null
 
-            if(!mapName.equals("")){ // if the name is empty then it's invalidate
+            if (!mapName.equals("")) { // if the name is empty then it's invalidate
                 GameMapCollection collection = FileProcessing.readMapFromJsonFile(); // read from json
-                if(collection!= null) { // if the file already exits, check the filename and volume
+                if (collection!= null) { // if the file already exits, check the filename and volume
                     int size = collection.getMaps().size();
                     for (int i = 0; i < size; i++) {
                         if (collection.getMaps().get(i).getImageName().equals(mapName)) {
@@ -310,22 +369,22 @@ public class MapEditorWindow extends BaseWindow {
                                         null,
                                         null,
                                         "map1");
-                            } while(mapName.equals(mapRename));
-                            if(mapRename != null) mapName = mapRename;
+                            } while (mapName.equals(mapRename));
+                            if (mapRename != null) mapName = mapRename;
                             else isReadyToCreate = false;
                         }
                     }
 
-                    if(mapNum > 0) { // if this map is edited, then remove the old one
+                    if (mapNum > 0) { // if this map is edited, then remove the old one
                         FileProcessing.deleteMapFromJsonFile(mapNum);
                         FileProcessing.sync();
-                    } else if (size == MapChooseWindow.nCols * MapChooseWindow.nRows){ // when it's full, delete the last map
+                    } else if (size == MapChooseWindow.nCols * MapChooseWindow.nRows) { // when it's full, delete the last map
                         FileProcessing.deleteMapFromJsonFile(size - 1);
                         FileProcessing.sync();
                     }
                 }
 
-                if(isReadyToCreate){
+                if (isReadyToCreate) {
                     aMap = new GameMap(mapRows, mapCols, cellList, mapName);
                     BufferedImage mapImage = editArea.mapPanel.mapCaptureShot();
 

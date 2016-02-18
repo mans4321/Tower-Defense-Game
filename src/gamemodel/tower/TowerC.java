@@ -1,10 +1,10 @@
 package gamemodel.tower;
+
 import gamemodel.critter.*;
  
 
 /**
  *This class create the third Tower(TowerA) and initialize it's characteristics. 
- *
  *TowerC extends Tower
  *
  *@author yongpinggao
@@ -12,30 +12,29 @@ import gamemodel.critter.*;
  *@since 2/4/16.
  *@version 1.0
  */
-public class TowerC extends Tower{
+public class TowerC extends Tower {
 
-/**
- * Constructor call  initTower() which Initialize the towerC specification for each level .
- * 
- * @param level tower level 
- */
-    public TowerC(int level){
+    /**
+     * Creates a tower of the selected level of the type TowerC.
+     * @param level tower level
+     */
+    public TowerC(int level) {
         this.level = level;
-        if(level <= super.level){
+        if (level <= super.level) {
             initTower();
             specification = "<html>" + this.getClass().getName() + "<br> Level: " + this.level + "<br>  Good at attack strong critters</html>";
         }
     }
 
-/**
-*  Initialize the tower specification base on tower level   
-*/   
-    private void initTower(){
-        switch(level){
+    /**
+    *  Initialize the tower specification base on tower level.
+    */   
+    private void initTower() {
+        switch (level) {
             case 1:
                 buyPrice = 40.0;
                 sellPrice = 20.0;
-                tid = TowerID.TOWERC1;
+                tid = TowerId.TOWERC1;
                 range = 120;
                 rateOfFire = 100;
                 power = 40;
@@ -43,7 +42,7 @@ public class TowerC extends Tower{
             case 2:
                 buyPrice = 50.0;
                 sellPrice = 25.0;
-                tid = TowerID.TOWERC2;
+                tid = TowerId.TOWERC2;
                 range = 130;
                 rateOfFire = 200;
                 power = 50;
@@ -51,7 +50,7 @@ public class TowerC extends Tower{
             case 3:
                 buyPrice = 60.0;
                 sellPrice = 30.0;
-                tid = TowerID.TOWERC3;
+                tid = TowerId.TOWERC3;
                 range = 140;
                 rateOfFire = 300;
                 power = 60;
@@ -59,22 +58,25 @@ public class TowerC extends Tower{
             default:
                 buyPrice = 0;
                 sellPrice = 0;
-                tid = TowerID.TOWERNULL;
+                tid = TowerId.TOWERNULL;
                 range = 0;
                 rateOfFire = 0;
         }
     }
-/**
- *{@inheritDoc}
- */
+    
+    /**
+     *{@inheritDoc}
+     */
     @Override
     public Critter shoot() {
-        if(this.isPowerOn()){ //if tower is working instead of in the middle of shooting )
+        if (this.isPowerOn()) { //if tower is working instead of in the middle of shooting )
             //target can be changed based on different option
             Critter c = this.targetBasedOnWeakest(this.getCrittersInRange());
             c.getHitBy(this);
             this.setPowerOn(false);
             return c;
-        } else return null;
+        } else {
+            return null;
+        }
     }
 }

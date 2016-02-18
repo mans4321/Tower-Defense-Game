@@ -14,7 +14,9 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Created by yongpinggao on 1/26/16.
+ * Window for selecting the game map
+ * @author yongpinggao
+ * @since 1/26/16
  */
 public class MapChooseWindow extends BaseWindow {
 
@@ -26,8 +28,11 @@ public class MapChooseWindow extends BaseWindow {
     public static final int nCols = 2;
 
     private int mapNum;
-
-    public MapChooseWindow(){
+    
+    /**
+     * Constructor, will get a list of the 4 last created maps and display as option for the player to select
+     */
+    public MapChooseWindow() {
 
         super("Choose Game Map");
 
@@ -37,10 +42,10 @@ public class MapChooseWindow extends BaseWindow {
         mapCollection = FileProcessing.readMapFromJsonFile();
 
         // TODO: Now it's no more than nRows * nCols maps. We need to add more.
-        if(mapCollection != null) {
+        if (mapCollection != null) {
             if (mapCollection.getMaps().size() <= nRows * nCols) {
                 for(int i = 0; i < nRows * nCols; i++) {
-                    if(i < mapCollection.getMaps().size()){
+                    if (i < mapCollection.getMaps().size()) {
 
 
                         String mapName = mapCollection.getMaps().get(i).getImageName();
@@ -71,11 +76,11 @@ public class MapChooseWindow extends BaseWindow {
                                         options,
                                         options[0]);
 
-                                if(n == 1){// User choose start game
+                                if (n == 1) {// User choose start game
                                     setVisible(false);
                                     // start game with No. mapNum map.
                                     new GameWindow(mapNum).setVisible(true);
-                                } else if (n == 2){// User choose edit map
+                                } else if (n == 2) {// User choose edit map
                                     imagePanel.setBorder(BorderFactory.createLineBorder(Color.black));
                                     setVisible(false);
                                     // start game with No. mapNum map.
@@ -98,13 +103,22 @@ public class MapChooseWindow extends BaseWindow {
 
 
     }
-
+    
+    /**
+     * Class to define each image that will be displayed in the map selection window
+     * @author yongpinggao
+     *
+     */
     private class MapImagePanel extends JPanel {
 
         private JLabel label;
         private ImagePanel imagePanel;
-
-        public MapImagePanel(String imageName){
+        
+        /**
+         * Constructor, creates a panel with image to take over a section of the selection window
+         * @param imageName
+         */
+        public MapImagePanel(String imageName) {
 
             this.setPreferredSize(new Dimension(GameWindow. WINDOW_WIDTH / nCols, GameWindow. WINDOW_HEIGHT / nRows));
             this.setLayout(new BorderLayout());
@@ -121,39 +135,42 @@ public class MapChooseWindow extends BaseWindow {
 
 
         }
-
+        
+        /**
+         * The images that will be placed in the map selection window
+         * @author yongpinggao
+         *
+         */
         private class ImagePanel extends JPanel {
             private ImageIcon imageIcon;
-            public ImagePanel(String name){
+            
+            /**
+             * Creates an icon from map archive
+             * @param name
+             */
+            public ImagePanel(String name) {
                 this.setPreferredSize(new Dimension(GameWindow. WINDOW_WIDTH / nCols, GameWindow. WINDOW_HEIGHT / nRows - label.getHeight()));
 
-                if(!name.equals("")){
+                if (!name.equals("")) {
                     imageIcon = FileProcessing.readFromMapArchive(name);
                 }
 
             }
-
+            
+            /**
+             * {@inheritDoc}
+             */
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Graphics2D g2 = (Graphics2D)g;
 
 
-                if(imageIcon != null){
+                if (imageIcon != null) {
                     Dimension d = Utility.getScaledDimension(new Dimension(imageIcon.getIconWidth(), imageIcon.getIconHeight()), new Dimension(getWidth(),getHeight()));
                     g2.drawImage(imageIcon.getImage(), 5, 5, d.width , d.height, this);
                 }
-
-
-
             }
-
         }
-
-
     }
-
-
-
-
 }

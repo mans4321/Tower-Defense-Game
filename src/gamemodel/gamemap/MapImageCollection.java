@@ -1,7 +1,7 @@
 package gamemodel.gamemap;
 import javax.swing.*;
 
-import gamemodel.tower.TowerID;
+import gamemodel.tower.TowerId;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -22,6 +22,9 @@ public class MapImageCollection {
     private HashMap<String, ImageIcon> mapImageCollection;
     private String URL = "res/";
     private String format = ".png";
+    /**
+     * Sets the image to be displayed for each type of tile saved
+     */
     public MapImageCollection() {
         mapImageCollection = new HashMap<String, ImageIcon>();
 
@@ -47,7 +50,7 @@ public class MapImageCollection {
  * @param name tower name
  * @return     tower name 
  */
-    public ImageIcon getImageIcon(String name){
+    public ImageIcon getImageIcon(String name) {
         return mapImageCollection.get(name);
     }
 }

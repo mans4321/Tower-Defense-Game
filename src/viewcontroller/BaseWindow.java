@@ -1,9 +1,14 @@
 package viewcontroller;
+
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by yongpinggao on 1/28/16.
+ * Base window class for the game
+ * Extends JFrame
+ * @author yongpinggao
+ * @see Jframe
+ *
  */
 public class BaseWindow extends JFrame {
 
@@ -15,26 +20,35 @@ public class BaseWindow extends JFrame {
     private int height;
 
     private String titleName;
-
-
-
-    public BaseWindow(String titleName){
+    
+    /**
+     * Constructor starts window and applies title, uses default dimensions
+     * @param titleName title to be used in the window
+     */
+    public BaseWindow(String titleName) {
         width = WINDOW_WIDTH;
         height = WINDOW_HEIGHT;
         this.titleName = titleName;
         initWindow();
     }
-
-    public BaseWindow(int width, int height, String titleName){
+    
+    /**
+     * Constructor starts window and applies title, uses custom dimensions
+     * @param width window width
+     * @param height window height
+     * @param titleName title to be used
+     */
+    public BaseWindow(int width, int height, String titleName) {
         this.width = width;
         this.height = height;
         this.titleName = titleName;
         initWindow();
     }
 
+    /**
+     * starts the JFrame window
+     */
     private void initWindow() {
-
-
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle(titleName);
         this.setPreferredSize(new Dimension(width,height));

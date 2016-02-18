@@ -1,4 +1,5 @@
 package gamemodel.wave;
+
 import java.util.HashMap;
 
 /**

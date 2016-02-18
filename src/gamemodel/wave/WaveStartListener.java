@@ -1,18 +1,18 @@
 package gamemodel.wave;
+
 import gamemodel.critter.Critter;
 
 /**
- * Interface to start the critters wave.
- *   
- * @author yongpinggao 
- * @since 2/7/16.
- * @version 1.0
+ * Interface for the Wave listener.
+ * @author yongpinggao
+ * @since 2/7/16
  */
 public interface WaveStartListener {
-/**
- * To initialize the critter wave 
- * 
- * @param c critter wave 
- */
+    
+    /**
+     * Method that will implement the start position of the critters.
+     * @see Critter
+     * @param c Critter
+     */
     void initCritterPos(Critter c);
 }
