@@ -25,7 +25,7 @@ public class Wave implements ActionListener{
 
 
 /**
- * Constructor 
+ * Constructor to initialize waver timer and start it 
  * 
  * @param builder the critter wave  extracted from  CritterStore
  */
@@ -97,7 +97,7 @@ public class Wave implements ActionListener{
             return this;
         }
 /**
- * Constructor.
+ * Constructor for building critter wave of each type and store it in CritterStore
  * 
  * @return  critter wave 
  */
