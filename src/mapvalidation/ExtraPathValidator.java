@@ -13,35 +13,34 @@ import gamemodel.gamemap.CellState;
  * @author LiChong
  *
  */
-public class ExtraPathValidator implements MapValidator{
+public class ExtraPathValidator implements MapValidator {
 
-	private ArrayList<CellState> cellList;
-	private HashMap<Integer,Integer> ceMap;
-/**
- * {@inheritDoc}	
- */
-	@Override
-	public boolean validate() {
-		// TODO Auto-generated method stub
-		
-		for(int i = 0; i< cellList.size(); i++){
-			if(ceMap.containsValue(3)|| ceMap.containsValue(4)){
-				return false;  // extra path
-			}
-		 
-		}
-		
-		return true;
-	}
-/**
- *Class constructor validate whether there is circle or extra path in map.
- * 
- * @param countMap
- * @param cellList   cell states of each cell
- */
-	public ExtraPathValidator(HashMap<Integer,Integer> countMap, ArrayList<CellState> cellList){
-		this.cellList = cellList;
-		this.ceMap = countMap;
-	}
-
+    private ArrayList<CellState> cellList;
+    private HashMap<Integer,Integer> ceMap;
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean validate() {
+        // TODO Auto-generated method stub
+        
+        for (int i = 0; i < cellList.size(); i++) {
+            if (ceMap.containsValue(3) || ceMap.containsValue(4)) {
+                return false;  // extra path
+            }
+        }
+        
+        return true;
+    }
+    
+    /**
+     * Sets the Map and cell list for validation.
+     * @param cellList ArrayList of map
+     * @param countMap HashMap 
+     */
+    public ExtraPathValidator(HashMap<Integer,Integer> countMap, ArrayList<CellState> cellList) {
+        this.cellList = cellList;
+        this.ceMap = countMap;
+    }
 }

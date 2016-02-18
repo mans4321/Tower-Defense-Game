@@ -15,30 +15,34 @@ import gamemodel.critter.*;
  * 
  */
 public interface TowerShootingBehavior {
-/**
- * 
- *
- */
+    
+    /**
+     * Method that will implement the Tower shooting logic.
+     *
+     */
     public Critter shoot();
-/**
- * Shooting the Weakest critter in the set
- * 
- * @param crittersInRange a set of the critter in the tower range
- * 
- */
+    
+    /**
+     * Shooting the Weakest critter in the set.
+     * 
+     * @param crittersInRange a set of the critter in the tower range
+     * 
+     */
     Critter targetBasedOnWeakest(Set<Critter> crittersInRange);
-/**
- * Shooting the strongest critter in the set
- * 
- * @param crittersInRange a set of the critter in the tower range
- * 
- */
+
+    /**
+     * Shooting the strogest critter in the set.
+     * 
+     * @param crittersInRange a set of the critter in the tower range
+     * 
+     */
     Critter targetBasedOnStrongest(Set<Critter> crittersInRange);
-/**
- * Shooting critter nearest To exist point in the set
- * 
- * @param crittersInRange a set of the critter in the tower range
- * 
- */
+    
+    /**
+     * Shooting critter nearest To exist point in the set.
+     * 
+     * @param crittersInRange a set of the critter in the tower range
+     * 
+     */
     Critter targetBasedOnNearestToEnd(Set<Critter> crittersInRange);
 }

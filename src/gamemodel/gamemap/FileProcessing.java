@@ -38,10 +38,10 @@ public class FileProcessing {
     *  add map  maps  to Json file.
     * @param map the map created by the player 
     */
-    public static void addMapToJsonFile(GameMap map){
+    public static void addMapToJsonFile(GameMap map) {
         try {
             GameMapCollection maps = readMapFromJsonFile();                                     
-            if(maps == null){
+            if (maps == null) {
                 try{
                 BufferedWriter writer = new BufferedWriter(new FileWriter(JSON_FILE_NAME));
                 maps = new GameMapCollection();
@@ -63,19 +63,19 @@ public class FileProcessing {
  * 
  * @param index  map index in the Arraylist.
  */
-    public static void deleteMapFromJsonFile(int index){
+    public static void deleteMapFromJsonFile(int index) {
 
         try {
             GameMapCollection maps = readMapFromJsonFile();
 
-            if(maps != null){
+            if (maps != null) {
                 maps.deleteMap(index);
                 BufferedWriter writer = new BufferedWriter(new FileWriter(JSON_FILE_NAME));
                 writer.write(gson.toJson(maps));
                 writer.close();
             }
 
-            if (maps.getMaps().size() == 0){
+            if (maps.getMaps().size() == 0) {
                 // if json file is empty, then remove json file
                 new File(JSON_FILE_NAME).delete();
             }
@@ -106,7 +106,9 @@ public class FileProcessing {
                 return null;
             }
 
-        } else return null;
+        } else {
+            return null;
+        }
     }
 /**
  * Read the map image form the map archive.
@@ -114,10 +116,12 @@ public class FileProcessing {
  * @param mapName the name of the map image 
  * @return   the map image
  */
-    public static ImageIcon readFromMapArchive(String mapName){
-        if(new File(MAP_THUMBNAIL_DIR + mapName + ".png").exists()){
+    public static ImageIcon readFromMapArchive(String mapName) {
+        if (new File(MAP_THUMBNAIL_DIR + mapName + ".png").exists()) {
             return new ImageIcon(MAP_THUMBNAIL_DIR + mapName + ".png");
-        } else return null;
+        } else {
+            return null;
+        }
 
     }
 /**
@@ -125,9 +129,9 @@ public class FileProcessing {
  * @param mapName  map image name 
  * @param image     map image 
  */
-    public static void writeToMapArchive(String mapName, BufferedImage image){
+    public static void writeToMapArchive(String mapName, BufferedImage image) {
         try {
-            if(mapName != null){
+            if (mapName != null) {
                 //save thumbnail to mapName.png
                 ImageIO.write(image, "png", new File(MAP_THUMBNAIL_DIR + mapName + ".png"));
             }
@@ -140,7 +144,7 @@ public class FileProcessing {
  * To illustlate, if a map does not exist in the archive, 
  * but it exist in the Json file. the map will be deleted from Json file.     
  */
-    public static void sync(){
+    public static void sync() {
 
         if (new File(JSON_FILE_NAME).exists()) {
             ArrayList<GameMap> maps = readMapFromJsonFile().getMaps();

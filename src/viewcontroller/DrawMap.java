@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
 /**
- * Created by yongpinggao on 1/29/16.
+ * This class draws the tile map for the game
+ * @author yongpinggao
+ * @since 1/29/16
+ *
  */
 public class DrawMap {
 
@@ -21,27 +23,47 @@ public class DrawMap {
     public final static int CELL_SIZE = 30;
 
     private final static float ALPHA = 0.3f;
-    // input: coordinate(x,y)(pixels), cell size of a cell. And cols number
-    // output: nth cell in whole map
+
+    /**
+     * converts the pixel coordinates into the specific cell in the map
+     * @param x x pixel
+     * @param y y pixel
+     * @param cols number of columns
+     * @return the nth cell number in the map
+     */
     public static int coordinateConverter(int x, int y, int cols) {
         return x / CELL_SIZE + (y / CELL_SIZE) * cols;
     }
-
-    public static int[] indexConverter(int index, int cols){
+    
+    /**
+     * index converter
+     * @param index 
+     * @param cols
+     * @return
+     */
+    public static int[] indexConverter(int index, int cols) {
         int x = index % cols;
         int y = index / cols;
         return new int[]{x * CELL_SIZE, y * CELL_SIZE};
     }
-
-    public static void drawMap(Graphics g, int mapCols, int mapRows, ArrayList<CellState> cellList, ImageObserver observer){
+    
+    /**
+     * Constructor class, draws the map 
+     * @param g Graphics object 
+     * @param mapCols number of cols of the map
+     * @param mapRows number of rows of the map
+     * @param cellList the list with all tiles information
+     * @param observer image observer
+     */
+    public static void drawMap(Graphics g, int mapCols, int mapRows, ArrayList<CellState> cellList, ImageObserver observer) {
         Graphics2D g2d = (Graphics2D) g.create();
         MapImageCollection imageCollection = new MapImageCollection();
 
-        for(int i = 0; i < CELL_SIZE * mapCols; i = i + CELL_SIZE){
-            for(int j = 0; j < CELL_SIZE * mapRows; j = j + CELL_SIZE){
+        for(int i = 0; i < CELL_SIZE * mapCols; i = i + CELL_SIZE) {
+            for(int j = 0; j < CELL_SIZE * mapRows; j = j + CELL_SIZE) {
 
 
-                switch (cellList.get(coordinateConverter(i, j, mapCols))){
+                switch (cellList.get(coordinateConverter(i, j, mapCols))) {
                     case GRASS:
                         g2d.drawImage(imageCollection.getImage(CellState.GRASS.getCellStateName()), i, j, observer);
                         break;
@@ -71,14 +93,21 @@ public class DrawMap {
         g2d.dispose();
     }
 
-//    g.drawImage(new ImageIcon("res/tower1.png").getImage(),240,270,this);
-    public static void drawTower(Graphics g, int cols, HashMap<Integer, Tower> towerMap, ImageObserver observer){
+    //g.drawImage(new ImageIcon("res/tower1.png").getImage(),240,270,this);
+    /**
+     * Method to draw a tower in the map
+     * @param g Graphics object
+     * @param cols number of columns in the map
+     * @param towerMap the map of towers
+     * @param observer image observer
+     */
+    public static void drawTower(Graphics g, int cols, HashMap<Integer, Tower> towerMap, ImageObserver observer) {
 
         Graphics2D g2d = (Graphics2D) g.create();;
         for (Map.Entry<Integer, Tower> entry : towerMap.entrySet()) {
             Integer index = entry.getKey();
             Tower tower = entry.getValue();
-            if(tower.getTid() != TowerID.TOWERNULL) { // if TowerID == TOWERNULL, skip, draw nothing.
+            if (tower.getTid() != TowerId.TOWERNULL) { // if TowerID == TOWERNULL, skip, draw nothing.
                 int[] arr = indexConverter(index, cols);
                 g2d.drawImage(new TowerImageCollection().getImage(tower.getTid().getName()) , arr[0], arr[1], observer);
 
@@ -88,15 +117,27 @@ public class DrawMap {
         g2d.dispose();
 
     }
-
-    public static void drawCritters(Graphics g, Critter c, ImageObserver observer){
+    
+    /**
+     * Method to draw a critter in the map
+     * @param g Graphics object
+     * @param c critter to be drawn
+     * @param observer image observer
+     */
+    public static void drawCritters(Graphics g, Critter c, ImageObserver observer) {
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.drawImage(c.getImage(), c.getPosX(), c.getPosY(),observer);
         g2d.dispose();
 
     }
-
-    public static void drawTowerRange(Graphics g, HashMap<Integer, Tower> towerMap, ImageObserver observer){
+    
+    /**
+     * Method to draw the circle around the tower that displays the tower range
+     * @param g Graphics
+     * @param towerMap list of towers
+     * @param observer
+     */
+    public static void drawTowerRange(Graphics g, HashMap<Integer, Tower> towerMap, ImageObserver observer) {
 
         Graphics2D g2d = (Graphics2D) g.create();
         AlphaComposite alphaComposite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f);
@@ -108,7 +149,7 @@ public class DrawMap {
 
         for (Map.Entry<Integer, Tower> entry : towerMap.entrySet()) {
             Tower tower = entry.getValue();
-            if(tower.getTid() != TowerID.TOWERNULL) { // if TowerID == TOWERNULL, skip, draw nothing.
+            if (tower.getTid() != TowerId.TOWERNULL) { // if TowerID == TOWERNULL, skip, draw nothing.
 
                 int posX = tower.getPosX();
                 int posY = tower.getPosY();
@@ -123,7 +164,13 @@ public class DrawMap {
 
         g2d.dispose();
     }
-
+    
+    /**
+     * Method to draw the missiles 
+     * @param g graphics
+     * @param tower the tower shooting the missiles
+     * @param critter the criter being targeted
+     */
     public static void drawMissiles(Graphics g, Tower tower, Critter critter) {
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setStroke(MissileCollection.missiles.get(tower.getTid()));
@@ -131,8 +178,14 @@ public class DrawMap {
         g2d.dispose();
 
     }
-
-    public static  void drawHealthBar(Graphics g, float healthBar, Critter c){
+    
+    /**
+     * Method to draw the health bar in critters
+     * @param g Graphics
+     * @param healthBar value of health 
+     * @param c critter
+     */
+    public static  void drawHealthBar(Graphics g, float healthBar, Critter c) {
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setColor(Color.GREEN);
         g2d.fillRect(c.getPosX(), c.getPosY() - 5, (int) (healthBar * CELL_SIZE), 3);

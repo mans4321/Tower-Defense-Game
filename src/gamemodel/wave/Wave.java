@@ -1,35 +1,33 @@
 package gamemodel.wave;
-import javax.swing.*;
 
 import gamemodel.critter.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 
 /**
  * This class responsible for building wave of each critter type. 
  * 
  * The critter wave are launched by timer.
  *  
- *@author yongpinggao 
- *@since 2/6/16
- *@version 1.0
+ * @author yongpinggao 
+ * @since 2/6/16
+ * @version 1.0
+ * @see ActionListener
  */
 public class Wave implements ActionListener{
 
     private Timer generateCritterTimer;
     private int index;
     private WaveStartListener listener;
-
- 
-
-
-/**
- * Constructor 
- * 
- * @param builder the critter wave  extracted from  CritterStore
- */
-    private Wave(Builder builder){
+    
+    /**
+     * Constructor will set the timer and start it.
+     * @param builder Builder object from the Gson package
+     * @see GsonBuilder
+     */
+    private Wave(Builder builder) {
  
 
         generateCritterTimer = new Timer(1000, this);
@@ -44,12 +42,11 @@ public class Wave implements ActionListener{
  */
     public static class Builder {
  
-/**
- * build a wave of critterA
- * 
- * @param num number of critter 
- * @return critter wave 
- */
+        /**
+         * Spawns 'num' number of critters of type A.
+         * @param num number of critters
+         * @return Builder class
+         */
         public Builder critterA(int num) {
             for (int i = 0; i < num; i++) {
                 CritterA critterA = new CritterA();
@@ -57,12 +54,12 @@ public class Wave implements ActionListener{
             }
             return this;
         }
-/**
- * build a wave of critterB
- * 
- * @param num number of critter 
- * @return critterB wave 
-  */ 
+        
+        /**
+         * Spawns 'num' number of critters of type B.
+         * @param num number of critters
+         * @return Builder class
+         */
         public Builder critterB(int num) {
             for (int i = 0; i < num; i++) {
                 CritterB critterB = new CritterB();
@@ -70,12 +67,12 @@ public class Wave implements ActionListener{
             }
             return this;
         }
-/**
- * build a wave of critterC
- * 
- * @param num number of critter 
- * @return critterC wave 
- */
+        
+        /**
+         * Spawns 'num' number of critters of type C.
+         * @param num number of critters
+         * @return Builder class
+         */
         public Builder critterC(int num) {
             for (int i = 0; i < num; i++) {
                 CritterC critterC = new CritterC();
@@ -83,12 +80,12 @@ public class Wave implements ActionListener{
             }
             return this;
         }
-/**
- * build a wave of critterC
- * 
- * @param num number of critter 
- * @return critterC wave 
- */
+        
+        /**
+         * Spawns 'num' number of critters of type D.
+         * @param num number of critters
+         * @return Builder class
+         */
         public Builder critterD(int num) {
             for (int i = 0; i < num; i++) {
                 CritterD critterD = new CritterD();
@@ -96,33 +93,36 @@ public class Wave implements ActionListener{
             }
             return this;
         }
-/**
- * Constructor.
- * 
- * @return  critter wave 
- */
+        
+        /**
+         * builder method to return the new Wave.
+         * @return Wave object
+         */
         public Wave build() {
             return new Wave(this);
         }
 
     }
-/**
- * wave listener to start a wave     
- * @param listener   listener to add the wave 
- */
-    public void addWaveStartListener(WaveStartListener listener){
+    
+    /**
+     * Adds a listener to when the wave start.
+     * @param listener WaveStartListener 
+     */
+    public void addWaveStartListener(WaveStartListener listener) {
         this.listener = listener;
     }
-/**
- * Initialize the wave base on timer    
- */
+    
+    /**
+     * Initialize the wave base on timer.
+     * {@inheritDoc}
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(index <= CritterStore.critters.size()){
+        if (index <= CritterStore.critters.size()) {
             listener.initCritterPos(CritterStore.critters.get(index));
             index ++;
-            if(index >= CritterStore.critters.size()) generateCritterTimer.stop();
+            if (index >= CritterStore.critters.size()) generateCritterTimer.stop();
         }
 
     }

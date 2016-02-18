@@ -14,7 +14,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by yongpinggao on 1/30/16.
+ * Class for the game area
+ * @author yongpinggao
+ * @since 1/30/16
+ *
  */
 public class GamePanel extends JPanel implements ActionListener{
 
@@ -46,8 +49,14 @@ public class GamePanel extends JPanel implements ActionListener{
     private int waveNum;
 
     private boolean isGameOver = false;
-
-    public GamePanel(int panelWidth, int panelHeight, int mapNum){
+    
+    /**
+     * Constructor for teh game panel, sets initial game values like currency and lifes and others
+     * @param panelWidth
+     * @param panelHeight
+     * @param mapNum
+     */
+    public GamePanel(int panelWidth, int panelHeight, int mapNum) {
 
         this.mapNum = mapNum;
         this.panelHeight = panelHeight;
@@ -79,24 +88,24 @@ public class GamePanel extends JPanel implements ActionListener{
 
         topPanel.getTowerSelectionPanel().addTowerSelectionListener(new TowerSelectionListener() {
             @Override
-            public void placeTower(TowerID id) {
+            public void placeTower(TowerId id) {
                 topPanel.getDataPanel().setWarningMsg("");
                 updateInfoOfTower(id);
                 ArrayList<CellState> cells = mapPanel.getCellList();
 
-                if(account.getBalance() >= TowerFactory.getInstance().getTower(id).getBuyPrice()){
-                    for(int i = 0; i < cells.size(); i++){
-                        if(cells.get(i) == CellState.GRASS){
+                if (account.getBalance() >= TowerFactory.getInstance().getTower(id).getBuyPrice()) {
+                    for(int i = 0; i < cells.size(); i++) {
+                        if (cells.get(i) == CellState.GRASS) {
                             cells.set(i, CellState.TOPLACETOWER);
-                        } else if(cells.get(i) == CellState.CHOSEN){
+                        } else if (cells.get(i) == CellState.CHOSEN) {
                             cells.set(i, CellState.TOWER);
                         }
                     }
 
                 } else {
                     topPanel.getDataPanel().setWarningMsg("Need more gold!");
-                    for(int i = 0; i < cells.size(); i++){
-                        if(cells.get(i) == CellState.TOPLACETOWER){
+                    for(int i = 0; i < cells.size(); i++) {
+                        if (cells.get(i) == CellState.TOPLACETOWER) {
                             cells.set(i, CellState.GRASS);
                         }
                     }
@@ -110,7 +119,7 @@ public class GamePanel extends JPanel implements ActionListener{
 
         topPanel.getTowerSelectionPanel().addTowerChosenListener(new TowerChosenListener() {
             @Override
-            public void updateInfo(TowerID id) {
+            public void updateInfo(TowerId id) {
                 endPanel.setCurrentChosenTowerID(id);
                 updateInfoOfTower(id);
             }
@@ -118,11 +127,11 @@ public class GamePanel extends JPanel implements ActionListener{
 
         mapPanel.getMapArea().addTowerChosenListener(new TowerChosenListener() {
             @Override
-            public void updateInfo(TowerID id) {
+            public void updateInfo(TowerId id) {
 
                 endPanel.setCurrentChosenTowerID(id);
 
-                if(id == TowerID.TOWERNULL){
+                if (id == TowerId.TOWERNULL) {
                     endPanel.getTowerSpecificationPanel().clearPanel();
                 } else {
                     updateInfoOfTower(id);
@@ -135,8 +144,8 @@ public class GamePanel extends JPanel implements ActionListener{
             public void sellTower() {
                 topPanel.getDataPanel().setWarningMsg("");
                 ArrayList<CellState> cells = mapPanel.getCellList();
-                for(int i = 0; i < cells.size(); i++){
-                    if(cells.get(i) == CellState.CHOSEN){
+                for(int i = 0; i < cells.size(); i++) {
+                    if (cells.get(i) == CellState.CHOSEN) {
                         cells.set(i, CellState.GRASS);
                         HashMap<Integer, Tower> towerMap = mapPanel.getTowerMap();
 
@@ -147,7 +156,7 @@ public class GamePanel extends JPanel implements ActionListener{
                         mapPanel.setTowerMap(towerMap);
                         mapPanel.getMapArea().repaint();
                         // clear chosen state -> draw null image in end panel
-                        endPanel.setCurrentChosenTowerID(TowerID.TOWERNULL);
+                        endPanel.setCurrentChosenTowerID(TowerId.TOWERNULL);
 
                     }
                 }
@@ -161,22 +170,22 @@ public class GamePanel extends JPanel implements ActionListener{
 
                 ArrayList<CellState> cells = mapPanel.getCellList();
 
-                for(int i = 0; i < cells.size(); i++){
-                    if(cells.get(i) == CellState.CHOSEN){
+                for(int i = 0; i < cells.size(); i++) {
+                    if (cells.get(i) == CellState.CHOSEN) {
                         Tower oldTower = mapPanel.getTowerMap().get(i);
                         double oldTowerBuyPrice = oldTower.getBuyPrice();
                         int level = oldTower.getLevel();
                         String oldName = oldTower.getTid().getName();
 
-                        if(level < Tower.LEVEL){
+                        if (level < Tower.LEVEL) {
                             level ++;
                             String newName = oldName.split("_")[0] + "_" + level;
 
-                            TowerID newID = TowerID.getTowerIDFrom(newName);
+                            TowerId newID = TowerId.getTowerIdFrom(newName);
                             Tower newTower = TowerFactory.getInstance().getTower(newID);
                             double newTowerBuyPrice = newTower.getBuyPrice();
                             double updatePrice = newTowerBuyPrice - oldTowerBuyPrice;
-                            if(account.getBalance() < updatePrice) {
+                            if (account.getBalance() < updatePrice) {
                                 topPanel.getDataPanel().setWarningMsg("Need more gold to upgrade!");
                             } else {
                                 account.setBalance(account.getBalance() - updatePrice);
@@ -204,7 +213,7 @@ public class GamePanel extends JPanel implements ActionListener{
         // get msg from map panel to change the account in case tower is place accurately
         mapPanel.getMapArea().addPlaceTowerFinishedListener(new PlaceTowerFinishedListener() {
             @Override
-            public void accountShouldChange(TowerID id) {
+            public void accountShouldChange(TowerId id) {
                 account.setBalance(account.getBalance() - TowerFactory.getInstance().getTower(id).getBuyPrice());
                 topPanel.getDataPanel().setBalance(account.getBalance());
             }
@@ -230,7 +239,7 @@ public class GamePanel extends JPanel implements ActionListener{
                 coins --;
                 topPanel.getDataPanel().setCoins(coins);
 
-                if(coins == 0){
+                if (coins == 0) {
                     isGameOver = true;
 
                     Object[] options = {"Back to main menu",  "Play again!"};
@@ -242,7 +251,7 @@ public class GamePanel extends JPanel implements ActionListener{
                             null,     //do not use a custom Icon
                             options, //the titles of buttons
                             options[0]); //default button title
-                    if(n == 0){
+                    if (n == 0) {
                         clearGame();
                         SwingUtilities.getWindowAncestor(GamePanel.this).setVisible(false);
                         new MainMenuWindow().setVisible(true);
@@ -262,7 +271,7 @@ public class GamePanel extends JPanel implements ActionListener{
                 wavePrepareTimer.start();
                 // just in case
                 CritterStore.critters.clear();
-                if(waveNum > WaveStore.waves.size()){
+                if (waveNum > WaveStore.waves.size()) {
                     // User Win
                     Object[] options = {"Back to main menu"};
                     int n = JOptionPane.showOptionDialog(GamePanel.this,
@@ -273,7 +282,7 @@ public class GamePanel extends JPanel implements ActionListener{
                             null,     //do not use a custom Icon
                             options, //the titles of buttons
                             options[0]); //default button title
-                    if(n == 0){
+                    if (n == 0) {
                         clearGame();
                         SwingUtilities.getWindowAncestor(GamePanel.this).setVisible(false);
                         new MainMenuWindow().setVisible(true);
@@ -287,7 +296,7 @@ public class GamePanel extends JPanel implements ActionListener{
         mapPanel.getMapArea().addCritterGotKilledListener(new CritterGotKilledListener() {
             @Override
             public void critterGotKilled(Critter c) {
-                if(!c.isAleadyDonated()){
+                if (!c.isAleadyDonated()) {
                     double balance = account.getBalance() + c.getWorth();
                     account.setBalance(balance);
                     topPanel.getDataPanel().setBalance(balance);
@@ -296,7 +305,10 @@ public class GamePanel extends JPanel implements ActionListener{
             }
         });
     }
-
+    
+    /**
+     * Initiates the panel
+     */
     private void initPanel() {
 
         setLayout(null);
@@ -308,12 +320,12 @@ public class GamePanel extends JPanel implements ActionListener{
         mapAreaHeight = panelHeight - topAreaHeight;
 
         // Debug:
-        System.out.println("topAreaWidth: " + topAreaWidth); //1200
-        System.out.println("topAreaHeight: " + topAreaHeight); //144
-        System.out.println("endAreaWidth: " + endAreaWidth); //240
-        System.out.println("endAreaHeight: " + endAreaHeight); //578
-        System.out.println("mapAreaWidth: " + mapAreaWidth); //960
-        System.out.println("mapAreaHeight: " + mapAreaHeight); //578
+//        System.out.println("topAreaWidth: " + topAreaWidth); //1200
+//        System.out.println("topAreaHeight: " + topAreaHeight); //144
+//        System.out.println("endAreaWidth: " + endAreaWidth); //240
+//        System.out.println("endAreaHeight: " + endAreaHeight); //578
+//        System.out.println("mapAreaWidth: " + mapAreaWidth); //960
+//        System.out.println("mapAreaHeight: " + mapAreaHeight); //578
 
 
 
@@ -329,8 +341,12 @@ public class GamePanel extends JPanel implements ActionListener{
 
 
     }
-
-    private void updateInfoOfTower(TowerID id){
+    
+    /**
+     * Updates info for specified tower
+     * @param id tower id
+     */
+    private void updateInfoOfTower(TowerId id) {
         Tower tower = TowerFactory.getInstance().getTower(id);
         endPanel.getTowerSpecificationPanel().setBuyPrice(tower.getBuyPrice());
         endPanel.getTowerSpecificationPanel().setSpecification(tower.getSpecification());
@@ -339,20 +355,25 @@ public class GamePanel extends JPanel implements ActionListener{
         endPanel.getTowerSpecificationPanel().setRange(tower.getRange());
         endPanel.getTowerSpecificationPanel().setRateOfFire(tower.getRateOfFire());
     }
-
-    private void clearGame(){
+    
+    /**
+     * Clears all the events 
+     */
+    private void clearGame() {
     	CritterStore.critters.clear();
         mapPanel.getMapArea().getRepaintMapTimer().stop();
         wavePrepareTimer.stop();
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(!isGameOver){
+        if (!isGameOver) {
             wavePrepareTimer.stop();
-            if(waveNum <= WaveStore.waves.size()){
+            if (waveNum <= WaveStore.waves.size()) {
                 // wave start!
                 topPanel.getDataPanel().setWaveNum(waveNum);
                 int[] num = WaveStore.waves.get(waveNum);
