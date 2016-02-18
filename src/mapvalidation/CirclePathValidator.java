@@ -19,6 +19,7 @@ public class CirclePathValidator implements MapValidator{
 	 * This method validate() overrides the method validate() of parent class MapValidator. 
 	 * And it checks whether the path contains a circle.
 	 * 
+	 * {@inheritDoc}
 	 * @return boolean A boolean values that represent whether the path contains a circle.
 	 * 
 	 */	
@@ -32,7 +33,11 @@ public class CirclePathValidator implements MapValidator{
 		
 		return false;
 	}
-	
+/**
+ *Class constructor validate whether the path is in a circle.
+ * 	
+ * @param countMap
+ */
 	public CirclePathValidator(HashMap<Integer, Integer> countMap){
 		this.countMap = countMap;
 	}

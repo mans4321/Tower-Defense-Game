@@ -2,7 +2,11 @@ package gamemodel.gamemap;
 
 
 /**
- * Created by yongpinggao on 1/28/16.
+ * Enumerate define  all the possible cell state
+ * 
+ * @author Mansour
+ * @version 1.0
+ * since 26/1/2016
  */
 public enum CellState {
     GRASS("grass"),
@@ -15,10 +19,17 @@ public enum CellState {
 
 
     private String cellStateName;
+    /**
+     * set the cell state name
+     * @param name the cell state name
+     */
     CellState(String name) {
         cellStateName = name;
     }
-
+/**
+ * get the cell state name 
+ * @return the cell state name
+ */
     public String getCellStateName() {
         return cellStateName;
     }

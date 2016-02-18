@@ -1,19 +1,33 @@
 package gamemodel.tower;
 /**
- * Created by yongpinggao on 2/4/16.
+ * produce new tower instance base on TowerID.
+ * 
+ *This class apply singleton design.
+ *@author yongpinggao 
+ *@since 2/4/16.
+ *@version 1.0
  */
 public class TowerFactory {
 
     // singleton + Factory
 
     private static TowerFactory ourInstance = new TowerFactory();
-
+/**
+ * get tower instance.
+ * @return tower instance 
+ */
     public static TowerFactory getInstance() {
         return ourInstance;
     }
-
+/**
+ * Constructor make TowerFactory Private.  
+ */
     private TowerFactory() {}
-
+/**
+ * create tower instance base on TowerID 
+ * @param id tower id 
+ * @return Tower
+ */
     public Tower getTower(TowerID id){
         switch (id) {
             case TOWERA1:

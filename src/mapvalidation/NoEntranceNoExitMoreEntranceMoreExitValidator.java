@@ -10,23 +10,23 @@ import gamemodel.gamemap.CellState;
  * NO Entrance or Exit is illegal.
  * More than one Entrance or one Exit is illegal.
  * 
- * @author LiChong
+ * This class implements MapValidator
  * 
+ * @author LiChong
  * @version 1.1
- *
  */
 public class NoEntranceNoExitMoreEntranceMoreExitValidator implements MapValidator{
 
 	private ArrayList<CellState> cellList;
 	private int numberOfEntranceOrExit;
-	
+
 	/**
-	 * This method validate() overrides the method validate() of parent class MapValidator. 
-	 * And it checks whether the entrance and exit exists and whether the map just has one extrance and one exit.
-	 * 
-	 * @return boolean A boolean values that represent whether the entrance and exit exists and whether the map just has one extrance and one exit.
-	 * 
-	 */	
+     * This method validate() overrides the method validate() of parent class MapValidator. 
+     * And it checks whether the entrance and exit exists and whether the map just has one extrance and one exit.
+     * 
+     * @return boolean A boolean values that represent whether the entrance and exit exists and whether the map just has one extrance and one exit.
+     * 
+     */
 	@Override
 	public boolean validate() {
 		// TODO Auto-generated method stub
@@ -47,10 +47,13 @@ public class NoEntranceNoExitMoreEntranceMoreExitValidator implements MapValidat
 		
 	}
 	
+    /**
+     *Class constructor validate whether the number of Entrance or Exit is legal.
+     *  	
+     * @param cellList  cell states of each cell
+     */
 	public NoEntranceNoExitMoreEntranceMoreExitValidator(ArrayList<CellState> cellList) {
 		// TODO Auto-generated constructor stub
 		this.cellList = cellList;
 	}
-	
-	 
 }

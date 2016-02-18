@@ -14,7 +14,7 @@ import gamemodel.gamemap.CellState;
  * @author LiChong
  *
  */
-public class ContinousPathValidator implements MapValidator{
+public class ContinousPathValidator implements MapValidator {
 
 	private ArrayList<CellState> cellList;
 	private HashMap<Integer,Integer> cMap;
@@ -65,3 +65,4 @@ public class ContinousPathValidator implements MapValidator{
 	}
 	
 }
+

@@ -2,7 +2,15 @@ package gamemodel.wave;
 import java.util.HashMap;
 
 /**
- * Created by yongpinggao on 2/7/16.
+ * Store Critter wave in hashmap .
+ * 
+ *The HashMap has tow type. the first Integer to hold wave number and
+ *the second array type Integer contain the wave. 
+ * 
+ * @author yongpinggao 
+ * @since 2/7/16.
+ * @version 1.0
+ * 
  */
 public class WaveStore {
 

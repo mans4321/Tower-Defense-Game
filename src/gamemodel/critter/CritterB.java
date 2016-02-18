@@ -1,13 +1,24 @@
 package gamemodel.critter;
 /**
- * Created by yongpinggao on 2/6/16.
+ *This class initialize the second Critter(CritterB) and set it's characteristics.
+ *
+ * CritterB extend the class Critter
+ * 
+ * @author yongpinggao
+ * @version 1.0
+ * @since 28/1/16
+ * @see {@link gamemodel.critter.Critter Critter}
  */
 public class CritterB extends Critter {
-
+/**
+*  constructor calls the method initCritter() to initialize the critter parameters .
+*/
     public CritterB() {
         initCritter();
     }
-
+/**
+* initialize the characteristics of the CritterA
+*/
     private void initCritter() {
         imgURL = "res/critterB.png";
         moveSpeed = 15;

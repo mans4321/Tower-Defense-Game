@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 /**
  * This class is to manager various situations of map validations.
- * And providing neccessary variables and methods.
+ * And providing necessary variables and methods.
  * 
  * @version 1.1
  *  
@@ -87,9 +87,12 @@ public class MapValidationManager {
 	 * 
 	 */
 	private void setPathList(){
-		for(int i = 0;i<cellList.size();i++){//know the index of CellState.PATH
-			if(cellList.get(i)== CellState.PATH || cellList.get(i)== CellState.ENTRANCE 
-					|| cellList.get(i)== CellState.EXIT ){
+		for (int i = 0; i < cellList.size(); i++) { //know the index of CellState.PATH
+		    if(
+			        cellList.get(i)== CellState.PATH 
+			        || cellList.get(i)== CellState.ENTRANCE 
+					|| cellList.get(i)== CellState.EXIT 
+			){
 				pathList.add(i);
 			}
 		}
@@ -208,39 +211,46 @@ public class MapValidationManager {
 			}
 		}
 	}
-	
+/**
+ * 	
+ * @return
+ */
 	public HashMap<Integer, Integer> getCountMap() {
 		return countMap;
 	}
-
 	
+    /**
+     * 	get error message  
+     * @return error message
+     */
 	public String getErrorMessage(){
 		return errorMessage;
 	}
 	
-	
+    /**
+     * set error message 	
+     * @param errorMessage
+     */
 	public void setErrorMessage(String errorMessage){
 		this.errorMessage = errorMessage;
 	}
 	
-	/**
-	 * In the MapEditorWindow.java call 
-	 * 
-	 * <code>
-	 * MapValidationManager manager = new MapValidationManager(cellList, mCols, mRows);
-	 * if(new MapValidationManager().checkValidate()) saveMap();
-	 * else println(manager.getErrorMessage());
-	 * </code>
-	 * 
-	 * @return true if it's validate
-	 */
-
-	/**
-	 * This is a method that check various situations of map validations and give different 
-	 * feedback of results of them.
-	 * 
-	 * @return boolean A to check the validation.
-	 */
+    /**
+     * 
+     * This is a method that check various situations of map validations and give different 
+     * feedback of results of them.
+     * 
+     *if map is not valid  the errormessage is set to type of validation error and return false.    
+     * In the MapEditorWindow.java call 
+     * 
+     * <code>
+     * MapValidationManager manager = new MapValidationManager(cellList, mCols, mRows);
+     * if(new MapValidationManager().checkValidate()) saveMap();
+     * else println(manager.getErrorMessage());
+     * </code>
+     * 
+     * @return boolean A to check the validation.
+     */ 
 	public boolean checkValidate(){
 		
 		if (!new NoEntranceNoExitMoreEntranceMoreExitValidator(cellList).validate()){

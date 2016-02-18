@@ -42,7 +42,12 @@ public class EntranceExitInMiddlePathValidator implements MapValidator {
 		return true;
 	}
 	
-	
+/**
+ * Class constructor  validate whether Entrance or Exit is in the middle of the path	
+ * 
+ * @param cellList   cell states of each cell
+ * @param countMap
+ */
 	public EntranceExitInMiddlePathValidator(ArrayList<CellState> cellList, HashMap<Integer, Integer> countMap){
 		this.cellList = cellList;
 		this.countMap = countMap;

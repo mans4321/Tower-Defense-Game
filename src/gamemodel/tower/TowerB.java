@@ -4,11 +4,22 @@ import java.util.Set;
 import gamemodel.critter.*;
 
 /**
- * Created by yongpinggao on 2/4/16.
+ *This class initialize the second Tower(TowerB) and initialize it's characteristics. 
+ *
+ *TowerB extends Tower implements TowerShootingBehavior
+ *
+ *@author yongpinggao 
+ *@since 2/4/16.
+ *@version 1.0
+ *@see {@link gamemodel.tower.Tower Tower}
  */
 public class TowerB extends Tower implements TowerShootingBehavior{
 
-
+/**
+ * Constructor call  initTower() which Initialize the towerB specification for each level . 
+ * 
+ * @param level tower level
+ */
     public TowerB(int level){
         this.level = level;
         if(level <= super.level){
@@ -18,7 +29,9 @@ public class TowerB extends Tower implements TowerShootingBehavior{
     }
 
 
-
+/**
+*  Initialize the TowerB specification for each level   
+*/
     private void initTower(){
         switch(level){
             case 1:
@@ -53,7 +66,9 @@ public class TowerB extends Tower implements TowerShootingBehavior{
                 rateOfFire = 0;
         }
     }
-
+/**
+ *{@inheritDoc}
+ */
     @Override
     public Critter shoot() {
         if(this.isPowerOn()){ //if tower is working instead of in the middle of shooting )
@@ -68,17 +83,23 @@ public class TowerB extends Tower implements TowerShootingBehavior{
 
 
 
-
+/**
+ *{@inheritDoc} 
+ */
     @Override
     public Critter targetBasedOnWeakest(Set<Critter> crittersInRange) {
         return super.targetBasedOnWeakest(crittersInRange);
     }
-
+/**
+*{@inheritDoc} 
+*/
     @Override
     public Critter targetBasedOnStrongest(Set<Critter> crittersInRange) {
         return super.targetBasedOnStrongest(crittersInRange);
     }
-
+/**
+*{@inheritDoc} 
+*/
     @Override
     public Critter targetBasedOnNearestToEnd(Set<Critter> crittersInRange) {
         return super.targetBasedOnNearestToEnd(crittersInRange);
