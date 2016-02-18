@@ -32,31 +32,31 @@ public class TowerSelectionPanel extends JPanel {
 
     void initComponents() {
         // Starts with the first level of the tower
-        TowerButton buttonTowerA = new TowerButton(towerImageCollection.getImageIcon(TowerID.TOWERAH.getName()));
+        TowerButton buttonTowerA = new TowerButton(towerImageCollection.getImageIcon(TowerId.TOWERAH.getName()));
         buttonTowerA.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                slistener.placeTower(TowerID.TOWERA1);
-                cListener.updateInfo(TowerID.TOWERA1);
+                slistener.placeTower(TowerId.TOWERA1);
+                cListener.updateInfo(TowerId.TOWERA1);
             }
         });
 
 
-        TowerButton buttonTowerB = new TowerButton((towerImageCollection.getImageIcon(TowerID.TOWERBH.getName())));
+        TowerButton buttonTowerB = new TowerButton((towerImageCollection.getImageIcon(TowerId.TOWERBH.getName())));
         buttonTowerB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                slistener.placeTower(TowerID.TOWERB1);
-                cListener.updateInfo(TowerID.TOWERB1);
+                slistener.placeTower(TowerId.TOWERB1);
+                cListener.updateInfo(TowerId.TOWERB1);
             }
         });
 
-        TowerButton buttonTowerC = new TowerButton((towerImageCollection.getImageIcon(TowerID.TOWERCH.getName())));
+        TowerButton buttonTowerC = new TowerButton((towerImageCollection.getImageIcon(TowerId.TOWERCH.getName())));
         buttonTowerC.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                slistener.placeTower(TowerID.TOWERC1);
-                cListener.updateInfo(TowerID.TOWERC1);
+                slistener.placeTower(TowerId.TOWERC1);
+                cListener.updateInfo(TowerId.TOWERC1);
             }
         });
 

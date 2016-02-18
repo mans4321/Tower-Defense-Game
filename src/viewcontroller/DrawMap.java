@@ -78,7 +78,7 @@ public class DrawMap {
         for (Map.Entry<Integer, Tower> entry : towerMap.entrySet()) {
             Integer index = entry.getKey();
             Tower tower = entry.getValue();
-            if (tower.getTid() != TowerID.TOWERNULL) { // if TowerID == TOWERNULL, skip, draw nothing.
+            if (tower.getTid() != TowerId.TOWERNULL) { // if TowerID == TOWERNULL, skip, draw nothing.
                 int[] arr = indexConverter(index, cols);
                 g2d.drawImage(new TowerImageCollection().getImage(tower.getTid().getName()) , arr[0], arr[1], observer);
 
@@ -108,7 +108,7 @@ public class DrawMap {
 
         for (Map.Entry<Integer, Tower> entry : towerMap.entrySet()) {
             Tower tower = entry.getValue();
-            if (tower.getTid() != TowerID.TOWERNULL) { // if TowerID == TOWERNULL, skip, draw nothing.
+            if (tower.getTid() != TowerId.TOWERNULL) { // if TowerID == TOWERNULL, skip, draw nothing.
 
                 int posX = tower.getPosX();
                 int posY = tower.getPosY();

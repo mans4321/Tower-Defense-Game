@@ -39,7 +39,7 @@ public class TowerA extends Tower implements TowerShootingBehavior {
             case 1:
                 buyPrice = 20.0;
                 sellPrice = 10.0;
-                tid = TowerID.TOWERA1;
+                tid = TowerId.TOWERA1;
                 range = 80;
                 rateOfFire = 100;
                 power = 10;
@@ -47,7 +47,7 @@ public class TowerA extends Tower implements TowerShootingBehavior {
             case 2:
                 buyPrice = 30.0;
                 sellPrice = 15.0;
-                tid = TowerID.TOWERA2;
+                tid = TowerId.TOWERA2;
                 range = 90;
                 rateOfFire = 200;
                 power = 20;
@@ -55,7 +55,7 @@ public class TowerA extends Tower implements TowerShootingBehavior {
             case 3:
                 buyPrice = 40.0;
                 sellPrice = 20.0;
-                tid = TowerID.TOWERA3;
+                tid = TowerId.TOWERA3;
                 range = 100;
                 rateOfFire = 300;
                 power = 30;
@@ -63,7 +63,7 @@ public class TowerA extends Tower implements TowerShootingBehavior {
             default:
                 buyPrice = 0;
                 sellPrice = 0;
-                tid = TowerID.TOWERNULL;
+                tid = TowerId.TOWERNULL;
                 break;
         }
     }

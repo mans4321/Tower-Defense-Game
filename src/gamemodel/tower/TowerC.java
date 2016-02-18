@@ -34,7 +34,7 @@ public class TowerC extends Tower {
             case 1:
                 buyPrice = 40.0;
                 sellPrice = 20.0;
-                tid = TowerID.TOWERC1;
+                tid = TowerId.TOWERC1;
                 range = 120;
                 rateOfFire = 100;
                 power = 40;
@@ -42,7 +42,7 @@ public class TowerC extends Tower {
             case 2:
                 buyPrice = 50.0;
                 sellPrice = 25.0;
-                tid = TowerID.TOWERC2;
+                tid = TowerId.TOWERC2;
                 range = 130;
                 rateOfFire = 200;
                 power = 50;
@@ -50,7 +50,7 @@ public class TowerC extends Tower {
             case 3:
                 buyPrice = 60.0;
                 sellPrice = 30.0;
-                tid = TowerID.TOWERC3;
+                tid = TowerId.TOWERC3;
                 range = 140;
                 rateOfFire = 300;
                 power = 60;
@@ -58,7 +58,7 @@ public class TowerC extends Tower {
             default:
                 buyPrice = 0;
                 sellPrice = 0;
-                tid = TowerID.TOWERNULL;
+                tid = TowerId.TOWERNULL;
                 range = 0;
                 rateOfFire = 0;
         }

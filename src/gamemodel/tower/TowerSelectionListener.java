@@ -10,12 +10,12 @@ package gamemodel.tower;
  *@version 1.0
  */
 public interface TowerSelectionListener {
-	
-/** 
- * Perform the action of placing tower on the map
- * 
- * @param id tower id 
- * 
- */
-    public void placeTower(TowerID id);
+
+    /** 
+     * Perform the action of placing tower on the map.
+     * 
+     * @param id tower id 
+     * 
+     */
+    public void placeTower(TowerId id);
 }

@@ -1,7 +1,7 @@
 package viewcontroller;
 import javax.swing.*;
 
-import gamemodel.tower.TowerID;
+import gamemodel.tower.TowerId;
 import gamemodel.tower.TowerImageCollection;
 
 import java.awt.*;
@@ -14,7 +14,7 @@ public class EndPanel extends JPanel {
     private  TowerUpgradeSellPanel towerUpgradeSellPanel;
     private  TowerSpecificationPanel towerSpecificationPanel;
 
-    private TowerID currentChosenTowerID;
+    private TowerId currentChosenTowerID;
 
     public EndPanel() {
 
@@ -43,13 +43,13 @@ public class EndPanel extends JPanel {
         return towerUpgradeSellPanel;
     }
 
-    public void setCurrentChosenTowerID(TowerID currentChosenTowerID) {
+    public void setCurrentChosenTowerID(TowerId currentChosenTowerID) {
         this.currentChosenTowerID = currentChosenTowerID;
         // Property Observer:
         String name = currentChosenTowerID.getName();
         String[] hName = name.split("_");
         if (hName.length > 0) {
-            if (currentChosenTowerID == TowerID.TOWERNULL) {
+            if (currentChosenTowerID == TowerId.TOWERNULL) {
                 towerSpecificationPanel.clearPanel();
                 towerUpgradeSellPanel.getTowerImage().setIcon(null);
             } else {

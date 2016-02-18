@@ -24,8 +24,8 @@ public class MapPanel extends JPanel {
     private ArrayList<CellState> cellList;
     private HashMap<Integer, Tower> towerMap;
     private ArrayList<Integer> pathList;
-    private TowerID currentTowerID;
-    private TowerID currentChosenID;
+    private TowerId currentTowerID;
+    private TowerId currentChosenID;
 
     private boolean isChosen = false;
 
@@ -48,7 +48,7 @@ public class MapPanel extends JPanel {
         return exitPos;
     }
 
-    public void setCurrentTowerID(TowerID currentTowerID) {
+    public void setCurrentTowerID(TowerId currentTowerID) {
         this.currentTowerID = currentTowerID;
     }
 
@@ -101,8 +101,8 @@ public class MapPanel extends JPanel {
             }
         }
 
-        currentTowerID = TowerID.TOWERNULL;
-        currentChosenID = TowerID.TOWERNULL;
+        currentTowerID = TowerId.TOWERNULL;
+        currentChosenID = TowerId.TOWERNULL;
 
         initComponent();
 
@@ -199,7 +199,7 @@ public class MapPanel extends JPanel {
                         // 3. if it is "Chosen" state: Chosen state -> Tower State
                         else if (cellList.get(index) == CellState.CHOSEN) {
                             cellList.set(index, CellState.TOWER);
-                            currentChosenID = TowerID.TOWERNULL;
+                            currentChosenID = TowerId.TOWERNULL;
                             System.out.println("3");
                         }
 
@@ -216,12 +216,12 @@ public class MapPanel extends JPanel {
                                     cellList.set(i, CellState.GRASS);
                                 }
                             }
-                            currentChosenID = TowerID.TOWERNULL;
+                            currentChosenID = TowerId.TOWERNULL;
                             listener.updateInfo(currentChosenID);
                             System.out.println("4");
                             repaint();
                         }
-                        currentTowerID = TowerID.TOWERNULL;
+                        currentTowerID = TowerId.TOWERNULL;
                     }
 
                 }

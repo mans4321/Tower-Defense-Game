@@ -6,7 +6,7 @@ package gamemodel.tower;
  *@since  1/30/16
  *@version 1.0  
  */
-public enum TowerID {
+public enum TowerId {
     TOWERNULL(""),
 
     TOWERA1("towerA_1"),
@@ -30,7 +30,7 @@ public enum TowerID {
  * A constructor assign name to towerName     
  * @param towerName tower name
  */
-    TowerID(String towerName) {
+    TowerId(String towerName) {
         this.name = towerName;
     }
 /**
@@ -45,10 +45,10 @@ public enum TowerID {
  * @param name tower name
  * @return tower id
  */
-    public static TowerID getTowerIDFrom(String name) {
-        TowerID id = null;
+    public static TowerId getTowerIDFrom(String name) {
+        TowerId id = null;
 
-        for(TowerID tid: TowerID.values()) {
+        for(TowerId tid: TowerId.values()) {
             if (tid.getName().equals(name)) {
                 id = tid;
             }

@@ -22,7 +22,7 @@ public class Tower implements TowerShootingBehavior, ActionListener {
     public static final int LEVEL = 3;
 
     protected int level;
-    protected TowerID tid;
+    protected TowerId tid;
 
     // center coordinate of the tower
     protected int posX;
@@ -181,7 +181,7 @@ public class Tower implements TowerShootingBehavior, ActionListener {
      * get tower id.
      * @return tower id
      */
-    public TowerID getTid() {
+    public TowerId getTid() {
         return tid;
     }
 

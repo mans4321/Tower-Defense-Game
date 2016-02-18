@@ -1,27 +1,32 @@
 package gamemodel.tower;
+
 /**
- * Created by yongpinggao on 2/4/16.
+ * Returns the right instance of a tower. 
+ * @author yongpinggao
+ *
  */
 public class TowerFactory {
 
     // singleton + Factory
 
     private static TowerFactory ourInstance = new TowerFactory();
-/**
- * 
- * @return
- */
+    
+    /**
+     * Returns the tower factory.
+     * @return
+     */
     public static TowerFactory getInstance() {
         return ourInstance;
     }
 
     private TowerFactory() {}
-/**
- * 
- * @param id tower id 
- * @return
- */
-    public Tower getTower(TowerID id) {
+    
+    /**
+     * Getter that returns a new Tower of the the specified type.
+     * @param id tower id 
+     * @return
+     */
+    public Tower getTower(TowerId id) {
         switch (id) {
             case TOWERA1:
                 return new TowerA(1);

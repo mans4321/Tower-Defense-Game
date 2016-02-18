@@ -79,7 +79,7 @@ public class GamePanel extends JPanel implements ActionListener{
 
         topPanel.getTowerSelectionPanel().addTowerSelectionListener(new TowerSelectionListener() {
             @Override
-            public void placeTower(TowerID id) {
+            public void placeTower(TowerId id) {
                 topPanel.getDataPanel().setWarningMsg("");
                 updateInfoOfTower(id);
                 ArrayList<CellState> cells = mapPanel.getCellList();
@@ -110,7 +110,7 @@ public class GamePanel extends JPanel implements ActionListener{
 
         topPanel.getTowerSelectionPanel().addTowerChosenListener(new TowerChosenListener() {
             @Override
-            public void updateInfo(TowerID id) {
+            public void updateInfo(TowerId id) {
                 endPanel.setCurrentChosenTowerID(id);
                 updateInfoOfTower(id);
             }
@@ -118,11 +118,11 @@ public class GamePanel extends JPanel implements ActionListener{
 
         mapPanel.getMapArea().addTowerChosenListener(new TowerChosenListener() {
             @Override
-            public void updateInfo(TowerID id) {
+            public void updateInfo(TowerId id) {
 
                 endPanel.setCurrentChosenTowerID(id);
 
-                if (id == TowerID.TOWERNULL) {
+                if (id == TowerId.TOWERNULL) {
                     endPanel.getTowerSpecificationPanel().clearPanel();
                 } else {
                     updateInfoOfTower(id);
@@ -147,7 +147,7 @@ public class GamePanel extends JPanel implements ActionListener{
                         mapPanel.setTowerMap(towerMap);
                         mapPanel.getMapArea().repaint();
                         // clear chosen state -> draw null image in end panel
-                        endPanel.setCurrentChosenTowerID(TowerID.TOWERNULL);
+                        endPanel.setCurrentChosenTowerID(TowerId.TOWERNULL);
 
                     }
                 }
@@ -172,7 +172,7 @@ public class GamePanel extends JPanel implements ActionListener{
                             level ++;
                             String newName = oldName.split("_")[0] + "_" + level;
 
-                            TowerID newID = TowerID.getTowerIDFrom(newName);
+                            TowerId newID = TowerId.getTowerIDFrom(newName);
                             Tower newTower = TowerFactory.getInstance().getTower(newID);
                             double newTowerBuyPrice = newTower.getBuyPrice();
                             double updatePrice = newTowerBuyPrice - oldTowerBuyPrice;
@@ -204,7 +204,7 @@ public class GamePanel extends JPanel implements ActionListener{
         // get msg from map panel to change the account in case tower is place accurately
         mapPanel.getMapArea().addPlaceTowerFinishedListener(new PlaceTowerFinishedListener() {
             @Override
-            public void accountShouldChange(TowerID id) {
+            public void accountShouldChange(TowerId id) {
                 account.setBalance(account.getBalance() - TowerFactory.getInstance().getTower(id).getBuyPrice());
                 topPanel.getDataPanel().setBalance(account.getBalance());
             }
@@ -330,7 +330,7 @@ public class GamePanel extends JPanel implements ActionListener{
 
     }
 
-    private void updateInfoOfTower(TowerID id) {
+    private void updateInfoOfTower(TowerId id) {
         Tower tower = TowerFactory.getInstance().getTower(id);
         endPanel.getTowerSpecificationPanel().setBuyPrice(tower.getBuyPrice());
         endPanel.getTowerSpecificationPanel().setSpecification(tower.getSpecification());
