@@ -49,7 +49,7 @@ ArrayList<CellState> cellListtest= new ArrayList<CellState>();
 		
 		boolean Re = SENEX.validate();
 		
-		assertFalse(Re);
+		assertTrue(Re);
 	}
 	
 
