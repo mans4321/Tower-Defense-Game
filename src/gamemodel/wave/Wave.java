@@ -7,7 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
+ * This class responsible for building wave of each critter type. 
  * 
+ * The critter wave are launched by timer.
+ *  
  *@author yongpinggao 
  *@since 2/6/16
  *@version 1.0
