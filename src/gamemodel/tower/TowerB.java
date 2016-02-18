@@ -7,7 +7,10 @@ import gamemodel.critter.*;
  *This class initialize the second Tower(TowerB) and initialize it's characteristics.
  *TowerB extends Tower implements TowerShootingBehavior
  *
- *@author yongpinggao on 2/4/16.
+ *@author yongpinggao 
+ *@since 2/4/16.
+ *@version 1.0
+ *@see {@link gamemodel.tower.Tower Tower}
  */
 public class TowerB extends Tower implements TowerShootingBehavior {
 

@@ -7,19 +7,17 @@ import gamemodel.critter.*;
  * TowerA extends Tower implements TowerShootingBehavior
  *
  * @author yongpinggao on 2/4/16.
- * @see Tower 
+ * @see  {@link gamemodel.tower.Tower Tower}
  * @since 2/4/16.
  * @version 1.0
  */
 public class TowerA extends Tower implements TowerShootingBehavior {
-
 
     /**
      * Creates a tower of the selected level of the type TowerA.
      * @param level tower level
      */
     public TowerA(int level) {
-
 
         this.level = level;
         if (level <= super.LEVEL) {
@@ -86,11 +84,6 @@ public class TowerA extends Tower implements TowerShootingBehavior {
         }
 
     }
-
-
-
-
-
 
 
 

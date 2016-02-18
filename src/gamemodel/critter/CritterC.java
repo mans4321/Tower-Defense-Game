@@ -2,18 +2,22 @@ package gamemodel.critter;
 /**
  *This class initialize the third Critter(CritterC) and set it's characteristics.
  *
- * CritterB extend the class Critter
+ * CritterC extend the class Critter
+ * 
  * @author yongpinggao
+ * @since 28/2/16
+ * @version 1.0
+ * @see {@link gamemodel.critter.Critter Critter}
  */
 public class CritterC extends Critter{
 /**
-* A constructor calls the method initCritter();
+* A constructor ;
 */
     public CritterC() {
         initCritter();
     }
 /**
-* initialize the characteristics of the CritterC
+*  constructor calls the method initCritter() to initialize the critter parameters .
 */
     private void initCritter() {
         imgURL = "res/critterC.png";

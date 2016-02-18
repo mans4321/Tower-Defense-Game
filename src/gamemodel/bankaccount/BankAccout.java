@@ -7,13 +7,15 @@ package gamemodel.bankaccount;
  * also the player can sell their towers and receive certain amount of money for that.
  *   
  *@author yongpinggao
+ *@version 1.0
+ *@since 26/1/16
  *   
  */
 public class BankAccout {
 
     private double balance;
     /**
-     * A constructor the assign balance to initialBalance.
+     * A constructor for initializing the player balance.
      * @param initialBalance the initial amount of money the player has 
      */
     public BankAccout(int initialBalance) {

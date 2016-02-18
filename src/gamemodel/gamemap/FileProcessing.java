@@ -35,7 +35,7 @@ public class FileProcessing {
     // Output: Write the info to a file in JSON Format
     // Dependency: gson-2.5 library
    /**
-    *  write the map  in Json format.
+    *  add map  maps  to Json file.
     * @param map the map created by the player 
     */
     public static void addMapToJsonFile(GameMap map) {
@@ -60,7 +60,8 @@ public class FileProcessing {
     }
 /**
  * deleting the map from Json file 
- * @param index the converted X&Y coordinated 
+ * 
+ * @param index  map index in the Arraylist.
  */
     public static void deleteMapFromJsonFile(int index) {
 
@@ -83,9 +84,10 @@ public class FileProcessing {
         }
     }
 /**
- *Read the maps from JsonFile and deserializes to GameMapCollection class   
+ *Read the maps from JsonFile and deserializes to GameMapCollection class.
+ *   
  * @return the maps from Json file. or null in case if the Json file missing 
- * or catching error while reading from Json file .
+ * or when catch error while reading from Json file .
  */
     public static GameMapCollection readMapFromJsonFile() {
 
@@ -124,8 +126,8 @@ public class FileProcessing {
     }
 /**
  * This story the map image in the map archive
- * @param mapName
- * @param image
+ * @param mapName  map image name 
+ * @param image     map image 
  */
     public static void writeToMapArchive(String mapName, BufferedImage image) {
         try {

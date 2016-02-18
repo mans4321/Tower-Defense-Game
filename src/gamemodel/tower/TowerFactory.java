@@ -1,9 +1,12 @@
 package gamemodel.tower;
 
 /**
- * Returns the right instance of a tower. 
- * @author yongpinggao
- *
+ * produce new tower instance base on TowerID.
+ * 
+ *This class apply singleton design.
+ * @author yongpinggao 
+ * @since 2/4/16.
+ * @version 1.0
  */
 public class TowerFactory {
 
@@ -18,7 +21,10 @@ public class TowerFactory {
     public static TowerFactory getInstance() {
         return ourInstance;
     }
-
+    
+    /**
+     * Constructor make TowerFactory Private.  
+     */
     private TowerFactory() {}
     
     /**

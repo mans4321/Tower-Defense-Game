@@ -10,7 +10,7 @@ import gamemodel.critter.Critter;
 public interface WaveStartListener {
     
     /**
-     * Method that will implement the start position of the critters
+     * Method that will implement the start position of the critters.
      * @see Critter
      * @param c Critter
      */

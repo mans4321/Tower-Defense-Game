@@ -38,6 +38,11 @@ public class LengthValidator implements MapValidator {
         }
     }
     
+    /**
+     * Class constructor whether the length of path in map is legal.    
+     * 
+     * @param cellList   cell states of each cell
+     */
     public LengthValidator(ArrayList<CellState> cellList) {
         this.cellList = cellList;
     }

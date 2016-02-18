@@ -11,10 +11,11 @@ import java.util.HashMap;
  * 
  * For example, assigning the Grass cell state  to the storied image represents Grass.
  * To do this the cell state and it assigned image story in HashMap that type string for the cell state 
- * and IMageIcon for the assigned image.    
+ * and IMageIcon for the assigned image. 
+ *    
  *@author  Mansour 
  *@since   24/2/2016
- *
+ *@version 1.0
  */
 public class MapImageCollection {
 
@@ -37,7 +38,7 @@ public class MapImageCollection {
     }
 
 /**
- * 
+ * get map image name 
  * @param name tower name
  * @return     tower image
  */
@@ -45,7 +46,7 @@ public class MapImageCollection {
         return mapImageCollection.get(name).getImage();
     }
 /**
- * 
+ * get map image icon 
  * @param name tower name
  * @return     tower name 
  */

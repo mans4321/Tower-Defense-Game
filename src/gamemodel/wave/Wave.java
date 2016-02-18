@@ -7,8 +7,13 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
+ * This class responsible for building wave of each critter type. 
  * 
- * @author yongpinggao
+ * The critter wave are launched by timer.
+ *  
+ * @author yongpinggao 
+ * @since 2/6/16
+ * @version 1.0
  * @see ActionListener
  */
 public class Wave implements ActionListener{
@@ -30,7 +35,11 @@ public class Wave implements ActionListener{
         index = 0;
     }
 
-
+/**
+ *build a critter wave of each type and store it in CritterStore.
+ *
+ *@author Mansour  
+ */
     public static class Builder {
  
         /**
@@ -104,6 +113,7 @@ public class Wave implements ActionListener{
     }
     
     /**
+     * Initialize the wave base on timer.
      * {@inheritDoc}
      */
     @Override

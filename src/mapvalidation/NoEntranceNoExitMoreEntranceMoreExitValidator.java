@@ -10,8 +10,10 @@ import gamemodel.gamemap.CellState;
  * NO Entrance or Exit is illegal.
  * More than one Entrance or one Exit is illegal.
  * 
+ * This class implements MapValidator
+ * 
  * @author LiChong
- *
+ * @version 1.0
  */
 public class NoEntranceNoExitMoreEntranceMoreExitValidator implements MapValidator{
 
@@ -53,4 +55,5 @@ public class NoEntranceNoExitMoreEntranceMoreExitValidator implements MapValidat
         // TODO Auto-generated constructor stub
         this.cellList = cellList;
     }
+
 }

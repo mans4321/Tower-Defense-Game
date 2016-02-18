@@ -7,9 +7,11 @@ import java.util.HashMap;
 
 
 /**
- * The manager class for all map validations.
+ * This class manage all map validation 
+ *  
  * @author LiChong
- *
+ * @version 1.0 
+ * @since 
  */
 public class MapValidationManager {
 
@@ -206,7 +208,11 @@ public class MapValidationManager {
         	}
         }
 	}
-	
+    
+    /**
+     * Getter for count Map.
+     * @return count Map
+     */
     public HashMap<Integer, Integer> getCountMap() {
         return countMap;
     }

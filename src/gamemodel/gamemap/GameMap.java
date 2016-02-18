@@ -7,9 +7,10 @@ import java.util.ArrayList;
  * 
  *it also return and set these parameters.
  *Each  map has number of rows and columns,the map image, and cellStates storied in ArrayList.
+ *
  *@author yongpinggao 
  *@since 1/26/16.
- *
+ *@version 1.0
  */
 public class GameMap {
 
@@ -19,7 +20,7 @@ public class GameMap {
     private String imageName;
 
 /**
- * A constructor for the GameMap
+ * A constructor initialize the parameters for the game maps.
  * @param mapRows   number of Rows
  * @param mapCols   number of columns 
  * @param cells     ArrayList for the map cells state  

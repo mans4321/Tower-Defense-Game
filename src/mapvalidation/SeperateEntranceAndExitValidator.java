@@ -10,7 +10,11 @@ import gamemodel.gamemap.CellState;
  * This class is to validate whether Entrance is the neighbour of Exit.
  * If they are neighbours of each other, it is illegal.
  * 
+ * SeperateEntranceAndExitValidator implements MapValidator
+ * 
  * @author LiChong
+ * @version 1.0
+ * 
  *
  */
 public class SeperateEntranceAndExitValidator implements MapValidator{
@@ -56,4 +60,5 @@ public class SeperateEntranceAndExitValidator implements MapValidator{
         this.cellList = cellList;
         this.seaeCols = cols;
     }
+
 }

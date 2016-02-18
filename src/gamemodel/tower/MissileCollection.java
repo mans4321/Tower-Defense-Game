@@ -4,9 +4,11 @@ import java.util.HashMap;
 
 /**
  * Class that holds the types of missile each tower will fire.
+ * draw different missiles GUI and link  missile GUI with towers. 
  * 
- * @author yongpinggao
- *
+ * @author  yongpinggao 
+ * @since 2/7/16.
+ * @version 1.0 
  */
 public class MissileCollection {
 

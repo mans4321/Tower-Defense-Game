@@ -8,7 +8,7 @@ import gamemodel.critter.*;
  *TowerC extends Tower
  *
  *@author yongpinggao
- *@see Tower 
+ *@see {@link gamemodel.tower.Tower Tower} 
  *@since 2/4/16.
  *@version 1.0
  */

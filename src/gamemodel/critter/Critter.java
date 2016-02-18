@@ -19,7 +19,8 @@ import java.util.ArrayList;
  * This class implements CritterBehavior. 
  *  
  *@author yongpinggao
- *@since  
+ *@since  26/1/16
+ *@version 1.0
  */
 public class Critter implements CritterBehavior{
 
@@ -249,15 +250,15 @@ public class Critter implements CritterBehavior{
         this.pathList = pathList;
     }
 /**
- *                                                                //what 
- * @return
+ *whether the player received balance for killing this critter or not                                                                 
+ * @return   whether the player received balance for killing this critter or not
  */
     public boolean isAleadyDonated() {
         return aleadyDonated;
     }
 /**
- *                                                               //what 
- * @param aleadyDonated
+ *  whether the player received balance for killing this critter or not                                                             //what 
+ * @param aleadyDonated whether the player received balance for killing this critter or not
  */
     public void setAleadyDonated(boolean aleadyDonated) {
         this.aleadyDonated = aleadyDonated;

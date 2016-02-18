@@ -8,9 +8,9 @@ import javax.swing.ImageIcon;
 /**
  * This class assign each tower to it's image icon.
  * 
- *@author yongpinggao
- *@since  1/31/16
- *@version 1.0
+ * @author yongpinggao
+ * @since  1/31/16
+ * @version 1.0
  */
 public class TowerImageCollection {
 

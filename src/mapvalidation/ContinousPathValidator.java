@@ -39,4 +39,5 @@ public class ContinousPathValidator implements MapValidator {
     public ContinousPathValidator(HashMap<Integer,Integer> countMap) {
         this.cMap = countMap;
     }
+
 }

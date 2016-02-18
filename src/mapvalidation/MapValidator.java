@@ -7,5 +7,10 @@ package mapvalidation;
  *
  */
 public interface  MapValidator {
-    boolean validate(); 
+/**
+ * Validated the path  	
+ * 
+ * @return path validation result 
+ */
+	boolean validate(); 
 }

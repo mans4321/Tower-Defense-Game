@@ -12,7 +12,7 @@ import javax.swing.*;
 /**
  * A model that define the all tower parameters.
  * Tower class implements TowerShootingBehavior and  ActionListener
- * @author 
+ * @author yongpinggao
  * @see TowerShootingBehavior 
  * @since 2/4/16.
  * @version 1.0  
@@ -57,7 +57,6 @@ public class Tower implements TowerShootingBehavior, ActionListener {
      * A constuctor to assign tower parameters.
      */
     public Tower() {
-
         powerOn = false;
         delay = 1000 - rateOfFire;
         crittersInRange = new HashSet<>();
@@ -208,7 +207,7 @@ public class Tower implements TowerShootingBehavior, ActionListener {
     }
 
     /**
-     * stores the power on property.
+     * get tower shooting status
      * @return powerOn property
      */
     public boolean isPowerOn() {
@@ -216,9 +215,10 @@ public class Tower implements TowerShootingBehavior, ActionListener {
     }
     
     /**
-     * setter method for power on.
+     * set tower shooting status.
      * @param powerOn property to define is tower power is on
      */
+
     public void setPowerOn(boolean powerOn) {
         this.powerOn = powerOn;
     }
