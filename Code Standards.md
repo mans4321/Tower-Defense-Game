@@ -1,4 +1,6 @@
-#We are basing our code standards off Google' code standard at https://google.github.io/styleguide/javaguide.html
+# Code Standards Statement - Google Java Style
+
+We are basing our code standards off Google' code standard at https://google.github.io/styleguide/javaguide.html
 There are slight changes but the majority of items are copied as is. That's why we are keeping the reference numbers
 
 ##2.1 File name 
