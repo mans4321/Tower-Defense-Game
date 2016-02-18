@@ -1,6 +1,11 @@
 package gamemodel.tower;
 /**
- * Createing  by yongpinggao on 2/4/16.
+ * produce new tower instance base on TowerID.
+ * 
+ *This class apply singleton design.
+ *@author yongpinggao 
+ *@since 2/4/16.
+ *@version 1.0
  */
 public class TowerFactory {
 
@@ -8,18 +13,20 @@ public class TowerFactory {
 
     private static TowerFactory ourInstance = new TowerFactory();
 /**
- * 
- * @return
+ * get tower instance.
+ * @return tower instance 
  */
     public static TowerFactory getInstance() {
         return ourInstance;
     }
-
+/**
+ * Constructor. 
+ */
     private TowerFactory() {}
 /**
- * 
+ * create tower instance base on TowerID 
  * @param id tower id 
- * @return
+ * @return Tower
  */
     public Tower getTower(TowerID id){
         switch (id) {
