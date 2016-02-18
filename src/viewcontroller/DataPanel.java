@@ -3,7 +3,13 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by yongpinggao on 1/24/16.
+ * Class that implements the game panels
+ * @author yongpinggao
+ * @since 1/24/16
+ * @see JLabel
+ * @see JButton
+ * 
+ *
  */
 public class DataPanel extends JPanel {
 
@@ -19,13 +25,19 @@ public class DataPanel extends JPanel {
     private int waveNum;
     private int totalWaveNum;
 
-
     private JButton exitButton;
-
+    
+    /**
+     * getter for the exit button
+     * @return
+     */
     public JButton getExitButton() {
         return exitButton;
     }
-
+    
+    /**
+     * Constructor sets the panels 
+     */
     public DataPanel() {
         balance = 0;
         coins = 0;
@@ -92,19 +104,21 @@ public class DataPanel extends JPanel {
         c.gridwidth = 1;   //2 columns wide
         c.gridy = 2;       //third row
         add(exitButton, c);
-
-
-
-
-
     }
 
-
+    /**
+     * Setter for the currency balance
+     * @param balance currency value
+     */
     public void setBalance(double balance) {
         this.balance = balance;
         balanceLabel.setText("Balance: " + balance);
     }
-
+    
+    /**
+     * 
+     * @param coins
+     */
     public void setCoins(int coins) {
         this.coins = coins;
         coinsLabel.setText("Coin Left: " + coins);
