@@ -27,21 +27,21 @@ public class DrawMap {
         return x / CELL_SIZE + (y / CELL_SIZE) * cols;
     }
 
-    public static int[] indexConverter(int index, int cols){
+    public static int[] indexConverter(int index, int cols) {
         int x = index % cols;
         int y = index / cols;
         return new int[]{x * CELL_SIZE, y * CELL_SIZE};
     }
 
-    public static void drawMap(Graphics g, int mapCols, int mapRows, ArrayList<CellState> cellList, ImageObserver observer){
+    public static void drawMap(Graphics g, int mapCols, int mapRows, ArrayList<CellState> cellList, ImageObserver observer) {
         Graphics2D g2d = (Graphics2D) g.create();
         MapImageCollection imageCollection = new MapImageCollection();
 
-        for(int i = 0; i < CELL_SIZE * mapCols; i = i + CELL_SIZE){
-            for(int j = 0; j < CELL_SIZE * mapRows; j = j + CELL_SIZE){
+        for(int i = 0; i < CELL_SIZE * mapCols; i = i + CELL_SIZE) {
+            for(int j = 0; j < CELL_SIZE * mapRows; j = j + CELL_SIZE) {
 
 
-                switch (cellList.get(coordinateConverter(i, j, mapCols))){
+                switch (cellList.get(coordinateConverter(i, j, mapCols))) {
                     case GRASS:
                         g2d.drawImage(imageCollection.getImage(CellState.GRASS.getCellStateName()), i, j, observer);
                         break;
@@ -72,13 +72,13 @@ public class DrawMap {
     }
 
 //    g.drawImage(new ImageIcon("res/tower1.png").getImage(),240,270,this);
-    public static void drawTower(Graphics g, int cols, HashMap<Integer, Tower> towerMap, ImageObserver observer){
+    public static void drawTower(Graphics g, int cols, HashMap<Integer, Tower> towerMap, ImageObserver observer) {
 
         Graphics2D g2d = (Graphics2D) g.create();;
         for (Map.Entry<Integer, Tower> entry : towerMap.entrySet()) {
             Integer index = entry.getKey();
             Tower tower = entry.getValue();
-            if(tower.getTid() != TowerID.TOWERNULL) { // if TowerID == TOWERNULL, skip, draw nothing.
+            if (tower.getTid() != TowerID.TOWERNULL) { // if TowerID == TOWERNULL, skip, draw nothing.
                 int[] arr = indexConverter(index, cols);
                 g2d.drawImage(new TowerImageCollection().getImage(tower.getTid().getName()) , arr[0], arr[1], observer);
 
@@ -89,14 +89,14 @@ public class DrawMap {
 
     }
 
-    public static void drawCritters(Graphics g, Critter c, ImageObserver observer){
+    public static void drawCritters(Graphics g, Critter c, ImageObserver observer) {
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.drawImage(c.getImage(), c.getPosX(), c.getPosY(),observer);
         g2d.dispose();
 
     }
 
-    public static void drawTowerRange(Graphics g, HashMap<Integer, Tower> towerMap, ImageObserver observer){
+    public static void drawTowerRange(Graphics g, HashMap<Integer, Tower> towerMap, ImageObserver observer) {
 
         Graphics2D g2d = (Graphics2D) g.create();
         AlphaComposite alphaComposite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f);
@@ -108,7 +108,7 @@ public class DrawMap {
 
         for (Map.Entry<Integer, Tower> entry : towerMap.entrySet()) {
             Tower tower = entry.getValue();
-            if(tower.getTid() != TowerID.TOWERNULL) { // if TowerID == TOWERNULL, skip, draw nothing.
+            if (tower.getTid() != TowerID.TOWERNULL) { // if TowerID == TOWERNULL, skip, draw nothing.
 
                 int posX = tower.getPosX();
                 int posY = tower.getPosY();
@@ -132,7 +132,7 @@ public class DrawMap {
 
     }
 
-    public static  void drawHealthBar(Graphics g, float healthBar, Critter c){
+    public static  void drawHealthBar(Graphics g, float healthBar, Critter c) {
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setColor(Color.GREEN);
         g2d.fillRect(c.getPosX(), c.getPosY() - 5, (int) (healthBar * CELL_SIZE), 3);

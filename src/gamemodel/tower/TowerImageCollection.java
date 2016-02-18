@@ -52,7 +52,7 @@ public class TowerImageCollection {
  * @param  name tower name
  * @return the image icon                                         //whta
  */
-    public ImageIcon getImageIcon(String name){
+    public ImageIcon getImageIcon(String name) {
         return towerImageCollection.get(name);
     }
 

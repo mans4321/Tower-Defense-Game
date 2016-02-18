@@ -25,12 +25,12 @@ public class NoEntranceNoExitMoreEntranceMoreExitValidator implements MapValidat
 		int numberOfEntrance = 0;
 		int numberOfExit = 0;
 
-		for(int i=0;i<cellList.size();i++){
-			if(cellList.get(i) == CellState.ENTRANCE) numberOfEntrance++;
-			if(cellList.get(i) == CellState.EXIT) numberOfExit++;
+		for(int i=0;i<cellList.size();i++) {
+			if (cellList.get(i) == CellState.ENTRANCE) numberOfEntrance++;
+			if (cellList.get(i) == CellState.EXIT) numberOfExit++;
 		}
 		
-		if(numberOfEntrance == 0 || numberOfEntrance > 1 || numberOfExit == 0 || numberOfExit > 1){
+		if (numberOfEntrance == 0 || numberOfEntrance > 1 || numberOfExit == 0 || numberOfExit > 1) {
 			return false;
 		} else {
 			return true;

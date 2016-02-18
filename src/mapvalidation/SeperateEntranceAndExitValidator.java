@@ -24,16 +24,16 @@ public class SeperateEntranceAndExitValidator implements MapValidator{
 	public boolean validate() {
 		// TODO Auto-generated method stub
 		
-		for(int i = 0; i < cellList.size(); i++){
-			if(cellList.get(i) == CellState.ENTRANCE){
+		for(int i = 0; i < cellList.size(); i++) {
+			if (cellList.get(i) == CellState.ENTRANCE) {
 				indexOfEntrance = i;
-			}else if(cellList.get(i) == CellState.EXIT){
+			}else if (cellList.get(i) == CellState.EXIT) {
 				indexOfExit = i;
 			}
 		}
 		
-		if(indexOfEntrance - seaeCols == indexOfExit || indexOfEntrance + seaeCols == indexOfExit
-				||indexOfEntrance - 1 == indexOfExit || indexOfEntrance + 1 == indexOfExit){
+		if (indexOfEntrance - seaeCols == indexOfExit || indexOfEntrance + seaeCols == indexOfExit
+				||indexOfEntrance - 1 == indexOfExit || indexOfEntrance + 1 == indexOfExit) {
 			return false;
 		}else{
 			return true;
@@ -42,7 +42,7 @@ public class SeperateEntranceAndExitValidator implements MapValidator{
 		
 	}
 	
-	public SeperateEntranceAndExitValidator(int Cols, ArrayList<CellState> cellList){
+	public SeperateEntranceAndExitValidator(int Cols, ArrayList<CellState> cellList) {
 		this.cellList = cellList;
 		this.seaeCols = Cols;
 	}

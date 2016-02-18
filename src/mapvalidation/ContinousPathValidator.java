@@ -21,14 +21,14 @@ public class ContinousPathValidator implements MapValidator{
 	public boolean validate() {
 		// TODO Auto-generated method stub
 		
-		for(int i : cMap.values()){
-			if(i == 0) return false;
+		for(int i : cMap.values()) {
+			if (i == 0) return false;
 		}
 		
 		return true;
 	}
 	
-	public ContinousPathValidator(HashMap<Integer,Integer> countMap){
+	public ContinousPathValidator(HashMap<Integer,Integer> countMap) {
 		this.cMap = countMap;
  
 	}

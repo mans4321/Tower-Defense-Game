@@ -1,32 +1,34 @@
 package gamemodel.tower;
-import java.util.Set;
 
+import java.util.Set;
 import gamemodel.critter.*;
 
 /**
- *This class initialize the second Tower(TowerB) and initialize it's characteristics. 
- *
+ *This class initialize the second Tower(TowerB) and initialize it's characteristics.
  *TowerB extends Tower implements TowerShootingBehavior
  *
  *@author yongpinggao on 2/4/16.
  */
-public class TowerB extends Tower implements TowerShootingBehavior{
+public class TowerB extends Tower implements TowerShootingBehavior {
 
-
-    public TowerB(int level){
+    /**
+     * Creates a tower of the selected level of the type TowerB.
+     * @param level tower level
+     */
+    public TowerB(int level) {
         this.level = level;
-        if(level <= super.level){
+        if (level <= super.level) {
             initTower();
             specification = "<html>" + this.getClass().getName() + "<br> Level: " + this.level + "<br> Good at attack fast critters</html>";
         }
     }
 
 
-/**
-*  Initialize the tower specification base on tower level   
-*/
-    private void initTower(){
-        switch(level){
+    /**
+    *  Initialize the tower specification base on tower level.   
+    */
+    private void initTower() {
+        switch (level) {
             case 1:
                 buyPrice = 30.0;
                 sellPrice = 15.0;
@@ -59,40 +61,43 @@ public class TowerB extends Tower implements TowerShootingBehavior{
                 rateOfFire = 0;
         }
     }
-/**
- *{@inheritDoc}
- */
+    
+    /** 
+     * Overrides method shoot.
+     * {@inheritDoc}
+     */
     @Override
     public Critter shoot() {
-        if(this.isPowerOn()){ //if tower is working instead of in the middle of shooting )
+        if (this.isPowerOn()) { //if tower is working instead of in the middle of shooting )
             //target can be changed based on different option
             Critter c = this.targetBasedOnWeakest(this.getCrittersInRange());
             c.getHitBy(this);
             this.setPowerOn(false);
             return c;
-        } else return null;
+        } else {
+            return null;
+        }
     }
 
-
-
-
-/**
- *{@inheritDoc} 
- */
+    /**
+     *{@inheritDoc} 
+     */
     @Override
     public Critter targetBasedOnWeakest(Set<Critter> crittersInRange) {
         return super.targetBasedOnWeakest(crittersInRange);
     }
-/**
-*{@inheritDoc} 
-*/
+    
+    /**
+    *{@inheritDoc} 
+    */
     @Override
     public Critter targetBasedOnStrongest(Set<Critter> crittersInRange) {
         return super.targetBasedOnStrongest(crittersInRange);
     }
-/**
-*{@inheritDoc} 
-*/
+    
+    /**
+    *{@inheritDoc} 
+    */
     @Override
     public Critter targetBasedOnNearestToEnd(Set<Critter> crittersInRange) {
         return super.targetBasedOnNearestToEnd(crittersInRange);

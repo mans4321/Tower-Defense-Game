@@ -1,10 +1,10 @@
 package gamemodel.tower;
+
 import gamemodel.critter.*;
  
 
 /**
  *This class create the third Tower(TowerA) and initialize it's characteristics. 
- *
  *TowerC extends Tower
  *
  *@author yongpinggao
@@ -12,22 +12,25 @@ import gamemodel.critter.*;
  *@since 2/4/16.
  *@version 1.0
  */
-public class TowerC extends Tower{
+public class TowerC extends Tower {
 
-
-    public TowerC(int level){
+    /**
+     * Creates a tower of the selected level of the type TowerC.
+     * @param level tower level
+     */
+    public TowerC(int level) {
         this.level = level;
-        if(level <= super.level){
+        if (level <= super.level) {
             initTower();
             specification = "<html>" + this.getClass().getName() + "<br> Level: " + this.level + "<br>  Good at attack strong critters</html>";
         }
     }
 
-/**
-*  Initialize the tower specification base on tower level   
-*/   
-    private void initTower(){
-        switch(level){
+    /**
+    *  Initialize the tower specification base on tower level.
+    */   
+    private void initTower() {
+        switch (level) {
             case 1:
                 buyPrice = 40.0;
                 sellPrice = 20.0;
@@ -60,17 +63,20 @@ public class TowerC extends Tower{
                 rateOfFire = 0;
         }
     }
-/**
- *{@inheritDoc}
- */
+    
+    /**
+     *{@inheritDoc}
+     */
     @Override
     public Critter shoot() {
-        if(this.isPowerOn()){ //if tower is working instead of in the middle of shooting )
+        if (this.isPowerOn()) { //if tower is working instead of in the middle of shooting )
             //target can be changed based on different option
             Critter c = this.targetBasedOnWeakest(this.getCrittersInRange());
             c.getHitBy(this);
             this.setPowerOn(false);
             return c;
-        } else return null;
+        } else {
+            return null;
+        }
     }
 }

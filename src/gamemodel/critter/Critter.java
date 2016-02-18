@@ -47,7 +47,7 @@ public class Critter implements CritterBehavior{
 /**
  * A constructor to initial all the boolean parameters to false   
  */
-    public Critter(){
+    public Critter() {
         aleadyDonated = false;
         isKilled = false;
         isSuccess = false;
@@ -62,25 +62,27 @@ public class Critter implements CritterBehavior{
     /**
      * move the Critter to right 
      */
-    private void moveRight(){
+    private void moveRight() {
         posX += moveSpeed;
     }
+    
     /**
      * move the Critter to bottom 
      */
-    private void moveDown(){
+    private void moveDown() {
         posY += moveSpeed;
     }
+    
     /**
      * move the Critter to left 
      */
-    private void moverLeft(){
+    private void moverLeft() {
         posX -= moveSpeed;
     }
 /**
  * move the Critter to up 
  */
-    private void moveUp(){
+    private void moveUp() {
         posY -= moveSpeed;
     }
 /**
@@ -97,6 +99,7 @@ public class Critter implements CritterBehavior{
     public void setKilled(boolean killed) {
         isKilled = killed;
     }
+    
     /**
      * get the x coordinate of a Critter
      * @return the current x coordinate of a Critter
@@ -104,6 +107,7 @@ public class Critter implements CritterBehavior{
     public int getPosX() {
         return posX;
     }
+    
     /**
      * get the y coordinate of a Critter
      * @return the current y coordinate of a Critter
@@ -111,6 +115,7 @@ public class Critter implements CritterBehavior{
     public int getPosY() {
         return posY;
     }
+    
     /**
      * get the next  x coordinate of a Critter
      * @return the next x coordinate of a Critter
@@ -125,6 +130,7 @@ public class Critter implements CritterBehavior{
     public void setNextPosX(int nextPosX) {
         this.nextPosX = nextPosX;
     }
+    
     /**
      * get the next  y coordinate of a Critter
      * @return the next x coordinate of a Critter
@@ -147,6 +153,7 @@ public class Critter implements CritterBehavior{
     public void setPosX(int posX) {
         this.posX = posX;
     }
+    
     /**
      * set the     y coordinate of a Critter
      *@param posY  y coordinate of a Critter
@@ -154,11 +161,12 @@ public class Critter implements CritterBehavior{
     public void setPosY(int posY) {
         this.posY = posY;
     }
+    
     /**
      * get the critter icon
      * @return the image of a Critter 
      */
-    public Image getImage(){
+    public Image getImage() {
         return new ImageIcon(imgURL).getImage();
     }
    /**
@@ -193,14 +201,14 @@ public class Critter implements CritterBehavior{
  * get the dimension of the Critter icon
  * @return the dimension of the Critter icon
  */
-    private Dimension getSize(){
+    private Dimension getSize() {
         return new Dimension(new ImageIcon(imgURL).getIconWidth(), new ImageIcon(imgURL).getIconHeight());
     }
 /**
  * get the bounder of the Critter icon
  * @return the Critter icon bounder.
  */
-    public Rectangle getBound(){
+    public Rectangle getBound() {
         return new Rectangle(posX,posY, getSize().width, getSize().height);
     }
 
@@ -295,17 +303,17 @@ public class Critter implements CritterBehavior{
       private void moveToPosition(int x, int y, int cols) {
 
         int[] temp;
-        if(posY > y){
+        if (posY > y) {
             moveUp();
-        } else if (posY < y){
+        } else if (posY < y) {
             moveDown();
-        } else if (posX > x){
+        } else if (posX > x) {
             moverLeft();
-        } else if (posX < x){
+        } else if (posX < x) {
             moveRight();
-        } else if (posX == x && posY == y){
+        } else if (posX == x && posY == y) {
             temp = getDestination(posX, posY, cols);                // why
-            if(temp != null){ // path has been walked through
+            if (temp != null) { // path has been walked through
                 nextPosX = temp[0];
                 nextPosY = temp[1];
                 moveToPosition(nextPosX, nextPosY, cols);
@@ -330,9 +338,9 @@ public class Critter implements CritterBehavior{
  * get the type of tower that hit the Critter
  * @param tower the type of tower that hit the critter
  */
-    public void getHitBy(Tower tower){
+    public void getHitBy(Tower tower) {
         this.health = this.health - tower.getPower();
-        if(this.health < 0){
+        if (this.health < 0) {
             this.setVisible(false);
             this.setKilled(true);
             this.setSuccess(false);
@@ -343,7 +351,7 @@ public class Critter implements CritterBehavior{
   * @return  the health status 
   */
     public float getHealthBar() {
-        if(health > 0)  return (float)getHealth() / initHealth;
+        if (health > 0)  return (float)getHealth() / initHealth;
         else            return 0;
     }
 /**
@@ -351,7 +359,7 @@ public class Critter implements CritterBehavior{
  * @param healthBar the health status represented by int range between 0to100
  */
     public void setHealthBar(int healthBar) {
-        if(healthBar >= 0)
+        if (healthBar >= 0)
         this.healthBar = healthBar;
     }
 }

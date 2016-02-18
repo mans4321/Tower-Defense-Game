@@ -19,7 +19,7 @@ public class TowerSelectionPanel extends JPanel {
     private TowerChosenListener cListener;
     private TowerImageCollection towerImageCollection;
 
-    public TowerSelectionPanel(){
+    public TowerSelectionPanel() {
         tRows = 1;
         tCols = 3;
         layout = new GridLayout(tRows, tCols);
@@ -30,7 +30,7 @@ public class TowerSelectionPanel extends JPanel {
 
     }
 
-    void initComponents(){
+    void initComponents() {
         // Starts with the first level of the tower
         TowerButton buttonTowerA = new TowerButton(towerImageCollection.getImageIcon(TowerID.TOWERAH.getName()));
         buttonTowerA.addActionListener(new ActionListener() {
@@ -66,11 +66,11 @@ public class TowerSelectionPanel extends JPanel {
 
     }
 
-    public void addTowerSelectionListener(TowerSelectionListener listener){
+    public void addTowerSelectionListener(TowerSelectionListener listener) {
         this.slistener = listener;
     }
 
-    public void addTowerChosenListener(TowerChosenListener listener){
+    public void addTowerChosenListener(TowerChosenListener listener) {
         this.cListener = listener;
     }
 
@@ -78,7 +78,7 @@ public class TowerSelectionPanel extends JPanel {
     private class TowerButton extends JButton {
         private ImageIcon towerImageIcon;
 
-        public TowerButton(ImageIcon towerImageIcon){
+        public TowerButton(ImageIcon towerImageIcon) {
             super("", towerImageIcon);
             this.towerImageIcon = towerImageIcon;
         }

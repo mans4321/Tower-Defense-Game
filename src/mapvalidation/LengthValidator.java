@@ -22,11 +22,11 @@ public class LengthValidator implements MapValidator {
 	public boolean validate() {
 		// TODO Auto-generated method stub
 		int numberOfPath = 0;
-		for(int i = 0; i < cellList.size(); i++){
-			if(cellList.get(i) == CellState.PATH ){ numberOfPath ++;}
+		for(int i = 0; i < cellList.size(); i++) {
+			if (cellList.get(i) == CellState.PATH ) { numberOfPath ++;}
 		}
 		
-		if(numberOfPath < 10 || numberOfPath > (cellList.size())/2){
+		if (numberOfPath < 10 || numberOfPath > (cellList.size())/2) {
 			return false;
 		}else{
 			return true;
@@ -34,7 +34,7 @@ public class LengthValidator implements MapValidator {
 		
 	}
 	
-	public LengthValidator(ArrayList<CellState> cellList){
+	public LengthValidator(ArrayList<CellState> cellList) {
 		this.cellList = cellList;
 	}
 

@@ -22,8 +22,8 @@ public class ExtraPathValidator implements MapValidator{
 	public boolean validate() {
 		// TODO Auto-generated method stub
 		
-		for(int i = 0; i< cellList.size(); i++){
-			if(ceMap.containsValue(3)|| ceMap.containsValue(4)){
+		for(int i = 0; i< cellList.size(); i++) {
+			if (ceMap.containsValue(3)|| ceMap.containsValue(4)) {
 				return false;  // extra path
 			}
 		 
@@ -32,7 +32,7 @@ public class ExtraPathValidator implements MapValidator{
 		return true;
 	}
 
-	public ExtraPathValidator(HashMap<Integer,Integer> countMap, ArrayList<CellState> cellList){
+	public ExtraPathValidator(HashMap<Integer,Integer> countMap, ArrayList<CellState> cellList) {
 		this.cellList = cellList;
 		this.ceMap = countMap;
 	}

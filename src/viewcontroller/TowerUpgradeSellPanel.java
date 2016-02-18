@@ -21,7 +21,7 @@ public class TowerUpgradeSellPanel extends JPanel{
 
     private TowerManipulationListener listener;
 
-    public TowerUpgradeSellPanel(){
+    public TowerUpgradeSellPanel() {
 
         bSell = new JButton("Sell");
         bSell.addActionListener(new ActionListener() {
@@ -50,7 +50,7 @@ public class TowerUpgradeSellPanel extends JPanel{
         return towerImage;
     }
 
-    public void placeComponents(){
+    public void placeComponents() {
         setLayout(null);
         add(bSell);
         add(towerImage);
@@ -70,7 +70,7 @@ public class TowerUpgradeSellPanel extends JPanel{
         super.paintComponent(g);
     }
 
-    public void addTowerManipulationListener(TowerManipulationListener listener){
+    public void addTowerManipulationListener(TowerManipulationListener listener) {
         this.listener = listener;
     }
 }

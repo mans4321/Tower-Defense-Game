@@ -45,11 +45,11 @@ public enum TowerID {
  * @param name tower name
  * @return tower id
  */
-    public static TowerID getTowerIDFrom(String name){
+    public static TowerID getTowerIDFrom(String name) {
         TowerID id = null;
 
-        for(TowerID tid: TowerID.values()){
-            if(tid.getName().equals(name)){
+        for(TowerID tid: TowerID.values()) {
+            if (tid.getName().equals(name)) {
                 id = tid;
             }
         }

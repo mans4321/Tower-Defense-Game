@@ -91,12 +91,12 @@ public class MapPanel extends JPanel {
         towerMap = new HashMap<>();
 
         //Find the path, entrance and exit cell
-        for(int i = 0; i < cellList.size() ; i++){
-            if(cellList.get(i) == CellState.ENTRANCE){ // Entrance -> indexEntrance
+        for(int i = 0; i < cellList.size() ; i++) {
+            if (cellList.get(i) == CellState.ENTRANCE) { // Entrance -> indexEntrance
                 extrancePos = DrawMap.indexConverter(i, cols);
-            } else if(cellList.get(i) == CellState.PATH){ // PATH -> pathList
+            } else if (cellList.get(i) == CellState.PATH) { // PATH -> pathList
                 pathList.add(i);
-            } else if (cellList.get(i) == CellState.EXIT){ // Exit -> indexExit
+            } else if (cellList.get(i) == CellState.EXIT) { // Exit -> indexExit
                 exitPos = DrawMap.indexConverter(i, cols);
             }
         }
@@ -108,7 +108,7 @@ public class MapPanel extends JPanel {
 
     }
 
-    private void initComponent(){
+    private void initComponent() {
         mapArea = new MapArea();
         setBackground(Color.BLACK);
         // set MapArea to the center
@@ -132,7 +132,7 @@ public class MapPanel extends JPanel {
             return repaintMapTimer;
         }
 
-        public MapArea(){
+        public MapArea() {
             repaintMapTimer = new Timer(100, this);
             repaintMapTimer.start();
 
@@ -148,7 +148,7 @@ public class MapPanel extends JPanel {
                     if (e.getButton() == MouseEvent.BUTTON1) { // User left click map cells
 
                         // 1. if it is "toPlaceTower" state:  toPlaceTower -> Tower state
-                        if(cellList.get(index) == CellState.TOPLACETOWER){
+                        if (cellList.get(index) == CellState.TOPLACETOWER) {
 
                             cellList.set(index, CellState.TOWER);
                             // current Tower ID is set by topPanel
@@ -165,8 +165,8 @@ public class MapPanel extends JPanel {
                             placeTowerFinishedListener.placeTowerFinished(index);
 
                             // Change back to Grass state
-                            for(int i = 0; i < cellList.size(); i++){
-                                if(cellList.get(i) == CellState.TOPLACETOWER){
+                            for(int i = 0; i < cellList.size(); i++) {
+                                if (cellList.get(i) == CellState.TOPLACETOWER) {
                                     cellList.set(i, CellState.GRASS);
                                 }
                             }
@@ -180,9 +180,9 @@ public class MapPanel extends JPanel {
                                     cellList.set(i, CellState.GRASS);
                                 }
                             }
-                            if(isChosen){
-                                for(int i = 0; i < cellList.size(); i++){
-                                    if (cellList.get(i) == CellState.CHOSEN){
+                            if (isChosen) {
+                                for(int i = 0; i < cellList.size(); i++) {
+                                    if (cellList.get(i) == CellState.CHOSEN) {
                                         cellList.set(i, CellState.TOWER);
                                     }
                                 }
@@ -197,7 +197,7 @@ public class MapPanel extends JPanel {
                             System.out.println("2");
                         }
                         // 3. if it is "Chosen" state: Chosen state -> Tower State
-                        else if (cellList.get(index) == CellState.CHOSEN){
+                        else if (cellList.get(index) == CellState.CHOSEN) {
                             cellList.set(index, CellState.TOWER);
                             currentChosenID = TowerID.TOWERNULL;
                             System.out.println("3");
@@ -208,11 +208,11 @@ public class MapPanel extends JPanel {
                         else {
                             // if the user press the wrong cells, aka path, etc.
                             // set state back to grass
-                            for(int i = 0; i < cellList.size(); i++){
-                                if (cellList.get(i) == CellState.CHOSEN){
+                            for(int i = 0; i < cellList.size(); i++) {
+                                if (cellList.get(i) == CellState.CHOSEN) {
                                     cellList.set(i, CellState.TOWER);
 
-                                } else if (cellList.get(i) == CellState.TOPLACETOWER){
+                                } else if (cellList.get(i) == CellState.TOPLACETOWER) {
                                     cellList.set(i, CellState.GRASS);
                                 }
                             }
@@ -236,11 +236,11 @@ public class MapPanel extends JPanel {
             return new Dimension(DrawMap.CELL_SIZE * cols, DrawMap.CELL_SIZE * rows);
         }
 
-        public void addTowerChosenListener(TowerChosenListener listener){
+        public void addTowerChosenListener(TowerChosenListener listener) {
             this.listener = listener;
         }
 
-        public void addPlaceTowerFinishedListener(PlaceTowerFinishedListener listener){
+        public void addPlaceTowerFinishedListener(PlaceTowerFinishedListener listener) {
             this.placeTowerFinishedListener = listener;
         }
 
@@ -248,7 +248,7 @@ public class MapPanel extends JPanel {
             this.stealCoinListener = listener;
         }
 
-        public void addCritterGotKilledListener(CritterGotKilledListener listener){
+        public void addCritterGotKilledListener(CritterGotKilledListener listener) {
             this.critterGotKilledListener = listener;
         }
 
@@ -258,17 +258,17 @@ public class MapPanel extends JPanel {
 
             DrawMap.drawMap(g, cols, rows, cellList, this);
 
-            for(Critter c : CritterStore.critters){
-                if(c.isVisible()){
+            for(Critter c : CritterStore.critters) {
+                if (c.isVisible()) {
                     DrawMap.drawCritters(g, c,this);
                 }
-                if(!c.isKilled()) DrawMap.drawHealthBar(g, c.getHealthBar(), c);
+                if (!c.isKilled()) DrawMap.drawHealthBar(g, c.getHealthBar(), c);
             }
 
-            for(Tower tower: towerMap.values()){
-                if(tower.isShooting()) {
+            for(Tower tower: towerMap.values()) {
+                if (tower.isShooting()) {
                     Critter c = tower.shoot();// c is being attacked
-                    if(c != null){
+                    if (c != null) {
                         DrawMap.drawMissiles(g, tower, c);
                     }
                 }
@@ -285,12 +285,12 @@ public class MapPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
 
             // critter move along the path step by step
-            if(CritterStore.critters.size() != 0){
+            if (CritterStore.critters.size() != 0) {
                 for(Critter c : CritterStore.critters) {
-                    if(c.isVisible()) {
+                    if (c.isVisible()) {
                         c.move(cols);
                     }
-                    if(c.isSuccess()){
+                    if (c.isSuccess()) {
                         c.setSuccess(false);
                         c.setKilled(true);
                         c.setAleadyDonated(true);
@@ -301,21 +301,21 @@ public class MapPanel extends JPanel {
 
                 }
 
-                for(Tower t: getTowerMap().values()){
+                for(Tower t: getTowerMap().values()) {
                     for(Critter c : CritterStore.critters) {
-                        if(c.getBound().intersects(t.getBounds())){
+                        if (c.getBound().intersects(t.getBounds())) {
                             t.getCrittersInRange().add(c);
                         } else {
                             t.getCrittersInRange().remove(c);
                         }
 
-                        if(c.isKilled()){
+                        if (c.isKilled()) {
                             t.getCrittersInRange().remove(c);
                             critterGotKilledListener.critterGotKilled(c);
                         }
 
                     }
-                    if(t.getCrittersInRange().size() > 0){
+                    if (t.getCrittersInRange().size() > 0) {
                         t.setShooting(true);
                     } else {
                         t.setShooting(false);
@@ -326,8 +326,8 @@ public class MapPanel extends JPanel {
                 // To check if this wave is finished
                 // If all the critters either got killed(even it is in success state) next wave starts!
                 for(int i = 0; i < CritterStore.critters.size(); i++) {
-                    if(CritterStore.critters.get(i).isKilled()) {
-                        if(i ==  CritterStore.critters.size() - 1) stealCoinListener.noCritterLeft();
+                    if (CritterStore.critters.get(i).isKilled()) {
+                        if (i ==  CritterStore.critters.size() - 1) stealCoinListener.noCritterLeft();
                         continue;
                     } else break;
 

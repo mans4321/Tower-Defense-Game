@@ -11,7 +11,7 @@ public class TopPanel extends JPanel {
 
     private DataPanel dataPanel;
 
-    public TopPanel(){
+    public TopPanel() {
         this.setLayout(new GridLayout(1,2));
         towerSelectionPanel = new TowerSelectionPanel();
 

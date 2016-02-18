@@ -21,7 +21,7 @@ public class TowerFactory {
  * @param id tower id 
  * @return
  */
-    public Tower getTower(TowerID id){
+    public Tower getTower(TowerID id) {
         switch (id) {
             case TOWERA1:
                 return new TowerA(1);

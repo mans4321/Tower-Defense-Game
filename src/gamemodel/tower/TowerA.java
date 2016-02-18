@@ -1,36 +1,41 @@
 package gamemodel.tower;
+
 import gamemodel.critter.*;
 
 /**
- *This class create the first Tower(TowerA) and initialize it's characteristics. 
+ * This class create the first Tower(TowerA) and initialize it's characteristics. 
+ * TowerA extends Tower implements TowerShootingBehavior
  *
- *TowerA extends Tower implements TowerShootingBehavior
- *
- *@author yongpinggao on 2/4/16.
- *@see Tower 
- *@since 2/4/16.
- *@version 1.0
+ * @author yongpinggao on 2/4/16.
+ * @see Tower 
+ * @since 2/4/16.
+ * @version 1.0
  */
-public class TowerA extends Tower implements TowerShootingBehavior{
+public class TowerA extends Tower implements TowerShootingBehavior {
 
 
-
-    public TowerA(int level){
+    /**
+     * Creates a tower of the selected level of the type TowerA.
+     * @param level tower level
+     */
+    public TowerA(int level) {
 
 
         this.level = level;
-        if(level <= super.LEVEL){
+        if (level <= super.LEVEL) {
             initTower();
-            specification = "<html>" + this.getClass().getName() + "<br> Level: " + this.level + "<br> Good at attack normal creature</html>";
+            specification = "<html>" + this.getClass().getName() + "<br> Level: ";
+            specification += this.level + "<br> Good at attack normal creature</html>";
         }
 
 
     }
-/**
- *  Initialize the tower specification base on tower level   
- */
-    private void initTower(){
-        switch(level){
+    
+    /**
+     *  Initialize the tower specification base on tower level.
+     */
+    private void initTower() {
+        switch (level) {
             case 1:
                 buyPrice = 20.0;
                 sellPrice = 10.0;
@@ -64,19 +69,21 @@ public class TowerA extends Tower implements TowerShootingBehavior{
     }
 
 
-/**
- * {@inheritDoc}
- */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Critter shoot() {
 
-        if(this.isPowerOn()){ //if tower is working instead of in the middle of shooting )
+        if (this.isPowerOn()) { //if tower is working instead of in the middle of shooting )
             //target can be changed based on different option
             Critter c = this.targetBasedOnWeakest(this.getCrittersInRange());
             c.getHitBy(this);
             this.setPowerOn(false);
             return c;
-        } else return null;
+        } else {
+            return null;
+        }
 
     }
 

@@ -19,7 +19,7 @@ public class Wave implements ActionListener{
 
 
 
-    private Wave(Builder builder){
+    private Wave(Builder builder) {
  
 
         generateCritterTimer = new Timer(1000, this);
@@ -69,17 +69,17 @@ public class Wave implements ActionListener{
 
     }
 
-    public void addWaveStartListener(WaveStartListener listener){
+    public void addWaveStartListener(WaveStartListener listener) {
         this.listener = listener;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(index <= CritterStore.critters.size()){
+        if (index <= CritterStore.critters.size()) {
             listener.initCritterPos(CritterStore.critters.get(index));
             index ++;
-            if(index >= CritterStore.critters.size()) generateCritterTimer.stop();
+            if (index >= CritterStore.critters.size()) generateCritterTimer.stop();
         }
 
     }

@@ -17,7 +17,7 @@ public class MainMenuWindow extends JFrame {
     private final static int WINDOW_HEIGHT = 222;
 
     private String menuTitle = "Defence of the Tower";
-    public MainMenuWindow(){
+    public MainMenuWindow() {
         initMenuWindow();
     }
 
@@ -51,7 +51,7 @@ public class MainMenuWindow extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
 //                new GameWindow().setVisible(true);
-                if(FileProcessing.readMapFromJsonFile() == null) {
+                if (FileProcessing.readMapFromJsonFile() == null) {
                     JOptionPane.showMessageDialog(MainMenuWindow.this, "No Saved Maps, please go to the Map editor", "Error", JOptionPane.YES_OPTION);
                     setVisible(false);
                     new MapEditorWindow().setVisible(true);

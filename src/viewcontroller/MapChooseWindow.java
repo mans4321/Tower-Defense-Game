@@ -27,7 +27,7 @@ public class MapChooseWindow extends BaseWindow {
 
     private int mapNum;
 
-    public MapChooseWindow(){
+    public MapChooseWindow() {
 
         super("Choose Game Map");
 
@@ -37,10 +37,10 @@ public class MapChooseWindow extends BaseWindow {
         mapCollection = FileProcessing.readMapFromJsonFile();
 
         // TODO: Now it's no more than nRows * nCols maps. We need to add more.
-        if(mapCollection != null) {
+        if (mapCollection != null) {
             if (mapCollection.getMaps().size() <= nRows * nCols) {
                 for(int i = 0; i < nRows * nCols; i++) {
-                    if(i < mapCollection.getMaps().size()){
+                    if (i < mapCollection.getMaps().size()) {
 
 
                         String mapName = mapCollection.getMaps().get(i).getImageName();
@@ -71,11 +71,11 @@ public class MapChooseWindow extends BaseWindow {
                                         options,
                                         options[0]);
 
-                                if(n == 1){// User choose start game
+                                if (n == 1) {// User choose start game
                                     setVisible(false);
                                     // start game with No. mapNum map.
                                     new GameWindow(mapNum).setVisible(true);
-                                } else if (n == 2){// User choose edit map
+                                } else if (n == 2) {// User choose edit map
                                     imagePanel.setBorder(BorderFactory.createLineBorder(Color.black));
                                     setVisible(false);
                                     // start game with No. mapNum map.
@@ -104,7 +104,7 @@ public class MapChooseWindow extends BaseWindow {
         private JLabel label;
         private ImagePanel imagePanel;
 
-        public MapImagePanel(String imageName){
+        public MapImagePanel(String imageName) {
 
             this.setPreferredSize(new Dimension(GameWindow. WINDOW_WIDTH / nCols, GameWindow. WINDOW_HEIGHT / nRows));
             this.setLayout(new BorderLayout());
@@ -124,10 +124,10 @@ public class MapChooseWindow extends BaseWindow {
 
         private class ImagePanel extends JPanel {
             private ImageIcon imageIcon;
-            public ImagePanel(String name){
+            public ImagePanel(String name) {
                 this.setPreferredSize(new Dimension(GameWindow. WINDOW_WIDTH / nCols, GameWindow. WINDOW_HEIGHT / nRows - label.getHeight()));
 
-                if(!name.equals("")){
+                if (!name.equals("")) {
                     imageIcon = FileProcessing.readFromMapArchive(name);
                 }
 
@@ -139,7 +139,7 @@ public class MapChooseWindow extends BaseWindow {
                 Graphics2D g2 = (Graphics2D)g;
 
 
-                if(imageIcon != null){
+                if (imageIcon != null) {
                     Dimension d = Utility.getScaledDimension(new Dimension(imageIcon.getIconWidth(), imageIcon.getIconHeight()), new Dimension(getWidth(),getHeight()));
                     g2.drawImage(imageIcon.getImage(), 5, 5, d.width , d.height, this);
                 }

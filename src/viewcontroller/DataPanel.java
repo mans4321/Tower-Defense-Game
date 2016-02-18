@@ -26,7 +26,7 @@ public class DataPanel extends JPanel {
         return exitButton;
     }
 
-    public DataPanel(){
+    public DataPanel() {
         balance = 0;
         coins = 0;
         waveNum = 0;

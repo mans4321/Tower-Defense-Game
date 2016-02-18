@@ -21,12 +21,12 @@ public class EntranceExitInMiddlePathValidator implements MapValidator {
 	public boolean validate() {
 		// TODO Auto-generated method stub
 		
-		for(int i = 0; i < cellList.size(); i++){
-			if(cellList.get(i) == CellState.ENTRANCE){
-				if(countMap.get(i) == 2) return false;
+		for(int i = 0; i < cellList.size(); i++) {
+			if (cellList.get(i) == CellState.ENTRANCE) {
+				if (countMap.get(i) == 2) return false;
 				else continue;
-			} else if (cellList.get(i) == CellState.EXIT){
-				if(countMap.get(i) == 2) return false;
+			} else if (cellList.get(i) == CellState.EXIT) {
+				if (countMap.get(i) == 2) return false;
 				else continue;
 			}
 		}
@@ -34,7 +34,7 @@ public class EntranceExitInMiddlePathValidator implements MapValidator {
 	}
 	
 	
-	public EntranceExitInMiddlePathValidator(ArrayList<CellState> cellList, HashMap<Integer, Integer> countMap){
+	public EntranceExitInMiddlePathValidator(ArrayList<CellState> cellList, HashMap<Integer, Integer> countMap) {
 		this.cellList = cellList;
 		this.countMap = countMap;
 	}

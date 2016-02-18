@@ -20,7 +20,7 @@ public class GameMapCollection {
  * Constructor fot game map collection.
  * 
  */
-    public GameMapCollection(){
+    public GameMapCollection() {
         this.maps = new ArrayList<>();
     }
 /**
@@ -34,14 +34,14 @@ public class GameMapCollection {
  * adding the map to game map collection 
  * @param map  the saved map by the player
  */
-    public void addMap(GameMap map){
+    public void addMap(GameMap map) {
         this.maps.add(map);
     }
 /**
  * delete the map from the game map collection
  * @param index
  */
-    public void deleteMap(int index){                    // what index means
+    public void deleteMap(int index) {                    // what index means
         this.maps.remove(index);
     }
 

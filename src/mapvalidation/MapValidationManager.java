@@ -18,7 +18,7 @@ public class MapValidationManager {
 	private HashMap<Integer,Integer> flagMap;
 	private HashMap<Integer,Integer> countMap;
 	
-	public MapValidationManager(ArrayList<CellState> cellList, int mapCols, int mapRows){
+	public MapValidationManager(ArrayList<CellState> cellList, int mapCols, int mapRows) {
 		this.cellList = cellList;
 		this.Cols = mapCols;
 		this.Rows = mapRows;
@@ -31,24 +31,24 @@ public class MapValidationManager {
 		setCountMap();
 	}
 	
-	private void setFlag(){
-		for(int i=0;i<cellList.size();i++){
-			if(0 < i && i < Cols){
+	private void setFlag() {
+		for(int i=0;i<cellList.size();i++) {
+			if (0 < i && i < Cols) {
 				flagMap.put(i, 11);////upper bounds edge
-			}else if((Cols * (Rows - 1)< i) 
-					&& (i < (Cols * Rows - 1)) ){//lower bounds edge
+			}else if ((Cols * (Rows - 1)< i) 
+					&& (i < (Cols * Rows - 1)) ) {//lower bounds edge
 				flagMap.put(i, 12);
-			}else if(i== Cols * leftOrRightEdge()){//left edge
+			}else if (i== Cols * leftOrRightEdge()) {//left edge
 				flagMap.put(i, 13);
-			}else if(i == Cols * leftOrRightEdge()-1){//Right edge
+			}else if (i == Cols * leftOrRightEdge()-1) {//Right edge
 				flagMap.put(i, 14);
-			}else if(i== 0){//upperleft point
+			}else if (i== 0) {//upperleft point
 				flagMap.put(i, 21);
-			}else if(i == Cols){//upperright point
+			}else if (i == Cols) {//upperright point
 				flagMap.put(i, 22);
-			}else if(i == Cols * (Rows - 1)){//lowerleft point
+			}else if (i == Cols * (Rows - 1)) {//lowerleft point
 				flagMap.put(i, 23);
-			}else if(i == (Cols * Rows - 1)){//lowerright point
+			}else if (i == (Cols * Rows - 1)) {//lowerright point
 				flagMap.put(i, 24);
 			}else{
 				flagMap.put(i, 0);//default value, presenting who has four neighbours
@@ -56,24 +56,24 @@ public class MapValidationManager {
 		}
 	}
 
-	private int leftOrRightEdge(){
+	private int leftOrRightEdge() {
 		int i = 1;
-		while(i < Rows){
+		while (i < Rows) {
 			i++;
 		}
 		return i;
 	}
 
-	private void setPathList(){
-		for(int i = 0;i<cellList.size();i++){//know the index of CellState.PATH
-			if(cellList.get(i)== CellState.PATH || cellList.get(i)== CellState.ENTRANCE 
-					|| cellList.get(i)== CellState.EXIT ){
+	private void setPathList() {
+		for(int i = 0;i<cellList.size();i++) {//know the index of CellState.PATH
+			if (cellList.get(i)== CellState.PATH || cellList.get(i)== CellState.ENTRANCE 
+					|| cellList.get(i)== CellState.EXIT ) {
 				pathList.add(i);
 			}
 		}
 	}
 	
-	public void setCountMap(){//
+	public void setCountMap() {//
 
 		int iL = -1;//neighbour
 		int iR = -1;
@@ -81,17 +81,17 @@ public class MapValidationManager {
 		int iD = -1;
 		int count = 0;
 			
-		 for(int i=0;i<pathList.size();i++){
+		 for(int i=0;i<pathList.size();i++) {
 			int posIndex = pathList.get(i);
-			switch(flagMap.get(posIndex)){
+			switch (flagMap.get(posIndex)) {
 			case 11:
 				iL = posIndex -1;
 				iR = posIndex +1;
 				iD = posIndex + Cols;
 				
-				if(pathList.contains(iL)){count++;}
-				if(pathList.contains(iR)){count++;}
-				if(pathList.contains(iD)){count++;}
+				if (pathList.contains(iL)) {count++;}
+				if (pathList.contains(iR)) {count++;}
+				if (pathList.contains(iD)) {count++;}
 				countMap.put(posIndex, count);
 				count = 0;
 				break;
@@ -100,9 +100,9 @@ public class MapValidationManager {
 				iR = posIndex +1;
 				iU = posIndex - Cols;
 				
-				if(pathList.contains(iL)){count++;}
-				if(pathList.contains(iR)){count++;}
-				if(pathList.contains(iU)){count++;}
+				if (pathList.contains(iL)) {count++;}
+				if (pathList.contains(iR)) {count++;}
+				if (pathList.contains(iU)) {count++;}
 				countMap.put(posIndex, count);
 				count = 0;
 				break;
@@ -111,9 +111,9 @@ public class MapValidationManager {
 				iR = posIndex +1;
 				iD = posIndex + Cols;
 				
-				if(pathList.contains(iU)){count++;}
-				if(pathList.contains(iR)){count++;}
-				if(pathList.contains(iD)){count++;}
+				if (pathList.contains(iU)) {count++;}
+				if (pathList.contains(iR)) {count++;}
+				if (pathList.contains(iD)) {count++;}
 				countMap.put(posIndex, count);
 				count = 0;
 				break;
@@ -122,9 +122,9 @@ public class MapValidationManager {
 				iU = posIndex -Cols;
 				iD = posIndex + Cols;
 				
-				if(pathList.contains(iL)){count++;}
-				if(pathList.contains(iU)){count++;}
-				if(pathList.contains(iD)){count++;}
+				if (pathList.contains(iL)) {count++;}
+				if (pathList.contains(iU)) {count++;}
+				if (pathList.contains(iD)) {count++;}
 				countMap.put(posIndex, count);
 				count = 0;
 				break;
@@ -132,8 +132,8 @@ public class MapValidationManager {
 				iR = posIndex +1;
 				iD = posIndex + Cols;
 				
-				if(pathList.contains(iR)){count++;}
-				if(pathList.contains(iD)){count++;}
+				if (pathList.contains(iR)) {count++;}
+				if (pathList.contains(iD)) {count++;}
 				countMap.put(posIndex, count);
 				count = 0;
 				break;
@@ -141,8 +141,8 @@ public class MapValidationManager {
 				iL = posIndex -1;
 				iD = posIndex + Cols;
 				
-				if(pathList.contains(iL)){count++;}
-				if(pathList.contains(iD)){count++;}
+				if (pathList.contains(iL)) {count++;}
+				if (pathList.contains(iD)) {count++;}
 				countMap.put(posIndex, count);
 				count = 0;
 				break;
@@ -150,8 +150,8 @@ public class MapValidationManager {
 				iU = posIndex -Cols;
 				iR = posIndex +1;
 				
-				if(pathList.contains(iU)){count++;}
-				if(pathList.contains(iR)){count++;}
+				if (pathList.contains(iU)) {count++;}
+				if (pathList.contains(iR)) {count++;}
 				countMap.put(posIndex, count);
 				count = 0;
 				break;
@@ -159,8 +159,8 @@ public class MapValidationManager {
 				iL = posIndex -1;
 				iU = posIndex - Cols;
 				
-				if(pathList.contains(iL)){count++;}
-				if(pathList.contains(iU)){count++;}
+				if (pathList.contains(iL)) {count++;}
+				if (pathList.contains(iU)) {count++;}
 				countMap.put(posIndex, count);
 				count = 0;
 				break;
@@ -170,10 +170,10 @@ public class MapValidationManager {
 				iU = posIndex - Cols;
 				iD = posIndex + Cols;
 				
-				if(pathList.contains(iL)){count++;}
-				if(pathList.contains(iR)){count++;}
-				if(pathList.contains(iU)){count++;}
-				if(pathList.contains(iD)){count++;}
+				if (pathList.contains(iL)) {count++;}
+				if (pathList.contains(iR)) {count++;}
+				if (pathList.contains(iU)) {count++;}
+				if (pathList.contains(iD)) {count++;}
 				countMap.put(posIndex, count);
 				count = 0;
 				break;
@@ -186,24 +186,24 @@ public class MapValidationManager {
 		return countMap;
 	}
 /*
-	public int getCountEntranceOrExit(){
-		for(int i=0;i<cellList.size();i++){
-			if(cellList.get(i) == CellState.ENTRANCE) numberOfEntrance++;
-			if(cellList.get(i) == CellState.EXIT) numberOfExit++;
+	public int getCountEntranceOrExit() {
+		for(int i=0;i<cellList.size();i++) {
+			if (cellList.get(i) == CellState.ENTRANCE) numberOfEntrance++;
+			if (cellList.get(i) == CellState.EXIT) numberOfExit++;
 		}
-		if(numberOfEntrance == 0 || numberOfEntrance > 1 || numberOfExit == 0 || numberOfExit > 1){
+		if (numberOfEntrance == 0 || numberOfEntrance > 1 || numberOfExit == 0 || numberOfExit > 1) {
 			numberOfEntranceOrExit++;
 		}
 		return numberOfEntranceOrExit;
 	}*/
 	
 	
-	public String getErrorMessage(){
+	public String getErrorMessage() {
 		return errorMessage;
 	}
 	
 	
-	public void setErrorMessage(String errorMessage){
+	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
 	
@@ -212,7 +212,7 @@ public class MapValidationManager {
 	 * 
 	 * <code>
 	 * MapValidationManager manager = new MapValidationManager(cellList, mCols, mRows);
-	 * if(new MapValidationManager().checkValidate()) saveMap();
+	 * if (new MapValidationManager().checkValidate()) saveMap();
 	 * else println(manager.getErrorMessage());
 	 * </code>
 	 * 
@@ -220,27 +220,27 @@ public class MapValidationManager {
 	 */
 
 	
-	public boolean checkValidate(){
+	public boolean checkValidate() {
 		
-		if (!new NoEntranceNoExitMoreEntranceMoreExitValidator(cellList).validate()){
+		if (!new NoEntranceNoExitMoreEntranceMoreExitValidator(cellList).validate()) {
 			errorMessage = "Entrance or Exit of Path is illegal!";
 			return false;
-		}else if(! new EntranceExitInMiddlePathValidator(cellList, countMap).validate()){
+		}else if (! new EntranceExitInMiddlePathValidator(cellList, countMap).validate()) {
 			errorMessage = "The Entrance or Exit is not in the end cell";
 			return false;
-		}else if(! new LengthValidator(cellList).validate()){
+		}else if (! new LengthValidator(cellList).validate()) {
 			errorMessage = "The length of path is illegal!";
 			return false;
-		}else if(! new CirclePathValidator(countMap).validate()){
+		}else if (! new CirclePathValidator(countMap).validate()) {
 			errorMessage = "Path cannot be a circle!";
 			return false;	
-		}else if(! new ExtraPathValidator(countMap, cellList).validate()){
+		}else if (! new ExtraPathValidator(countMap, cellList).validate()) {
 			errorMessage = "There is extra path in your map!";
 			return false;
-		}else if(! new ContinousPathValidator(countMap).validate()){
+		}else if (! new ContinousPathValidator(countMap).validate()) {
 			errorMessage = "Your path is not continous!";
 			return false;	
-		}else if(! new SeperateEntranceAndExitValidator(Cols, cellList).validate()){
+		}else if (! new SeperateEntranceAndExitValidator(Cols, cellList).validate()) {
 			errorMessage = "Entrance can not be the neighbour of Exit!";
 			return false;
 		}else {

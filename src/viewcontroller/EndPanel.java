@@ -16,7 +16,7 @@ public class EndPanel extends JPanel {
 
     private TowerID currentChosenTowerID;
 
-    public EndPanel(){
+    public EndPanel() {
 
 
         this.setLayout(new GridLayout(2,1));
@@ -48,8 +48,8 @@ public class EndPanel extends JPanel {
         // Property Observer:
         String name = currentChosenTowerID.getName();
         String[] hName = name.split("_");
-        if(hName.length > 0){
-            if(currentChosenTowerID == TowerID.TOWERNULL){
+        if (hName.length > 0) {
+            if (currentChosenTowerID == TowerID.TOWERNULL) {
                 towerSpecificationPanel.clearPanel();
                 towerUpgradeSellPanel.getTowerImage().setIcon(null);
             } else {

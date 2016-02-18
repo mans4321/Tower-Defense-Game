@@ -3,7 +3,10 @@ import java.awt.*;
 import java.util.HashMap;
 
 /**
- * Created by yongpinggao on 2/7/16.
+ * Class that holds the types of missile each tower will fire.
+ * 
+ * @author yongpinggao
+ *
  */
 public class MissileCollection {
 

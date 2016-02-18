@@ -18,14 +18,14 @@ public class BaseWindow extends JFrame {
 
 
 
-    public BaseWindow(String titleName){
+    public BaseWindow(String titleName) {
         width = WINDOW_WIDTH;
         height = WINDOW_HEIGHT;
         this.titleName = titleName;
         initWindow();
     }
 
-    public BaseWindow(int width, int height, String titleName){
+    public BaseWindow(int width, int height, String titleName) {
         this.width = width;
         this.height = height;
         this.titleName = titleName;

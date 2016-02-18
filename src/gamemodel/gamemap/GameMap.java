@@ -25,7 +25,7 @@ public class GameMap {
  * @param cells     ArrayList for the map cells state  
  * @param imageName  map image name                          // make sure 
  */
-    public GameMap(int mapRows, int mapCols, ArrayList<CellState> cells, String imageName){
+    public GameMap(int mapRows, int mapCols, ArrayList<CellState> cells, String imageName) {
         this.cells = cells;
         this.mCols = mapCols;
         this.mRows = mapRows;

@@ -20,7 +20,7 @@ public class TowerSpecificationPanel extends JPanel {
     private int power;
     private int rateOfFire;
 
-    public TowerSpecificationPanel(){
+    public TowerSpecificationPanel() {
          specificationLabel = new JLabel("");
          buyPriceLabel = new JLabel("");
          sellPriceLabel = new JLabel("");
@@ -69,7 +69,7 @@ public class TowerSpecificationPanel extends JPanel {
         this.rateOfFireLabel.setText("Rate Of Fire: " + rateOfFire + "");
     }
 
-    public void clearPanel(){
+    public void clearPanel() {
         this.specificationLabel.setText("");
         this.buyPriceLabel.setText("");
         this.sellPriceLabel.setText("");

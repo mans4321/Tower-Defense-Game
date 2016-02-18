@@ -13,7 +13,7 @@ public class GameWindow extends BaseWindow {
 
     private GamePanel gamePanel;
 
-    public GameWindow(int mapNum){
+    public GameWindow(int mapNum) {
         super("Tower Defence Game");
         gamePanel = new GamePanel(WINDOW_WIDTH,WINDOW_HEIGHT,mapNum);
 

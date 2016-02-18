@@ -16,15 +16,17 @@ public class CirclePathValidator implements MapValidator{
 	@Override
 	public boolean validate() {
 		// TODO Auto-generated method stub
-		for(Integer i : countMap.values()){
-			if(i == 2) continue;
-			else return true;
+		for(Integer i : countMap.values()) {
+			if (i == 2) continue;
+			else {
+				return true;
+			}
 		}
 		
 		return false;
 	}
 	
-	public CirclePathValidator(HashMap<Integer, Integer> countMap){
+	public CirclePathValidator(HashMap<Integer, Integer> countMap) {
 		this.countMap = countMap;
 	}
 

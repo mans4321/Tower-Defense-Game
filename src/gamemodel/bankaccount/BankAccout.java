@@ -16,9 +16,10 @@ public class BankAccout {
      * A constructor the assign balance to initialBalance.
      * @param initialBalance the initial amount of money the player has 
      */
-    public BankAccout(int initialBalance){
+    public BankAccout(int initialBalance) {
         this.balance = initialBalance;
     }
+    
     /**
      * get the balance 
      * @return the balance 
