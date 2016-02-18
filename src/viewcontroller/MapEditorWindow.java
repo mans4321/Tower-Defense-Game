@@ -2,6 +2,7 @@ package viewcontroller;
 import javax.swing.*;
 
 import gamemodel.gamemap.*;
+import mapvalidation.MapValidationManager;
 import utility.Utility;
 
 import java.awt.*;
@@ -104,11 +105,21 @@ public class MapEditorWindow extends BaseWindow {
             saveButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if(checkPathValidate()){
-                        saveDataToFile();
-                    } else {//TODO: Dialog!!! -> what went wrong?
-
-                    }
+                	
+                	MapValidationManager manager = new MapValidationManager(cellList, mapCols, mapRows);
+                	if(manager.checkValidate()){
+                		 saveDataToFile();
+                	} else {
+                		//TODO AlertWindow!
+                		JOptionPane.showMessageDialog(MapEditorWindow.this, manager.getErrorMessage(),"Illegal Map",JOptionPane.ERROR_MESSAGE);
+                	}
+            	 
+            	 
+//                    if(checkPathValidate()){
+//                        saveDataToFile();
+//                    } else {//TODO: Dialog!!! -> what went wrong?
+//
+//                    }
                 }
             });
 
