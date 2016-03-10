@@ -1,8 +1,6 @@
 package View;
 import javax.swing.*;
 
-import viewcontroller.TowerSelectionPanel;
-
 import java.awt.*;
 
 /**

@@ -32,5 +32,9 @@ public class GameWindow extends BaseWindow {
 
     }
 
+	public GamePanel getGamePanel() {
+		return gamePanel;
+	}
+
 
 }
