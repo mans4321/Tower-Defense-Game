@@ -1,7 +1,8 @@
-package viewcontroller;
+package Boot;
 
 import javax.swing.*;
 
+import View.MainMenuWindow;
 import gamemodel.gamemap.FileProcessing;
 
 import java.io.File;

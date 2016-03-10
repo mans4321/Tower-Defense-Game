@@ -1,7 +1,9 @@
-package viewcontroller;
+package View;
 import javax.swing.*;
 
 import gamemodel.gamemap.FileProcessing;
+import viewcontroller.MapChooseWindow;
+import viewcontroller.MapEditorWindow;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

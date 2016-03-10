@@ -316,23 +316,23 @@ public class MapPanel extends JPanel {
 
             for(Critter c : CritterStore.critters) {
                 if (c.isVisible()) {
-                    DrawMap.drawCritters(g, c,this);
+                    DrawCritter.drawCritters(g, c,this);
                 }
-                if (!c.isKilled()) DrawMap.drawHealthBar(g, c.getHealthBar(), c);
+                if (!c.isKilled()) DrawCritter.drawHealthBar(g, c.getHealthBar(), c);
             }
 
             for(Tower tower: towerMap.values()) {
                 if (tower.isShooting()) {
                     Critter c = tower.shoot();// c is being attacked
                     if (c != null) {
-                        DrawMap.drawMissiles(g, tower, c);
+                    	DrawTower.drawMissiles(g, tower, c);
                     }
                 }
             }
 
-            DrawMap.drawTowerRange(g, towerMap, this);
+            DrawTower.drawTowerRange(g, towerMap, this);
 
-            DrawMap.drawTower(g, cols, towerMap, this);
+            DrawTower.drawTower(g, cols, towerMap, this);
 
 
         }

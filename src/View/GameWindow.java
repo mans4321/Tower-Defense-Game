@@ -1,5 +1,7 @@
-package viewcontroller;
+package View;
 import javax.swing.*;
+
+import viewcontroller.GamePanel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

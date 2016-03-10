@@ -4,6 +4,9 @@ import utility.Utility;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import View.BaseWindow;
+import View.GameWindow;
+import View.MapImagePanel;
 import gamemodel.gamemap.*;
 
 import java.awt.*;
@@ -104,73 +107,5 @@ public class MapChooseWindow extends BaseWindow {
 
     }
     
-    /**
-     * Class to define each image that will be displayed in the map selection window
-     * @author yongpinggao
-     *
-     */
-    private class MapImagePanel extends JPanel {
-
-        private JLabel label;
-        private ImagePanel imagePanel;
-        
-        /**
-         * Constructor, creates a panel with image to take over a section of the selection window
-         * @param imageName
-         */
-        public MapImagePanel(String imageName) {
-
-            this.setPreferredSize(new Dimension(GameWindow. WINDOW_WIDTH / nCols, GameWindow. WINDOW_HEIGHT / nRows));
-            this.setLayout(new BorderLayout());
-            this.setBackground(Color.GRAY);
-            this.setBorder(BorderFactory.createLineBorder(Color.black));
-
-
-            label = new JLabel(imageName);
-            imagePanel = new ImagePanel(imageName);
-
-            this.add(label, BorderLayout.PAGE_END);
-            this.add(imagePanel, BorderLayout.CENTER);
-
-
-
-        }
-        
-        /**
-         * The images that will be placed in the map selection window
-         * @author yongpinggao
-         *
-         */
-        private class ImagePanel extends JPanel {
-            private ImageIcon imageIcon;
-            
-            /**
-             * Creates an icon from map archive
-             * @param name
-             */
-            public ImagePanel(String name) {
-                this.setPreferredSize(new Dimension(GameWindow. WINDOW_WIDTH / nCols, GameWindow. WINDOW_HEIGHT / nRows - label.getHeight()));
-
-                if (!name.equals("")) {
-                    imageIcon = FileProcessing.readFromMapArchive(name);
-                }
-
-            }
-            
-            /**
-             * {@inheritDoc}
-             */
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                Graphics2D g2 = (Graphics2D)g;
-
-
-                if (imageIcon != null) {
-                    Dimension d = Utility.getScaledDimension(new Dimension(imageIcon.getIconWidth(), imageIcon.getIconHeight()), new Dimension(getWidth(),getHeight()));
-                    g2.drawImage(imageIcon.getImage(), 5, 5, d.width , d.height, this);
-                }
-            }
-        }
-    }
+   
 }

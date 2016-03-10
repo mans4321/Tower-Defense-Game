@@ -1,8 +1,7 @@
-package viewcontroller;
+package View;
 import javax.swing.*;
 
 import gamemodel.tower.TowerManipulationListener;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,14 +19,15 @@ public class TowerUpgradeSellPanel extends JPanel{
 
     private JLabel towerImage;
     private ImageIcon icon;
-
     private TowerManipulationListener listener;
+    
     
     /**
      * Constructor, creates buy and sell buttons and attach listeners 
      */
     public TowerUpgradeSellPanel() {
-
+    	
+    	
         bSell = new JButton("Sell");
         bSell.addActionListener(new ActionListener() {
             @Override
@@ -35,6 +35,7 @@ public class TowerUpgradeSellPanel extends JPanel{
                 listener.sellTower();
             }
         });
+        
         bUpgrade = new JButton("Upgrade");
         bUpgrade.addActionListener(new ActionListener() {
             @Override
@@ -86,7 +87,7 @@ public class TowerUpgradeSellPanel extends JPanel{
      * Associated a listener for the manipulation of the tower
      * @param listener
      */
-    public void addTowerManipulationListener(TowerManipulationListener listener) {
+    public void addTowerManipulationListener(TowerManipulationListener listener) {  /// 
         this.listener = listener;
     }
 }

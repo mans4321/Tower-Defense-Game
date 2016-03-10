@@ -1,6 +1,10 @@
 package viewcontroller;
 import javax.swing.*;
 
+import View.EndPanel;
+import View.GameWindow;
+import View.MainMenuWindow;
+import View.TopPanel;
 import gamemodel.bankaccount.*;
 import gamemodel.critter.*;
 import gamemodel.gamemap.*;
