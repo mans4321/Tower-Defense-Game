@@ -1,4 +1,4 @@
-package viewcontroller;
+package View;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -11,15 +11,12 @@ import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 
-import View.MainMenuWindow;
 import gamemodel.gamemap.CellState;
-import gamemodel.gamemap.FileProcessing;
-import gamemodel.gamemap.GameMap;
-import gamemodel.gamemap.GameMapCollection;
+import viewcontroller.DrawMap;
+
 	
 
 /**
@@ -37,6 +34,7 @@ public class MapPanel_MapEditor extends JPanel implements ActionListener {
     private int mapRows;
     private int mapCols;
     
+ 
     private ArrayList<CellState> cellList;
     
     /**
@@ -48,6 +46,8 @@ public class MapPanel_MapEditor extends JPanel implements ActionListener {
     	this.mapRows = mapRows;
     	this.mapCols = mapCols;
     	this.cellList = cellList;
+    	
+    	
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {

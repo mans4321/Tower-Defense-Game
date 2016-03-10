@@ -119,6 +119,7 @@ public class GamePanel extends JPanel implements ActionListener{
                 }
                 mapPanel.getMapArea().repaint();                                         ///
                 mapArea.setCellList(cells);
+               
                 mapArea.setCurrentTowerID(id);
                 topPanel.getDataPanel().setBalance(account.getBalance());
             }
@@ -241,6 +242,8 @@ public class GamePanel extends JPanel implements ActionListener{
         });
 
         mapPanel.getMapArea().addStealCoinListener(new StealCoinListener() {
+       // mapPanel.getMapArea().addStealCoinListener(new StealCoinListener() {
+        	
             @Override
             public synchronized void coinGotStolen() {
                 coins --;
@@ -299,7 +302,7 @@ public class GamePanel extends JPanel implements ActionListener{
 
             }
         });
-
+        
         mapPanel.getMapArea().addCritterGotKilledListener(new CritterGotKilledListener() {
             @Override
             public void critterGotKilled(Critter c) {
@@ -372,7 +375,7 @@ public class GamePanel extends JPanel implements ActionListener{
      */
     private void clearGame() {
     	CritterStore.critters.clear();
-        mapPanel.getMapArea().getRepaintMapTimer().stop();
+    	mapPanel.getMapArea().getRepaintMapTimer().stop();
         wavePrepareTimer.stop();
     }
 
@@ -408,4 +411,5 @@ public class GamePanel extends JPanel implements ActionListener{
         }
 
     }
+    
 }

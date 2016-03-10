@@ -23,6 +23,7 @@ import javax.swing.JPopupMenu;
 
 import View.BaseWindow;
 import View.MainMenuWindow;
+import View.MapPanel_MapEditor;
 import gamemodel.gamemap.CellState;
 import gamemodel.gamemap.FileProcessing;
 import gamemodel.gamemap.GameMap;
@@ -139,35 +140,37 @@ public class MapEditorWindow extends BaseWindow {
             heightList.setActionCommand("height");
             heightList.addActionListener(mapPanel);
 
-
+         
 
             JLabel widthLabel = new JLabel("Width:");
             JLabel heightLabel = new JLabel("Height:");
 
             JButton saveButton = new JButton("Save");
-            saveButton.addActionListener(new ActionListener() {
+            saveButton.setActionCommand("Save");
+            saveButton.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
                 	
                 	MapValidationManager manager = new MapValidationManager(cellList, mapCols, mapRows);
                 	if (manager.checkValidate()) {
-                		 saveDataToFile();
+                		
+                	     saveDataToFile();
                 	} else {
                 		//TODO AlertWindow!
                 		JOptionPane.showMessageDialog(MapEditorWindow.this, manager.getErrorMessage(),"Illegal Map",JOptionPane.ERROR_MESSAGE);
                 	}
             	 
             	 
-//                    if (checkPathValidate()) {
-//                        saveDataToFile();
-//                    } else {//TODO: Dialog!!! -> what went wrong?
-//
-//                    }
+                    if (checkPathValidate()) {
+                        saveDataToFile();
+                    } else {//TODO: Dialog!!! -> what went wrong?
+
+                    }
                 }
             });
 
             JButton discardButton = new JButton("Discard");
-            discardButton.addActionListener(new ActionListener() {
+            discardButton.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
 

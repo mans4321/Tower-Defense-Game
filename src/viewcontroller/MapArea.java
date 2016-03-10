@@ -45,12 +45,12 @@ import gamemodel.tower.TowerId;
         private ArrayList<CellState> cellList;
         HashMap<Integer, Tower> towerMap;
         
+//        private MapArea_Listener listener;
+        
         private Timer repaintMapTimer;
 
         
-        public Timer getRepaintMapTimer() {
-            return repaintMapTimer;
-        }
+      
 
         public MapArea(int rows, int cols, ArrayList<CellState> cellList, HashMap<Integer, Tower> towerMap) {
         
@@ -59,13 +59,14 @@ import gamemodel.tower.TowerId;
         	this.cellList= cellList;
         	this.towerMap = towerMap;
         	
+        	//listener = new MapArea_Listener(cols, cols, cellList, towerMap);
         	  currentTowerID = TowerId.TOWERNULL;
               currentChosenID = TowerId.TOWERNULL;
 
-            repaintMapTimer = new Timer(100, this);
-            repaintMapTimer.start();
+              repaintMapTimer = new Timer(100, this);
+              repaintMapTimer.start();
 
-            addMouseListener(new MouseAdapter() {
+           addMouseListener(new MouseAdapter(){
                 @Override
                 public void mousePressed(MouseEvent e) {
                     super.mousePressed(e);
@@ -85,8 +86,6 @@ import gamemodel.tower.TowerId;
                             Tower tower = TowerFactory.getInstance().getTower(currentTowerID);
                             int[] posArr = DrawMap.indexConverter(index, cols);
 
-                            if(tower == null)
-                            System.out.println("wtf" );
                             
                             // center of the cell
                             tower.setPosX(posArr[0] + DrawMap.CELL_SIZE / 2);
@@ -285,7 +284,14 @@ import gamemodel.tower.TowerId;
         this.critterGotKilledListener = listener;
     }
     
-    /**
+    
+    public Timer getRepaintMapTimer() {
+		return repaintMapTimer;
+	}
+
+
+
+	/**
      * Getter for columns
      * @return number of columns
      */
@@ -324,6 +330,11 @@ import gamemodel.tower.TowerId;
     public void setTowerMap(HashMap<Integer, Tower> towerMap) {
         this.towerMap = towerMap;
     }
+
+//	public MapArea_Listener getListener() {
+//		return listener;
+//	}
+    
     /**
      * Set the id of a specific tower
      * @param currentTowerID TowerId of the selected tower
