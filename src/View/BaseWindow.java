@@ -30,7 +30,7 @@ public class BaseWindow extends JFrame {
         height = WINDOW_HEIGHT;
         this.titleName = titleName;
         initWindow();
-    }
+    } 
     
     /**
      * Constructor starts window and applies title, uses custom dimensions
