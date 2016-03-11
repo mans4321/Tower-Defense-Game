@@ -93,7 +93,7 @@ public class GamePanel extends JPanel implements ActionListener{
 
 
 
-        topPanel.getTowerSelectionPanel().addTowerSelectionListener(new TowerSelectionListener() {
+        topPanel.getTowerSelectionPanel().getListener().addTowerSelectionListener(new TowerSelectionListener() {
             @Override
             public void placeTower(TowerId id) {
                 topPanel.getDataPanel().setWarningMsg("");
@@ -125,7 +125,7 @@ public class GamePanel extends JPanel implements ActionListener{
             }
         });
 
-        topPanel.getTowerSelectionPanel().addTowerChosenListener(new TowerChosenListener() {
+        topPanel.getTowerSelectionPanel().getListener().addTowerChosenListener(new TowerChosenListener() {
             @Override
             public void updateInfo(TowerId id) {
                 endPanel.setCurrentChosenTowerID(id);
@@ -147,7 +147,7 @@ public class GamePanel extends JPanel implements ActionListener{
             }
         });
 
-        endPanel.getTowerUpgradeSellPanel().addTowerManipulationListener(new TowerManipulationListener() {
+        endPanel.getTowerUpgradeSellPanel().getListener().addTowerManipulationListener(new TowerManipulationListener() {
             @Override
             public void sellTower() {
                 topPanel.getDataPanel().setWarningMsg("");

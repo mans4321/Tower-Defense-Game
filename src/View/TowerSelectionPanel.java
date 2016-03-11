@@ -1,11 +1,18 @@
 package View;
-import javax.swing.*;
-
-import gamemodel.tower.*;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+import gamemodel.tower.TowerChosenListener;
+import gamemodel.tower.TowerId;
+import gamemodel.tower.TowerImageCollection;
+import gamemodel.tower.TowerSelectionListener;
+import viewcontroller.Listener;
 
 /**
  * Class that describes the tower selection panel
@@ -18,9 +25,10 @@ public class TowerSelectionPanel extends JPanel {
     private GridLayout layout;
     private int tRows;
     private int tCols;
-    private TowerSelectionListener slistener;
-    private TowerChosenListener cListener;
+//    private TowerSelectionListener slistener;
+//    private TowerChosenListener cListener;
     private TowerImageCollection towerImageCollection;
+    private Listener listener; 
     
     /**
      * Constructor creates basic 3 tower selection
@@ -40,58 +48,53 @@ public class TowerSelectionPanel extends JPanel {
      * Creates a button for each tower displaying it's image
      */
     void initComponents() {
+    	
+    	listener = new Listener();
+    	
         // Starts with the first level of the tower
         TowerButton buttonTowerA = new TowerButton(towerImageCollection.getImageIcon(TowerId.TOWERAH.getName()));
-        buttonTowerA.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                slistener.placeTower(TowerId.TOWERA1);
-                cListener.updateInfo(TowerId.TOWERA1);
-            }
-        });
+        buttonTowerA.setActionCommand("buttonTowerA");
+        buttonTowerA.addActionListener(listener);
 
 
         TowerButton buttonTowerB = new TowerButton((towerImageCollection.getImageIcon(TowerId.TOWERBH.getName())));
-        buttonTowerB.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                slistener.placeTower(TowerId.TOWERB1);
-                cListener.updateInfo(TowerId.TOWERB1);
-            }
-        });
+        buttonTowerB.setActionCommand("buttonTowerB");
+        buttonTowerB.addActionListener(listener);
+           
 
         TowerButton buttonTowerC = new TowerButton((towerImageCollection.getImageIcon(TowerId.TOWERCH.getName())));
-        buttonTowerC.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                slistener.placeTower(TowerId.TOWERC1);
-                cListener.updateInfo(TowerId.TOWERC1);
-            }
-        });
+        buttonTowerC.setActionCommand("buttonTowerC");
+        buttonTowerC.addActionListener(listener);
 
         add(buttonTowerA);
         add(buttonTowerB);
         add(buttonTowerC);
 
     }
+
     
-    /**
-     * Register a listener
-     * @param listener
-     */
-    public void addTowerSelectionListener(TowerSelectionListener listener) {
-        this.slistener = listener;
-    }
+//    /**
+//     * Register a listener
+//     * @param listener
+//     */
+//    public void addTowerSelectionListener(TowerSelectionListener listener) {
+//        this.slistener = listener;
+//    }
+//
+//    /**
+//     * Register a listener
+//     * @param listener
+//     */
+//    public void addTowerChosenListener(TowerChosenListener listener) {
+//        this.cListener = listener;
+//    }
 
-    /**
-     * Register a listener
-     * @param listener
-     */
-    public void addTowerChosenListener(TowerChosenListener listener) {
-        this.cListener = listener;
-    }
+    public Listener getListener() {
+		return listener;
+	}
 
-    /**
+
+	/**
      * Displays the associated image to the tower button
      * @author yongpinggao
      *
@@ -104,4 +107,6 @@ public class TowerSelectionPanel extends JPanel {
             this.towerImageIcon = towerImageIcon;
         }
     }
+
+
 }

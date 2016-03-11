@@ -1,10 +1,15 @@
 package View;
-import javax.swing.*;
-
-import gamemodel.tower.TowerManipulationListener;
-import java.awt.*;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import gamemodel.tower.TowerManipulationListener;
+import viewcontroller.Listener;
 
 /**
  * Class that implements the upgrade and sell panel
@@ -19,30 +24,24 @@ public class TowerUpgradeSellPanel extends JPanel{
 
     private JLabel towerImage;
     private ImageIcon icon;
-    private TowerManipulationListener listener;
-    
+    private TowerManipulationListener towerListener;
+    private Listener listener;
     
     /**
      * Constructor, creates buy and sell buttons and attach listeners 
      */
     public TowerUpgradeSellPanel() {
     	
-    	
+    	listener = new Listener();
         bSell = new JButton("Sell");
-        bSell.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                listener.sellTower();
-            }
-        });
+        bSell.setActionCommand("sellTower");
+        bSell.addActionListener(listener);
         
         bUpgrade = new JButton("Upgrade");
-        bUpgrade.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                listener.upgradeTower();
-            }
-        });
+        bUpgrade.setActionCommand("upgradeTower");
+        bUpgrade.addActionListener(listener);
+        
+       
 
         icon = null;
         towerImage = new JLabel(icon);
@@ -82,12 +81,10 @@ public class TowerUpgradeSellPanel extends JPanel{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
     }
+
+	public Listener getListener() {
+		return listener;
+	}
     
-    /**
-     * Associated a listener for the manipulation of the tower
-     * @param listener
-     */
-    public void addTowerManipulationListener(TowerManipulationListener listener) {  /// 
-        this.listener = listener;
-    }
+    
 }
