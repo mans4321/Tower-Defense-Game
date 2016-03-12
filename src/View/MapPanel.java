@@ -7,7 +7,7 @@ import viewcontroller.DrawMap;
 import viewcontroller.DrawTower;
 import viewcontroller.MapArea;
 import viewcontroller.PlaceTowerFinishedListener;
-import viewcontroller.ReadMap;
+import viewcontroller.MapFile;
 
 import javax.swing.*;
 
@@ -27,7 +27,7 @@ import java.util.HashMap;
  */
 public class MapPanel extends JPanel {
 
-    private ReadMap readMap;
+    private MapFile readMap;
     private MapArea mapArea;
    
     /**
@@ -36,7 +36,7 @@ public class MapPanel extends JPanel {
      */
     public MapPanel(int mapNum) {
 
-      readMap= new ReadMap(mapNum);
+      readMap= new MapFile(mapNum);
       mapArea = readMap.getMapArea();
       
         initComponent();
@@ -58,7 +58,7 @@ public class MapPanel extends JPanel {
     }
 
     
-	public ReadMap getReadMap() {
+	public MapFile getReadMap() {
 		return readMap;
 	}
 

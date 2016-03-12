@@ -50,18 +50,18 @@ public class MainMenuWindow extends JFrame {
      */
     private void addComponents() {
 
-        JButton b1 = new JButton("Map Editor");
-        b1.addActionListener(new ActionListener() {
+        JButton mapEditor = new JButton("Map Editor");
+        mapEditor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
+            	setVisible(false);
                 new MapEditorWindow().setVisible(true);
             }
         });
 
 
-        JButton b2 = new JButton("Start Game");
-        b2.addActionListener(new ActionListener() {
+        JButton startGame = new JButton("Start Game");
+        startGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
@@ -79,8 +79,8 @@ public class MainMenuWindow extends JFrame {
 
         Container c = this.getContentPane();
         c.setLayout(new GridBagLayout());
-        c.add(b1, new GridBagConstraints());
-        c.add(b2, new GridBagConstraints());
+        c.add(mapEditor, new GridBagConstraints());
+        c.add(startGame, new GridBagConstraints());
     }
 
 }

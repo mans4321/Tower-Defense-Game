@@ -9,7 +9,7 @@ import gamemodel.gamemap.GameMap;
 import gamemodel.gamemap.GameMapCollection;
 import gamemodel.tower.Tower;
 
-public  class ReadMap { 
+public  class MapFile { 
    
 	 private int rows;
 	 private int cols;
@@ -24,7 +24,7 @@ public  class ReadMap {
 	 private GameMap map;
 	 private MapArea mapArea;
 
-	 public ReadMap(int mapNum){
+	 public MapFile(int mapNum){
 		 
 		 readSpecificMapFromFile( mapNum);
 		 
@@ -57,11 +57,8 @@ public  class ReadMap {
        mapArea = new MapArea(rows , cols , cellList, towerMap);
    }
 	
+
 	
-	public void  readAllMapFromFile(){
-		
-		
-	}
 	
 	/**
      * Getter for entrance position
