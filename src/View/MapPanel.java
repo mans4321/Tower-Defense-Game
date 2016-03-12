@@ -27,41 +27,9 @@ import java.util.HashMap;
  */
 public class MapPanel extends JPanel {
 
-    private MapArea mapArea;
-//    private int rows;
-//    private int cols;
-//    private GameMap map;
-//    private ArrayList<CellState> cellList;
-//
-//    private ArrayList<Integer> pathList;
     private ReadMap readMap;
-
-//    private int[] extrancePos;
-//    private int[] exitPos;
-//    
-//    
-//
-//    /**
-//     * Getter for entrance position
-//     * @return entrance position
-//     */
-//    public int[] getExtrancePos() {
-//        return extrancePos;
-//    }
-//    
-//    /**
-//     * Getter for the exit position
-//     * @return exit position
-//     */
-//    public int[] getExitPos() {
-//        return exitPos;
-//    }
-     
+    private MapArea mapArea;
    
-
-
-
-
     /**
      * Constructor for the map panel
      * @param mapNum number of the map
@@ -74,7 +42,6 @@ public class MapPanel extends JPanel {
         initComponent();
 
     }
-    
     
     
     /**

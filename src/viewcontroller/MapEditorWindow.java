@@ -23,7 +23,6 @@ import javax.swing.JPopupMenu;
 
 import View.BaseWindow;
 import View.MainMenuWindow;
-import View.MapPanel_MapEditor;
 import gamemodel.gamemap.CellState;
 import gamemodel.gamemap.FileProcessing;
 import gamemodel.gamemap.GameMap;
@@ -40,7 +39,7 @@ public class MapEditorWindow extends BaseWindow {
 
     private EditArea editArea;
     private TopArea topArea;
-    private MapPanel_MapEditor mapPanel;
+    private EditAreaListener editAreaListener;
 
     private final String[] widthStrings = {"5","10","15","20","25","30"};
     private final String[] heightStrings = {"10","15"};
@@ -132,13 +131,13 @@ public class MapEditorWindow extends BaseWindow {
             widthList = new JComboBox(widthStrings);
             widthList.setSelectedIndex(Utility.getIndexFrom(widthStrings, mapCols));
             widthList.setActionCommand("width");
-            widthList.addActionListener(mapPanel);
+            widthList.addActionListener(editAreaListener);
 
 
             heightList = new JComboBox(heightStrings);
             heightList.setSelectedIndex(Utility.getIndexFrom(heightStrings, mapRows));
             heightList.setActionCommand("height");
-            heightList.addActionListener(mapPanel);
+            heightList.addActionListener(editAreaListener);
 
          
 
@@ -181,7 +180,7 @@ public class MapEditorWindow extends BaseWindow {
                             JOptionPane.YES_NO_OPTION);
 
                     if (n == 0) { // User select "yes"
-                        mapPanel.clearMap();
+                    	editAreaListener.clearMap();
                         MapEditorWindow.this.setVisible(false);
                         new MainMenuWindow().setVisible(true);
                     } else {} // User select "no"
@@ -228,8 +227,8 @@ public class MapEditorWindow extends BaseWindow {
             for(int i = 0; i < mapRows * mapCols; i++)
                 cellList.add(CellState.GRASS);
             
-            mapPanel = new MapPanel_MapEditor(mapRows, mapCols, cellList);
-            add(mapPanel, c);
+            editAreaListener = new EditAreaListener(mapRows, mapCols, cellList);
+            add(editAreaListener, c);
         }
         
 
@@ -290,14 +289,14 @@ public class MapEditorWindow extends BaseWindow {
 
                 if (isReadyToCreate) {
                     aMap = new GameMap(mapRows, mapCols, cellList, mapName);
-                    BufferedImage mapImage = mapPanel.mapCaptureShot();
+                    BufferedImage mapImage = editAreaListener.mapCaptureShot();
 
 
 
                     FileProcessing.addMapToJsonFile(aMap);
                     FileProcessing.writeToMapArchive(mapName, mapImage);
 
-                    mapPanel.clearMap();
+                    editAreaListener.clearMap();
 
                     MapEditorWindow.this.setVisible(false);
                     new MainMenuWindow().setVisible(true);

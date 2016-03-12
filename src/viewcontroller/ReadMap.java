@@ -26,11 +26,11 @@ public  class ReadMap {
 
 	 public ReadMap(int mapNum){
 		 
-		 readMapFromFile( mapNum);
+		 readSpecificMapFromFile( mapNum);
 		 
 	 }
 	 
-	public void  readMapFromFile(int mapNum){	  
+	public void  readSpecificMapFromFile(int mapNum){	  
 	     
    	 // read data from saved files
        GameMapCollection mapCollection = FileProcessing.readMapFromJsonFile();
@@ -57,6 +57,11 @@ public  class ReadMap {
        mapArea = new MapArea(rows , cols , cellList, towerMap);
    }
 	
+	
+	public void  readAllMapFromFile(){
+		
+		
+	}
 	
 	/**
      * Getter for entrance position
