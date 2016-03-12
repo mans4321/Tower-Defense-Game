@@ -25,8 +25,6 @@ public class TowerSelectionPanel extends JPanel {
     private GridLayout layout;
     private int tRows;
     private int tCols;
-//    private TowerSelectionListener slistener;
-//    private TowerChosenListener cListener;
     private TowerImageCollection towerImageCollection;
     private Listener listener; 
     
@@ -71,23 +69,6 @@ public class TowerSelectionPanel extends JPanel {
         add(buttonTowerC);
 
     }
-
-    
-//    /**
-//     * Register a listener
-//     * @param listener
-//     */
-//    public void addTowerSelectionListener(TowerSelectionListener listener) {
-//        this.slistener = listener;
-//    }
-//
-//    /**
-//     * Register a listener
-//     * @param listener
-//     */
-//    public void addTowerChosenListener(TowerChosenListener listener) {
-//        this.cListener = listener;
-//    }
 
     public Listener getListener() {
 		return listener;
