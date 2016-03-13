@@ -14,7 +14,7 @@ import gamemodel.critter.CritterStore;
 import gamemodel.wave.Wave;
 import gamemodel.wave.Wave.Builder;
 
-public class Addingcrittertostory {
+public class WaveTest {
 
 	@Test
 	public void testaddingcrittertoythestore() {
@@ -51,21 +51,5 @@ public class Addingcrittertostory {
 		
 	}
 	
-	@Test
-	public void testbuildingcritterwave() {
-		
-		
 	
-	/**
-	 public Builder critterB(int num) {
-         for (int i = 0; i < num; i++) {
-             CritterB critterB = new CritterB();
-             CritterStore.critters.add(critterB);
-         }
-         return this;
-     }
-*/
-
-		
-	}
 }
