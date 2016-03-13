@@ -7,27 +7,22 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-
 import View.BaseWindow;
 import View.MainMenuWindow;
-
 import gamemodel.gamemap.CellState;
 import gamemodel.gamemap.FileProcessing;
 import gamemodel.gamemap.GameMap;
 import gamemodel.gamemap.GameMapCollection;
 import mapvalidation.MapValidationManager;
-
 import utility.Utility;
 
 /**
@@ -40,6 +35,7 @@ public class MapEditorWindow extends BaseWindow {
     private EditArea editArea;
     private TopArea topArea;
     private EditAreaListener editAreaListener;
+//    MapEditorWindowListener topAreaListener;
 
     private final String[] widthStrings = {"5","10","15","20","25","30"};
     private final String[] heightStrings = {"10","15"};
@@ -117,6 +113,10 @@ public class MapEditorWindow extends BaseWindow {
 
             this.setBackground(Color.DARK_GRAY);
             this.setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT / 10));
+            
+          
+            //topAreaListener = new MapEditorWindowListener(mapRows, mapCols, mapNum, cellList, editAreaListener);
+            
             initComponents();
         }
         
@@ -145,54 +145,56 @@ public class MapEditorWindow extends BaseWindow {
             JLabel heightLabel = new JLabel("Height:");
 
           
-//            MapEditorWindowListener listener;
-//            listener = new MapEditorWindowListener(mapRows, mapCols, mapNum, cellList, editAreaListener);
+
             
             JButton saveButton = new JButton("Save");
             saveButton.setActionCommand("Save");
-            saveButton.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                	
-                	MapValidationManager manager = new MapValidationManager(cellList, mapCols, mapRows);
-                	if (manager.checkValidate()) {
-                		
-                	     saveDataToFile();
-                	} else {
-                		//TODO AlertWindow!
-                		JOptionPane.showMessageDialog(MapEditorWindow.this, manager.getErrorMessage(),"Illegal Map",JOptionPane.ERROR_MESSAGE);
-                	}
-            	 
-            	 
-                    if (checkPathValidate()) {
-                        saveDataToFile();
-                    } else {//TODO: Dialog!!! -> what went wrong?
-
-                    }
-                }
-            });
+            saveButton.addActionListener(editAreaListener);
+//            saveButton.addActionListener(new ActionListener(){
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//                	
+//                	MapValidationManager manager = new MapValidationManager(cellList, mapCols, mapRows);
+//                	if (manager.checkValidate()) {
+//                		
+//                	     saveDataToFile();
+//                	} else {
+//                		//TODO AlertWindow!
+//                		JOptionPane.showMessageDialog(MapEditorWindow.this, manager.getErrorMessage(),"Illegal Map",JOptionPane.ERROR_MESSAGE);
+//                	}
+//            	 
+//            	 
+//                    if (checkPathValidate()) {
+//                        saveDataToFile();
+//                    } else {//TODO: Dialog!!! -> what went wrong?
+//
+//                    }
+//                }
+//            });
 
             
             JButton discardButton = new JButton("Discard");
             discardButton.setActionCommand("Discard");
-            discardButton.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-
-                    int n = JOptionPane.showConfirmDialog(
-                            MapEditorWindow.this,
-                            "Are you Sure, all unsaved changes will be discarded!!",
-                            "Warning",
-                            JOptionPane.YES_NO_OPTION);
-
-                    if (n == 0) { // User select "yes"
-                    	editAreaListener.clearMap();
-                        MapEditorWindow.this.setVisible(false);
-                        new MainMenuWindow().setVisible(true);
-                    } else {} // User select "no"
-
-                }
-            });
+            discardButton.addActionListener(editAreaListener);
+            
+//            discardButton.addActionListener(new ActionListener(){
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//
+//                    int n = JOptionPane.showConfirmDialog(
+//                            MapEditorWindow.this,
+//                            "Are you Sure, all unsaved changes will be discarded!!",
+//                            "Warning",
+//                            JOptionPane.YES_NO_OPTION);
+//
+//                    if (n == 0) { // User select "yes"
+//                    	editAreaListener.clearMap();
+//                        MapEditorWindow.this.setVisible(false);
+//                        new MainMenuWindow().setVisible(true);
+//                    } else {} // User select "no"
+//
+//                }
+//            });
 
             // Flow Layout: Horizontal
             this.add(widthLabel);
@@ -233,90 +235,90 @@ public class MapEditorWindow extends BaseWindow {
             for(int i = 0; i < mapRows * mapCols; i++)
                 cellList.add(CellState.GRASS);
             
-            editAreaListener = new EditAreaListener(mapRows, mapCols, cellList);
+            editAreaListener = new EditAreaListener(mapRows, mapCols,mapNum, cellList);
             add(editAreaListener, c);
         }
         
 
     }
     
-    /**
-     * Enables validation of the map
-     * @return
-     */
-    boolean checkPathValidate() {
-        return true;
-    }
-    
-    /**
-     * Gets the list of cells and saves the map to Json file
-     */
-    public void saveDataToFile() {
-
-        boolean isReadyToCreate = true;
-        String mapName = (String) JOptionPane.showInputDialog(MapEditorWindow.this,
-                "Type in the maps name:",
-                "Save map to file",
-                JOptionPane.PLAIN_MESSAGE,
-                null,
-                null,
-                "map1");
-        if (mapName != null) { // if user choose cancel, mapName -> null
-
-            if (!mapName.equals("")) { // if the name is empty then it's invalidate
-                GameMapCollection collection = FileProcessing.readMapFromJsonFile(); // read from json
-                if (collection!= null) { // if the file already exits, check the filename and volume
-                    int size = collection.getMaps().size();
-                    for (int i = 0; i < size; i++) {
-                        if (collection.getMaps().get(i).getImageName().equals(mapName)) {
-                            String mapRename;// if they have the same name, please rename
-                            do {
-                                mapRename = (String) JOptionPane.showInputDialog(MapEditorWindow.this,
-                                        "Already taken, please rename:",
-                                        "Save map to file",
-                                        JOptionPane.PLAIN_MESSAGE,
-                                        null,
-                                        null,
-                                        "map1");
-                            } while (mapName.equals(mapRename));
-                            if (mapRename != null) mapName = mapRename;
-                            else isReadyToCreate = false;
-                        }
-                    }
-
-                    if (mapNum > 0) { // if this map is edited, then remove the old one
-                        FileProcessing.deleteMapFromJsonFile(mapNum);
-                        FileProcessing.sync();
-                    } else if (size == MapChooseWindow.nCols * MapChooseWindow.nRows) { // when it's full, delete the last map
-                        FileProcessing.deleteMapFromJsonFile(size - 1);
-                        FileProcessing.sync();
-                    }
-                }
-
-                if (isReadyToCreate) {
-                    aMap = new GameMap(mapRows, mapCols, cellList, mapName);
-                    BufferedImage mapImage = editAreaListener.mapCaptureShot();
-
-
-
-                    FileProcessing.addMapToJsonFile(aMap);
-                    FileProcessing.writeToMapArchive(mapName, mapImage);
-
-                    editAreaListener.clearMap();
-
-                    MapEditorWindow.this.setVisible(false);
-                    new MainMenuWindow().setVisible(true);
-                }
-
-            } else {
-                JOptionPane.showMessageDialog(MapEditorWindow.this,
-                        "File name invalidate");
-            }
-        }
-
-
-
-    }
+//    /**
+//     * Enables validation of the map
+//     * @return
+//     */
+//    boolean checkPathValidate() {
+//        return true;
+//    }
+//    
+//    /**
+//     * Gets the list of cells and saves the map to Json file
+//     */
+//    public void saveDataToFile() {
+//
+//        boolean isReadyToCreate = true;
+//        String mapName = (String) JOptionPane.showInputDialog(MapEditorWindow.this,
+//                "Type in the maps name:",
+//                "Save map to file",
+//                JOptionPane.PLAIN_MESSAGE,
+//                null,
+//                null,
+//                "map1");
+//        if (mapName != null) { // if user choose cancel, mapName -> null
+//
+//            if (!mapName.equals("")) { // if the name is empty then it's invalidate
+//                GameMapCollection collection = FileProcessing.readMapFromJsonFile(); // read from json
+//                if (collection!= null) { // if the file already exits, check the filename and volume
+//                    int size = collection.getMaps().size();
+//                    for (int i = 0; i < size; i++) {
+//                        if (collection.getMaps().get(i).getImageName().equals(mapName)) {
+//                            String mapRename;// if they have the same name, please rename
+//                            do {
+//                                mapRename = (String) JOptionPane.showInputDialog(MapEditorWindow.this,
+//                                        "Already taken, please rename:",
+//                                        "Save map to file",
+//                                        JOptionPane.PLAIN_MESSAGE,
+//                                        null,
+//                                        null,
+//                                        "map1");
+//                            } while (mapName.equals(mapRename));
+//                            if (mapRename != null) mapName = mapRename;
+//                            else isReadyToCreate = false;
+//                        }
+//                    }
+//
+//                    if (mapNum > 0) { // if this map is edited, then remove the old one
+//                        FileProcessing.deleteMapFromJsonFile(mapNum);
+//                        FileProcessing.sync();
+//                    } else if (size == MapChooseWindow.nCols * MapChooseWindow.nRows) { // when it's full, delete the last map
+//                        FileProcessing.deleteMapFromJsonFile(size - 1);
+//                        FileProcessing.sync();
+//                    }
+//                }
+//
+//                if (isReadyToCreate) {
+//                    aMap = new GameMap(mapRows, mapCols, cellList, mapName);
+//                    BufferedImage mapImage = editAreaListener.mapCaptureShot();
+//
+//
+//
+//                    FileProcessing.addMapToJsonFile(aMap);
+//                    FileProcessing.writeToMapArchive(mapName, mapImage);
+//
+//                    editAreaListener.clearMap();
+//
+//                    MapEditorWindow.this.setVisible(false);
+//                    new MainMenuWindow().setVisible(true);
+//                }
+//
+//            } else {
+//                JOptionPane.showMessageDialog(MapEditorWindow.this,
+//                        "File name invalidate");
+//            }
+//        }
+//
+//
+//
+//    }
 
 
 
