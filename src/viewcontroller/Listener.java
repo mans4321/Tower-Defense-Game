@@ -3,6 +3,11 @@ package viewcontroller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
+import View.MainMenuWindow;
+import gamemodel.gamemap.FileProcessing;
 import gamemodel.tower.TowerChosenListener;
 import gamemodel.tower.TowerId;
 import gamemodel.tower.TowerManipulationListener;
@@ -45,8 +50,9 @@ public class Listener implements ActionListener {
     	   
     	    slistener.placeTower(TowerId.TOWERC1);
             cListener.updateInfo(TowerId.TOWERC1);
-      }
+       
        }
+	}
 	
     /**
      * Register a listener

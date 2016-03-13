@@ -1,13 +1,19 @@
 package View;
-import javax.swing.*;
-
-import gamemodel.gamemap.FileProcessing;
-import viewcontroller.MapChooseWindow;
-import viewcontroller.MapEditorWindow;
-
-import java.awt.*;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import gamemodel.gamemap.FileProcessing;
+import viewcontroller.Listener;
+import viewcontroller.MapChooseWindow;
+import viewcontroller.MapEditorWindow;
 
 
 /**
@@ -22,6 +28,7 @@ public class MainMenuWindow extends JFrame {
     private final static int WINDOW_HEIGHT = 222;
 
     private String menuTitle = "Defence of the Tower";
+    
     
     /**
      * Starts window
@@ -50,7 +57,10 @@ public class MainMenuWindow extends JFrame {
      */
     private void addComponents() {
 
+    
+    	
         JButton mapEditor = new JButton("Map Editor");
+        mapEditor.setActionCommand("MapEditor");
         mapEditor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -61,6 +71,7 @@ public class MainMenuWindow extends JFrame {
 
 
         JButton startGame = new JButton("Start Game");
+        startGame.setActionCommand("StartGame");
         startGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
