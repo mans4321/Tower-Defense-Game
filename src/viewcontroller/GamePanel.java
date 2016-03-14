@@ -72,7 +72,7 @@ public class GamePanel extends JPanel implements ActionListener{
         topPanel = new TopPanel();
         mapPanel = new MapPanel(mapNum);
         endPanel = new EndPanel();
-        mapArea = mapPanel.getMapArea();
+        mapArea = mapPanel.getReadMap().getMapArea();
 
         account = new BankAccout(INITIAL_BALANCE);
         topPanel.getDataPanel().setBalance(account.getBalance());
@@ -93,7 +93,7 @@ public class GamePanel extends JPanel implements ActionListener{
 
 
 
-        topPanel.getTowerSelectionPanel().addTowerSelectionListener(new TowerSelectionListener() {
+        topPanel.getTowerSelectionPanel().getListener().addTowerSelectionListener(new TowerSelectionListener() {
             @Override
             public void placeTower(TowerId id) {
                 topPanel.getDataPanel().setWarningMsg("");
@@ -117,7 +117,7 @@ public class GamePanel extends JPanel implements ActionListener{
                         }
                     }
                 }
-                mapPanel.getMapArea().repaint();                                         ///
+                mapPanel.getReadMap().getMapArea().repaint();                                         ///
                 mapArea.setCellList(cells);
                
                 mapArea.setCurrentTowerID(id);
@@ -125,7 +125,7 @@ public class GamePanel extends JPanel implements ActionListener{
             }
         });
 
-        topPanel.getTowerSelectionPanel().addTowerChosenListener(new TowerChosenListener() {
+        topPanel.getTowerSelectionPanel().getListener().addTowerChosenListener(new TowerChosenListener() {
             @Override
             public void updateInfo(TowerId id) {
                 endPanel.setCurrentChosenTowerID(id);
@@ -133,7 +133,7 @@ public class GamePanel extends JPanel implements ActionListener{
             }
         });
 
-        mapPanel.getMapArea().addTowerChosenListener(new TowerChosenListener() {           /////
+        mapPanel.getReadMap().getMapArea().addTowerChosenListener(new TowerChosenListener() {           /////
             @Override
             public void updateInfo(TowerId id) {
 
@@ -147,7 +147,7 @@ public class GamePanel extends JPanel implements ActionListener{
             }
         });
 
-        endPanel.getTowerUpgradeSellPanel().addTowerManipulationListener(new TowerManipulationListener() {
+        endPanel.getTowerUpgradeSellPanel().getListener().addTowerManipulationListener(new TowerManipulationListener() {
             @Override
             public void sellTower() {
                 topPanel.getDataPanel().setWarningMsg("");
@@ -162,7 +162,7 @@ public class GamePanel extends JPanel implements ActionListener{
 
                         towerMap.remove(i);
                         mapArea.setTowerMap(towerMap);                                  ////
-                        mapPanel.getMapArea().repaint();
+                        mapPanel.getReadMap().getMapArea().repaint();
                         // clear chosen state -> draw null image in end panel
                         endPanel.setCurrentChosenTowerID(TowerId.TOWERNULL);
 
@@ -212,14 +212,14 @@ public class GamePanel extends JPanel implements ActionListener{
                     }
                 }
 
-                mapPanel.getMapArea().repaint();
+                mapPanel.getReadMap().getMapArea().repaint();
 
             }
 
 
         });
         // get msg from map panel to change the account in case tower is place accurately
-        mapPanel.getMapArea().addPlaceTowerFinishedListener(new PlaceTowerFinishedListener() {
+        mapPanel.getReadMap().getMapArea().addPlaceTowerFinishedListener(new PlaceTowerFinishedListener() {
             @Override
             public void accountShouldChange(TowerId id) {
                 account.setBalance(account.getBalance() - TowerFactory.getInstance().getTower(id).getBuyPrice());
@@ -241,7 +241,7 @@ public class GamePanel extends JPanel implements ActionListener{
             }
         });
 
-        mapPanel.getMapArea().addStealCoinListener(new StealCoinListener() {
+        mapPanel.getReadMap().getMapArea().addStealCoinListener(new StealCoinListener() {
        // mapPanel.getMapArea().addStealCoinListener(new StealCoinListener() {
         	
             @Override
@@ -303,7 +303,7 @@ public class GamePanel extends JPanel implements ActionListener{
             }
         });
         
-        mapPanel.getMapArea().addCritterGotKilledListener(new CritterGotKilledListener() {
+        mapPanel.getReadMap().getMapArea().addCritterGotKilledListener(new CritterGotKilledListener() {
             @Override
             public void critterGotKilled(Critter c) {
                 if (!c.isAleadyDonated()) {
@@ -375,7 +375,7 @@ public class GamePanel extends JPanel implements ActionListener{
      */
     private void clearGame() {
     	CritterStore.critters.clear();
-    	mapPanel.getMapArea().getRepaintMapTimer().stop();
+    	mapPanel.getReadMap().getMapArea().getRepaintMapTimer().stop();
         wavePrepareTimer.stop();
     }
 
@@ -397,12 +397,12 @@ public class GamePanel extends JPanel implements ActionListener{
                         @Override
                         public void initCritterPos(Critter c) {
                             c.setVisible(true);
-                            c.setPosX(mapPanel.getExtrancePos()[0]);
-                            c.setPosY(mapPanel.getExtrancePos()[1]);
-                            c.setNextPosX(mapPanel.getExtrancePos()[0]);
-                            c.setNextPosY(mapPanel.getExtrancePos()[1]);
+                            c.setPosX(mapPanel.getReadMap().getExtrancePos()[0]);
+                            c.setPosY(mapPanel.getReadMap().getExtrancePos()[1]);
+                            c.setNextPosX(mapPanel.getReadMap().getExtrancePos()[0]);
+                            c.setNextPosY(mapPanel.getReadMap().getExtrancePos()[1]);
                             // clone: As pathList is passed by reference
-                            c.setPathList((ArrayList<Integer>) mapPanel.getPathList().clone());
+                            c.setPathList((ArrayList<Integer>) mapPanel.getReadMap().getPathList().clone());
                         }
                     });
             }

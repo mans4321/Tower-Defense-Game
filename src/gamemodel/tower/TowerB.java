@@ -102,7 +102,7 @@ public class TowerB extends Tower implements TowerShootingBehavior {
     *{@inheritDoc} 
     */
     @Override
-    public Critter targetBasedOnNearestToEnd(Set<Critter> crittersInRange) {
-        return super.targetBasedOnNearestToEnd(crittersInRange);
+    public Critter targetBasedOnNearestToEnd(Set<Critter> crittersInRange,int MapNum) {
+        return super.targetBasedOnNearestToEnd(crittersInRange, MapNum);
     }
 }

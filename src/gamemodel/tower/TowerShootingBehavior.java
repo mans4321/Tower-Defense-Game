@@ -44,5 +44,5 @@ public interface TowerShootingBehavior {
      * @param crittersInRange a set of the critter in the tower range
      * 
      */
-    Critter targetBasedOnNearestToEnd(Set<Critter> crittersInRange);
+    Critter targetBasedOnNearestToEnd(Set<Critter> crittersInRange, int mapnum);
 }

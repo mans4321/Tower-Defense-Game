@@ -7,6 +7,7 @@ import viewcontroller.DrawMap;
 import viewcontroller.DrawTower;
 import viewcontroller.MapArea;
 import viewcontroller.PlaceTowerFinishedListener;
+import viewcontroller.MapFile;
 
 import javax.swing.*;
 
@@ -26,90 +27,28 @@ import java.util.HashMap;
  */
 public class MapPanel extends JPanel {
 
+    private MapFile readMap;
     private MapArea mapArea;
-    private int rows;
-    private int cols;
-    private GameMap map;
-    private ArrayList<CellState> cellList;
-    private HashMap<Integer, Tower> towerMap;
-    private ArrayList<Integer> pathList;
    
-
-    private int[] extrancePos;
-    private int[] exitPos;
-    
-    
-
-    /**
-     * Getter for entrance position
-     * @return entrance position
-     */
-    public int[] getExtrancePos() {
-        return extrancePos;
-    }
-    
-    /**
-     * Getter for the exit position
-     * @return exit position
-     */
-    public int[] getExitPos() {
-        return exitPos;
-    }
-     
-    /**
-     * Getter for teh path list
-     * @return path list
-     */
-    public ArrayList<Integer> getPathList() {
-        return pathList;
-    }
-
-    /**
-     * Getter for the map area
-     * @return map area
-     */
-    public MapArea getMapArea() {
-        return mapArea;
-    }
-
-
     /**
      * Constructor for the map panel
      * @param mapNum number of the map
      */
     public MapPanel(int mapNum) {
 
-        // read data from saved files
-        GameMapCollection mapCollection = FileProcessing.readMapFromJsonFile();
-        map = mapCollection.getMaps().get(mapNum);
-        cellList = map.getCells();
-        cols = map.getmCols();
-        rows = map.getmRows();
-
-        pathList = new ArrayList<>();
-        towerMap = new HashMap<>();
-
-        //Find the path, entrance and exit cell
-        for(int i = 0; i < cellList.size() ; i++) {
-            if (cellList.get(i) == CellState.ENTRANCE) { // Entrance -> indexEntrance
-                extrancePos = DrawMap.indexConverter(i, cols);
-            } else if (cellList.get(i) == CellState.PATH) { // PATH -> pathList
-                pathList.add(i);
-            } else if (cellList.get(i) == CellState.EXIT) { // Exit -> indexExit
-                exitPos = DrawMap.indexConverter(i, cols);
-            }
-        }
-
+      readMap= new MapFile(mapNum);
+      mapArea = readMap.getMapArea();
       
         initComponent();
 
     }
     
+    
     /**
      * Initiates the Map panel 
      */
     private void initComponent() {
-        mapArea = new MapArea(rows , cols , cellList, towerMap);
+    	
         setBackground(Color.BLACK);
         // set MapArea to the center
         setLayout(new GridBagLayout());
@@ -118,7 +57,9 @@ public class MapPanel extends JPanel {
         add(mapArea, c);
     }
 
-
-
+    
+	public MapFile getReadMap() {
+		return readMap;
+	}
 
 }

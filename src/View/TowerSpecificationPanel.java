@@ -35,7 +35,7 @@ public class TowerSpecificationPanel extends JPanel {
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(specificationLabel);
-        add(buyPriceLabel);
+        add(getBuyPriceLabel());
         add(sellPriceLabel);
         add(rangeLabel);
         add(powerLabel);
@@ -58,7 +58,7 @@ public class TowerSpecificationPanel extends JPanel {
      */
     public void setBuyPrice(double buyPrice) {
         this.buyPrice = buyPrice;
-        this.buyPriceLabel.setText("Buy Price: " + buyPrice + "");
+        this.getBuyPriceLabel().setText("Buy Price: " + buyPrice + "");
     }
     
     /**
@@ -102,12 +102,57 @@ public class TowerSpecificationPanel extends JPanel {
      */
     public void clearPanel() {
         this.specificationLabel.setText("");
-        this.buyPriceLabel.setText("");
+        this.getBuyPriceLabel().setText("");
         this.sellPriceLabel.setText("");
         this.rangeLabel.setText("");
         this.powerLabel.setText("");
         this.rateOfFireLabel.setText("");
     }
+    /**
+     * Getter for the buy Price Label 
+     */
+	public JLabel getBuyPriceLabel() {
+		return buyPriceLabel;
+	}
+	 /**
+     * Getter for the buy Price Label 
+     */
+	public String getSpecification() {
+		return specification;
+	}
+	 /**
+     * Getter for the buy Price Label 
+     */
+	public double getBuyPrice() {
+		return buyPrice;
+	}
+	 /**
+     * Getter for the tower SellPrice 
+     */
+	public double getSellPrice() {
+		return sellPrice;
+	}
+	 /**
+     * Getter for the tower Range 
+     */
+	public int getRange() {
+		return range;
+	}
+	 /**
+     * Getter for the tower Power 
+     */
+	public int getPower() {
+		return power;
+	}
+	 /**
+     * Getter for the Rate Of Fire
+     */
+	public int getRateOfFire() {
+		return rateOfFire;
+	}
+
+
+
 }
 
 

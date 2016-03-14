@@ -25,7 +25,7 @@ public class AddingDeletingMap {
 		assertTrue(beforadding< afteradding);
 		
 		mapcoll.getMaps().remove(mpa);
-		//fail("Not yet implemented");
+		
 	}
 
 	@Test
@@ -44,7 +44,7 @@ public class AddingDeletingMap {
 		int afteradding = mapcoll.getMaps().size();
 		
 		assertTrue(beforadding == afteradding);
-		//fail("Not yet implemented");
+	
 	}
 
 }
