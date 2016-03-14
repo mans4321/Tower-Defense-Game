@@ -93,4 +93,8 @@ public  class MapFile {
         return pathList;
     }
 
+	public int getCols() {
+		return cols;
+	}
+
 }

@@ -1,13 +1,17 @@
 package gamemodel.tower;
 
-import java.awt.*;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import gamemodel.critter.*;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-import javax.swing.*;
+
+import javax.swing.Timer;
+
+import gamemodel.critter.Critter;
+import viewcontroller.DrawMap;
+import viewcontroller.MapFile;
 
 /**
  * A model that define the all tower parameters.
@@ -280,8 +284,40 @@ public class Tower implements TowerShootingBehavior, ActionListener {
      * {@inheritDoc}
      */
     @Override
-    public Critter targetBasedOnNearestToEnd(Set<Critter> crittersInRange) {
-        return null;
+    public Critter targetBasedOnNearestToEnd(Set<Critter> crittersInRange, int MapNum) {
+    	if (crittersInRange.size() > 0) {
+    		
+    		int mapCols;
+    		int exsitPointIndex;
+    		int critterIndex;
+    		int[] exsitPoint;
+    		int firstCritterIndex;
+    		
+    		MapFile readMap;
+    		readMap = new MapFile(MapNum);
+    		exsitPoint = readMap.getExitPos();
+    	    mapCols= readMap.getCols();
+
+    	 exsitPointIndex =DrawMap.coordinateConverter(exsitPoint[0], exsitPoint[1],mapCols);
+    	
+            Iterator<Critter> iterator = crittersInRange.iterator();
+            Critter nearestToEndCritter = iterator.next();
+            
+            while (iterator.hasNext()) {
+            	
+                Critter c = iterator.next();
+                
+               firstCritterIndex= DrawMap.coordinateConverter(nearestToEndCritter.getPosX(), nearestToEndCritter.getPosY(), mapCols);
+                critterIndex= DrawMap.coordinateConverter(c.getPosX(), c.getPosY(), mapCols);
+                
+                if (Math.abs(exsitPointIndex - critterIndex) < Math.abs(exsitPointIndex - firstCritterIndex) ) {
+                	nearestToEndCritter = c;
+                }
+            }
+            return nearestToEndCritter;
+        } else {
+            return null;
+        }
     }
     
     /**
