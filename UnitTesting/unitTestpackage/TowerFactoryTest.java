@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class TowerFactoryTest {
 
 	@Test
-	public void getTowerTest(){
+	public void getTowerTest() {
 		Tower tower = TowerFactory.getInstance().getTower(TowerId.TOWERA1);
 		
     	assertTrue(tower.getClass().getName().equals("gamemodel.tower.TowerA"));

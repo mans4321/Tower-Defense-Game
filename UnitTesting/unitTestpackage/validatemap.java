@@ -128,23 +128,37 @@ public class validatemap {
 		EntranceExitInMiddlePathValidator middel;
 		cellLisTest= new ArrayList<CellState>();
 		
-		for (int i = 0; i < 9; i++) {
+		for (int i = 0; i < 450; i++) {
 			cellLisTest.add(CellState.GRASS );
-			}
+		}
 	
-		cellLisTest.set(0,CellState.ENTRANCE );
-		cellLisTest.set(8,CellState.EXIT );
 		
-		MapValidationManager mapValidator = new MapValidationManager(cellLisTest,6,6);
-		countMap = mapValidator.getCountMap();
+		for (int i = 0; i < 20; i++) {
+			cellLisTest.set(i,CellState.PATH );
+		}
+	
+		cellLisTest.set(16,CellState.ENTRANCE );
+		cellLisTest.set(11,CellState.EXIT );
+//		
+		
+//		
+//
+		MapValidationManager mapValidator = new MapValidationManager(cellLisTest,30,15);
+	   countMap = mapValidator.getCountMap();
+	   middel = new EntranceExitInMiddlePathValidator(cellLisTest, countMap);
+	   assertFalse(middel.validate());
+	   
+		
+		cellLisTest.set(16,CellState.PATH );
+		cellLisTest.set(11,CellState.PATH );
+		
+		
+	cellLisTest.set(0,CellState.ENTRANCE);
+	   cellLisTest.set(19,CellState.EXIT );
+	   mapValidator = new MapValidationManager(cellLisTest,30,15);
+	   countMap = mapValidator.getCountMap();
 		middel = new EntranceExitInMiddlePathValidator(cellLisTest, countMap);
 		assertTrue(middel.validate());
-		
-//	   cellLisTest.set(4,CellState.ENTRANCE );
-//	   mapValidator = new MapValidationManager(cellLisTest,6,6);
-//	   countMap = mapValidator.getCountMap();
-//	   middel = new EntranceExitInMiddlePathValidator(cellLisTest, countMap);
-//	   assertTrue(middel.validate());
 	}
 	
 	@Test
