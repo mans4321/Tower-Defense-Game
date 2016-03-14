@@ -1,20 +1,17 @@
 package unitTestpackage;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-
-
 import gamemodel.critter.Critter;
-import gamemodel.critter.CritterA;
-import gamemodel.critter.CritterB;
 import gamemodel.critter.CritterD;
 import gamemodel.critter.CritterStore;
-import gamemodel.wave.Wave;
+import gamemodel.tower.Tower;
+import gamemodel.tower.TowerA;
 import gamemodel.wave.Wave.Builder;
 
-public class WaveTest {
+public class CritterTest {
 
 	@Test
 	public void testaddingcrittertoythestore() {
@@ -49,6 +46,18 @@ public class WaveTest {
 		assertTrue(sizebeforadding< sizafteradding);
 		 //CritterStore.critters.remove (critterA);
 		
+	}
+	
+
+	@Test
+	public void testCritterGotHit(){
+		TowerA tower;
+		tower = new TowerA(1) ;
+		Critter critter = new Critter();
+		int health =critter.getHealth();
+		critter.getHitBy(tower);
+		
+		assertTrue(health > critter.getHealth() );
 	}
 	
 	

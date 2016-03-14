@@ -259,7 +259,20 @@ public class Tower implements TowerShootingBehavior, ActionListener {
      */
     @Override
     public Critter targetBasedOnStrongest(Set<Critter> crittersInRange) {
-        return null;
+    	
+    	if (crittersInRange.size() > 0) {
+             Iterator<Critter> iterator = crittersInRange.iterator();
+             Critter strongestCritter = iterator.next();
+             while (iterator.hasNext()) {
+                 Critter c = iterator.next();
+                 if (c.getHealth() > strongestCritter.getHealth()) {
+                	 strongestCritter = c;
+                 }
+             }
+             return strongestCritter;
+         } else {
+             return null;
+         }
     }
     
     /**
