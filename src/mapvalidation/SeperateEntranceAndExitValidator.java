@@ -1,7 +1,7 @@
 package mapvalidation;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 import gamemodel.gamemap.CellState;
 

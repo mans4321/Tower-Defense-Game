@@ -1,12 +1,9 @@
 package View;
-import javax.swing.*;
+
 
 import viewcontroller.GamePanel;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 /**
  * Class for the whole app windows used for the game section

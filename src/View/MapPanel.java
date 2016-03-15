@@ -1,25 +1,16 @@
 package View;
-import gamemodel.critter.*;
-import gamemodel.gamemap.*;
-import gamemodel.tower.*;
-import viewcontroller.DrawCritter;
-import viewcontroller.DrawMap;
-import viewcontroller.DrawTower;
+
 import viewcontroller.MapArea;
-import viewcontroller.PlaceTowerFinishedListener;
+
 import viewcontroller.MapFile;
 
 import javax.swing.*;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.HashMap;
+
 
 /**
+ * creating the map area view 
  * 
  * @author yongpinggao
  * @since 1/30/16

@@ -1,9 +1,8 @@
 package mapvalidation;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 
-import gamemodel.gamemap.CellState;
 
 /**
  * This class is to validate whether the path in map is consecutive.

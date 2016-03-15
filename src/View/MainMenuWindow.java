@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import gamemodel.gamemap.FileProcessing;
-import viewcontroller.Listener;
 import viewcontroller.MapChooseWindow;
 import viewcontroller.MapEditorWindow;
 

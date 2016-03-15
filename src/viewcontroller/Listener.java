@@ -3,11 +3,8 @@ package viewcontroller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
-import View.MainMenuWindow;
-import gamemodel.gamemap.FileProcessing;
+
 import gamemodel.tower.TowerChosenListener;
 import gamemodel.tower.TowerId;
 import gamemodel.tower.TowerManipulationListener;

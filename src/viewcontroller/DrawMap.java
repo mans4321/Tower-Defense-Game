@@ -1,14 +1,13 @@
 package viewcontroller;
-import gamemodel.critter.*;
+
 import gamemodel.gamemap.*;
-import gamemodel.tower.*;
+
 
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
+
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
 
 /**
  * This class draws the tile map for the game

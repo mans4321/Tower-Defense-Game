@@ -1,7 +1,6 @@
 package mapvalidation;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import gamemodel.gamemap.CellState;
 
@@ -18,7 +17,7 @@ import gamemodel.gamemap.CellState;
 public class NoEntranceNoExitMoreEntranceMoreExitValidator implements MapValidator{
 
     private ArrayList<CellState> cellList;
-    private int numberOfEntranceOrExit;
+
     
     /**
      * {@inheritDoc}

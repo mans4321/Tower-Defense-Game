@@ -1,7 +1,7 @@
 package gamemodel.gamemap;
 import javax.swing.*;
 
-import gamemodel.tower.TowerId;
+
 
 import java.awt.*;
 import java.util.HashMap;

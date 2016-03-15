@@ -5,7 +5,7 @@ import gamemodel.tower.Tower;
 import viewcontroller.DrawMap;
 
 import java.awt.*;
-import java.net.URL;
+
 import java.util.ArrayList;
 
 /**

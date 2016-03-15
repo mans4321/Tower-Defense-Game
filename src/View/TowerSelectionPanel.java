@@ -1,17 +1,12 @@
 package View;
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
-import gamemodel.tower.TowerChosenListener;
 import gamemodel.tower.TowerId;
 import gamemodel.tower.TowerImageCollection;
-import gamemodel.tower.TowerSelectionListener;
+
 import viewcontroller.Listener;
 
 /**
