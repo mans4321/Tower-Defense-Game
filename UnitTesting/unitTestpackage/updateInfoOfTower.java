@@ -16,7 +16,8 @@ import gamemodel.tower.TowerId;
  * test update Tower information
  * 
  * @author m_lzahra
- *
+ *@version 1.0
+ *@since 14/2/2016
  */
 public class updateInfoOfTower {
 

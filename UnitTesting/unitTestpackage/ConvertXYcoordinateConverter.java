@@ -10,7 +10,8 @@ import viewcontroller.DrawMap;
  * test coordinate converter from x and y coordinate to index and vice versa
  * 
  * @author m_lzahra
- *
+ *@version 1.0
+ *@since 14/2/2016
  */
 public class ConvertXYcoordinateConverter {
  
