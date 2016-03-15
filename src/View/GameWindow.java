@@ -31,7 +31,10 @@ public class GameWindow extends BaseWindow {
 
 
     }
-
+   /**
+    * getter for gmaePanel
+    * @return gmaePanel
+    */
 	public GamePanel getGamePanel() {
 		return gamePanel;
 	}

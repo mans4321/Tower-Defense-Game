@@ -7,6 +7,13 @@ import java.awt.image.ImageObserver;
 
 import gamemodel.critter.Critter;
 
+/**
+ * draw a critters 
+ * 
+ *@author m_lzahra
+ *@version 2.0 
+ *@since 14/3/2016
+ */
 public class DrawCritter {
 	
 	

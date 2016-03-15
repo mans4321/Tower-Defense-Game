@@ -57,7 +57,10 @@ public class MapPanel extends JPanel {
         add(mapArea, c);
     }
 
-    
+    /**
+     * getter for mapFile
+     * @return mapFile 
+     */
 	public MapFile getReadMap() {
 		return readMap;
 	}

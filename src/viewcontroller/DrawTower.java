@@ -15,6 +15,13 @@ import gamemodel.tower.Tower;
 import gamemodel.tower.TowerId;
 import gamemodel.tower.TowerImageCollection;
 
+/**
+ * draw a Tower, tower range, and tower missiles 
+ * 
+ *@author m_lzahra
+ *@version 2.0 
+ *@since 14/3/2016
+ */
 public class DrawTower {
 	
 	

@@ -70,6 +70,10 @@ public class TowerSelectionPanel extends JPanel {
 
     }
 
+    /**
+     * getter for sell and upgrade listener
+     * @return listener 
+     */
     public Listener getListener() {
 		return listener;
 	}

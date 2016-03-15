@@ -81,7 +81,10 @@ public class TowerUpgradeSellPanel extends JPanel{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
     }
-
+   /**
+    *getter for the sell and upgrade listener  
+    * @return listener
+    */
 	public Listener getListener() {
 		return listener;
 	}

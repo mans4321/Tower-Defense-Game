@@ -9,10 +9,16 @@ import gamemodel.gamemap.GameMap;
 import gamemodel.gamemap.GameMapCollection;
 import gamemodel.tower.Tower;
 
+/**
+ * A class to read map for Json file 
+ * @author m_lzahra
+ *@since 13/3/2016
+ *@version 1.0
+ */
 public  class MapFile { 
    
-	 private int rows;
-	 private int cols;
+	 private int mapRows;
+	 private int mapCols;
 	
 	 private ArrayList<CellState> cellList;
 	 private ArrayList<Integer> pathList;
@@ -29,7 +35,10 @@ public  class MapFile {
 		 readSpecificMapFromFile( mapNum);
 		 
 	 }
-	 
+	 /**
+	  * read specific map from json file
+	  * @param mapNum map number
+	  */
 	public void  readSpecificMapFromFile(int mapNum){	  
 	     
    	 // read data from saved files
@@ -38,23 +47,23 @@ public  class MapFile {
      
        pathList = new ArrayList<>();
        cellList = map.getCells();
-       cols = map.getmCols();
-       rows = map.getmRows();
+       mapCols = map.getmCols();
+       mapRows = map.getmRows();
        towerMap = new HashMap<>();
 
        //Find the path, entrance and exit cell
        for(int i = 0; i < cellList.size() ; i++) {
            if (cellList.get(i) == CellState.ENTRANCE) { // Entrance -> indexEntrance
-               extrancePos = DrawMap.indexConverter(i, cols);
+               extrancePos = DrawMap.indexConverter(i, mapCols);
            } else if (cellList.get(i) == CellState.PATH) { // PATH -> pathList
                pathList.add(i);
            } else if (cellList.get(i) == CellState.EXIT) { // Exit -> indexExit
-               exitPos = DrawMap.indexConverter(i, cols);
+               exitPos = DrawMap.indexConverter(i, mapCols);
            }
    	
          
    }
-       mapArea = new MapArea(rows , cols , cellList, towerMap);
+       mapArea = new MapArea(mapRows , mapCols , cellList, towerMap);
    }
 	
 
@@ -92,9 +101,12 @@ public  class MapFile {
     public ArrayList<Integer> getPathList() {
         return pathList;
     }
-
+/**
+ * 
+ * @return number of columns 
+ */
 	public int getCols() {
-		return cols;
+		return mapCols;
 	}
 
 }

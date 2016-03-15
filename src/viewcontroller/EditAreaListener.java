@@ -25,9 +25,14 @@ import gamemodel.gamemap.GameMapCollection;
 import mapvalidation.MapValidationManager;
 
 /**
- * Create the map based on the places where the user clicks
- * @author yongpinggao
+ *  listener for the map editor area.
+ *<p>
+ *This class responsible for change cells status when the palyer press the mouse on the cell.
+ *Also it continues button listener for saving and discard map.
  *
+ * @author yongpinggao
+ *@since 10/3/2016 
+ *@version 1.0
  */
 public class EditAreaListener extends JPanel implements MouseListener, ActionListener {
 	
@@ -41,12 +46,15 @@ public class EditAreaListener extends JPanel implements MouseListener, ActionLis
     private ArrayList<CellState> cellList;
     private GameMap aMap;
     
+
     /**
      * Constructor, uses mouse listeners to track places where user is clicking
      * Turns the click into different types of tiles for the map and display the new images
-     * @param mapRows 
+     * @param mapRows number of rows 
+     * @param mapCols number of columns 
+     * @param mapNum  map number
+     * @param cellList cell states 
      */
-    
     public EditAreaListener(int mapRows, int mapCols, int mapNum, ArrayList<CellState> cellList){
     	
     	this.mapRows = mapRows;
@@ -56,6 +64,10 @@ public class EditAreaListener extends JPanel implements MouseListener, ActionLis
     	addMouseListener(this);
     }
     
+    /**
+     * Overrides mousePressed
+     * {@inheritDoc}
+     */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		
@@ -90,7 +102,10 @@ public class EditAreaListener extends JPanel implements MouseListener, ActionLis
          }
      }
 	
-	
+    /**
+     * Overrides actionPerformed
+     * {@inheritDoc}
+     */
 	 @Override
 	    public void actionPerformed(ActionEvent e) {
 	
@@ -163,6 +178,7 @@ public class EditAreaListener extends JPanel implements MouseListener, ActionLis
 	    boolean checkPathValidate() {
 	        return true;
 	    }
+	    
 	    /**
 	     * {@inheritDoc}
 	     */
@@ -170,6 +186,7 @@ public class EditAreaListener extends JPanel implements MouseListener, ActionLis
 	    public Dimension getPreferredSize() {
 	        return new Dimension(DrawMap.CELL_SIZE * mapCols, DrawMap.CELL_SIZE * mapRows);
 	    }
+	    
 	 /**
 	  * {@inheritDoc}
 	  */
@@ -178,6 +195,7 @@ public class EditAreaListener extends JPanel implements MouseListener, ActionLis
 	        super.paintComponent(g);
 	        DrawMap.drawMap(g, mapCols, mapRows, cellList, this);
 	    }
+	    
 	    /**
 	     * Clean the map so the user can start a new map
 	     */
@@ -276,17 +294,31 @@ public class EditAreaListener extends JPanel implements MouseListener, ActionLis
 	    }
 	    
 	    
-	    
+	  /**
+       * {@inheritDoc}
+	   */  
 	public void mouseClicked(MouseEvent e) {
 	}
+	 /**
+	  * {@inheritDoc}
+	  */
 	public void mouseEntered(MouseEvent e) {
 	}
+	 /**
+	  * {@inheritDoc}
+	  */
 	public void mouseExited(MouseEvent e){	
 	}
+	 /**
+	  * {@inheritDoc}
+	  */
 	public void mouseReleased(MouseEvent e) {
 		
 	}
-
+	
+	 /**
+	  * getter for the cell states 
+	  */
 	public ArrayList<CellState> getCellList() {
 		return cellList;
 	}
