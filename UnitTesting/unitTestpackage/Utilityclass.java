@@ -9,25 +9,40 @@ import org.junit.Test;
 
 import utility.Utility;
 
+/**
+ * test Utility class 
+ * 
+ * @author m_lzahra
+ *
+ */
 public class Utilityclass {
 
 	
 	private String[] arr;
 	
-	
+	/**
+	 * setting values 
+	 */
 	@Before
-	public void beforeTest(){
+	public void setValues() {
+		
 		arr = new String[]{"11","21","41","31","1"};
 	}
 	
+	/**
+	 * test get the maximum values function
+	 */
 	@Test
-	public void maxValueTest(){
+	public void maxValueTest() {
+		
 		assertEquals(41,Utility.getMaxValueFrom(arr));
 	}
 	
-	
+	/**
+	 * test get scaled dimension
+	 */
 	@Test
-	public void getScaledDimension(){
+	public void getScaledDimension() {
 		
 		Dimension imgSize = new Dimension(500, 100);
 		Dimension boundary = new Dimension(200, 200);
@@ -38,7 +53,4 @@ public class Utilityclass {
 		
 		
 	}
-	
-	
-	
 }

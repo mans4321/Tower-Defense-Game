@@ -12,13 +12,21 @@ import gamemodel.tower.Tower;
 import gamemodel.tower.TowerFactory;
 import gamemodel.tower.TowerId;
 
+/**
+ * test update Tower information
+ * 
+ * @author m_lzahra
+ *
+ */
 public class updateInfoOfTower {
 
 	Tower tower ;
 	EndPanel endPanel;
 	TowerId id;
 	TowerSpecificationPanel towerSpecification;
-	
+	/**
+	 * setting the values for the test;
+	 */
 	@Before
 	public void setValue(){
 		
@@ -27,7 +35,9 @@ public class updateInfoOfTower {
 		 towerSpecification = new TowerSpecificationPanel();
 	}
 	
-	
+	/**
+	 * test set tower buy price
+	 */
 	@Test
 	public void setBuyPrice() {
 		endPanel.getTowerSpecificationPanel().setBuyPrice(tower.getBuyPrice());
@@ -35,7 +45,9 @@ public class updateInfoOfTower {
 		double buyPrice = endPanel.getTowerSpecificationPanel().getBuyPrice();
 		assertTrue(towerBuyPrice == buyPrice);
 	}
-	
+	/**
+	 * test set tower SellPrice
+	 */
 	@Test
 	public void setSellPrice() {
 	         endPanel.getTowerSpecificationPanel().setSellPrice(tower.getSellPrice());
@@ -46,6 +58,9 @@ public class updateInfoOfTower {
 			
 	}
 	
+	/**
+	 * test set tower Power
+	 */
 	@Test
 	public void setPower() {
 		 endPanel.getTowerSpecificationPanel().setPower(tower.getPower());
@@ -55,6 +70,9 @@ public class updateInfoOfTower {
 			assertTrue(towerpower == pwer);
 	}
 	
+	/**
+	 * test set tower Range
+	 */
 	@Test
 	public void setRange() {
 		 endPanel.getTowerSpecificationPanel().setRange(tower.getRange());
@@ -64,6 +82,9 @@ public class updateInfoOfTower {
 			assertTrue(towerrange == range);
 	}
 	
+	/**
+	 * test set  tower rate of fire 
+	 */
 	@Test
 	public void setRateOfFire() {
 		endPanel.getTowerSpecificationPanel().setRateOfFire(tower.getRateOfFire());

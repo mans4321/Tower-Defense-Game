@@ -11,7 +11,13 @@ import org.junit.Test;
 import gamemodel.critter.Critter;
 import gamemodel.critter.CritterA;
 import gamemodel.tower.TowerA;
-
+/**
+ * test tower shooting strategies 
+ * 
+ * @author m_lzahra
+ *@version 1.0
+ *@since 14/3/2016
+ */
 public class TowerTest {
 	
 	CritterA crriter1;
@@ -19,6 +25,9 @@ public class TowerTest {
 	Set<Critter> crittersInRange;
 	TowerA tower ;
 	
+	/**
+	 * setting the critters to test tower strategies
+	 */
 	@Before
 	public void setValues(){
 		
@@ -39,23 +48,31 @@ public class TowerTest {
 		
 		tower = new TowerA(1);
 	}
-
+	
+	/**
+	 * testing target based on weakest shooting strategy
+	 */
 	@Test
-	public void testtargetBasedOnWeakest() {
+	public void testTargetBasedOnWeakest() {
 		
 		
 		assertTrue(crriter2 == tower.targetBasedOnWeakest(crittersInRange));
 	}
 	
+	/**
+	 *  testing target based on strongest shooting strategy
+	 */
 	@Test
-	public void targetBasedOnStrongest() {
+	public void testTargetBasedOnStrongest() {
 		
 		assertTrue(crriter1 == tower.targetBasedOnStrongest(crittersInRange));
 	}
 	
+	/**
+	 * testing target Based on nearest  shooting strategy
+	 */
 	@Test
-	public void targetBasedOnStronffgest()
-	{
+	public void testTargetBasedOnNearestest() {
            
 		assertTrue(crriter2 == tower.targetBasedOnNearestToEnd(crittersInRange, 0));
 }

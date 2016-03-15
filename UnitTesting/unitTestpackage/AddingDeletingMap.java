@@ -7,43 +7,55 @@ import org.junit.Test;
 
 import gamemodel.gamemap.GameMap;
 import gamemodel.gamemap.GameMapCollection;
-
+/**
+ * Testing adding and delete map from GameMap class
+ * 
+ *@author m_lzahra
+ *@since 15/2/2016
+ *@version 1.0
+ */
 public class AddingDeletingMap {
 
-	
+	/**
+	 * test adding map
+	 */
 
 	@Test
 	public void testAddMap() {
 		
-		GameMapCollection mapcoll = new GameMapCollection();
+		GameMapCollection mapCollection = new GameMapCollection();
 		
 		GameMap mpa = new GameMap(2,2,null,"MANS");
-		int beforadding = mapcoll.getMaps().size();
-		mapcoll.addMap(mpa);
-		int afteradding = mapcoll.getMaps().size();
+		int beforAdding = mapCollection.getMaps().size();
 		
-		assertTrue(beforadding< afteradding);
+		mapCollection.addMap(mpa);
+		int afterAdding = mapCollection.getMaps().size();
 		
-		mapcoll.getMaps().remove(mpa);
+		assertTrue(beforAdding< afterAdding);
+		
+		mapCollection.getMaps().remove(mpa);
 		
 	}
-
+   
+	/**
+	 * test deleting map
+	 */
 	@Test
 	public void testDeleteMap() {
-		GameMapCollection mapcoll = new GameMapCollection();
+		GameMapCollection mapCollection = new GameMapCollection();
 		
 		GameMap mpa = new GameMap(2,2,null,"MANS");
-		int beforadding = mapcoll.getMaps().size();
+		int beforAdding = mapCollection.getMaps().size();
 		
-		mapcoll.addMap(mpa);
-		int index = mapcoll.getMaps().indexOf(mpa);
+		mapCollection.addMap(mpa);
+		int index = mapCollection.getMaps().indexOf(mpa);
 		
 		
 		
-		mapcoll.deleteMap(index);
-		int afteradding = mapcoll.getMaps().size();
+		mapCollection.deleteMap(index);
+		int afterAdding = mapCollection.getMaps().size();
 		
-		assertTrue(beforadding == afteradding);
+		assertTrue(beforAdding == afterAdding);
 	
 	}
 

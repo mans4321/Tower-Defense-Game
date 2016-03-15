@@ -6,26 +6,34 @@ import org.junit.Test;
 
 import viewcontroller.DrawMap;
 
+/**
+ * test coordinate converter from x and y coordinate to index and vice versa
+ * 
+ * @author m_lzahra
+ *
+ */
 public class ConvertXYcoordinateConverter {
-
+ 
+	/**
+	 * test coordinate converter from x and y coordinate to index
+	 */
 	@Test
-	public void test() {
-		
-		
-		int ex = 0 ;
-		
-		int res= DrawMap.coordinateConverter(0, 0, 10);
-		
-		assertTrue(ex == res);
-		
-		//fail("Not yet implemented");
-	}
+	public void testIndex() {
 	
-	@Test
-	public void testgetxy() {
+		int expected = 0 ;	
+		int result= DrawMap.coordinateConverter(0, 0, 10);
 		
+		assertTrue(expected == result);
+	}
+	/**
+	 * 
+	 * test coordinate converter from index to x and y coordinate 
+	 */
+	@Test
+	public void testXYCoordinate() {
 		
 		int[] arr = DrawMap.indexConverter(0, 10);
+		
 		assertEquals(arr[0], 0);
 		assertEquals(arr[1], 0);
 	}

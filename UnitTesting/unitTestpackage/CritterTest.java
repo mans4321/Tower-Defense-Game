@@ -11,48 +11,66 @@ import gamemodel.tower.Tower;
 import gamemodel.tower.TowerA;
 import gamemodel.wave.Wave.Builder;
 
+/**
+ * testing operation on Critters
+ *  
+ * @author m_lzahra
+ *@version 2.0
+ *@since 14/3/2016
+ */
 public class CritterTest {
-
+ 
+	/**
+	 * test adding critter to critter store 
+	 */
 	@Test
-	public void testaddingcrittertoythestore() {
+	public void testAddingCritterToStore() {
 		
-		Critter crittera = new Critter();
+		Critter critterA = new Critter();
 	
 		
-       int sizebeforadding= CritterStore.critters.size();
+       int sizeBeforAddingCritter = CritterStore.critters.size();
        
        CritterD critterD = new CritterD();
        CritterStore.critters.add(critterD);
       
-       int sizafteradding = CritterStore.critters.size();
+       int sizeAfterAddingCritter = CritterStore.critters.size();
        
-       assertTrue(sizebeforadding< sizafteradding);
+       assertTrue(sizeBeforAddingCritter< sizeAfterAddingCritter);
         
        CritterStore.critters.remove (critterD);
-        
-		//fail("Not yet implemented");
+
 	}
 	
+	/**
+	 * test building a wave of critters
+	 */
 	@Test
-	public void testbuildingcrittero() {
+	public void testBuildingCritter() {
 		
 		 
-		Builder buildcrittera = new Builder();
-		int sizebeforadding= CritterStore.critters.size();
+		Builder buildCritterA = new Builder();
 		
-		buildcrittera.critterA(2);
-		int sizafteradding = CritterStore.critters.size();
+		int sizeBeforAddingCritterWave= CritterStore.critters.size();
 		
-		assertTrue(sizebeforadding< sizafteradding);
-		 //CritterStore.critters.remove (critterA);
+		buildCritterA.critterA(2);
+		
+		int sizeAfterAddingCritterWave = CritterStore.critters.size();
+		
+		assertTrue(sizeBeforAddingCritterWave < sizeAfterAddingCritterWave);
 		
 	}
 	
 
+	/**
+	 * test the effect on critter when it get hit by a tower 
+	 */
 	@Test
-	public void testCritterGotHit(){
+	public void testCritterGotHit() {
+		
 		TowerA tower;
 		tower = new TowerA(1) ;
+		
 		Critter critter = new Critter();
 		int health =critter.getHealth();
 		critter.getHitBy(tower);
