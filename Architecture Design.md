@@ -41,9 +41,9 @@
 - viewcontroller
     1. defines all the window and panel view
     2. We use observer design parttern to handle all the connections.
-    3. defines all the game logic
+   
     
-
-
+- controller
+ 1. defines all the game logic
    
     
