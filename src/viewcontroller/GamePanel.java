@@ -385,15 +385,18 @@ public class GamePanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
 
+    	TRY_Builder builder = new WaveBilder();
+    	TRY_Diractor wavesss = new TRY_Diractor(builder);
+    	wavesss.buildWave();
+    	
         if (!isGameOver) {
             wavePrepareTimer.stop();
             if (waveNum <= WaveStore.waves.size()) {
                 // wave start!
                 topPanel.getDataPanel().setWaveNum(waveNum);
                 int[] num = WaveStore.waves.get(waveNum);
-                new Wave.Builder().critterA(num[0]).critterB(num[1]).critterC(num[2]).critterD(num[3])
-                        .build()
-                        .addWaveStartListener(new WaveStartListener() {
+                
+                wavesss.addWaveStartListener(new WaveStartListener() {
                         @Override
                         public void initCritterPos(Critter c) {
                             c.setVisible(true);
