@@ -52,12 +52,14 @@ import gamemodel.tower.TowerId;
         
       
 
-        public MapArea(int rows, int cols, ArrayList<CellState> cellList, HashMap<Integer, Tower> towerMap) {
+        public MapArea(final int rows, final int cols, final ArrayList<CellState> cellList, final HashMap<Integer, Tower> towerMap) {
         
-        	this.cols= cols;
-        	this.rows= rows;
-        	this.cellList= cellList;
+        	this.cols = cols;
+        	this.rows = rows;
+        	this.cellList = cellList;
         	this.towerMap = towerMap;
+        	
+        	
         	
         	//listener = new MapArea_Listener(cols, cols, cellList, towerMap);
         	  currentTowerID = TowerId.TOWERNULL;
