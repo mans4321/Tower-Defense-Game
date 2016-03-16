@@ -1,30 +1,56 @@
 package controller;
 
-import model.tower.shootingstrategy.*;
-import protocol.DrawingDataPanelDelegate;
-import protocol.DrawingMapInGameDelegate;
-import protocol.DrawingPanelDelegate;
-import model.critter.Critter;
-import model.critter.CritterCollection;
-import model.map.CellState;
-import model.map.GameMap;
-import model.tower.Tower;
-import model.tower.TowerCollection;
-import model.tower.TowerFactory;
-import model.tower.TowerName;
-import model.drawing.GameMapDrawing;
-import model.wave.WaveFactory;
-import model.bankaccount.*;
-import view.maingameview.MainGameView;
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.*;
+import model.bankaccount.BankAccount;
+import model.critter.Critter;
+import model.critter.CritterCollection;
+import model.drawing.GameMapDrawing;
+import model.map.CellState;
+import model.map.GameMap;
+import model.tower.shootingstrategy.TargetBasedOnWeakest;
+import model.tower.shootingstrategy.TargetBasedOnStrongest;
+import model.tower.shootingstrategy.TargetBasedOnNearest;
+import model.tower.shootingstrategy.TowerShootingStrategy;
+import model.tower.Tower;
+import model.tower.TowerCollection;
+import model.tower.TowerFactory;
+import model.tower.TowerName;
+import model.wave.WaveFactory;
+import protocol.DrawingDataPanelDelegate;
+import protocol.DrawingMapInGameDelegate;
+import protocol.DrawingPanelDelegate;
+import view.maingameview.MainGameView;
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * This controller will start all the logic for the view elements and start the models.
+ * 
+ * @author yongpinggao
+ * @see model.map.GameMap
+ * @see model.critter.Critter
+ * @see model.bankaccount.BankAccount
+ * @see model.critter.Critter
+ * @see model.critter.CritterCollection
+ * @see model.drawing.GameMapDrawing
+ * @see model.map.CellState
+ * @see model.map.GameMap
+ * @see model.tower.shootingstrategy.TargetBasedOnWeakest
+ * @see model.tower.shootingstrategy.TargetBasedOnStrongest
+ * @see model.tower.shootingstrategy.TargetBasedOnNearest
+ * @see model.tower.shootingstrategy.TowerShootingStrategy
+ * @see model.tower.Tower
+ * @see model.tower.TowerCollection
+ * @see model.tower.TowerFactory
+ * @see model.tower.TowerName
+ * @see model.wave.WaveFactory
+ * @see protocol.DrawingDataPanelDelegate
+ * @see protocol.DrawingMapInGameDelegate
+ * @see protocol.DrawingPanelDelegate
+ * @see view.maingameview.MainGameView
  */
 public class MainGameController {
 
@@ -50,8 +76,11 @@ public class MainGameController {
 
     private int coins = 10;
 
-
-    public MainGameController(GameMap gameMap){
+    /**
+     * Contructor method, will set up internal properties and call internal initializator methods
+     * @param  gameMap The select map by the player
+     */
+    public MainGameController(GameMap gameMap) {
         mainGameView = new MainGameView();
         this.gameMap = gameMap;
         drawingMapInGameDelegate = mainGameView.mapView.mapPanel;
@@ -70,14 +99,25 @@ public class MainGameController {
         initFunctionalButtonsInTopPanel();
     }
 
+    /**
+     * Instantiates the bank account model and set the initial balance
+     * Also updates the panel that shows the balance
+     */
     private void initBankAccount() {
         account = new BankAccount();
         account.setBalance(BankAccount.INITIAL_BALANCE);
         drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
     }
 
+    /**
+     * Adds the logic functionality for each button in the top panel
+     * @see  java.awt.event.ActionListener
+     */
     private void initFunctionalButtonsInTopPanel() {
-        // waveStartButton
+        
+        /**
+         * Creates Action listener for the wave start button
+         */
         mainGameView.topView.gameDataPanel.waveStartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -89,17 +129,24 @@ public class MainGameController {
             }
         });
 
-        // strategy button 1, 2, 3:
+        /**
+         * Creates Action listener for strategy selection for towers. 
+         * This sets tower strategies to target based on weakest
+         */
         mainGameView.topView.gameDataPanel.TargetBasedOnWeakestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                currentStrategy = new TargetBasedOnStrongest();
+                currentStrategy = new TargetBasedOnWeakest();
                 for(Tower t : towerCollection.getTowers().values()){
-                    t.setShootingStrategy(new TargetBasedOnWeakest());
+                    t.setShootingStrategy(currentStrategy);
                 }
             }
         });
 
+        /**
+         * Creates Action listener for strategy selection for towers. 
+         * This sets tower strategies to target based on strongest
+         */
         mainGameView.topView.gameDataPanel.TargetBasedOnStrongestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -110,6 +157,10 @@ public class MainGameController {
             }
         });
 
+        /**
+         * Creates Action listener for strategy selection for towers. 
+         * This sets tower strategies to target based on nearest
+         */
         mainGameView.topView.gameDataPanel.TargetBasedOnNearestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -120,6 +171,9 @@ public class MainGameController {
             }
         });
 
+        /**
+         * Creates Action listener for exit button
+         */
         mainGameView.topView.gameDataPanel.exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -131,26 +185,38 @@ public class MainGameController {
 
     }
 
+    /**
+     * Initiates the needed values of critters for the wave
+     * @param waveNum index for a preexistent type of wave specified in the factory
+     */
     private void initCrittersForWave(int waveNum) {
         CritterCollection.clearAllCritters();
-        for(Tower t: towerCollection.getTowers().values()) {
+        for (Tower t: towerCollection.getTowers().values()) {
             t.getCrittersInRange().clear();
         }
         WaveFactory.sharedInstance().getWave(waveNum);
         CritterCollection.setGameMapForCritters(gameMap);
     }
 
+    /**
+     * Adds the logic functionality for each button in the side panel
+     * @see  java.awt.event.ActionListener
+     */
     private void initSellUpgradeButtons() {
+        
+        /**
+         * Creates action listener for sell tower button on the side panel
+         */
         mainGameView.endView.towerUpgradeSellPanel.upgradeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(currentTower != null){
+                if (currentTower != null){
                     int level = currentTower.getLevel();
-                    if(level < Tower.MAX_LEVEL){
+                    if (level < Tower.MAX_LEVEL){
                         double oldPrice = currentTower.getBuyPrice();
                         currentTower.setLevel(++level);
                         double newPrice = currentTower.getBuyPrice();
-                        if(newPrice - oldPrice > account.getBalance()) {
+                        if (newPrice - oldPrice > account.getBalance()) {
                             drawingDataPanelDelegate.reloadInfoDataView("Need more gold");
                             currentTower.setLevel(--level);
                         } else {
@@ -164,6 +230,10 @@ public class MainGameController {
                 }
             }
         });
+
+        /**
+         * Creates action listener for upgrade tower button on the side panel
+         */
         mainGameView.endView.towerUpgradeSellPanel.sellButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -180,7 +250,7 @@ public class MainGameController {
         });
     }
 
-    private void refreshGamePanelsView(){
+    private void refreshGamePanelsView() {
         drawingMapInGameDelegate.refreshMap(gameMap, towerCollection);
         drawingSpecificationPanelDelegate.reloadPanelBasedOnTower(currentTower);
         drawingSellUpgradePanelDelegate.reloadPanelBasedOnTower(currentTower);
@@ -204,7 +274,7 @@ public class MainGameController {
                     if (e.getButton() == MouseEvent.BUTTON1) { // User left click map cells
 
                         // 1. if it is "toPlaceTower" state:  toPlaceTower -> Tower state
-                        if(cellList.get(index) == CellState.ToPlaceTower){
+                        if (cellList.get(index) == CellState.ToPlaceTower) {
                             account.withDraw(currentTower.getBuyPrice());
                             drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
                             cellList.set(index, CellState.Tower);
