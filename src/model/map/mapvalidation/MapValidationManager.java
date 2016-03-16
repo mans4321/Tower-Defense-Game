@@ -270,7 +270,11 @@ public class MapValidationManager {
         } else if (! new ExtraPathValidator(countMap, cellList).validate()) {
             errorMessage = "There is extra path in your map!";
             return false;
+<<<<<<< HEAD:src/model/map/mapvalidation/MapValidationManager.java
         } else if (! new ContinousPathValidator(countMap,cellList,cols).validate()) {
+=======
+        } else if (! new ContinousPathValidator(countMap).validate()) {
+>>>>>>> d83c4645690cc123e1d6c098a750f6fb0731193b:src/model/map/mapvalidation/MapValidationManager.java
             errorMessage = "Your path is not continous!";
             return false;	
         } else if (! new SeperateEntranceAndExitValidator(cols, cellList).validate()) {
