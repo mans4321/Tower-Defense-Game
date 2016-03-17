@@ -132,7 +132,7 @@ public class MainGameController {
          * Creates Action listener for strategy selection for towers. 
          * This sets tower strategies to target based on weakest
          */
-        mainGameView.topView.gameDataPanel.TargetBasedOnWeakestButton.addActionListener(new ActionListener() {
+        mainGameView.topView.gameDataPanel.targetBasedOnWeakestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 currentStrategy = new TargetBasedOnWeakest();
@@ -146,7 +146,7 @@ public class MainGameController {
          * Creates Action listener for strategy selection for towers. 
          * This sets tower strategies to target based on strongest
          */
-        mainGameView.topView.gameDataPanel.TargetBasedOnStrongestButton.addActionListener(new ActionListener() {
+        mainGameView.topView.gameDataPanel.targetBasedOnStrongestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 currentStrategy = new TargetBasedOnStrongest();
@@ -160,7 +160,7 @@ public class MainGameController {
          * Creates Action listener for strategy selection for towers. 
          * This sets tower strategies to target based on nearest
          */
-        mainGameView.topView.gameDataPanel.TargetBasedOnNearestButton.addActionListener(new ActionListener() {
+        mainGameView.topView.gameDataPanel.targetBasedOnNearestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 currentStrategy = new TargetBasedOnNearest();

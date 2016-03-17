@@ -1,12 +1,12 @@
 package view.maingameview;
 
 import view.BaseWindowView;
-
 import java.awt.*;
 
-
 /**
- * Created by yongpinggao on 3/13/16.
+ * Class to define the view for game play.
+ * @author yongpinggao 
+ * @version  1.0 3/13/16.
  */
 public class MainGameView extends BaseWindowView {
 
@@ -21,6 +21,9 @@ public class MainGameView extends BaseWindowView {
     public EndView endView;
     public MapView mapView;
 
+    /**
+     * Constructor sets all views used in the game view.
+     */
     public MainGameView() {
         super("Tower Defense Game");
         topView = new TopView();
@@ -29,6 +32,9 @@ public class MainGameView extends BaseWindowView {
         initPanel();
     }
 
+    /**
+     * Creates game view and define positioning of the other panels.
+     */
     private void initPanel() {
         setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
         setLayout(null);

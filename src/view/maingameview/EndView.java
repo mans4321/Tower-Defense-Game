@@ -1,19 +1,24 @@
 package view.maingameview;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * Class for the tower management on the right side of the game view
+ * @author yongpinggao
+ * @version  1.0 3/13/16.
  */
-public class EndView extends JPanel{
+public class EndView extends JPanel {
 
     public TowerSpecificationPanel towerSpecificationPanel;
     public TowerUpgradeSellPanel towerUpgradeSellPanel;
 
-    public EndView(){
+    /**
+     * Contructor method starts and attachs buttons to the panel.
+     */
+    public EndView() {
         setLayout(new GridLayout(2,1));
-        towerUpgradeSellPanel= new TowerUpgradeSellPanel();
+        towerUpgradeSellPanel = new TowerUpgradeSellPanel();
         towerSpecificationPanel = new TowerSpecificationPanel();
         add(towerUpgradeSellPanel);
         add(towerSpecificationPanel);

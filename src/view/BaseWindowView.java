@@ -1,10 +1,12 @@
 package view;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 /**
- * Created by yongpinggao on 1/28/16.
+ * Class to create windows 
+ * @author yongpinggao 
+ * @version 1.0 1/28/16.
  */
 public class BaseWindowView extends JFrame {
 
@@ -16,22 +18,33 @@ public class BaseWindowView extends JFrame {
 
     private String titleName;
 
-
-
-    public BaseWindowView(String titleName){
+    /**
+     * Constructor for default window.
+     * @param titleName windows title
+     */
+    public BaseWindowView(String titleName) {
         width = WINDOW_WIDTH;
         height = WINDOW_HEIGHT;
         this.titleName = titleName;
         initWindow();
     }
-
-    public BaseWindowView(int width, int height, String titleName){
+    
+    /**
+     * Constructor for custom sized window.
+     * @param width window width
+     * @param height window height
+     * @param titleName title for window
+     */
+    public BaseWindowView(int width, int height, String titleName) {
         this.width = width;
         this.height = height;
         this.titleName = titleName;
         initWindow();
     }
-
+    
+    /**
+     * Generates a window using default properties.
+     */
     private void initWindow() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle(titleName);
@@ -40,7 +53,4 @@ public class BaseWindowView extends JFrame {
         this.pack();
         this.setLocationRelativeTo(null);
     }
-
-
-
 }

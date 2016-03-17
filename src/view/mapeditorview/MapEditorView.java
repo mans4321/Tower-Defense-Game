@@ -1,18 +1,22 @@
 package view.mapeditorview;
 
-
-import view.BaseWindowView;
 import java.awt.*;
+import view.BaseWindowView;
 
 /**
- * Created by yongpinggao on 1/24/16.
+ * Class for the map edition.
+ * @author yongpinggao 
+ * @version 1.0 1/24/16
  */
 public class MapEditorView extends BaseWindowView {
 
     public TopView topView;
     public MapView mapView;
 
-    public MapEditorView(){
+    /**
+     * Default constructor, starts view panels.
+     */
+    public MapEditorView() {
         super("Map Editor");
         topView = new TopView();
         mapView = new MapView();
@@ -20,9 +24,5 @@ public class MapEditorView extends BaseWindowView {
         Container c = this.getContentPane();
         c.add(topView, BorderLayout.PAGE_START);
         c.add(mapView, BorderLayout.LINE_START);
-
     }
-
-
 }
-
