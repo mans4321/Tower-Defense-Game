@@ -1,26 +1,67 @@
-#TowerDefenseGame_Group12
 
-##Architectural
+TowerDefenseGame_Group12
+Architectural
 
 MVC
+Packages
 
-## Model
-- Critter
-    1. Defines all the critters in the game.
-    2. All kinds of critter inherit from a base class: Critter.java.
-    3. CritterCollection save all the critters for each wave
-    4. Critter has a inner timer for keep counting times when it's attacted by tower with special effect.
+A- Boot
 
-- Tower
-    1. Defines all the towers in the game.
-    2. All kinds of towers are inherit from a base class: Tower.java
-    3. Tower has to implement 2 interface: one os for shooting behavior, another is for shooting effect.
-    4. TowerCollection is for save all the towers during the game
-    5. Tower factory is applied to factory design pattern to produce tower as needed
+1- Launch the game.
 
-- Map
-    1. handels all gamemap in the game
-    2. GameMapCollection saves all the maps that the user created
+B- Bankaccount:
 
+1. Defines the game’s currency  system.
 
+C- Tower:
+
+1. Defines all the tower model in the game.
+2. All the towers inherit from a base class: Tower.java.
+3. We used factory design pattern to "produce" Tower based on TowerID.
+4. Tower has to implement TowerShootingBehavior interface to define a tower's shooting behavior.
+5. We used a class called image collection to save all towers images. 
+
+D- Critter:
+
+1.  Defines all the critters in the game.
+2.  All kinds of critter inherit from a base class: Critter.java.
+3.  Critter has to implement CritterBehavior interface to define how a critter moves.
+
+E- Gamemap:
+
+1. Defines all the issues related to game map.
+2. Handles all behavior of saving a game map to a JSON file.
+3. Handles all behavior of loading a game map pf a JSON file.
+
+F- mapvalidation:
+
+1. Defines all the validation methods to validate a map.
+2. We use a manager class to handle all the validation.
+3. All the validator should implement MapValidator interface to define how to validate a map based on one specific problem.
+
+G- Wave:
+
+1. Defines how to generate waves.
+2. Waves are built by using builder pattern.
+
+H- Utility:
+
+1. Defines some utilities to ease the development and make code more readable.
+
+I- View:
+
+    Defines all the window and panel view.
+    The panel are divided to three main panels, Main window, Game window, and Map Editor Window.
+    Game window is divided to four sections, Game Area, Tower Selection Area, Tower Specifications Area, and Data Area.
+    Map Editor is dived to tow, map Editor Area, and Top Area to change map dimensions.
+
+J- Controller:
+
+    Defines all the game logic including listeners for mouse press and button click.
+    Control drawing all the elements for all the panels
+    Observer design pattern was used to notify the panels when change occurs.
+
+K- UnitTesting:
+
+    Testing the game logic and functions
 
