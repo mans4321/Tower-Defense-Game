@@ -1,13 +1,14 @@
 package view.maingameview;
 
+import java.awt.*;
+import javax.swing.*;
 import protocol.DrawingPanelDelegate;
 import model.tower.Tower;
 
-import javax.swing.*;
-import java.awt.*;
-
 /**
- * Created by yongpinggao on 3/13/16.
+ * Class for the representation of tower specification.
+ * @author yongpinggao
+ * @version 1.0 3/13/16
  */
 public class TowerSpecificationPanel extends JPanel implements DrawingPanelDelegate {
     public JLabel specificationLabel;
@@ -17,7 +18,10 @@ public class TowerSpecificationPanel extends JPanel implements DrawingPanelDeleg
     public JLabel powerLabel;
     public JLabel rateOfFireLabel;
 
-    public TowerSpecificationPanel(){
+    /**
+     * Default constructor. Sets all information to empty.
+     */
+    public TowerSpecificationPanel() {
         setBackground(Color.white);
         specificationLabel = new JLabel("");
         buyPriceLabel = new JLabel("");
@@ -33,13 +37,15 @@ public class TowerSpecificationPanel extends JPanel implements DrawingPanelDeleg
         add(rangeLabel);
         add(powerLabel);
         add(rateOfFireLabel);
-
-
     }
 
+    /**
+     * Method that will display the information of a certain tower.
+     * @param tower selected tower placed in the map
+     */
     @Override
     public void reloadPanelBasedOnTower(Tower tower) {
-        if (tower != null){
+        if (tower != null) {
             specificationLabel.setText(tower.getSpecification());
             buyPriceLabel.setText("Buy Price: " + tower.getBuyPrice()+"");
             sellPriceLabel.setText("Sell Price: " + tower.getSellPrice() + "");

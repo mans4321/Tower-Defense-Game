@@ -1,14 +1,13 @@
 package view.mapeditorview;
 
 import view.BaseWindowView;
-
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
 
 /**
- * Created by yongpinggao on 3/12/16.
+ * Class for the top view, use in the game play view.
+ * @author  yongpinggao
+ * @version  1.0 3/12/16
  */
 public class TopView extends JPanel {
 
@@ -22,13 +21,19 @@ public class TopView extends JPanel {
     public final static String[] widthStrings = {"5","10","15","20","25","30"};
     public final static String[] heightStrings = {"10","15"};
 
-    public TopView(){
+    /**
+     * Default constructor, sets default color, size and all labels.
+     */
+    public TopView() {
         this.setBackground(Color.DARK_GRAY);
         this.setPreferredSize(new Dimension(BaseWindowView.WINDOW_WIDTH, BaseWindowView.WINDOW_HEIGHT / 10));
         initComponents();
     }
 
-    void initComponents(){
+    /**
+     * Adds all the labels to the top view.
+     */
+    void initComponents() {
         widthList = new JComboBox(widthStrings);
         heightList = new JComboBox(heightStrings);
         widthLabel = new JLabel("Width:");
@@ -44,5 +49,4 @@ public class TopView extends JPanel {
         this.add(saveButton);
         this.add(discardButton);
     }
-
 }

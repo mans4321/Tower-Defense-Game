@@ -1,10 +1,12 @@
 package view.mainmenuview;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 /**
- * Created by yongpinggao on 3/12/16.
+ * Class to represent the main menu.
+ * @author yongpinggao 
+ * @version 1.0 3/12/16
  */
 public class MainMenuView extends JFrame {
 
@@ -14,11 +16,16 @@ public class MainMenuView extends JFrame {
     public JButton editorButton;
     public JButton startGameButton;
 
-
-    public MainMenuView(){
+    /**
+     * Default constructor, calls init.
+     */
+    public MainMenuView() {
         initMenuWindow();
     }
 
+    /**
+     * Creates the menu with default info.
+     */
     private void initMenuWindow() {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,5 +41,4 @@ public class MainMenuView extends JFrame {
         c.add(editorButton, new GridBagConstraints());
         c.add(startGameButton, new GridBagConstraints());
     }
-
 }

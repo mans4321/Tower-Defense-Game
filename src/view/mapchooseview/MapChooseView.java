@@ -1,12 +1,13 @@
 package view.mapchooseview;
 
+import java.awt.*;
+import javax.swing.*;
 import view.BaseWindowView;
 
-import javax.swing.*;
-import java.awt.*;
-
 /**
- * Created by yongpinggao on 3/12/16.
+ * Class for the map selection menu
+ * @author yongpinggao
+ * @version 1.0 3/12/16
  */
 public class MapChooseView extends BaseWindowView {
 
@@ -15,6 +16,10 @@ public class MapChooseView extends BaseWindowView {
     public JScrollPane pane;
     public JList list;
 
+    /**
+     * Constructs the list of options for maps.
+     * @param  listModel list of map options
+     */
     public MapChooseView(DefaultListModel listModel) {
         super(260, 200, "Choose a Map");
         startGameButton = new JButton("Start Game");
@@ -27,7 +32,5 @@ public class MapChooseView extends BaseWindowView {
         add(pane, BorderLayout.PAGE_START);
         add(editMapButton, BorderLayout.LINE_START);
         add(startGameButton, BorderLayout.LINE_END);
-
-
     }
 }
