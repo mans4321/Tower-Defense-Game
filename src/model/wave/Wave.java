@@ -26,7 +26,7 @@ public class Wave {
         /**
          * Build critterA with specific number
          * @param num the number of critterA
-         * @return
+         * @return critter wave 
          */
         public Wave.Builder critterA(int num) {
             for(int i = 0; i < num; ++i) {
@@ -38,7 +38,7 @@ public class Wave {
         /**
          * Build critterB with specific number
          * @param num the number of critterB
-         * @return
+         * @return critter wave 
          */
         public Wave.Builder critterB(int num) {
             for(int i = 0; i < num; ++i) {
@@ -50,7 +50,7 @@ public class Wave {
         /**
          * Build critterC with specific number
          * @param num the number of critterC
-         * @return
+         * @return critter wave 
          */
         public Wave.Builder critterC(int num) {
             for(int i = 0; i < num; ++i) {
@@ -60,9 +60,9 @@ public class Wave {
             return this;
         }
         /**
-         * Build critterµÄ with specific number
-         * @param num the number of critterµÄ
-         * @return
+         * Build critterÂµÃ„ with specific number
+         * @param num the number of critterÂµÃ„
+         * @return critter wave 
          */
         public Wave.Builder critterD(int num) {
             for(int i = 0; i < num; ++i) {
@@ -73,7 +73,7 @@ public class Wave {
         }
         /**
          * build wave
-         * @return 
+         * @return wave 
          */
         public Wave build() {
             return new Wave(this);
