@@ -10,19 +10,22 @@ import model.tower.TowerCollection;
  * @version 2.0 
  */
 public interface DrawingMapInGameDelegate extends DrawingMapDelegate{
-    /**
-     * refresh Map
+ 
+	/**
+	 * refresh Map
      * @param GameMap game map 
      * @param TowerCollection towerCollection
-     * /
+	 */
     void refreshMap(GameMap map, TowerCollection towerCollection);
+   
     /**
      * refresh Critters In Map
-     * /
+     */
     void refreshCrittersInMap();
+ 
     /**
      * refresh Map
      * @param TowerCollection towerCollection
-     * /
+     */
     void refreshShootingEffectInMap(TowerCollection towerCollection);
 }

@@ -9,10 +9,10 @@ import model.map.GameMap;
  * @version 2.0 
  */
 public interface DrawingMapDelegate {
-    /**
-     * refresh Map
-     * 
+ 
+	/**
+	 * refresh Map
      * @param GameMap game map
-     * /
+	 */
     void refreshMap(GameMap map);
 }
