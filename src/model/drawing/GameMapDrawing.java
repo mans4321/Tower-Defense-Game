@@ -13,12 +13,21 @@ import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 import java.util.Map;
 
-
 /**
- * Created by yongpinggao on 1/29/16.
+ *  game map drawing class 
+ *	@author yongpinggao
+ * @since 3/16/16.
+ * @version 2.0 
  */
 public class GameMapDrawing extends Drawing {
 
+	/**
+	 * draw map and tower
+	 * @param g Graphics
+	 * @param map map to draw
+	 * @param towerCollection all the towers to draw
+	 * @param observer
+	 */
     public static void drawMapAndTower(Graphics g, GameMap map, TowerCollection towerCollection, ImageObserver observer){
         Graphics2D g2d = (Graphics2D) g.create();
         ArrayList<CellState> cellList = map.getCells();
@@ -61,6 +70,13 @@ public class GameMapDrawing extends Drawing {
         g2d.dispose();
     }
 
+    /**
+     * draw tower range for every tower
+     * @param g graphics 
+     * @param towerCollection all the towers
+     * @param map game map to draw
+     * @param observer
+     */
     public static void drawTowerRange(Graphics g, TowerCollection towerCollection, GameMap map, ImageObserver observer){
 
         Graphics2D g2d = (Graphics2D) g.create();

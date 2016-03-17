@@ -1,16 +1,31 @@
 package model.drawing;
 
 /**
- * Created by yongpinggao on 3/15/16.
+ * basic class of drawing
+ * @author yongpinggao
+ * @since 3/16/16.
+ * @version 2.0 
  */
-// Base class of Drawing
+
 public class Drawing {
-    // input: coordinate(x,y)(pixels), cell size of a cell. And cols number
-    // output: nth cell in whole map
+	
+	/**
+	 * convert position to index
+	 * @param x coordinate x
+	 * @param y coordinate y
+	 * @param cols map cols
+	 * @return index
+	 */
     public static int coordinateToIndexConverter(int x, int y, int cols) {
         return x / CELL_SIZE + (y / CELL_SIZE) * cols;
     }
 
+    /**
+     * convert index to coordinate
+     * @param index index of game map cells
+     * @param cols map cols
+     * @return coordinate
+     */
     public static int[] indexToCoordinateConverter(int index, int cols){
         int x = index % cols;
         int y = index / cols;

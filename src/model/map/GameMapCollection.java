@@ -4,21 +4,32 @@ import utility.FileProcessing;
 
 import java.util.ArrayList;
 
-
 /**
- * Created by yongpinggao on 1/26/16.
+ * GameMapCollection class
+ * store all game map that user created
+ * @author yongpinggao
+ * @since 3/16/16.
+ * @version 2.0 
  */
 public class GameMapCollection {
 
+	
     private static String JSON_FILE = "maps.json";
 
     private ArrayList<GameMap> maps;
 
-
+    /**
+     * constructor
+     * create a new arraylist
+     */
     public GameMapCollection(){
         this.maps = new ArrayList<>();
     }
 
+    /**
+     * g
+     * @return
+     */
     public ArrayList<GameMap> getMaps() {
         return maps;
     }

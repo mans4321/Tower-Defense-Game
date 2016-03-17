@@ -8,7 +8,10 @@ import java.awt.*;
 import java.util.HashMap;
 
 /**
- * Created by yongpinggao on 3/12/16.
+ * map images collection
+ * @author yongpinggao
+ * @since 3/16/16.
+ * @version 2.0 
  */
 public class MapImageCollection extends ImageCollection {
 
