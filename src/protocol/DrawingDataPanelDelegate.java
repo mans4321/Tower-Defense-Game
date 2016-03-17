@@ -1,7 +1,10 @@
 package protocol;
 
 /**
- * Created by yongpinggao on 3/15/16.
+ * interface for drawing data panel
+ * @author yongpinggao
+ * @since 3/16/16.
+ * @version 2.0 
  */
 public interface DrawingDataPanelDelegate {
     void reloadWaveDataView (int waveNum);
