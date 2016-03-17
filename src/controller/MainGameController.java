@@ -211,12 +211,11 @@ public class MainGameController {
             public void actionPerformed(ActionEvent e) {
                 if (currentTower != null) {
                     int level = currentTower.getLevel();
-<<<<<<< HEAD
-                    System.out.println(currentTower.getClass().getName());
-                    if (level < Tower.MAX_LEVEL){
-=======
+
+ 
+          
                     if (level < Tower.MAX_LEVEL) {
->>>>>>> 2bc2882d842b04f6892c948b2a840504c27c1a63
+
                         double oldPrice = currentTower.getBuyPrice();
                         currentTower.setLevel(++level);
                         double newPrice = currentTower.getBuyPrice();
