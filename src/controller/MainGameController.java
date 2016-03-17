@@ -77,7 +77,7 @@ public class MainGameController {
     private int coins = 10;
 
     /**
-     * Contructor method, will set up internal properties and call internal initializator methods
+     * Contructor method, will set up internal properties and call internal initializator methods.
      * @param  gameMap The select map by the player
      */
     public MainGameController(GameMap gameMap) {
@@ -100,8 +100,7 @@ public class MainGameController {
     }
 
     /**
-     * Instantiates the bank account model and set the initial balance
-     * Also updates the panel that shows the balance
+     * Instantiates the bank account model and set the initial balance. Also updates the panel that shows the balance.
      */
     private void initBankAccount() {
         account = new BankAccount();
@@ -110,13 +109,13 @@ public class MainGameController {
     }
 
     /**
-     * Adds the logic functionality for each button in the top panel
+     * Adds the logic functionality for each button in the top panel.
      * @see  java.awt.event.ActionListener
      */
     private void initFunctionalButtonsInTopPanel() {
         
         /**
-         * Creates Action listener for the wave start button
+         * Creates Action listener for the wave start button.
          */
         mainGameView.topView.gameDataPanel.waveStartButton.addActionListener(new ActionListener() {
             @Override
@@ -186,8 +185,8 @@ public class MainGameController {
     }
 
     /**
-     * Initiates the needed values of critters for the wave
-     * @param waveNum index for a preexistent type of wave specified in the factory
+     * Initiates the needed values of critters for the wave.
+     * @param waveNum index for a pre existent type of wave specified in the factory
      */
     private void initCrittersForWave(int waveNum) {
         CritterCollection.clearAllCritters();
@@ -205,12 +204,12 @@ public class MainGameController {
     private void initSellUpgradeButtons() {
         
         /**
-         * Creates action listener for sell tower button on the side panel
+         * Creates action listener for sell tower button on the side panel.
          */
         mainGameView.endView.towerUpgradeSellPanel.upgradeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (currentTower != null){
+                if (currentTower != null) {
                     int level = currentTower.getLevel();
                     if (level < Tower.MAX_LEVEL) {
                         double oldPrice = currentTower.getBuyPrice();
@@ -232,7 +231,7 @@ public class MainGameController {
         });
 
         /**
-         * Creates action listener for upgrade tower button on the side panel
+         * Creates action listener for upgrade tower button on the side panel.
          */
         mainGameView.endView.towerUpgradeSellPanel.sellButton.addActionListener(new ActionListener() {
             @Override
@@ -251,7 +250,7 @@ public class MainGameController {
     }
 
     /**
-     * Reloads the side panel
+     * Reloads the side panel.
      */
     private void refreshGamePanelsView() {
         drawingMapInGameDelegate.refreshMap(gameMap, towerCollection);
@@ -260,7 +259,7 @@ public class MainGameController {
     }
 
     /**
-     * Initializes Map creating Mouse listeners for placing/select towers
+     * Initializes Map creating Mouse listeners for placing/select towers.
      */
     private void initMapArea() {
         mainGameView.mapView.mapPanel.addMouseListener(new MouseAdapter() {
@@ -327,7 +326,7 @@ public class MainGameController {
     }
 
     /**
-     * Creates buttons for buying towers
+     * Creates buttons for buying towers.
      */
     private void initTowerButtons() {
         mainGameView.topView.towerSelectionPanel.towerAButton.addActionListener(new ActionListener() {
@@ -475,7 +474,7 @@ public class MainGameController {
     }
 
     /**
-     * Clears the critter wave and stop critter generator
+     * Clears the critter wave and stop critter generator.
      */
     private void clearGame() {
         CritterCollection.clearAllCritters();
