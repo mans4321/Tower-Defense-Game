@@ -6,9 +6,13 @@
 Design Patterns:
 
 1-MVC
+
 2-Builder
+
 3-Factory 
+
 4-Strategy
+
 5-singleton
 
 Packages:
