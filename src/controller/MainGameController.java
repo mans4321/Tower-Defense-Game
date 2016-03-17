@@ -250,13 +250,18 @@ public class MainGameController {
         });
     }
 
+    /**
+     * Reloads the side panel
+     */
     private void refreshGamePanelsView() {
         drawingMapInGameDelegate.refreshMap(gameMap, towerCollection);
         drawingSpecificationPanelDelegate.reloadPanelBasedOnTower(currentTower);
         drawingSellUpgradePanelDelegate.reloadPanelBasedOnTower(currentTower);
     }
 
-
+    /**
+     * Initializes Map creating Mouse listeners for placing/select towers
+     */
     private void initMapArea() {
         mainGameView.mapView.mapPanel.addMouseListener(new MouseAdapter() {
             @Override
