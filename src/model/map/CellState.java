@@ -1,8 +1,10 @@
 package model.map;
 
-
 /**
- * Created by yongpinggao on 1/28/16.
+ * CellState for gamemap
+ * @author yongpinggao
+ * @since 3/16/16.
+ * @version 2.0 
  */
 public enum CellState {
     Grass("grass"),

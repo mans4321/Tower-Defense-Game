@@ -13,6 +13,8 @@ import java.util.ArrayList;
 /**
  * Critter Base class
  * @author yongpinggao
+ * @since 3/16/16.
+ * @version 2.0 
  */
 public class Critter implements ActionListener{
     protected CritterName critterName;

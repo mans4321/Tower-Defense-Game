@@ -3,6 +3,8 @@ package model.critter;
 /**
  * Critter D class
  * @author yongpinggao
+  * @since 3/16/16.
+ * @version 2.0 
  */
 public class CritterD extends Critter {
 

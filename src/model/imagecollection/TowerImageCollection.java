@@ -7,7 +7,10 @@ import java.awt.*;
 import java.util.HashMap;
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * tower images collection
+ * @author yongpinggao
+ * @since 3/16/16.
+ * @version 2.0 
  */
 public class TowerImageCollection extends ImageCollection {
 

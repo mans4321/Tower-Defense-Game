@@ -3,6 +3,8 @@ package model.bankaccount;
 /**
  * Bank account for the game
  * @author yongpinggao
+ * @since 3/16/16.
+ * @version 2.0 
  */
 public class BankAccount {
 

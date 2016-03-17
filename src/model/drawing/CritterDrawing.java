@@ -10,6 +10,8 @@ import java.awt.image.ImageObserver;
 /**
  * Drawing critter class
  * @author yongpinggao
+ * @since 3/16/16.
+ * @version 2.0 
  */
 public class CritterDrawing extends Drawing{
 

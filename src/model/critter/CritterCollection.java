@@ -7,6 +7,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 /**
  * Critter collection: for collect all the critters for each wave
  * @author yongpinggao
+ * @since 3/16/16.
+ * @version 2.0 
  */
 public class CritterCollection {
     // Java Collection classes are fail-fast which means that if the Collection will be changed

@@ -9,7 +9,10 @@ import java.awt.*;
 import java.util.HashMap;
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * image collection for critters
+ * @author yongpinggao
+ * @since 3/16/16.
+ * @version 2.0 
  */
 public class CritterImageCollection extends ImageCollection {
 
@@ -22,6 +25,11 @@ public class CritterImageCollection extends ImageCollection {
         critterImages.put(CritterName.CritterD, new ImageIcon(BASE_URL + CritterName.CritterD.getCritterName()  + PNG).getImage());
     }
 
+    /**
+     * get bound of the critter
+     * @param critterName
+     * @return dimension of critter image
+     */
     public static Dimension getCritterImageSizeOf(CritterName critterName){
         return new Dimension(new ImageIcon(BASE_URL + critterName + PNG).getIconWidth(), new ImageIcon(BASE_URL + critterName + PNG).getIconHeight());
     }
