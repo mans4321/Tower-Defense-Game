@@ -9,14 +9,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by yongpinggao on 1/24/16.
+ * Controller class for the first menu where player can select to play or create a map.
+ * @author yongpinggao 
+ * @version 0.1 1/24/16.
  */
 public class MainMenuController {
 
     MainMenuView mainMenuView;
-
+    
+    /**
+     * Creates listeners for options in the main menu of the game.
+     */
     public MainMenuController() {
         mainMenuView = new MainMenuView();
+        
+        /**
+         * Sets listener for opening the map editor.
+         */
         mainMenuView.editorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -24,21 +33,22 @@ public class MainMenuController {
                 new MapEditorController(new GameMap()).mapEditorView.setVisible(true);
             }
         });
+        
+        /**
+         * Sets listener for starting the game view.
+         */
         mainMenuView.startGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainMenuView.setVisible(false);
-                if(GameMapCollection.loadMapsFromFile() == null) {
+                if (GameMapCollection.loadMapsFromFile() == null) {
                     JOptionPane.showMessageDialog(mainMenuView, "No Saved Maps, please go to the Map editor", "Error", JOptionPane.YES_OPTION);
                     mainMenuView.setVisible(false);
                     new MapEditorController(new GameMap()).mapEditorView.setVisible(true);
                 } else {
                     new MapChooseController().mapChooseView.setVisible(true);
                 }
-
             }
         });
-
     }
-
 }

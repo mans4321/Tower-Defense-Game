@@ -3,13 +3,15 @@ package controller;
 import model.map.GameMapCollection;
 import view.mapchooseview.MapChooseView;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 
 
 /**
- * Created by yongpinggao on 3/12/16.
+ * Controller for the map select view
+ * @author yongpinggao
+ * @version 1.0 3/12/16.
  */
 public class MapChooseController {
 
@@ -17,16 +19,22 @@ public class MapChooseController {
     GameMapCollection mapCollection;
     DefaultListModel listModel;
 
-
-    public MapChooseController(){
+    /**
+     * Gets the list of saved maps for the user to select the one he wants to play or edit
+     */
+    public MapChooseController() {
         listModel = new DefaultListModel();
         mapCollection = GameMapCollection.loadMapsFromFile();
-        for(int i = 0; i < mapCollection.getMaps().size(); i++){
+        
+        for (int i = 0; i < mapCollection.getMaps().size(); i++) {
             listModel.addElement(mapCollection.getMaps().get(i).getImageName());
         }
 
-
         mapChooseView = new MapChooseView(listModel);
+        
+        /**
+         * Sets listener to start game
+         */
         mapChooseView.startGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -35,6 +43,9 @@ public class MapChooseController {
             }
         });
 
+        /**
+         * Sets listener to edit map
+         */
         mapChooseView.editMapButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -42,7 +53,5 @@ public class MapChooseController {
                 new MapEditorController(mapCollection.getMaps().get(mapChooseView.list.getSelectedIndex())).mapEditorView.setVisible(true);
             }
         });
-
-
     }
 }
