@@ -14,8 +14,9 @@ import java.util.ArrayList;
 import java.util.Map;
 
 /**
- *  game map drawing class 
- *	@author yongpinggao
+ * game map drawing class
+ * 
+ * @author yongpinggao
  * @since 3/16/16.
  * @version 2.0 
  */
