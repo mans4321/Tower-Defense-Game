@@ -3,16 +3,19 @@
                                         TowerDefenseGame_Group12
 
 
-Architectural
+Design Patterns:
 
-MVC
-Packages
+1-MVC
+2-Builder
+3-Factory 
+4-Strategy
+5-singleton
 
-A- Boot
+Packages:
 
-1- Launch the game.
+I- Model
 
-B- Bankaccount:
+A- Bankaccount:
 
 1. Defines the game’s currency  system.
 
@@ -47,24 +50,24 @@ G- Wave:
 1. Defines how to generate waves.
 2. Waves are built by using builder pattern.
 
-H- Utility:
+II- Utility:
 
 1. Defines some utilities to ease the development and make code more readable.
 
-I- View:
+III- View:
 
     Defines all the window and panel view.
     The panel are divided to three main panels, Main window, Game window, and Map Editor Window.
     Game window is divided to four sections, Game Area, Tower Selection Area, Tower Specifications Area, and Data Area.
     Map Editor is dived to tow, map Editor Area, and Top Area to change map dimensions.
 
-J- Controller:
+IV- Controller:
 
     Defines all the game logic including listeners for mouse press and button click.
     Control drawing all the elements for all the panels
     Observer design pattern was used to notify the panels when change occurs.
 
-K- UnitTesting:
+IIV- UnitTesting:
 
     Testing the game logic and functions
 
