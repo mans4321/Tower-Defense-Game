@@ -67,7 +67,7 @@ IV- Controller:
     Control drawing all the elements for all the panels
     Observer design pattern was used to notify the panels when change occurs.
 
-IIV- UnitTesting:
+V- UnitTesting:
 
     Testing the game logic and functions
 
