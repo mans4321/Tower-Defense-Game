@@ -1,7 +1,10 @@
 package model.tower;
-
 /**
- * Created by yongpinggao on 3/13/16.
+ * An enumerate  list tower name
+ * 
+ *@author yongpinggao 
+ *@since  3/16/16
+ *@version 2.0  
  */
 public enum TowerName {
     TowerNull(""),
@@ -26,11 +29,17 @@ public enum TowerName {
 
 
     private String towerName;
-
+    /**
+     * A constructor assign name to towerName.
+     * @param towerName tower name
+     */
     TowerName(String towerName) {
         this.towerName = towerName;
     }
-
+    /**
+     * get tower name.
+     * @return tower name 
+     */
     public String getTowerName() {
         return towerName;
     }

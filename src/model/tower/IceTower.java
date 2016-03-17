@@ -9,16 +9,21 @@ import java.util.HashSet;
 
 
 /**
- * Created by yongpinggao on 3/15/16.
+ * A model that define the all IceTower parameters.
+ * IceTower class extends Tower, implements ShootingBehavior and DrawingShootingEffect
+ * @author yongpinggao 
+ * @since 3/16/16.
+ * @version 2.0  
  */
 // Freezing the critter for a time (have a higher priority to poison tower)
 public class IceTower extends Tower implements ShootingBehavior, DrawingShootingEffect{
 
-
     protected Timer shootTimer;
     int frozenTime;
-
-
+    /**
+     * Constructor of IceTower
+     * @param level using different level to change properties of IceTower
+     */
     public IceTower(int level){
         if(level <= MAX_LEVEL) {
             crittersInRange = new HashSet<>();
@@ -28,6 +33,10 @@ public class IceTower extends Tower implements ShootingBehavior, DrawingShooting
             initTower();
 
             shootTimer = new Timer(1000 - rateOfFire, new ActionListener() {
+            	 /**
+                 * Overrides actionPerformed
+                 * {@inheritDoc}
+                 */
                 @Override
                 public void actionPerformed(ActionEvent e) {
                    powerOn = true;
@@ -35,10 +44,11 @@ public class IceTower extends Tower implements ShootingBehavior, DrawingShooting
                 }
             });
             shootTimer.start();
-
-
         }
     }
+    /**
+     * Using various level to set properties of towers
+     */
     private void initTower(){
         specification = "<html>" + "Ice Tower" + "<br> Level: " + level + "<br> Good at attack fast creatures with its freezing effect</html>";
         switch(level){
@@ -73,20 +83,28 @@ public class IceTower extends Tower implements ShootingBehavior, DrawingShooting
                 towerName = TowerName.TowerNull;
         }
     }
-
+    /**
+     * Overrides getLevel
+     * {@inheritDoc}
+     */
     @Override
     public int getLevel() {
         return level;
     }
-
+    /**
+     * Overrides setLevel
+     * {@inheritDoc}
+     */
     @Override
     public void setLevel(int level) {
         this.level = level;
         initTower();
         setPosition(new int[]{positionX, positionY});
     }
-
-
+    /**
+     * Overrides shoot
+     * {@inheritDoc}
+     */
     @Override
     public void shoot() {
         super.shoot();
@@ -106,7 +124,10 @@ public class IceTower extends Tower implements ShootingBehavior, DrawingShooting
             }
         } else critterUnderAttack = null;
     }
-
+    /**
+     * Overrides drawShootingEffec
+     * {@inheritDoc}
+     */
     @Override
     public void drawShootingEffect(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();

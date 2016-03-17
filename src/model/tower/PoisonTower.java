@@ -7,7 +7,11 @@ import java.awt.event.ActionListener;
 import java.util.HashSet;
 
 /**
- * Created by yongpinggao on 3/15/16.
+ * A model that define the all PoisonTower parameters.
+ * PoisonTower class extends Tower, implements ShootingBehavior and DrawingShootingEffect
+ * @author yongpinggao 
+ * @since 3/16/16.
+ * @version 2.0  
  */
 public class PoisonTower extends Tower implements ShootingBehavior, DrawingShootingEffect {
 
@@ -16,8 +20,10 @@ public class PoisonTower extends Tower implements ShootingBehavior, DrawingShoot
     int slowDownMoveSpeed;
     int continuesDamage;
     int damageTimeInterval;
-
-
+    /**
+     * Constructor of PoisonTower
+     * @param level using different level to change properties of IceTower
+     */
     public PoisonTower(int level){
         if(level <= MAX_LEVEL) {
             crittersInRange = new HashSet<>();
@@ -35,6 +41,9 @@ public class PoisonTower extends Tower implements ShootingBehavior, DrawingShoot
             shootTimer.start();
         }
     }
+    /**
+     * Using various level to set properties of towers
+     */
     private void initTower(){
         specification = "<html>" + "Poison Tower" + "<br> Level: " + level + "<br> Good at attack huge creatures with its poison effect</html>";
         switch(level){
@@ -75,20 +84,28 @@ public class PoisonTower extends Tower implements ShootingBehavior, DrawingShoot
                 towerName = TowerName.TowerNull;
         }
     }
-
+    /**
+     * Overrides getLevel
+     * {@inheritDoc}
+     */
     @Override
     public int getLevel() {
         return level;
     }
-
+    /**
+     * Overrides setLevel
+     * {@inheritDoc}
+     */
     @Override
     public void setLevel(int level) {
         this.level = level;
         initTower();
         setPosition(new int[]{positionX, positionY});
     }
-
-
+    /**
+     * Overrides shoot
+     * {@inheritDoc}
+     */
     @Override
     public void shoot() {
         super.shoot();
@@ -114,7 +131,10 @@ public class PoisonTower extends Tower implements ShootingBehavior, DrawingShoot
             }
         } else critterUnderAttack = null;
     }
-
+    /**
+     * Overrides drawShootingEffec
+     * {@inheritDoc}
+     */
     @Override
     public void drawShootingEffect(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();

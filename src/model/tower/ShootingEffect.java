@@ -3,14 +3,21 @@ package model.tower;
 import java.awt.*;
 
 /**
- * Created by yongpinggao on 3/14/16.
+ * An enum that define shooting effect
+ * @author yongpinggao 
+ * @since 3/16/16.
+ * @version 2.0  
  */
 public enum ShootingEffect {
 
     IceEffect,
     PoisonEffect,
     NormalEffect;
-
+	/**
+	 * Get stock by different shooting effect
+	 * @param e represents shooting effect
+	 * @return stock
+	 */
     public static BasicStroke getStoke(ShootingEffect e){
         switch (e){
             case IceEffect:

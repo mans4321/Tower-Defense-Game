@@ -1,18 +1,34 @@
 package model.tower;
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * produce new tower instance base on TowerName.
+ * 
+ * This class apply singleton design.
+ * @author yongpinggao 
+ * @since 3/16/16.
+ * @version 2.0
  */
 public class TowerFactory {
 
+	// singleton + Factory
+	
     private static TowerFactory instance = new TowerFactory();
-
+    /**
+     * Returns the tower factory.
+     * @return 
+     */
     public static TowerFactory sharedInstance() {
         return instance;
     }
-
+    /**
+     * Constructor make TowerFactory Private.  
+     */
     private TowerFactory() {}
-
+    /**
+     * Getter that returns a new Tower of the the specified type.
+     * @param name tower name 
+     * @return
+     */
     public Tower getTower(TowerName name){
         switch (name) {
             case TowerA1:

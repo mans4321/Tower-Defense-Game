@@ -7,13 +7,19 @@ import java.awt.event.ActionListener;
 import java.util.HashSet;
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * A model that define the all NormalTower parameters.
+ * NormalTowerclass extends Tower, implements ShootingBehavior and DrawingShootingEffect
+ * @author yongpinggao
+ * @since 3/16/16.
+ * @version 2.0  
  */
-
 public class NormalTower extends Tower implements ShootingBehavior, DrawingShootingEffect {
 
     protected Timer shootTimer;
-
+    /**
+     * Constructor of NormalTower
+     * @param level using different level to change properties of NormalTower
+     */
     public NormalTower(int level){
         if(level <= MAX_LEVEL) {
             crittersInRange = new HashSet<>();
@@ -22,7 +28,11 @@ public class NormalTower extends Tower implements ShootingBehavior, DrawingShoot
             shootingEffect = ShootingEffect.getStoke(ShootingEffect.NormalEffect);
             initTower();
             shootTimer = new Timer(1000 - rateOfFire, new ActionListener() {
-                @Override
+            	 /**
+                 * Overrides actionPerformed
+                 * {@inheritDoc}
+                 */
+            	@Override
                 public void actionPerformed(ActionEvent e) {
                     powerOn = true;
                     shoot();
@@ -31,7 +41,9 @@ public class NormalTower extends Tower implements ShootingBehavior, DrawingShoot
             shootTimer.start();
         }
     }
-
+    /**
+     * Using various level to set properties of towers
+     */
     private void initTower(){
         specification = "<html>" + "Normal Tower" + "<br> Level: " + level + "<br> Good at attack normal creature</html>";
         switch(level){
@@ -64,22 +76,28 @@ public class NormalTower extends Tower implements ShootingBehavior, DrawingShoot
                 break;
         }
     }
-
-
-
+    /**
+     * Overrides getLevel
+     * {@inheritDoc}
+     */
     @Override
     public int getLevel() {
         return level;
     }
-
+    /**
+     * Overrides setLevel
+     * {@inheritDoc}
+     */
     @Override
     public void setLevel(int level) {
         this.level = level;
         initTower();
         setPosition(new int[]{positionX, positionY});
     }
-
-
+    /**
+     * Overrides shoot
+     * {@inheritDoc}
+     */
     @Override
     public void shoot() {
         super.shoot();
@@ -93,7 +111,10 @@ public class NormalTower extends Tower implements ShootingBehavior, DrawingShoot
             }
         } else critterUnderAttack = null;
     }
-
+    /**
+     * Overrides drawShootingEffec
+     * {@inheritDoc}
+     */
     @Override
     public void drawShootingEffect(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();
