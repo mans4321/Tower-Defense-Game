@@ -27,7 +27,7 @@ public class MapEditorController {
     GameMap gameMap;
     DrawingMapDelegate delegate;
 
-    public MapEditorController(GameMap gameMap){
+    public MapEditorController(GameMap gameMap) {
 
         this.gameMap = gameMap;
 
@@ -38,7 +38,7 @@ public class MapEditorController {
         mapEditorView.topView.widthList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() instanceof JComboBox){
+                if (e.getSource() instanceof JComboBox) {
                     JComboBox cb = (JComboBox)(e.getSource());
                     String string = (String)cb.getSelectedItem();
                     gameMap.setmCols(Integer.parseInt(string));
@@ -49,10 +49,10 @@ public class MapEditorController {
         });
         mapEditorView.topView.heightList.setSelectedIndex(Helper.getIndexFrom(TopView.heightStrings, gameMap.getmRows()));
         mapEditorView.topView.heightList.setActionCommand("height");
-        mapEditorView.topView.heightList.addActionListener(new ActionListener(){
+        mapEditorView.topView.heightList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() instanceof JComboBox){
+                if (e.getSource() instanceof JComboBox) {
                     JComboBox cb = (JComboBox)(e.getSource());
                     String string = (String)cb.getSelectedItem();
                     gameMap.setmRows(Integer.parseInt(string));
