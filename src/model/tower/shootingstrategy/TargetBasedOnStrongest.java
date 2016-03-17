@@ -5,9 +5,17 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * Created by yongpinggao on 3/14/16.
+ * A specific strategy that define to target strongest critter.
+ * TargetBasedOnStrongest class implements TowerShootingStrategy
+ * @author yongpinggao
+ * @since 3/16/16.
+ * @version 2.0  
  */
 public class TargetBasedOnStrongest implements TowerShootingStrategy {
+	/**
+     * Overrides targetOnCritters
+     * {@inheritDoc}
+     */
     @Override
     public Critter targetOnCritters(Set<Critter> crittersInRange) {
         if(crittersInRange.size() > 0){
