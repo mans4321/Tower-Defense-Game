@@ -3,7 +3,10 @@ package protocol;
 import model.tower.Tower;
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * draw all the panels interface
+ * @author yongpinggao
+ * @since 3/16/16.
+ * @version 2.0 
  */
 public interface DrawingPanelDelegate {
     void reloadPanelBasedOnTower(Tower tower);

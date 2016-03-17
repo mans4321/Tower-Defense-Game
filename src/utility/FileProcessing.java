@@ -4,9 +4,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.*;
 
-
 /**
- * Created by yongpinggao on 1/26/16.
+ * File processing class
+ * save and load map from json file
+ * @author yongpinggao
+ * @since 3/16/16.
+ * @version 2.0 
  */
 public class FileProcessing {
 
@@ -21,9 +24,12 @@ public class FileProcessing {
         gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
-    // Input: Map information: 1. map size(rows and cols the map has); 2. a list of map cell state
-    // Output: Write the info to a file in JSON Format
-    // Dependency: gson-2.5 library
+    /**
+     * write to json file
+     * @param fileName 
+     * @param t general type
+     * @return true if it is successful
+     */
     public <T> boolean writeToJsonFile(String fileName, T t){
         try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
@@ -36,6 +42,12 @@ public class FileProcessing {
             }
     }
 
+    /**
+     * read from json file
+     * @param fileName 
+     * @param t general type
+     * @return true if it is successful
+     */
     public <T> T readFromJsonFile(String fileName, Class<T> _class) {
         File file = new File(fileName);
         if (file.exists()) {
