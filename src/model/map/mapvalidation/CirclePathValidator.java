@@ -6,6 +6,7 @@ import java.util.HashMap;
 /**
  * This class is to validate whether the path is in a circle.
  * @author LiChong
+ * @version 2.1
  *
  */
 public class CirclePathValidator implements MapValidator {
