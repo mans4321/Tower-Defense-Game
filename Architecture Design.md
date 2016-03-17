@@ -15,6 +15,8 @@ Design Patterns:
 
 5-singleton
 
+6-observer
+
 Packages:
 
 I- Model
@@ -23,7 +25,7 @@ A- Bankaccount:
 
 1. Defines the game’s currency  system.
 
-C- Tower:
+B- Tower:
 
 1. Defines all the tower model in the game.
 2. All the towers inherit from a base class: Tower.java.
@@ -31,25 +33,25 @@ C- Tower:
 4. Tower has to implement TowerShootingBehavior interface to define a tower's shooting behavior.
 5. We used a class called image collection to save all towers images. 
 
-D- Critter:
+C- Critter:
 
 1.  Defines all the critters in the game.
 2.  All kinds of critter inherit from a base class: Critter.java.
 3.  Critter has to implement CritterBehavior interface to define how a critter moves.
 
-E- Gamemap:
+D- Gamemap:
 
 1. Defines all the issues related to game map.
 2. Handles all behavior of saving a game map to a JSON file.
 3. Handles all behavior of loading a game map pf a JSON file.
 
-F- mapvalidation:
+E- mapvalidation:
 
 1. Defines all the validation methods to validate a map.
 2. We use a manager class to handle all the validation.
 3. All the validator should implement MapValidator interface to define how to validate a map based on one specific problem.
 
-G- Wave:
+F- Wave:
 
 1. Defines how to generate waves.
 2. Waves are built by using builder pattern.
