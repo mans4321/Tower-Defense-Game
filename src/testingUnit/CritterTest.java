@@ -21,21 +21,26 @@ import model.wave.Wave;
  */
 public class CritterTest {
  
+
+	int sizeAfterAddingCritter;
+	int sizeBeforAddingCritter;
+	int sizeBeforAddingCritterWave;
+	int sizeAfterAddingCritterWave;
+	
+	CritterD critterD ;
+	 
 	/**
 	 * test adding critter to critter store 
 	 */
 	@Test
 	public void testAddingCritterToStore() {
 		
-		Critter critterA = new Critter();
-	
-		
-       int sizeBeforAddingCritter = CritterCollection.critters.size();
-       
-       CritterD critterD = new CritterD();
+        sizeBeforAddingCritter = CritterCollection.critters.size();
+        
+       critterD = new CritterD();
        CritterCollection.critters.add(critterD);
-      
-       int sizeAfterAddingCritter = CritterCollection.critters.size();
+       
+       sizeAfterAddingCritter = CritterCollection.critters.size();
        
        assertTrue(sizeBeforAddingCritter< sizeAfterAddingCritter);
         
@@ -52,11 +57,11 @@ public class CritterTest {
 		 
 	
 		
-		int sizeBeforAddingCritterWave= CritterCollection.critters.size();
+		sizeBeforAddingCritterWave= CritterCollection.critters.size();
 		
 		new Wave.Builder().critterA(10).build();
 		
-		int sizeAfterAddingCritterWave = CritterCollection.critters.size();
+	    sizeAfterAddingCritterWave = CritterCollection.critters.size();
 		
 		assertTrue(sizeBeforAddingCritterWave < sizeAfterAddingCritterWave);
 		

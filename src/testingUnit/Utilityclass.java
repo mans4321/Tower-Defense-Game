@@ -20,7 +20,9 @@ public class Utilityclass {
 
 	
 	private String[] arr;
-	
+	Dimension imgSize;
+	Dimension boundary;
+	Dimension newDimension;
 	/**
 	 * setting values 
 	 */
@@ -45,10 +47,10 @@ public class Utilityclass {
 	@Test
 	public void getScaledDimension() {
 		
-		Dimension imgSize = new Dimension(500, 100);
-		Dimension boundary = new Dimension(200, 200);
+		imgSize = new Dimension(500, 100);
+		boundary = new Dimension(200, 200);
 		
-		Dimension newDimension = Helper.getScaledDimension(imgSize, boundary);
+	    newDimension = Helper.getScaledDimension(imgSize, boundary);
 		assertTrue((int)newDimension.getWidth() == 200);
 		assertTrue((int)newDimension.getHeight() == 40);
 		

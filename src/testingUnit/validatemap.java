@@ -38,6 +38,9 @@ public class validatemap {
 	private EntranceExitInMiddlePathValidator middel;
 	private MapValidationManager mapValidator;
 	private GameMap gameMap;
+	/**
+	 * set values 
+	 */
 	@Before
 	public void setValues(){
 		
@@ -218,10 +221,10 @@ public class validatemap {
 			cellLisTest.set(i,CellState.Path );
 		}
 	
-		cellLisTest.set(0,CellState.Entrance );
-		cellLisTest.set(15,CellState.Exit );
+	   cellLisTest.set(0,CellState.Entrance );
+	   cellLisTest.set(15,CellState.Exit );
 
-		gameMap.setCells(cellLisTest);
+	   gameMap.setCells(cellLisTest);
 	   mapValidator = new MapValidationManager(gameMap);
 	   
 	   countMap = mapValidator.getCountMap();
@@ -237,6 +240,7 @@ public class validatemap {
 	public void testEmteranceInMiddlePathValidator() {
 		
 		gameMap = new GameMap();
+		
 		for (int i = 0; i < 20; i++) {
 			cellLisTest.set(i,CellState.Path );
 		}
@@ -245,10 +249,11 @@ public class validatemap {
 		cellLisTest.set(19,CellState.Exit );
 		
 		gameMap.setCells(cellLisTest);
-		   mapValidator = new MapValidationManager(gameMap);
-		   countMap = mapValidator.getCountMap();
+		
+		mapValidator = new MapValidationManager(gameMap);
+		 countMap = mapValidator.getCountMap();
+		 
 		   middel = new EntranceExitInMiddlePathValidator(cellLisTest, countMap);
-		   
 		   assertFalse(middel.validate());
 	}
 	
@@ -264,13 +269,16 @@ public class validatemap {
 		for (int i = 0; i < 20; i++) {
 			cellLisTest.set(i,CellState.Path );
 		}
+		
 		cellLisTest.set(0,CellState.Entrance);
 		cellLisTest.set(19,CellState.Exit );
 		
 		gameMap.setCells(cellLisTest);
-		   mapValidator = new MapValidationManager(gameMap);
+		
+		mapValidator = new MapValidationManager(gameMap);
 		countMap = mapValidator.getCountMap();
 		middel = new EntranceExitInMiddlePathValidator(cellLisTest, countMap);
+		
 		assertTrue(middel.validate());
 	}
 	
@@ -284,13 +292,15 @@ public class validatemap {
 		for (int i = 0; i < 21 ; i++) {
 			cellLisTest.set(i , CellState.Path );
 	}
+		
 		cellLisTest.set(0,CellState.Entrance );
 		cellLisTest.set(19,CellState.Exit );
 		cellLisTest.set(200, CellState.Path);
 		
 		gameMap.setCells(cellLisTest);
-		MapValidationManager mapValidator = new MapValidationManager(gameMap);
+		mapValidator = new MapValidationManager(gameMap);
 		countMap = mapValidator.getCountMap();
+		
 		boolean validate =new ExtraPathValidator(countMap,cellLisTest).validate();
 		assertTrue(validate);
 	}
@@ -305,16 +315,20 @@ public class validatemap {
 	public void noExtraPathValidator() {
 	
 		gameMap = new GameMap();
+		
 		for (int i = 0; i < 20 ; i++) {
 			cellLisTest.set(i , CellState.Path );
 	}
+		
 		cellLisTest.set(0,CellState.Entrance );
 		cellLisTest.set(19,CellState.Exit );
 		
 		
-		   gameMap.setCells(cellLisTest);
-		   mapValidator = new MapValidationManager(gameMap);
+		gameMap.setCells(cellLisTest);
+		mapValidator = new MapValidationManager(gameMap);
+		
 		countMap = mapValidator.getCountMap();
+		
 		boolean validate =new ExtraPathValidator(countMap,cellLisTest).validate();
 		assertTrue(validate);
 }	

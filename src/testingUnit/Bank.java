@@ -3,6 +3,7 @@ package testingUnit;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import model.bankaccount.BankAccount;
@@ -16,9 +17,10 @@ import model.bankaccount.BankAccount;
  */
 public class Bank {
 
-	BankAccount bankAccount;
-	double  afterSetting;
-	double beforeSetting;
+
+	private BankAccount bankAccount;
+	private double  afterSetting;
+	private double beforeSetting;
 	
 	/**
 	 * setting values 
@@ -28,19 +30,17 @@ public class Bank {
 		
 		bankAccount = new BankAccount();
 	}
+	
 	/**
 	 *Teasing setting the player Balance 
 	 */
 	@Test
 	public void testSetBalance() {
 		
-		
-		 
-
-		double beforeSetting = bankAccount.getBalance();
+	    beforeSetting = bankAccount.getBalance();
 		bankAccount.setBalance(100);
 		
-		double  afterSetting =  bankAccount.getBalance() ;
+	    afterSetting =  bankAccount.getBalance() ;
 	
 		assertTrue(beforeSetting < afterSetting );
 
@@ -48,9 +48,9 @@ public class Bank {
 	
 	@Test
 	public void testdeposit(){
-		double beforeSetting = bankAccount.getBalance();
+	    beforeSetting = bankAccount.getBalance();
 		bankAccount.deposit(100);
-		double  afterSetting =  bankAccount.getBalance() ;
+	    afterSetting =  bankAccount.getBalance() ;
 		assertTrue(beforeSetting < afterSetting );
 	}
 	
@@ -58,10 +58,10 @@ public class Bank {
 	public void testdffff(){
 		
 		bankAccount.setBalance(100);
-		double beforeSetting = bankAccount.getBalance();
+		beforeSetting = bankAccount.getBalance();
 		
 		bankAccount.withDraw(20);
-		double  afterSetting =  bankAccount.getBalance() ;
+		afterSetting =  bankAccount.getBalance() ;
 		
 		assertTrue(beforeSetting > afterSetting );
 		

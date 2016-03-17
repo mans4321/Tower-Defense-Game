@@ -77,18 +77,19 @@ public class TowerTest {
 	public void testTargetBasedOnStrongest() {
 		
 		targetBasedOnStrongest = new TargetBasedOnStrongest();
-	assertTrue(crriter1.equals(targetBasedOnStrongest.targetOnCritters(crittersInRange)));
+		
+		assertTrue(crriter1.equals(targetBasedOnStrongest.targetOnCritters(crittersInRange)));
 	}
 	
-	/**
-	 * testing target Based on nearest  shooting strategy
-	 */
-	@Test
-	public void testTargetBasedOnNearestest() {
-		
-//		targetBasedOnNearestest = new TargetBasedOnNearest();
-//	
-//           
-//     	assertTrue(crriter1.equals(targetBasedOnNearestest.targetOnCritters(crittersInRange)));
-}
+//	/**
+//	 * testing target Based on nearest  shooting strategy
+//	 */
+//	@Test
+//	public void testTargetBasedOnNearestest() {
+//		
+////		targetBasedOnNearestest = new TargetBasedOnNearest();
+////	
+////           
+////     	assertTrue(crriter1.equals(targetBasedOnNearestest.targetOnCritters(crittersInRange)));
+//}
 }

@@ -17,12 +17,15 @@ import static org.junit.Assert.*;
  */
 public class TowerFactoryTest {
 
+	Tower tower ;
+	
 	/**
 	 * test get instance function return the wanted tower instance 
 	 */
 	@Test
 	public void getTowerTest() {
-		Tower tower = TowerFactory.sharedInstance().getTower(TowerName.TowerA1);
+		
+	     tower = TowerFactory.sharedInstance().getTower(TowerName.TowerA1);
 		
     	assertTrue(tower.getClass().getName().equals("model.tower.NormalTower"));  // name 
 	 

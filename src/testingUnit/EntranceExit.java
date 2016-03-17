@@ -43,10 +43,8 @@ public class EntranceExit {
 	 */
 	@Test
 	public void getExtrancePos() {
-		
-		
-		assertTrue(mapFile.findEntranceIndex() == 0);
 
+		assertTrue(mapFile.findEntranceIndex() == 0);
 	}
 	
 	/**
@@ -54,8 +52,7 @@ public class EntranceExit {
 	 */
 	@Test
 	public void getExitPos() {
-	
-		
+
 		assertTrue(mapFile.findExitIndex() == 10);
 }
 }

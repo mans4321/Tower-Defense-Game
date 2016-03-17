@@ -21,6 +21,12 @@ import model.map.GameMapCollection;
  */
 public class testingMap {
 
+	GameMapCollection mapCollection;
+	GameMap gameMap;
+	int beforAdding;
+	int afterAdding;
+	int index;
+	ArrayList <CellState> cellList;
 	/**
 	 * test adding map
 	 */
@@ -28,17 +34,17 @@ public class testingMap {
 	@Test
 	public void testAddMap() {
 		
-		GameMapCollection mapCollection = new GameMapCollection();
+		mapCollection = new GameMapCollection();
 		
-		GameMap mpa = new GameMap(2,2,null,"MANS");
-		int beforAdding = mapCollection.getMaps().size();
+		gameMap = new GameMap(2,2,null,"MANS");
+		beforAdding = mapCollection.getMaps().size();
 		
-		mapCollection.addMap(mpa);
-		int afterAdding = mapCollection.getMaps().size();
+		mapCollection.addMap(gameMap);
+		afterAdding = mapCollection.getMaps().size();
 		
 		assertTrue(beforAdding< afterAdding);
 		
-		mapCollection.getMaps().remove(mpa);
+		mapCollection.getMaps().remove(gameMap);
 		
 	}
    
@@ -47,18 +53,19 @@ public class testingMap {
 	 */
 	@Test
 	public void testDeleteMap() {
-		GameMapCollection mapCollection = new GameMapCollection();
+	   mapCollection = new GameMapCollection();
 		
-		GameMap mpa = new GameMap(2,2,null,"MANS");
-		int beforAdding = mapCollection.getMaps().size();
+	    gameMap = new GameMap(2,2,null,"MANS");
+		beforAdding = mapCollection.getMaps().size();
 		
-		mapCollection.addMap(mpa);
-		int index = mapCollection.getMaps().indexOf(mpa);
+		mapCollection.addMap(gameMap);
+		
+		index = mapCollection.getMaps().indexOf(gameMap);
 		
 		
 		
 		mapCollection.deleteMap(index);
-		int afterAdding = mapCollection.getMaps().size();
+		afterAdding = mapCollection.getMaps().size();
 		
 		assertTrue(beforAdding == afterAdding);
 	
@@ -70,7 +77,7 @@ public class testingMap {
 	@Test
 	public void testPathTest(){
 		
-		 ArrayList <CellState> cellList = new ArrayList<CellState>();
+		 cellList = new ArrayList<CellState>();
 		
 		 for (int i = 0 ; i < 15*30 ; i++){ 
 			 cellList.add(CellState.Grass);
@@ -82,10 +89,10 @@ public class testingMap {
 		 cellList.set(0, CellState.Entrance);
 		 cellList.set(19,CellState.Exit );
 		 
-		GameMap map = new GameMap();
-		map.setCells(cellList);
+	    gameMap = new GameMap();
+	    gameMap.setCells(cellList);
 	
-		assertTrue(map.findPathList().size() == 20);
+		assertTrue(gameMap.findPathList().size() == 20);
 	}
 	
 
