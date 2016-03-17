@@ -59,7 +59,7 @@ public class Critter implements ActionListener{
     /**
      * check if critter is killed 
      * getter method
-     * @return
+     * @return critter life state
      */
     public boolean isKilled() {
         return isKilled;
@@ -77,7 +77,7 @@ public class Critter implements ActionListener{
     /**
      * critter worth after it is killed
      * getter method 
-     * @return
+     * @return critter worth
      */
     public double getWorth() {
         return worth;
@@ -86,7 +86,7 @@ public class Critter implements ActionListener{
     /**
      * critter worth after it is killed
      * setter method 
-     * @return
+     * 
      */
     public void setWorth(double worth) {
         this.worth = worth;
@@ -95,7 +95,7 @@ public class Critter implements ActionListener{
     /**
      * a critter's path cell index
      * getter method
-     * @return
+     * @return critter path
      */
     public ArrayList<Integer> getPathList() {
         return pathList;
@@ -104,7 +104,7 @@ public class Critter implements ActionListener{
     /**
      * a critter's path cell index
      * setter method
-     * @return
+     * 
      */
     public void setPathList(ArrayList<Integer> pathList) {
         this.pathList = pathList;
@@ -113,7 +113,7 @@ public class Critter implements ActionListener{
     /**
      * check if critter has stole the coins successfully
      * getter method
-     * @return
+     * @return whether critter reached the exsit point
      */
     public boolean isSucceed() {
         return isSucceed;
@@ -122,7 +122,7 @@ public class Critter implements ActionListener{
     /**
      * check if critter has stole the coins successfully
      * setter method
-     * @return
+     * 
      */
     public void setSucceed(boolean succeed) {
         isSucceed = succeed;
@@ -131,7 +131,7 @@ public class Critter implements ActionListener{
     /**
      * special effect timer for a critter
      * getter method
-     * @return
+     * @return timer for moving critter
      */
     public Timer getMovingTimer() {
         return movingTimer;
@@ -140,7 +140,7 @@ public class Critter implements ActionListener{
     /**
      * special effect: moving speed affected timer for a critter 
      * setter method
-     * @return
+     * 
      */
     public void setMovingTimer(Timer movingTimer) {
         this.movingTimer = movingTimer;
@@ -149,7 +149,7 @@ public class Critter implements ActionListener{
     /**
      * special effect: poison affected timer for a critter
      * getter method
-     * @return
+     * @return critter inner timer
      */
     public Timer getInnerTimer() {
         return innerTimer;
@@ -158,7 +158,7 @@ public class Critter implements ActionListener{
     /**
      * continues damage for a critter
      * getter method
-     * @return
+     * 
      */
     public int getContinuesDamage() {
         return continuesDamage;
@@ -167,7 +167,7 @@ public class Critter implements ActionListener{
     /**
      * continues damage for a critter
      * setter method
-     * @return
+     * @return Continues Damage
      */
     public void setContinuesDamage(int continuesDamage) {
         this.continuesDamage = continuesDamage;
@@ -176,7 +176,7 @@ public class Critter implements ActionListener{
     /**
      * special effect: poison affected timer for a critter
      * setter method
-     * @return
+     * 
      */
     public void setInnerTimer(Timer innerTimer) {
         this.innerTimer = innerTimer;
@@ -185,7 +185,7 @@ public class Critter implements ActionListener{
     /**
      * initial move speed for a critter
      * getter method
-     * @return
+     * @return initial critter moving speed
      */
     public int getInitialMoveSpeed() {
         return initialMoveSpeed;
@@ -194,7 +194,7 @@ public class Critter implements ActionListener{
     /**
      * initial move speed for a critter
      * setter method
-     * @return
+     * 
      */
     public void setInitialMoveSpeed(int initialMoveSpeed) {
         this.initialMoveSpeed = initialMoveSpeed;
@@ -203,7 +203,7 @@ public class Critter implements ActionListener{
     /**
      * get bounds for the crriter for collision detection
      * getter method
-     * @return
+     * @return critter rectangle 
      */
     public Rectangle getBound(){
         Dimension dimension = CritterImageCollection.getCritterImageSizeOf(critterName);
@@ -212,7 +212,7 @@ public class Critter implements ActionListener{
     
     /**
      * get a hearth bar length for drawing health bar for critter
-     * @return
+     * @return critter HealthBarLength
      */
     public float getHealthBarLength() {
         return (float)(currentHealth) / maxHealth;
@@ -221,7 +221,7 @@ public class Critter implements ActionListener{
     /**
      * moving speed for a critter
      * getter method
-     * @return
+     * @return critter current Moving  Speed
      */
     public int getCurrentMoveSpeed() {
         return currentMoveSpeed;
@@ -230,7 +230,7 @@ public class Critter implements ActionListener{
     /**
      * moving speed for a critter
      * setter method
-     * @return
+     * 
      */
     public void setCurrentMoveSpeed(int currentMoveSpeed) {
         this.currentMoveSpeed = currentMoveSpeed;
@@ -239,7 +239,7 @@ public class Critter implements ActionListener{
     /**
      * critter type
      * getter method
-     * @return
+     * @return critter name 
      */
     public CritterName getCritterName() {
         return critterName;
@@ -248,7 +248,7 @@ public class Critter implements ActionListener{
     /**
      * critter type
      * setter method
-     * @return
+     * 
      */
     public void setCritterName(CritterName critterName) {
         this.critterName = critterName;
@@ -257,7 +257,7 @@ public class Critter implements ActionListener{
     /**
      * check if critter is visible for game drawing
      * getter method
-     * @return
+     * @return critter visibility state
      */
     public boolean isVisible() {
         return isVisible;
@@ -265,8 +265,8 @@ public class Critter implements ActionListener{
     
     /**
      * check if critter is visible for game drawing
-     * setter method
-     * @return
+     * setter method for critter visibility
+     * 
      */
     public void setVisible(boolean visible) {
         isVisible = visible;
@@ -307,16 +307,16 @@ public class Critter implements ActionListener{
     /**
      * position of a critter: x 
      * getter method
-     * @return
+     * @return critter current X Position 
      */
     public int getCurrentPosX() {
         return currentPosX;
     }
 
     /**
-     * position of a critter: x 
+     * set critter: x  position  
      * setter method
-     * @return
+     * 
      */
     public void setCurrentPosX(int currentPosX) {
         this.currentPosX = currentPosX;
@@ -325,7 +325,7 @@ public class Critter implements ActionListener{
     /**
      * position of a critter: y
      * getter method
-     * @return
+     * @return  critter current Y Position 
      */
     public int getCurrentPosY() {
         return currentPosY;
@@ -334,7 +334,7 @@ public class Critter implements ActionListener{
     /**
      * position of a critter: y
      * setter method
-     * @return
+     * 
      */
     public void setCurrentPosY(int currentPosY) {
         this.currentPosY = currentPosY;
@@ -343,7 +343,7 @@ public class Critter implements ActionListener{
     /**
      * current health of critter
      * getter method
-     * @return
+     * @return critter current Health
      */
     public int getCurrentHealth() {
         return currentHealth;
@@ -352,7 +352,7 @@ public class Critter implements ActionListener{
     /**
      * current health of critter
      * setter method
-     * @return
+     * 
      */
     public void setCurrentHealth(int currentHealth) {
         this.currentHealth = currentHealth;
@@ -361,7 +361,7 @@ public class Critter implements ActionListener{
     /**
      * max health of a critter
      * getter method
-     * @return
+     * @return critter maxHealth
      */
     public int getMaxHealth() {
         return maxHealth;
@@ -370,7 +370,7 @@ public class Critter implements ActionListener{
     /**
      * max health of a critter
      * setter method
-     * @return
+     * 
      */
     public void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
@@ -378,6 +378,8 @@ public class Critter implements ActionListener{
 
     /**
      * get next index based on current position
+     * 
+     * @return critter next index or -1
      */
     private int getDestination(int index) {
 
