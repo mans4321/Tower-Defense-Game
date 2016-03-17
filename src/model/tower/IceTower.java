@@ -15,9 +15,8 @@ import java.util.HashSet;
  * @since 3/16/16.
  * @version 2.0  
  */
-// Freezing the critter for a time (have a higher priority to poison tower)
 public class IceTower extends Tower implements ShootingBehavior, DrawingShootingEffect{
-
+// Freezing the critter for a time (have a higher priority to poison tower)
     protected Timer shootTimer;
     int frozenTime;
     /**
