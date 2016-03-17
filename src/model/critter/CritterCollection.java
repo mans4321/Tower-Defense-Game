@@ -5,7 +5,8 @@ import model.map.GameMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * Critter collection: for collect all the critters for each wave
+ * @author yongpinggao
  */
 public class CritterCollection {
     // Java Collection classes are fail-fast which means that if the Collection will be changed
@@ -14,32 +15,52 @@ public class CritterCollection {
     // JDK 1.5 minimum
     public static CopyOnWriteArrayList<Critter> critters = new CopyOnWriteArrayList<>();
 
-
-    public static void addCritter(Critter critter){
+    /**
+     * add a critter to critter collection
+     * @param critter
+     */
+    public static void addCritter(Critter critter) {
         critters.add(critter);
     }
 
+    /**
+     * remove a critter of critter collection
+     * @param critter
+     */
     public static void removeCritter(Critter critter) {
         critters.remove(critter);
     }
 
-    public static void clearAllCritters(){
+    /**
+     * clear all the critters in critter collection
+     */
+    public static void clearAllCritters() {
         currentIndex = 0;
         critters.removeAll(critters);
     }
 
-    public static void crittersMoving(){
+    /**
+     * initialize critter moving
+     */
+    public static void crittersMoving() {
         for(Critter c : critters){
             c.moveThroughPathInMap();
         }
     }
 
-    public static void setGameMapForCritters(GameMap gameMap){
+    /**
+     * initialize game map for every critters
+     * @param gameMap
+     */
+    public static void setGameMapForCritters(GameMap gameMap) {
         for(Critter c : critters){
             c.setGameMap(gameMap);
         }
     }
 
+    /**
+     * pointer to make a critter alive under the timer
+     */
     public static int currentIndex = 0;
 
 

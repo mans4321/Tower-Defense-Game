@@ -11,7 +11,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * Critter Base class
+ * @author yongpinggao
  */
 public class Critter implements ActionListener{
     protected CritterName critterName;
@@ -38,6 +39,10 @@ public class Critter implements ActionListener{
     private int entranceIndex;
     private int exitIndex;
 
+    /**
+     * set the gamemap for a critter
+     * @param gameMap
+     */
     public void setGameMap(GameMap gameMap) {
         pathList = gameMap.findPathList();
         cols = gameMap.getmCols();
@@ -49,155 +54,329 @@ public class Critter implements ActionListener{
         nextIndex = entranceIndex;
     }
 
-
+    /**
+     * check if critter is killed 
+     * getter method
+     * @return
+     */
     public boolean isKilled() {
         return isKilled;
     }
 
+    /**
+     * check if critter is killed 
+     * setter method
+     * @param killed
+     */
     public void setKilled(boolean killed) {
         isKilled = killed;
     }
 
+    /**
+     * critter worth after it is killed
+     * getter method 
+     * @return
+     */
     public double getWorth() {
         return worth;
     }
 
+    /**
+     * critter worth after it is killed
+     * setter method 
+     * @return
+     */
     public void setWorth(double worth) {
         this.worth = worth;
     }
 
+    /**
+     * a critter's path cell index
+     * getter method
+     * @return
+     */
     public ArrayList<Integer> getPathList() {
         return pathList;
     }
 
+    /**
+     * a critter's path cell index
+     * setter method
+     * @return
+     */
     public void setPathList(ArrayList<Integer> pathList) {
         this.pathList = pathList;
     }
 
+    /**
+     * check if critter has stole the coins successfully
+     * getter method
+     * @return
+     */
     public boolean isSucceed() {
         return isSucceed;
     }
 
+    /**
+     * check if critter has stole the coins successfully
+     * setter method
+     * @return
+     */
     public void setSucceed(boolean succeed) {
         isSucceed = succeed;
     }
-
+    
+    /**
+     * special effect timer for a critter
+     * getter method
+     * @return
+     */
     public Timer getMovingTimer() {
         return movingTimer;
     }
 
+    /**
+     * special effect: moving speed affected timer for a critter 
+     * setter method
+     * @return
+     */
     public void setMovingTimer(Timer movingTimer) {
         this.movingTimer = movingTimer;
     }
 
+    /**
+     * special effect: poison affected timer for a critter
+     * getter method
+     * @return
+     */
     public Timer getInnerTimer() {
         return innerTimer;
     }
 
+    /**
+     * continues damage for a critter
+     * getter method
+     * @return
+     */
     public int getContinuesDamage() {
         return continuesDamage;
     }
 
+    /**
+     * continues damage for a critter
+     * setter method
+     * @return
+     */
     public void setContinuesDamage(int continuesDamage) {
         this.continuesDamage = continuesDamage;
     }
 
+    /**
+     * special effect: poison affected timer for a critter
+     * setter method
+     * @return
+     */
     public void setInnerTimer(Timer innerTimer) {
         this.innerTimer = innerTimer;
     }
 
+    /**
+     * initial move speed for a critter
+     * getter method
+     * @return
+     */
     public int getInitialMoveSpeed() {
         return initialMoveSpeed;
     }
 
+    /**
+     * initial move speed for a critter
+     * setter method
+     * @return
+     */
     public void setInitialMoveSpeed(int initialMoveSpeed) {
         this.initialMoveSpeed = initialMoveSpeed;
     }
 
+    /**
+     * get bounds for the crriter for collision detection
+     * getter method
+     * @return
+     */
     public Rectangle getBound(){
         Dimension dimension = CritterImageCollection.getCritterImageSizeOf(critterName);
         return new Rectangle(currentPosX, currentPosY, dimension.width, dimension.height);
     }
-
+    
+    /**
+     * get a hearth bar length for drawing health bar for critter
+     * @return
+     */
     public float getHealthBarLength() {
         return (float)(currentHealth) / maxHealth;
     }
 
+    /**
+     * moving speed for a critter
+     * getter method
+     * @return
+     */
     public int getCurrentMoveSpeed() {
         return currentMoveSpeed;
     }
-
+    
+    /**
+     * moving speed for a critter
+     * setter method
+     * @return
+     */
     public void setCurrentMoveSpeed(int currentMoveSpeed) {
-//        moveToIndex(getDestination(GameMapDrawing.coordinateToIndexConverter(currentPosX, currentPosY ,cols)));
         this.currentMoveSpeed = currentMoveSpeed;
     }
 
+    /**
+     * critter type
+     * getter method
+     * @return
+     */
     public CritterName getCritterName() {
         return critterName;
     }
 
+    /**
+     * critter type
+     * setter method
+     * @return
+     */
     public void setCritterName(CritterName critterName) {
         this.critterName = critterName;
     }
 
+    /**
+     * check if critter is visible for game drawing
+     * getter method
+     * @return
+     */
     public boolean isVisible() {
         return isVisible;
     }
-
+    
+    /**
+     * check if critter is visible for game drawing
+     * setter method
+     * @return
+     */
     public void setVisible(boolean visible) {
         isVisible = visible;
     }
 
-    // x, y -> current position
-    private void moveRight(){
+    /**
+     * move method for critters
+     * move right
+     */
+    private void moveRight() {
         currentPosX += currentMoveSpeed;
     }
 
-    private void moveDown(){
+    /**
+     * move method for critters
+     * move down
+     */
+    private void moveDown() {
         currentPosY += currentMoveSpeed;
-
     }
 
-    private void moverLeft(){
+    /**
+     * move method for critters
+     * move left
+     */
+    private void moverLeft() {
         currentPosX -= currentMoveSpeed;
     }
 
-    private void moveUp(){
+    /**
+     * move method for critters
+     * move up
+     */
+    private void moveUp() {
         currentPosY -= currentMoveSpeed;
     }
 
+    /**
+     * position of a critter: x 
+     * getter method
+     * @return
+     */
     public int getCurrentPosX() {
         return currentPosX;
     }
 
+    /**
+     * position of a critter: x 
+     * setter method
+     * @return
+     */
     public void setCurrentPosX(int currentPosX) {
         this.currentPosX = currentPosX;
     }
 
+    /**
+     * position of a critter: y
+     * getter method
+     * @return
+     */
     public int getCurrentPosY() {
         return currentPosY;
     }
 
+    /**
+     * position of a critter: y
+     * setter method
+     * @return
+     */
     public void setCurrentPosY(int currentPosY) {
         this.currentPosY = currentPosY;
     }
 
+    /**
+     * current health of critter
+     * getter method
+     * @return
+     */
     public int getCurrentHealth() {
         return currentHealth;
     }
 
+    /**
+     * current health of critter
+     * setter method
+     * @return
+     */
     public void setCurrentHealth(int currentHealth) {
         this.currentHealth = currentHealth;
     }
 
+    /**
+     * max health of a critter
+     * getter method
+     * @return
+     */
     public int getMaxHealth() {
         return maxHealth;
     }
 
+    /**
+     * max health of a critter
+     * setter method
+     * @return
+     */
     public void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
     }
 
+    /**
+     * get next index based on current position
+     */
     private int getDestination(int index) {
 
         int iLeft = index - 1;
@@ -221,8 +400,11 @@ public class Critter implements ActionListener{
         return nextIndex;
     }
 
-    // recursion make it consecutive
-    private void moveToIndex(int index){
+    /**
+     * critter moving method, move to specific index
+     * @param index
+     */
+    private void moveToIndex(int index) {
         int[] nextPosition = GameMapDrawing.indexToCoordinateConverter(index, cols);
         int x = nextPosition[0];
         int y = nextPosition[1];
@@ -254,10 +436,16 @@ public class Critter implements ActionListener{
         }
     }
 
+    /**
+     * wrapper method for critter
+     */
     public void moveThroughPathInMap() {
         if(isVisible) moveToIndex(nextIndex);
     }
 
+    /**
+     * listener: observing critter timers
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand() != null){ // critter get poisoned

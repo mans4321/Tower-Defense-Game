@@ -1,7 +1,8 @@
 package model.critter;
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * Critter A class
+ * @author yongpinggao
  */
 public class CritterA extends Critter {
 
@@ -9,7 +10,10 @@ public class CritterA extends Critter {
         initCritter();
     }
 
-    private void initCritter(){
+    /**
+     * critter initialization
+     */
+    private void initCritter() {
         critterName = CritterName.CritterA;
         initialMoveSpeed = 5;
         maxHealth = 100;
