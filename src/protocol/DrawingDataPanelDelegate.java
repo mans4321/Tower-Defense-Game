@@ -7,8 +7,24 @@ package protocol;
  * @version 2.0 
  */
 public interface DrawingDataPanelDelegate {
+    /**
+     * reload Wave DataView
+     * @param waveNum wave number 
+     * /
     void reloadWaveDataView (int waveNum);
+    /**
+     * reload Balance DataView
+     * @param balance player balance
+     * /
     void reloadBalanceDataView(double balance);
+    /**
+     * reload Coin DataView
+     * @param  coin coin
+     * /
     void reloadCoinDataView(int coin);
+    /**
+     * reload Info DataView
+     * @param info game info
+     * /
     void reloadInfoDataView(String info);
 }
