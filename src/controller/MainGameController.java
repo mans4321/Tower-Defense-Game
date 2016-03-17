@@ -77,7 +77,7 @@ public class MainGameController {
     private int coins = 10;
 
     /**
-     * Contructor method, will set up internal properties and call internal initializator methods
+     * Contructor method, will set up internal properties and call internal initializator methods.
      * @param  gameMap The select map by the player
      */
     public MainGameController(GameMap gameMap) {
@@ -100,8 +100,7 @@ public class MainGameController {
     }
 
     /**
-     * Instantiates the bank account model and set the initial balance
-     * Also updates the panel that shows the balance
+     * Instantiates the bank account model and set the initial balance. Also updates the panel that shows the balance.
      */
     private void initBankAccount() {
         account = new BankAccount();
@@ -110,18 +109,18 @@ public class MainGameController {
     }
 
     /**
-     * Adds the logic functionality for each button in the top panel
+     * Adds the logic functionality for each button in the top panel.
      * @see  java.awt.event.ActionListener
      */
     private void initFunctionalButtonsInTopPanel() {
         
         /**
-         * Creates Action listener for the wave start button
+         * Creates Action listener for the wave start button.
          */
         mainGameView.topView.gameDataPanel.waveStartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(currentWaveNum == WaveFactory.MAX_WAVE_NUM) {
+                if (currentWaveNum == WaveFactory.MAX_WAVE_NUM) {
                     currentWaveNum = 0;
                 }
                 initCrittersForWave(++currentWaveNum);
@@ -137,7 +136,7 @@ public class MainGameController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 currentStrategy = new TargetBasedOnWeakest();
-                for(Tower t : towerCollection.getTowers().values()){
+                for (Tower t : towerCollection.getTowers().values()) {
                     t.setShootingStrategy(currentStrategy);
                 }
             }
@@ -151,7 +150,7 @@ public class MainGameController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 currentStrategy = new TargetBasedOnStrongest();
-                for(Tower t : towerCollection.getTowers().values()){
+                for (Tower t : towerCollection.getTowers().values()) {
                     t.setShootingStrategy(currentStrategy);
                 }
             }
@@ -165,7 +164,7 @@ public class MainGameController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 currentStrategy = new TargetBasedOnNearest();
-                for(Tower t : towerCollection.getTowers().values()){
+                for (Tower t : towerCollection.getTowers().values()) {
                     t.setShootingStrategy(currentStrategy);
                 }
             }
@@ -186,8 +185,8 @@ public class MainGameController {
     }
 
     /**
-     * Initiates the needed values of critters for the wave
-     * @param waveNum index for a preexistent type of wave specified in the factory
+     * Initiates the needed values of critters for the wave.
+     * @param waveNum index for a pre existent type of wave specified in the factory
      */
     private void initCrittersForWave(int waveNum) {
         CritterCollection.clearAllCritters();
@@ -205,15 +204,19 @@ public class MainGameController {
     private void initSellUpgradeButtons() {
         
         /**
-         * Creates action listener for sell tower button on the side panel
+         * Creates action listener for sell tower button on the side panel.
          */
         mainGameView.endView.towerUpgradeSellPanel.upgradeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (currentTower != null){
+                if (currentTower != null) {
                     int level = currentTower.getLevel();
+<<<<<<< HEAD
                     System.out.println(currentTower.getClass().getName());
                     if (level < Tower.MAX_LEVEL){
+=======
+                    if (level < Tower.MAX_LEVEL) {
+>>>>>>> 2bc2882d842b04f6892c948b2a840504c27c1a63
                         double oldPrice = currentTower.getBuyPrice();
                         currentTower.setLevel(++level);
                         double newPrice = currentTower.getBuyPrice();
@@ -233,12 +236,12 @@ public class MainGameController {
         });
 
         /**
-         * Creates action listener for upgrade tower button on the side panel
+         * Creates action listener for upgrade tower button on the side panel.
          */
         mainGameView.endView.towerUpgradeSellPanel.sellButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(currentTower != null){
+                if (currentTower != null) {
                     account.deposit(currentTower.getSellPrice());
                     drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
                     currentTower = null;
@@ -252,7 +255,7 @@ public class MainGameController {
     }
 
     /**
-     * Reloads the side panel
+     * Reloads the side panel.
      */
     private void refreshGamePanelsView() {
         drawingMapInGameDelegate.refreshMap(gameMap, towerCollection);
@@ -261,7 +264,7 @@ public class MainGameController {
     }
 
     /**
-     * Initializes Map creating Mouse listeners for placing/select towers
+     * Initializes Map creating Mouse listeners for placing/select towers.
      */
     private void initMapArea() {
         mainGameView.mapView.mapPanel.addMouseListener(new MouseAdapter() {
@@ -327,13 +330,16 @@ public class MainGameController {
 
     }
 
+    /**
+     * Creates buttons for buying towers.
+     */
     private void initTowerButtons() {
         mainGameView.topView.towerSelectionPanel.towerAButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 currentTower = TowerFactory.sharedInstance().getTower(TowerName.TowerA1);
                 currentTower.setShootingStrategy(currentStrategy);
-                if(currentTower.getBuyPrice() <= account.getBalance()){
+                if (currentTower.getBuyPrice() <= account.getBalance()) {
                     gameMap.setToPlaceTowerState();
                     refreshGamePanelsView();
                 } else {
@@ -348,7 +354,7 @@ public class MainGameController {
             public void actionPerformed(ActionEvent e) {
                 currentTower = TowerFactory.sharedInstance().getTower(TowerName.TowerB1);
                 currentTower.setShootingStrategy(currentStrategy);
-                if(currentTower.getBuyPrice() <= account.getBalance()){
+                if (currentTower.getBuyPrice() <= account.getBalance()) {
                     gameMap.setToPlaceTowerState();
                     refreshGamePanelsView();
                 } else {
@@ -363,7 +369,7 @@ public class MainGameController {
             public void actionPerformed(ActionEvent e) {
                 currentTower = TowerFactory.sharedInstance().getTower(TowerName.TowerC1);
                 currentTower.setShootingStrategy(currentStrategy);
-                if(currentTower.getBuyPrice() <= account.getBalance()){
+                if (currentTower.getBuyPrice() <= account.getBalance()) {
                     gameMap.setToPlaceTowerState();
                     refreshGamePanelsView();
                 } else {
@@ -375,6 +381,9 @@ public class MainGameController {
         });
     }
 
+    /**
+     * 
+     */
     private void initPaintingTimers(){
         Timer paintingTimer = new Timer(REFRESH_RATE, new ActionListener() {
             @Override
@@ -390,38 +399,52 @@ public class MainGameController {
         paintingTimer.start();
     }
 
+    /**
+     * Detects if a critter was able to hit the end point and subtracts a coin.
+     * If coins have ended sets the handler to finalize game
+     */
     private void detectingCrittersStoleCoins() {
-        for(Critter c : CritterCollection.critters) {
-            if(c.isSucceed()){
+        for (Critter c : CritterCollection.critters) {
+            if (c.isSucceed()) {
                 coins --;
                 drawingDataPanelDelegate.reloadCoinDataView(coins);
-                if(coins == 0) gameOverHandler();
+                if(coins == 0) {
+                    gameOverHandler();  
+                }
                 c.setSucceed(false);
             }
         }
     }
 
-    private void initWaveTimers(){
+    /**
+     * 
+     */
+    private void initWaveTimers() {
         critterGeneratorTimer = new Timer(CRITTER_GENERATE_TIME, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(CritterCollection.currentIndex < CritterCollection.critters.size())
-                CritterCollection.critters.get(CritterCollection.currentIndex++).setVisible(true);
+                if (CritterCollection.currentIndex < CritterCollection.critters.size()) {
+                    CritterCollection.critters.get(CritterCollection.currentIndex++).setVisible(true);    
+                }
             }
         });
         critterGeneratorTimer.start();
     }
 
-    private void detectingCrittersInRange(){
-        for(Tower t: towerCollection.getTowers().values()){
-            for(Critter c : CritterCollection.critters) {
-                if(c.isVisible()){
-                    if(c.getBound().intersects(t.getBound())){
+    /**
+     * Detects critter range and veriies if it is in tower range
+     * Also checks if critter is dead and hides it and add money to account
+     */
+    private void detectingCrittersInRange() {
+        for (Tower t: towerCollection.getTowers().values()) {
+            for (Critter c : CritterCollection.critters) {
+                if (c.isVisible()) {
+                    if (c.getBound().intersects(t.getBound())) {
                         t.getCrittersInRange().add(c);
                     } else {
                         t.getCrittersInRange().remove(c);
                     }
-                    if(c.getCurrentHealth() <= 0){
+                    if (c.getCurrentHealth() <= 0) {
                         c.setKilled(true);
                         account.deposit(c.getWorth());
                         drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
@@ -432,7 +455,10 @@ public class MainGameController {
         }
     }
 
-    private void gameOverHandler(){
+    /**
+     * Clears game view and displays a dialog to select if player wants to play again or go back to main menu
+     */
+    private void gameOverHandler() {
         clearGame();
         Object[] options = {"Back to main menu",  "Play again!"};
         int n = JOptionPane.showOptionDialog(mainGameView,
@@ -443,7 +469,7 @@ public class MainGameController {
                 null,     //do not use a custom Icon
                 options, //the titles of buttons
                 options[0]); //default button title
-        if(n == 0){
+        if (n == 0) {
             mainGameView.setVisible(false);
             new MainMenuController().mainMenuView.setVisible(true);
         } else {
@@ -452,11 +478,11 @@ public class MainGameController {
         }
     }
 
-    private void clearGame(){
+    /**
+     * Clears the critter wave and stop critter generator.
+     */
+    private void clearGame() {
         CritterCollection.clearAllCritters();
         critterGeneratorTimer.stop();
     }
-    
-    
-
 }
