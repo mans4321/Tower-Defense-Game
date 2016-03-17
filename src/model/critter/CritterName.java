@@ -1,7 +1,7 @@
 package model.critter;
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * CritterName Enumeration
  */
 public enum CritterName {
 
@@ -16,6 +16,11 @@ public enum CritterName {
         this.critterName = critterName;
     }
 
+    /**
+     * critter name
+     * getter method
+     * @return
+     */
     public String getCritterName() {
         return critterName;
     }

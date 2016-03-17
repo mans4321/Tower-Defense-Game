@@ -1,15 +1,19 @@
 package model.critter;
 
 /**
- * Created by yongpinggao on 3/16/16.
+ * Critter B class
+ * @author yongpinggao
  */
 public class CritterB extends Critter {
 
     public CritterB(){
         initCritter();
     }
-
-    private void initCritter(){
+    
+    /**
+     * critter initialization
+     */
+    private void initCritter() {
         critterName = CritterName.CritterB;
         initialMoveSpeed = 15;
         maxHealth = 60;

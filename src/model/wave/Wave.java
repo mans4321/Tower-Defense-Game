@@ -1,10 +1,9 @@
 package model.wave;
 
 import model.critter.*;
-
-
 /**
- * Created by yongpinggao on 3/13/16.
+ * Wave class
+ * @author yongpinggao
  */
 public class Wave {
     private int index;

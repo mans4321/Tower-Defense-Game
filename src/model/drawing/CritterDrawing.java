@@ -8,10 +8,16 @@ import java.awt.*;
 import java.awt.image.ImageObserver;
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * Drawing critter class
+ * @author yongpinggao
  */
 public class CritterDrawing extends Drawing{
 
+	/**
+	 * draw critters method
+	 * @param g Graphics
+	 * @param observer ImageObserver
+	 */
     public static void drawCritters(Graphics g, ImageObserver observer){
         Graphics2D g2d = (Graphics2D) g.create();
         for(Critter c : CritterCollection.critters){
@@ -22,6 +28,10 @@ public class CritterDrawing extends Drawing{
         g2d.dispose();
     }
 
+    /**
+     * draw health bar 
+     * @param g graphics
+     */
     public static  void drawHealthBar(Graphics g){
         Graphics2D g2d = (Graphics2D) g.create();
         for(Critter c : CritterCollection.critters){
