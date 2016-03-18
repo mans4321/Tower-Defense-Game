@@ -18,7 +18,6 @@ public class Wave {
      *
      */
     public static class Builder {
-        private CritterA ca = new CritterA();
         /**
          * Constructor of builder
          */
@@ -59,6 +58,7 @@ public class Wave {
             }
             return this;
         }
+        
         /**
          * Build critter with specific number
          * @param num the number of critter
