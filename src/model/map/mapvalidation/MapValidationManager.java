@@ -270,7 +270,7 @@ public class MapValidationManager {
         } else if (! new ExtraPathValidator(countMap, cellList).validate()) {
             errorMessage = "There is extra path in your map!";
             return false;
-        } else if (! new ContinousPathValidator(countMap).validate()) {
+        } else if (! new ContinousPathValidator( countMap, cellList,  cols).validate()) {
             errorMessage = "Your path is not continous!";
             return false;	
         } else if (! new SeperateEntranceAndExitValidator(cols, cellList).validate()) {

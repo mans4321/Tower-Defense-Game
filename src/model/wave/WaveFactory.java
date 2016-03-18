@@ -29,7 +29,7 @@ public class WaveFactory {
     public Wave getWave(int waveNum){
         switch (waveNum){
             case 1:
-                return new Wave.Builder().critterA(4).critterB(5).build();
+                return new Wave.Builder().critterA(2).build();
             case 2:
                 return new Wave.Builder().critterA(4).critterB(5).critterC(6).build();
             case 3:

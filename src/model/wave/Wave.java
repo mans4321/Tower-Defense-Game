@@ -18,7 +18,6 @@ public class Wave {
      *
      */
     public static class Builder {
-        private CritterA ca = new CritterA();
         /**
          * Constructor of builder
          */
@@ -60,8 +59,8 @@ public class Wave {
             return this;
         }
         /**
-         * Build critterµÄ with specific number
-         * @param num the number of critterµÄ
+         * Build critters with specific number
+         * @param num the number of critters
          * @return
          */
         public Wave.Builder critterD(int num) {

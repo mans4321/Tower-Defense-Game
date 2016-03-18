@@ -17,7 +17,7 @@ public class PoisonTower extends Tower implements ShootingBehavior, DrawingShoot
 
     protected Timer shootTimer;
     int poisonTime;
-    int slowDownMoveSpeed;
+   // int slowDownMoveSpeed;
     int continuesDamage;
     int damageTimeInterval;
     /**
@@ -54,8 +54,8 @@ public class PoisonTower extends Tower implements ShootingBehavior, DrawingShoot
                 range = 80;
                 rateOfFire = 10;
                 poisonTime = 2000;
-                slowDownMoveSpeed = 2;
-                continuesDamage = 2;
+              //  slowDownMoveSpeed = 2;
+                continuesDamage = 5;
                 damageTimeInterval = 300;
                 break;
             case 2:
@@ -65,8 +65,8 @@ public class PoisonTower extends Tower implements ShootingBehavior, DrawingShoot
                 range = 90;
                 rateOfFire = 20;
                 poisonTime = 3000;
-                slowDownMoveSpeed = 3;
-                continuesDamage = 4;
+               // slowDownMoveSpeed = 3;
+                continuesDamage = 8;
                 damageTimeInterval = 200;
                 break;
             case 3:
@@ -76,8 +76,8 @@ public class PoisonTower extends Tower implements ShootingBehavior, DrawingShoot
                 range = 100;
                 rateOfFire = 30;
                 poisonTime = 4000;
-                slowDownMoveSpeed = 4;
-                continuesDamage = 8;
+               // slowDownMoveSpeed = 4;
+                continuesDamage = 11;
                 damageTimeInterval = 100;
                 break;
             default:
@@ -110,8 +110,8 @@ public class PoisonTower extends Tower implements ShootingBehavior, DrawingShoot
     public void shoot() {
         super.shoot();
         critterUnderAttack = shootingStrategy.targetOnCritters(crittersInRange);
-        if(powerOn && critterUnderAttack != null && critterUnderAttack.getCurrentMoveSpeed() == critterUnderAttack.getInitialMoveSpeed()) { //if critter is attacked(a line is drawn)
-            critterUnderAttack.setCurrentMoveSpeed(critterUnderAttack.getCurrentMoveSpeed() - slowDownMoveSpeed);
+        if(powerOn && critterUnderAttack != null){// && critterUnderAttack.getCurrentMoveSpeed() == critterUnderAttack.getInitialMoveSpeed()) { //if critter is attacked(a line is drawn)
+           // critterUnderAttack.setCurrentMoveSpeed(critterUnderAttack.getCurrentMoveSpeed() - slowDownMoveSpeed);
 
             Timer poisonTimer = new Timer(poisonTime, critterUnderAttack);
             poisonTimer.setInitialDelay(poisonTime);
