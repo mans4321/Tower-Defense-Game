@@ -36,13 +36,15 @@ public class Helper {
      * @param n number
      * @return index of this number in string array
      */
-    public static int getIndexFrom(String[] strArr, int n){
+    public static int getIndexFrom(String[] strArr, int n) {
         int index = 0;
-        for(int i = 0; i < strArr.length; i++){
-            if (n == Integer.parseInt(strArr[i])){
+        for (int i = 0; i < strArr.length; i++) {
+            if (n == Integer.parseInt(strArr[i])) {
                 index = i;
                 return index;
-            } else index = -1;
+            } else {
+                index = -1;
+            }
         }
         return index;
     }

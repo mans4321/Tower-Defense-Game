@@ -9,7 +9,7 @@ import model.tower.TowerCollection;
  * @since 3/16/16.
  * @version 2.0 
  */
-public interface DrawingMapInGameDelegate extends DrawingMapDelegate{
+public interface DrawingMapInGameDelegate extends DrawingMapDelegate {
  
 	/**
 	 * refresh Map

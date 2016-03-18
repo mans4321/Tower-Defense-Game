@@ -281,10 +281,4 @@ public class MapValidationManager {
             return true;
         }
     }
-    
-    
 }
-
-
-
-

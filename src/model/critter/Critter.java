@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * @since 3/16/16.
  * @version 2.0 
  */
-public class Critter implements ActionListener{
+public class Critter implements ActionListener {
     protected CritterName critterName;
     protected int currentHealth;
     protected int maxHealth;
@@ -205,7 +205,7 @@ public class Critter implements ActionListener{
      * getter method
      * @return critter rectangle 
      */
-    public Rectangle getBound(){
+    public Rectangle getBound() {
         Dimension dimension = CritterImageCollection.getCritterImageSizeOf(critterName);
         return new Rectangle(currentPosX, currentPosY, dimension.width, dimension.height);
     }
@@ -422,16 +422,16 @@ public class Critter implements ActionListener{
                 isSucceed = true;
             }
         } else {
-            if(currentPosY - y >= currentMoveSpeed){
+            if (currentPosY - y >= currentMoveSpeed) {
                 moveUp();
             }
-            else if (y - currentPosY >= currentMoveSpeed){
+            else if (y - currentPosY >= currentMoveSpeed) {
                 moveDown();
             }
-            else if (currentPosX - x >= currentMoveSpeed){
+            else if (currentPosX - x >= currentMoveSpeed) {
                 moverLeft();
             }
-            else if (x - currentPosX >= currentMoveSpeed){
+            else if (x - currentPosX >= currentMoveSpeed) {
                 moveRight();
             } else {
                 currentPosX = x;
@@ -452,12 +452,14 @@ public class Critter implements ActionListener{
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand() != null){ // critter get poisoned
-            if(e.getActionCommand().equals("POISON")){
+        if (e.getActionCommand() != null){ // critter get poisoned
+            if (e.getActionCommand().equals("POISON")) {
                 currentHealth -= continuesDamage;
             }
         } else { // set back to initial speed of frozen state or low speed state
-            if(innerTimer != null) innerTimer.stop();
+            if (innerTimer != null) {
+                innerTimer.stop();
+            }
             setCurrentMoveSpeed(initialMoveSpeed);
         }
     }

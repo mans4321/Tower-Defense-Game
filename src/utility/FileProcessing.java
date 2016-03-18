@@ -30,7 +30,7 @@ public class FileProcessing {
      * @param t general type
      * @return true if it is successful
      */
-    public <T> boolean writeToJsonFile(String fileName, T t){
+    public <T> boolean writeToJsonFile(String fileName, T t) {
         try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
                 writer.write(gson.toJson(t));

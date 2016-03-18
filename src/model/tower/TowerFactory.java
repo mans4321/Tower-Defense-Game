@@ -29,7 +29,7 @@ public class TowerFactory {
      * @param name tower name 
      * @return
      */
-    public Tower getTower(TowerName name){
+    public Tower getTower(TowerName name) {
         switch (name) {
             case TowerA1:
                 return new NormalTower(1);
@@ -53,6 +53,4 @@ public class TowerFactory {
                 return null;
         }
     }
-
-
 }

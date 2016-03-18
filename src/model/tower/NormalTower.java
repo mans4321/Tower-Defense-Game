@@ -20,8 +20,8 @@ public class NormalTower extends Tower implements ShootingBehavior, DrawingShoot
      * Constructor of NormalTower
      * @param level using different level to change properties of NormalTower
      */
-    public NormalTower(int level){
-        if(level <= MAX_LEVEL) {
+    public NormalTower(int level) {
+        if (level <= MAX_LEVEL) {
             crittersInRange = new HashSet<>();
             highResolutionTowerImageName = TowerName.TowerAH;
             this.level = level;
@@ -44,9 +44,9 @@ public class NormalTower extends Tower implements ShootingBehavior, DrawingShoot
     /**
      * Using various level to set properties of towers
      */
-    private void initTower(){
+    private void initTower() {
         specification = "<html>" + "Normal Tower" + "<br> Level: " + level + "<br> Good at attack normal creature</html>";
-        switch(level){
+        switch (level) {
             case 1:
                 buyPrice = 20.0;
                 sellPrice = 10.0;
@@ -102,14 +102,16 @@ public class NormalTower extends Tower implements ShootingBehavior, DrawingShoot
     public void shoot() {
         super.shoot();
         critterUnderAttack = shootingStrategy.targetOnCritters(crittersInRange);
-        if(critterUnderAttack != null && powerOn) { //if critter is get attacked(a line is drawn)
+        if (critterUnderAttack != null && powerOn) { //if critter is get attacked(a line is drawn)
             int health = critterUnderAttack.getCurrentHealth();
             health -= power;
             critterUnderAttack.setCurrentHealth(health);
-            if(health <= 0) {
+            if (health <= 0) {
                 crittersInRange.remove(critterUnderAttack);
             }
-        } else critterUnderAttack = null;
+        } else {
+            critterUnderAttack = null;
+        }
     }
     /**
      * Overrides drawShootingEffec
@@ -119,9 +121,12 @@ public class NormalTower extends Tower implements ShootingBehavior, DrawingShoot
     public void drawShootingEffect(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setStroke(this.getShootingEffect());
-        if(critterUnderAttack != null && powerOn && !critterUnderAttack.isKilled()){
-            g2d.drawLine(positionX + CELL_SIZE / 2, positionY + CELL_SIZE / 2,
-                    critterUnderAttack.getCurrentPosX() + CELL_SIZE / 2, critterUnderAttack.getCurrentPosY() + CELL_SIZE / 2);
+        if (critterUnderAttack != null && powerOn && !critterUnderAttack.isKilled()) {
+            g2d.drawLine(
+                positionX + CELL_SIZE / 2, positionY + CELL_SIZE / 2,
+                critterUnderAttack.getCurrentPosX() + CELL_SIZE / 2, 
+                critterUnderAttack.getCurrentPosY() + CELL_SIZE / 2
+            );
             powerOn = false;
         }
         g2d.dispose();

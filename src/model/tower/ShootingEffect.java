@@ -18,7 +18,7 @@ public enum ShootingEffect {
 	 * @param e represents shooting effect
 	 * @return stock
 	 */
-    public static BasicStroke getStoke(ShootingEffect e){
+    public static BasicStroke getStoke(ShootingEffect e) {
         switch (e){
             case IceEffect:
                 return new BasicStroke(2, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
@@ -30,8 +30,4 @@ public enum ShootingEffect {
                 return null;
         }
     }
-
-
-
-
 }

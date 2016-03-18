@@ -41,7 +41,7 @@ public class Wave {
          * @return critter wave 
          */
         public Wave.Builder critterB(int num) {
-            for(int i = 0; i < num; ++i) {
+            for (int i = 0; i < num; ++i) {
                 CritterB critterB = new CritterB();
                 CritterCollection.addCritter(critterB);
             }
@@ -53,19 +53,19 @@ public class Wave {
          * @return critter wave 
          */
         public Wave.Builder critterC(int num) {
-            for(int i = 0; i < num; ++i) {
+            for (int i = 0; i < num; ++i) {
                 CritterC critterC = new CritterC();
                 CritterCollection.addCritter(critterC);
             }
             return this;
         }
         /**
-         * Build critterµÄ with specific number
-         * @param num the number of critterµÄ
+         * Build critter with specific number
+         * @param num the number of critter
          * @return critter wave 
          */
         public Wave.Builder critterD(int num) {
-            for(int i = 0; i < num; ++i) {
+            for (int i = 0; i < num; ++i) {
                 CritterD critterD = new CritterD();
                 CritterCollection.addCritter(critterD);
             }

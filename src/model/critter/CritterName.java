@@ -27,5 +27,4 @@ public enum CritterName {
     public String getCritterName() {
         return critterName;
     }
-
 }

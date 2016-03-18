@@ -30,22 +30,22 @@ public class TowerCollection {
      * @param index represents map position
      * @param tower represents tower
      */
-    public void addTowerAtIndex(int index, Tower tower){
+    public void addTowerAtIndex(int index, Tower tower) {
         towers.put(index, tower);
     }
     /**
      * Remove tower by index
      * @param index represents tower position
      */
-    public void removeTowerAtIndex(int index){
+    public void removeTowerAtIndex(int index) {
         towers.remove(index);
     }
     /**
      * Draw shooting effect
      * @param g to draw shooting effect
      */
-    public void drawShootingEffect(Graphics g){
-        for (Tower t: towers.values()){
+    public void drawShootingEffect(Graphics g) {
+        for (Tower t: towers.values()) {
             t.drawShootingEffect(g);
         }
     }

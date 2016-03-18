@@ -8,7 +8,7 @@ package model.critter;
  */
 public class CritterB extends Critter {
 
-    public CritterB(){
+    public CritterB() {
         initCritter();
     }
     

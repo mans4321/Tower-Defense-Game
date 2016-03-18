@@ -24,8 +24,8 @@ public class PoisonTower extends Tower implements ShootingBehavior, DrawingShoot
      * Constructor of PoisonTower
      * @param level using different level to change properties of IceTower
      */
-    public PoisonTower(int level){
-        if(level <= MAX_LEVEL) {
+    public PoisonTower(int level) {
+        if (level <= MAX_LEVEL) {
             crittersInRange = new HashSet<>();
             highResolutionTowerImageName = TowerName.TowerCH;
             this.level = level;
@@ -44,9 +44,9 @@ public class PoisonTower extends Tower implements ShootingBehavior, DrawingShoot
     /**
      * Using various level to set properties of towers
      */
-    private void initTower(){
+    private void initTower() {
         specification = "<html>" + "Poison Tower" + "<br> Level: " + level + "<br> Good at attack huge creatures with its poison effect</html>";
-        switch(level){
+        switch (level){
             case 1:
                 buyPrice = 40.0;
                 sellPrice = 20.0;
@@ -110,7 +110,7 @@ public class PoisonTower extends Tower implements ShootingBehavior, DrawingShoot
     public void shoot() {
         super.shoot();
         critterUnderAttack = shootingStrategy.targetOnCritters(crittersInRange);
-        if(powerOn && critterUnderAttack != null && critterUnderAttack.getCurrentMoveSpeed() == critterUnderAttack.getInitialMoveSpeed()) { //if critter is attacked(a line is drawn)
+        if (powerOn && critterUnderAttack != null && critterUnderAttack.getCurrentMoveSpeed() == critterUnderAttack.getInitialMoveSpeed()) { //if critter is attacked(a line is drawn)
             critterUnderAttack.setCurrentMoveSpeed(critterUnderAttack.getCurrentMoveSpeed() - slowDownMoveSpeed);
 
             Timer poisonTimer = new Timer(poisonTime, critterUnderAttack);
@@ -125,11 +125,13 @@ public class PoisonTower extends Tower implements ShootingBehavior, DrawingShoot
             critterUnderAttack.setInnerTimer(continuesDamageTimer);
             critterUnderAttack.getInnerTimer().start();
 
-            if(critterUnderAttack.getCurrentHealth() <= 0) {
+            if (critterUnderAttack.getCurrentHealth() <= 0) {
                 crittersInRange.remove(critterUnderAttack);
                 critterUnderAttack = null;
             }
-        } else critterUnderAttack = null;
+        } else {
+            critterUnderAttack = null;
+        }
     }
     /**
      * Overrides drawShootingEffec
@@ -139,10 +141,13 @@ public class PoisonTower extends Tower implements ShootingBehavior, DrawingShoot
     public void drawShootingEffect(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setStroke(this.getShootingEffect());
-        if(critterUnderAttack != null && powerOn){
+        if (critterUnderAttack != null && powerOn) {
             g2d.setColor(Color.RED);
-            g2d.drawLine(positionX + CELL_SIZE / 2, positionY + CELL_SIZE / 2,
-                    critterUnderAttack.getCurrentPosX() + CELL_SIZE / 2, critterUnderAttack.getCurrentPosY() + CELL_SIZE / 2);
+            g2d.drawLine(
+                positionX + CELL_SIZE / 2, positionY + CELL_SIZE / 2,
+                critterUnderAttack.getCurrentPosX() + CELL_SIZE / 2, 
+                critterUnderAttack.getCurrentPosY() + CELL_SIZE / 2
+            );
         }
         powerOn = false;
         g2d.dispose();

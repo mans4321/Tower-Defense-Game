@@ -19,17 +19,19 @@ public class TargetBasedOnWeakest implements TowerShootingStrategy {
      */
     @Override
     public Critter targetOnCritters(Set<Critter> crittersInRange) {
-        if(crittersInRange.size() > 0){
+        if (crittersInRange.size() > 0) {
             Iterator<Critter> iterator = crittersInRange.iterator();
             Critter weakestCritter = iterator.next();
-            while(iterator.hasNext()){
+            while (iterator.hasNext()) {
                 Critter c = iterator.next();
-                if(c.getCurrentHealth() < weakestCritter.getCurrentHealth()){
+                if (c.getCurrentHealth() < weakestCritter.getCurrentHealth()) {
                     weakestCritter = c;
                 }
             }
             return weakestCritter;
-        } else return null;
+        } else {
+            return null;
+        }
     }
 
 

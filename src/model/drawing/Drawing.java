@@ -26,7 +26,7 @@ public class Drawing {
      * @param cols map cols
      * @return coordinate
      */
-    public static int[] indexToCoordinateConverter(int index, int cols){
+    public static int[] indexToCoordinateConverter(int index, int cols) {
         int x = index % cols;
         int y = index / cols;
         return new int[]{x * CELL_SIZE, y * CELL_SIZE};

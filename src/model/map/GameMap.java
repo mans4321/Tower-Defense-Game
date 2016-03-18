@@ -127,10 +127,10 @@ public class GameMap {
      * change cell state from grass to toPlaceTower state
      */
     public void setToPlaceTowerState() {
-        for(int i = 0; i < cells.size(); i++){
-            if(cells.get(i) == CellState.Grass){
+        for (int i = 0; i < cells.size(); i++) {
+            if (cells.get(i) == CellState.Grass) {
                 cells.set(i, CellState.ToPlaceTower);
-            } else if(cells.get(i) == CellState.Chosen){
+            } else if(cells.get(i) == CellState.Chosen) {
                 cells.set(i, CellState.Tower);
             }
         }
@@ -140,8 +140,8 @@ public class GameMap {
      * change toPlaceTower state back to grass state
      */ 
     public void setToGrassState(){
-        for(int i = 0; i < cells.size(); i++){
-            if(cells.get(i) == CellState.ToPlaceTower){
+        for (int i = 0; i < cells.size(); i++) {
+            if (cells.get(i) == CellState.ToPlaceTower) {
                 cells.set(i, CellState.Grass);
             }
         }
@@ -153,8 +153,8 @@ public class GameMap {
      */
     public void toggleChosenState(int index){
 
-        for(int i = 0; i < cells.size(); i++){
-            if(cells.get(i) == CellState.Chosen){
+        for (int i = 0; i < cells.size(); i++) {
+            if (cells.get(i) == CellState.Chosen) {
                 cells.set(i, CellState.Tower);
             }
         }
@@ -164,13 +164,13 @@ public class GameMap {
     /**
      * set state back to grass
      */
-    public void clearState(){
+    public void clearState() {
         // if the user press the wrong cells, aka path, etc.
         // set state back to grass
-        for(int i = 0; i < cells.size(); i++){
-            if (cells.get(i) == CellState.Chosen){
+        for (int i = 0; i < cells.size(); i++) {
+            if (cells.get(i) == CellState.Chosen) {
                 cells.set(i, CellState.Tower);
-            } else if (cells.get(i) == CellState.ToPlaceTower){
+            } else if (cells.get(i) == CellState.ToPlaceTower) {
                 cells.set(i, CellState.Grass);
             }
 
@@ -182,8 +182,8 @@ public class GameMap {
      * @return
      */
     public int findExitIndex(){
-        for(int i = 0; i < cells.size() ; i++){
-            if(cells.get(i) == CellState.Exit){ // Entrance -> indexEntrance
+        for (int i = 0; i < cells.size() ; i++) {
+            if (cells.get(i) == CellState.Exit) { // Entrance -> indexEntrance
                 return i;
             }
         }
@@ -194,9 +194,9 @@ public class GameMap {
      * find entrance index of game map
      * @return
      */
-    public int findEntranceIndex(){
-        for(int i = 0; i < cells.size() ; i++){
-            if(cells.get(i) == CellState.Entrance){ // Entrance -> indexEntrance
+    public int findEntranceIndex() {
+        for (int i = 0; i < cells.size() ; i++) {
+            if (cells.get(i) == CellState.Entrance) { // Entrance -> indexEntrance
                 return i;
             }
         }
@@ -207,23 +207,13 @@ public class GameMap {
      * find path list of the game map
      * @return
      */
-    public ArrayList<Integer> findPathList(){
+    public ArrayList<Integer> findPathList() {
         ArrayList<Integer> pathList = new ArrayList<>();
-        for(int i = 0; i < cells.size() ; i++){
-            if(cells.get(i) == CellState.Path){ // PATH -> pathList
+        for (int i = 0; i < cells.size() ; i++) {
+            if (cells.get(i) == CellState.Path) { // PATH -> pathList
                 pathList.add(i);
             }
         }
         return pathList;
-
     }
-
-
-
-
 }
-
-
-
-
-

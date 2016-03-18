@@ -65,10 +65,4 @@ public class MapView extends JPanel {
             repaint();
         }
     }
-
-
-
-
-
-
 }

@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * 
  *
  */
-public class SeperateEntranceAndExitValidator implements MapValidator{
+public class SeperateEntranceAndExitValidator implements MapValidator {
 
     private ArrayList<CellState> cellList;
     private int indexOfEntrance;
