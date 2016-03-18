@@ -30,6 +30,4 @@ public class TowerImageCollection extends ImageCollection {
         towerImages.put(TowerName.TowerC3, new ImageIcon(BASE_URL + TowerName.TowerC3.getTowerName() + PNG).getImage());
         towerImages.put(TowerName.TowerCH, new ImageIcon(BASE_URL + TowerName.TowerCH.getTowerName() + PNG).getImage());
     }
-
-
 }

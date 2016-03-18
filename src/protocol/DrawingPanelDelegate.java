@@ -9,5 +9,11 @@ import model.tower.Tower;
  * @version 2.0 
  */
 public interface DrawingPanelDelegate {
+    
+  
+	/**
+	 * reload Panel Based On Tower
+     * @param Tower tower 
+	 */
     void reloadPanelBasedOnTower(Tower tower);
 }

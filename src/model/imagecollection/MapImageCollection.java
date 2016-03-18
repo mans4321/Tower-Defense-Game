@@ -26,6 +26,4 @@ public class MapImageCollection extends ImageCollection {
         mapImages.put(CellState.Tower, new ImageIcon(BASE_URL + CellState.Tower.getCellStateName() + PNG).getImage());
         mapImages.put(CellState.Chosen, new ImageIcon(BASE_URL + CellState.Chosen.getCellStateName() + PNG).getImage());
     }
-
-
 }

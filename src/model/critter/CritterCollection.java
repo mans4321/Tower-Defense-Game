@@ -45,7 +45,7 @@ public class CritterCollection {
      * initialize critter moving
      */
     public static void crittersMoving() {
-        for(Critter c : critters){
+        for (Critter c : critters){
             c.moveThroughPathInMap();
         }
     }
@@ -55,7 +55,7 @@ public class CritterCollection {
      * @param gameMap
      */
     public static void setGameMapForCritters(GameMap gameMap) {
-        for(Critter c : critters){
+        for (Critter c : critters){
             c.setGameMap(gameMap);
         }
     }

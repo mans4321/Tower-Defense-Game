@@ -14,8 +14,9 @@ import java.util.ArrayList;
 import java.util.Map;
 
 /**
- *  game map drawing class 
- *	@author yongpinggao
+ * game map drawing class
+ * 
+ * @author yongpinggao
  * @since 3/16/16.
  * @version 2.0 
  */
@@ -28,15 +29,15 @@ public class GameMapDrawing extends Drawing {
 	 * @param towerCollection all the towers to draw
 	 * @param observer
 	 */
-    public static void drawMapAndTower(Graphics g, GameMap map, TowerCollection towerCollection, ImageObserver observer){
+    public static void drawMapAndTower(Graphics g, GameMap map, TowerCollection towerCollection, ImageObserver observer) {
         Graphics2D g2d = (Graphics2D) g.create();
         ArrayList<CellState> cellList = map.getCells();
         int mapCols = map.getmCols();
         int index;
-        for(int i = 0; i < CELL_SIZE * map.getmCols(); i = i + CELL_SIZE){
-            for(int j = 0; j < CELL_SIZE * map.getmRows(); j = j + CELL_SIZE){
+        for (int i = 0; i < CELL_SIZE * map.getmCols(); i = i + CELL_SIZE) {
+            for (int j = 0; j < CELL_SIZE * map.getmRows(); j = j + CELL_SIZE) {
 
-                switch (cellList.get(coordinateToIndexConverter(i, j, mapCols))){
+                switch (cellList.get(coordinateToIndexConverter(i, j, mapCols))) {
                     case Grass:
                         g2d.drawImage(MapImageCollection.mapImages.get(CellState.Grass), i, j, observer);
                         break;
@@ -77,7 +78,7 @@ public class GameMapDrawing extends Drawing {
      * @param map game map to draw
      * @param observer
      */
-    public static void drawTowerRange(Graphics g, TowerCollection towerCollection, GameMap map, ImageObserver observer){
+    public static void drawTowerRange(Graphics g, TowerCollection towerCollection, GameMap map, ImageObserver observer) {
 
         Graphics2D g2d = (Graphics2D) g.create();
         AlphaComposite alphaComposite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f);
@@ -87,15 +88,11 @@ public class GameMapDrawing extends Drawing {
         g2d.setRenderingHints(rh);
         for (Map.Entry<Integer, Tower> entry : towerCollection.getTowers().entrySet()) {
             Tower tower = entry.getValue();
-            if(tower.getTowerName() != TowerName.TowerNull) { // if TowerID == TOWERNULL, skip, draw nothing.
+            if (tower.getTowerName() != TowerName.TowerNull) { // if TowerID == TOWERNULL, skip, draw nothing.
                 g2d.draw(tower.getTowerRangeCircle());
                 g2d.fill(tower.getTowerRangeCircle());
             }
         }
         g2d.dispose();
     }
-
-
-
-
 }

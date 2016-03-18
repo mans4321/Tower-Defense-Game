@@ -30,7 +30,7 @@ public class CritterImageCollection extends ImageCollection {
      * @param critterName
      * @return dimension of critter image
      */
-    public static Dimension getCritterImageSizeOf(CritterName critterName){
+    public static Dimension getCritterImageSizeOf(CritterName critterName) {
         return new Dimension(new ImageIcon(BASE_URL + critterName + PNG).getIconWidth(), new ImageIcon(BASE_URL + critterName + PNG).getIconHeight());
     }
 

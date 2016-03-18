@@ -18,7 +18,7 @@ import java.util.Set;
  * @since 3/16/16.
  * @version 2.0  
  */
-public class Tower implements ShootingBehavior, DrawingShootingEffect{
+public class Tower implements ShootingBehavior, DrawingShootingEffect {
 
     public final static int MAX_LEVEL = 3;
 
@@ -56,17 +56,22 @@ public class Tower implements ShootingBehavior, DrawingShootingEffect{
      * Get the tower bounder.
      * @return the tower bounder
      */
-    public Rectangle getBound(){
+    public Rectangle getBound() {
         return towerRangeCircle.getBounds();
     }
     /**
      * Set the position of tower
      * @param pos to store specific tower position
      */
-    public void setPosition(int[] pos){
+    public void setPosition(int[] pos) {
         positionX = pos[0];
         positionY = pos[1];
-        towerRangeCircle = new Ellipse2D.Float(positionX + Drawing.CELL_SIZE / 2 - range / 2, positionY + Drawing.CELL_SIZE  / 2 - range / 2, range, range);
+        towerRangeCircle = new Ellipse2D.Float(
+            positionX + Drawing.CELL_SIZE / 2 - range / 2, 
+            positionY + Drawing.CELL_SIZE  / 2 - range / 2, 
+            range, 
+            range
+        );
     }
     /**
      * Get tower X coordinate.

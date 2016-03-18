@@ -18,16 +18,18 @@ public class TargetBasedOnStrongest implements TowerShootingStrategy {
      */
     @Override
     public Critter targetOnCritters(Set<Critter> crittersInRange) {
-        if(crittersInRange.size() > 0){
+        if (crittersInRange.size() > 0) {
             Iterator<Critter> iterator = crittersInRange.iterator();
             Critter strongestCritter = iterator.next();
-            while(iterator.hasNext()){
+            while (iterator.hasNext()) {
                 Critter c = iterator.next();
-                if(c.getCurrentHealth() > strongestCritter.getCurrentHealth()){
+                if (c.getCurrentHealth() > strongestCritter.getCurrentHealth()) {
                     strongestCritter = c;
                 }
             }
             return strongestCritter;
-        } else return null;
+        } else {
+            return null;
+        }
     }
 }

@@ -15,17 +15,16 @@ import java.util.HashSet;
  * @since 3/16/16.
  * @version 2.0  
  */
-// Freezing the critter for a time (have a higher priority to poison tower)
 public class IceTower extends Tower implements ShootingBehavior, DrawingShootingEffect{
-
+// Freezing the critter for a time (have a higher priority to poison tower)
     protected Timer shootTimer;
     int frozenTime;
     /**
      * Constructor of IceTower
      * @param level using different level to change properties of IceTower
      */
-    public IceTower(int level){
-        if(level <= MAX_LEVEL) {
+    public IceTower(int level) {
+        if (level <= MAX_LEVEL) {
             crittersInRange = new HashSet<>();
             highResolutionTowerImageName = TowerName.TowerBH;
             this.level = level;
@@ -49,7 +48,7 @@ public class IceTower extends Tower implements ShootingBehavior, DrawingShooting
     /**
      * Using various level to set properties of towers
      */
-    private void initTower(){
+    private void initTower() {
         specification = "<html>" + "Ice Tower" + "<br> Level: " + level + "<br> Good at attack fast creatures with its freezing effect</html>";
         switch(level){
             case 1:
@@ -109,7 +108,7 @@ public class IceTower extends Tower implements ShootingBehavior, DrawingShooting
     public void shoot() {
         super.shoot();
         critterUnderAttack = shootingStrategy.targetOnCritters(crittersInRange);
-        if(powerOn && critterUnderAttack != null && critterUnderAttack.getCurrentMoveSpeed() != 0) { //if critter is attacked(a line is drawn)
+        if (powerOn && critterUnderAttack != null && critterUnderAttack.getCurrentMoveSpeed() != 0) { //if critter is attacked(a line is drawn)
             critterUnderAttack.setCurrentMoveSpeed(0);
 
             Timer freezeTimer = new Timer(frozenTime, critterUnderAttack);
@@ -118,11 +117,13 @@ public class IceTower extends Tower implements ShootingBehavior, DrawingShooting
             critterUnderAttack.setMovingTimer(freezeTimer);
             critterUnderAttack.getMovingTimer().start();
 
-            if(critterUnderAttack.getCurrentHealth() <= 0) {
+            if (critterUnderAttack.getCurrentHealth() <= 0) {
                 crittersInRange.remove(critterUnderAttack);
                 critterUnderAttack = null;
             }
-        } else critterUnderAttack = null;
+        } else {
+            critterUnderAttack = null;
+        }
     }
     /**
      * Overrides drawShootingEffec
@@ -132,7 +133,7 @@ public class IceTower extends Tower implements ShootingBehavior, DrawingShooting
     public void drawShootingEffect(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setStroke(this.getShootingEffect());
-        if(critterUnderAttack != null && powerOn){
+        if (critterUnderAttack != null && powerOn) {
             g2d.setColor(Color.WHITE);
             g2d.drawLine(positionX + CELL_SIZE / 2, positionY + CELL_SIZE / 2,
                     critterUnderAttack.getCurrentPosX() + CELL_SIZE / 2, critterUnderAttack.getCurrentPosY() + CELL_SIZE / 2);

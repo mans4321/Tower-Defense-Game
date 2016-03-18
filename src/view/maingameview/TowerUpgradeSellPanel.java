@@ -1,14 +1,15 @@
 package view.maingameview;
 
-import protocol.DrawingPanelDelegate;
+import java.awt.*;
+import javax.swing.*;
 import model.imagecollection.TowerImageCollection;
 import model.tower.Tower;
-
-import javax.swing.*;
-import java.awt.*;
+import protocol.DrawingPanelDelegate;
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * Class for the side panel, upgrade and sell
+ * @author yongpinggao 
+ * @version 1.0 3/13/16
  */
 public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegate {
 
@@ -17,13 +18,15 @@ public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegat
     public JButton upgradeButton;
     public JLabel towerImageLabel;
 
-    public TowerUpgradeSellPanel(){
+    /**
+     * Constructor for default panel.
+     */
+    public TowerUpgradeSellPanel() {
         setBackground(Color.black);
         tower = new Tower();
         sellButton = new JButton("Sell");
         upgradeButton = new JButton("Upgrade");
         towerImageLabel = new JLabel(new ImageIcon());
-
 
         setLayout(null);
         add(sellButton);
@@ -34,16 +37,17 @@ public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegat
         upgradeButton.setBounds(0, 231, 240, 58);
     }
 
+    /**
+     * Reloads the panel to use selected tower information.
+     * @param tower selected tower from the towers on the map
+     */
     @Override
     public void reloadPanelBasedOnTower(Tower tower) {
-        if(tower != null){
+        if (tower != null) {
             this.tower = tower;
             towerImageLabel.setIcon(new ImageIcon(TowerImageCollection.towerImages.get(tower.getHighResolutionTowerImageName())));
         } else {
             towerImageLabel.setIcon(null);
         }
-
     }
-
-
 }

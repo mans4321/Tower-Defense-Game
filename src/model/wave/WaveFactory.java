@@ -26,8 +26,8 @@ public class WaveFactory {
      * @param waveNum the number of wave
      * @return groups of critters
      */
-    public Wave getWave(int waveNum){
-        switch (waveNum){
+    public Wave getWave(int waveNum) {
+        switch (waveNum) {
             case 1:
                 return new Wave.Builder().critterA(2).build();
             case 2:
