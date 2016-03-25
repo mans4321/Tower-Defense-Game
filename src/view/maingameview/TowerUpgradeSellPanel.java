@@ -13,7 +13,7 @@ import protocol.DrawingPanelDelegate;
  */
 public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegate {
 
-	public final static String[] towerStrategies = {"traget On Weakest","traget On Weakest","traget On Nearest"};
+	public final static String[] towerStrategies = {"traget On Weakest","traget On Strongest","traget On Nearest"};
 	
     private Tower tower;
     public JButton sellButton;

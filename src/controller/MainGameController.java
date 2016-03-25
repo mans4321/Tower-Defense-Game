@@ -251,6 +251,45 @@ public class MainGameController {
                 }
             }
         });
+        
+        
+        mainGameView.endView.towerUpgradeSellPanel.strategy.addActionListener(new ActionListener () {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				if (currentTower != null) {
+					 if (e.getSource() instanceof JComboBox) {
+		                    JComboBox cb = (JComboBox)(e.getSource());
+		                    String strategy = (String)cb.getSelectedItem();
+				
+		                    switch(strategy){
+				
+		                    	case "traget On Weakest":
+		                    		currentTower.setShootingStrategy(new TargetBasedOnWeakest());
+		                    		break;
+		                    	case "traget On Strongest":
+		                    		currentTower.setShootingStrategy(new TargetBasedOnStrongest());
+		                    		break;
+		                    	case "traget On Nearest":
+		                    		currentTower.setShootingStrategy(new TargetBasedOnNearest());
+		                    		break;
+					
+				}
+				}
+			}
+        	
+        }});
+        
+        mainGameView.endView.towerUpgradeSellPanel.viewLog.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+        });
+        
     }
 
     /**
