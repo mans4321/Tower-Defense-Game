@@ -56,16 +56,16 @@ public class IceTower extends Tower implements ShootingBehavior, DrawingShooting
                 sellPrice = 15.0;
                 towerName = TowerName.TowerB1;
                 range = 80;
-                rateOfFire = 10;
+                rateOfFire = 100;
                 power = 0;
-                frozenTime = 1000;
+                frozenTime = 2000;
                 break;
             case 2:
                 buyPrice = 40.0;
                 sellPrice = 20.0;
                 towerName = TowerName.TowerB2;
                 range = 90;
-                rateOfFire = 20;
+                rateOfFire = 150;
                 frozenTime = 1500;
                 power = 0;
                 break;
@@ -74,7 +74,7 @@ public class IceTower extends Tower implements ShootingBehavior, DrawingShooting
                 sellPrice = 25.0;
                 towerName = TowerName.TowerB3;
                 range = 100;
-                rateOfFire = 30;
+                rateOfFire = 200;
                 frozenTime = 2000;
                 power = 0;
                 break;

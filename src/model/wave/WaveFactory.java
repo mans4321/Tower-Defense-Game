@@ -29,17 +29,17 @@ public class WaveFactory {
     public Wave getWave(int waveNum) {
         switch (waveNum) {
             case 1:
-                return new Wave.Builder().critterA(2).build();
+                return new Wave.Builder(waveNum).critterA(2).critterB(3).build();
             case 2:
-                return new Wave.Builder().critterA(4).critterB(5).critterC(6).build();
+                return new Wave.Builder(waveNum).critterA(4).critterB(5).critterC(6).build();
             case 3:
-                return new Wave.Builder().critterA(3).critterB(10).critterC(8).critterD(8).build();
+                return new Wave.Builder(waveNum).critterA(3).critterB(10).critterC(8).critterD(8).build();
             case 4:
-                return new Wave.Builder().critterA(11).critterB(10).critterC(8).critterD(8).build();
+                return new Wave.Builder(waveNum).critterA(11).critterB(10).critterC(8).critterD(8).build();
             case 5:
-                return new Wave.Builder().critterA(13).critterB(10).critterC(8).critterD(8).build();
+                return new Wave.Builder(waveNum).critterA(13).critterB(10).critterC(8).critterD(8).build();
             case 6:
-                return new Wave.Builder().critterA(15).critterB(20).critterC(12).critterD(13).build();
+                return new Wave.Builder(waveNum).critterA(15).critterB(20).critterC(12).critterD(13).build();
             default:
                 return null;
         }

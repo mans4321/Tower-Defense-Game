@@ -13,9 +13,13 @@ import protocol.DrawingPanelDelegate;
  */
 public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegate {
 
+	public final static String[] towerStrategies = {"traget On Weakest","traget On Weakest","traget On Nearest"};
+	
     private Tower tower;
     public JButton sellButton;
     public JButton upgradeButton;
+    public JComboBox strategy;
+    public JButton viewLog;
     public JLabel towerImageLabel;
 
     /**
@@ -27,14 +31,21 @@ public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegat
         sellButton = new JButton("Sell");
         upgradeButton = new JButton("Upgrade");
         towerImageLabel = new JLabel(new ImageIcon());
-
+        viewLog = new JButton("Log");
+        strategy = new JComboBox(towerStrategies);
+        
         setLayout(null);
         add(sellButton);
+        add(viewLog);
         add(towerImageLabel);
         add(upgradeButton);
-        sellButton.setBounds(0, 0, 240, 58);
+        add(strategy);
+        sellButton.setBounds(0, 0, 118, 58);
+        upgradeButton.setBounds(120, 0, 120, 58);
         towerImageLabel.setBounds(0, 58 , 240, 174);
-        upgradeButton.setBounds(0, 231, 240, 58);
+        viewLog.setBounds(0, 231, 118, 58);
+        strategy.setBounds(120,231,240,58);
+        
     }
 
     /**

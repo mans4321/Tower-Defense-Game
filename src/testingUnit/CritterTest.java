@@ -59,7 +59,7 @@ public class CritterTest {
 		
 		sizeBeforAddingCritterWave= CritterCollection.critters.size();
 		
-		new Wave.Builder().critterA(10).build();
+		new Wave.Builder(1).critterA(10).build();
 		
 	    sizeAfterAddingCritterWave = CritterCollection.critters.size();
 		

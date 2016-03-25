@@ -54,8 +54,8 @@ public class NormalTower extends Tower implements ShootingBehavior, DrawingShoot
                 sellPrice = 10.0;
                 towerName = TowerName.TowerA1;
                 range = 80;
-                rateOfFire = 100;
-                slowDownMoveSpeed = 2;
+                rateOfFire = 150;
+                slowDownMoveSpeed = 4;
                 slowDownTime = 2000;
                 power = 30;
                 break;
@@ -65,7 +65,7 @@ public class NormalTower extends Tower implements ShootingBehavior, DrawingShoot
                 towerName = TowerName.TowerA2;
                 range = 90;
                 rateOfFire = 200;
-                slowDownMoveSpeed = 3;
+                slowDownMoveSpeed = 6;
                 slowDownTime = 3000;
                 power = 40;
                 break;
@@ -75,7 +75,7 @@ public class NormalTower extends Tower implements ShootingBehavior, DrawingShoot
                 towerName = TowerName.TowerA3;
                 range = 100;
                 rateOfFire = 300;
-                slowDownMoveSpeed = 4;
+                slowDownMoveSpeed = 8;
                 slowDownTime = 4000;
                 power = 50;
                 break;
