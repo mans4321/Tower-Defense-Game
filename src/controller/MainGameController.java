@@ -12,6 +12,9 @@ import model.critter.CritterCollection;
 import model.drawing.GameMapDrawing;
 import model.map.CellState;
 import model.map.GameMap;
+import model.map.GameMapCollection;
+import model.map.SaveGame;
+import model.map.SavedGamesCollection;
 import model.tower.shootingstrategy.TargetBasedOnWeakest;
 import model.tower.shootingstrategy.TargetBasedOnStrongest;
 import model.tower.shootingstrategy.TargetBasedOnNearest;
@@ -75,6 +78,8 @@ public class MainGameController {
     private final int CRITTER_GENERATE_TIME = 1000;
 
     private int coins = 10;
+    
+    SavedGamesCollection saveGamecollection ;
 
     /**
      * Contructor method, will set up internal properties and call internal initializator methods.
@@ -149,12 +154,13 @@ public class MainGameController {
         mainGameView.topView.gameDataPanel.targetBasedOnStrongestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                currentStrategy = new TargetBasedOnStrongest();
-                for (Tower t : towerCollection.getTowers().values()) {
-                    t.setShootingStrategy(currentStrategy);
+//                currentStrategy = new TargetBasedOnStrongest();
+//                for (Tower t : towerCollection.getTowers().values()) {
+//                    t.setShootingStrategy(currentStrategy);
+            	
+            	saveGame();
                 }
-            }
-        });
+            });
 
         /**
          * Creates Action listener for strategy selection for towers. 
@@ -253,7 +259,9 @@ public class MainGameController {
             
         });
         
-        
+        /**
+         * Creates action listener for changing tower strategy button on the side panel.
+         */
         mainGameView.endView.towerUpgradeSellPanel.strategy.addActionListener(new ActionListener () {
 
 			@Override
@@ -263,9 +271,7 @@ public class MainGameController {
 					 if (e.getSource() instanceof JComboBox) {
 		                    JComboBox cb = (JComboBox)(e.getSource());
 		                    String strategy = (String)cb.getSelectedItem();
-				
 		                    switch(strategy){
-				
 		                    	case "traget On Weakest":
 		                    		currentTower.setShootingStrategy(new TargetBasedOnWeakest());
 		                    		break;
@@ -275,13 +281,12 @@ public class MainGameController {
 		                    	case "traget On Nearest":
 		                    		currentTower.setShootingStrategy(new TargetBasedOnNearest());
 		                    		break;
-		                    		
-					
-				}
 				}
 			}
+		}
         	
-        }});
+      }
+		});
         
         mainGameView.endView.towerUpgradeSellPanel.viewLog.addActionListener(new ActionListener() {
 
@@ -525,4 +530,79 @@ public class MainGameController {
         CritterCollection.clearAllCritters();
         critterGeneratorTimer.stop();
     }
+    
+    private void saveGame(){
+    	
+    	saveGamecollection = new SavedGamesCollection(towerCollection, gameMap, "", coins, account.getBalance() , currentWaveNum); 
+    	 
+    	SaveGame saveGame = SaveGame.loadMapsFromFile();
+         boolean isReadyToCreate = true;
+         
+         if (!saveGamecollection.getGameName().equals("")) {
+             //old map
+             JOptionPane.showMessageDialog(mainGameView, "Saved Successful!");
+
+             for (int i = 0; i < saveGame.getGames().size(); i++) {
+                 if (saveGamecollection.getGameName().equals(saveGame.getGames().get(i).getGameName())) {
+                	 saveGame.getGames().set(i, saveGamecollection);
+                 }
+             }
+             
+             SaveGame.saveMapsToFile(saveGame);
+           //  mainGameView.setVisible(false);
+           // new MapChooseController().mapChooseView.setVisible(true);
+
+         } else {
+        	 String gameName = (String) JOptionPane.showInputDialog(mainGameView,
+                     "Type in the game name :",
+                     "Save map to file",
+                     JOptionPane.PLAIN_MESSAGE,
+                     null,
+                     null,
+                     "map1");
+             if (gameName != null) { // if user choose cancel, mapName -> null
+                 if (!gameName.equals("")) { // if the name is empty then it's invalidate
+
+                     if (saveGame != null) { // if the file already exits, check the filename and volume
+                         int size = saveGame.getGames().size();
+                         for (int i = 0; i < size; i++) {
+                             if (saveGame.getGames().get(i).getGameName().equals(gameName)) {
+                                 String gameRename;// if they have the same name, please rename
+                                 do {
+                                	 gameRename = (String) JOptionPane.showInputDialog(mainGameView,
+                                             "Name already taken, please rename:",
+                                             "Save map to file",
+                                             JOptionPane.PLAIN_MESSAGE,
+                                             null,
+                                             null,
+                                             "map1");
+                                 } while (gameName.equals(gameRename));
+    	
+                                 if (gameRename != null) {
+                                     gameName = gameRename;
+                                 } else {
+                                     isReadyToCreate = false;
+                                 }
+                             }
+                         }
+                     } else {
+                    	 saveGame = new SaveGame();
+                     }
+                 }
+             
+
+             if (isReadyToCreate) {
+            	
+            	 saveGamecollection.setGameName(gameName);
+            	 saveGame.addGames(saveGamecollection);
+            	 SaveGame.saveMapsToFile(saveGame);
+                 
+                 //mapEditorView.setVisible(false);
+                 //new MainMenuController().mainMenuView.setVisible(true);
+             } else {
+                 JOptionPane.showMessageDialog(mainGameView, "File name invalidate");
+             }
+         }
 }
+    }
+    }
