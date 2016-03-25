@@ -275,6 +275,7 @@ public class MainGameController {
 		                    	case "traget On Nearest":
 		                    		currentTower.setShootingStrategy(new TargetBasedOnNearest());
 		                    		break;
+		                    		
 					
 				}
 				}
