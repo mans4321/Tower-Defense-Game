@@ -2,6 +2,7 @@ package controller;
 
 import model.map.GameMap;
 import model.map.GameMapCollection;
+import model.map.SaveGame;
 import view.mainmenuview.MainMenuView;
 
 import javax.swing.*;
@@ -49,6 +50,19 @@ public class MainMenuController {
                     new MapChooseController().mapChooseView.setVisible(true);
                 }
             }
+        });
+        
+        mainMenuView.loadGame.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				 mainMenuView.setVisible(false);
+				 if (SaveGame.loadGamesFromFile() == null) {
+					 JOptionPane.showMessageDialog(mainMenuView, "No Saved games, please  play a game and Save it", "Error", JOptionPane.YES_OPTION);
+			} else {
+				new GameChooseController().gameChooseView.setVisible(false);
+			}
+			}
         });
     }
 }

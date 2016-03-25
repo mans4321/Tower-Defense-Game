@@ -104,6 +104,9 @@ public class MainGameController {
         initFunctionalButtonsInTopPanel();
     }
 
+    public MainGameController(SavedGamesCollection savedgame){
+    	
+    }
     /**
      * Instantiates the bank account model and set the initial balance. Also updates the panel that shows the balance.
      */
@@ -535,7 +538,7 @@ public class MainGameController {
     	
     	saveGamecollection = new SavedGamesCollection(towerCollection, gameMap, "", coins, account.getBalance() , currentWaveNum); 
     	 
-    	SaveGame saveGame = SaveGame.loadMapsFromFile();
+    	SaveGame saveGame = SaveGame.loadGamesFromFile();
          boolean isReadyToCreate = true;
          
          if (!saveGamecollection.getGameName().equals("")) {
@@ -548,7 +551,7 @@ public class MainGameController {
                  }
              }
              
-             SaveGame.saveMapsToFile(saveGame);
+             SaveGame.saveGamesToFile(saveGame);
            //  mainGameView.setVisible(false);
            // new MapChooseController().mapChooseView.setVisible(true);
 
@@ -595,7 +598,7 @@ public class MainGameController {
             	
             	 saveGamecollection.setGameName(gameName);
             	 saveGame.addGames(saveGamecollection);
-            	 SaveGame.saveMapsToFile(saveGame);
+            	 SaveGame.saveGamesToFile(saveGame);
                  
                  //mapEditorView.setVisible(false);
                  //new MainMenuController().mainMenuView.setVisible(true);

@@ -28,11 +28,11 @@ public class SaveGame {
 	        this.games.remove(index);
 	    }
 
-	public static boolean saveMapsToFile(SaveGame games) {
+	public static boolean saveGamesToFile(SaveGame games) {
 		return FileProcessing.sharedInstance().writeToJsonFile(JSON_FILE, games);
 
 }
-	   public static SaveGame loadMapsFromFile() {
+	   public static SaveGame loadGamesFromFile() {
 		return FileProcessing.sharedInstance().readFromJsonFile(JSON_FILE, SaveGame.class);
 }
 
