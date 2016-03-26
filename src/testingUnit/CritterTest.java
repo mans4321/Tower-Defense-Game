@@ -57,7 +57,7 @@ public class CritterTest {
 
 		sizeBeforAddingCritterWave= critterCollection.getCritters().size();
 
-		new WaveBuilder().critterA(10);
+		new WaveBuilder(1).critterA(10);
 	    sizeAfterAddingCritterWave = critterCollection.getCritters().size();
 
 		assertTrue(sizeBeforAddingCritterWave < sizeAfterAddingCritterWave);
