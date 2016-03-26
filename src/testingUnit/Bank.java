@@ -55,7 +55,7 @@ public class Bank {
 	}
 	
 	@Test
-	public void testdffff(){
+	public void testWithDraw(){
 		
 		bankAccount.setBalance(100);
 		beforeSetting = bankAccount.getBalance();

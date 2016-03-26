@@ -16,6 +16,8 @@ import java.util.HashSet;
 public class NormalTower extends Tower implements ShootingBehavior, DrawingShootingEffect {
 
     protected Timer shootTimer;
+    int slowDownMoveSpeed;
+    int slowDownTime;
     /**
      * Constructor of NormalTower
      * @param level using different level to change properties of NormalTower
@@ -53,7 +55,9 @@ public class NormalTower extends Tower implements ShootingBehavior, DrawingShoot
                 towerName = TowerName.TowerA1;
                 range = 80;
                 rateOfFire = 100;
-                power = 5;
+                slowDownMoveSpeed = 2;
+                slowDownTime = 2000;
+                power = 30;
                 break;
             case 2:
                 buyPrice = 30.0;
@@ -61,7 +65,9 @@ public class NormalTower extends Tower implements ShootingBehavior, DrawingShoot
                 towerName = TowerName.TowerA2;
                 range = 90;
                 rateOfFire = 200;
-                power = 10;
+                slowDownMoveSpeed = 3;
+                slowDownTime = 3000;
+                power = 40;
                 break;
             case 3:
                 buyPrice = 40.0;
@@ -69,7 +75,9 @@ public class NormalTower extends Tower implements ShootingBehavior, DrawingShoot
                 towerName = TowerName.TowerA3;
                 range = 100;
                 rateOfFire = 300;
-                power = 15;
+                slowDownMoveSpeed = 4;
+                slowDownTime = 4000;
+                power = 50;
                 break;
             default:
                 towerName = TowerName.TowerNull;
@@ -102,8 +110,19 @@ public class NormalTower extends Tower implements ShootingBehavior, DrawingShoot
     public void shoot() {
         super.shoot();
         critterUnderAttack = shootingStrategy.targetOnCritters(crittersInRange);
-        if (critterUnderAttack != null && powerOn) { //if critter is get attacked(a line is drawn)
-            int health = critterUnderAttack.getCurrentHealth();
+
+        if(critterUnderAttack != null && powerOn&& critterUnderAttack.getCurrentMoveSpeed() == critterUnderAttack.getInitialMoveSpeed()) { //if critter is get attacked(a line is drawn)
+        	critterUnderAttack.setCurrentMoveSpeed(critterUnderAttack.getCurrentMoveSpeed() - slowDownMoveSpeed);
+        	
+        	Timer slowDownTimer = new Timer(slowDownTime, critterUnderAttack);
+        	slowDownTimer.setInitialDelay(slowDownTime);
+        	slowDownTimer.setRepeats(false);
+            critterUnderAttack.setMovingTimer(slowDownTimer);
+            critterUnderAttack.getMovingTimer().start();
+            
+            
+        	int health = critterUnderAttack.getCurrentHealth();
+
             health -= power;
             critterUnderAttack.setCurrentHealth(health);
             if (health <= 0) {
