@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import model.tower.Tower;
 import model.tower.TowerFactory;
-import model.tower.TowerName;
 import view.tower.TowerType;
 
 import static org.junit.Assert.*;

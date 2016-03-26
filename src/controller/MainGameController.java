@@ -36,7 +36,6 @@ import view.tower.TowerType;
  * @see model.bankaccount.BankAccount
  * @see model.critter.Critter
  * @see model.critter.CritterCollection
- * @see model.drawing.GameMapDrawing
  * @see model.map.CellState
  * @see model.map.GameMap
  * @see model.tower.shootingstrategy.TargetBasedOnWeakest
@@ -46,7 +45,6 @@ import view.tower.TowerType;
  * @see model.tower.Tower
  * @see model.tower.TowerCollection
  * @see model.tower.TowerFactory
- * @see model.tower.TowerName
  * @see model.wave.WaveFactory
  * @see protocol.DrawingDataPanelDelegate
  * @see protocol.DrawingMapInGameDelegate
@@ -97,11 +95,8 @@ public class MainGameController {
         initMapArea();
         initWaveTimers();
         initTowerButtons();
-
         initSellUpgradeButtons();
         initFunctionalButtonsInTopPanel();
-
-
     }
 
     private void initBankAccount() {
@@ -117,12 +112,14 @@ public class MainGameController {
                 gameShouldFinishedWithUserWin(true);
             } else {
                 initCrittersForWave(++currentWaveNum);
+                LoggerCollection.getInstance().addLog(new Log(LogType.Wave, "Wave " + currentWaveNum + " starts"));
                 drawingDataPanelDelegate.reloadWaveDataView(currentWaveNum);
             }
         }
     }
 
     private void initFunctionalButtonsInTopPanel() {
+        LoggerCollection.getInstance().addLog(new Log(LogType.Wave, "Wave Preparation Phase"));
         // waveStartButton
         mainGameView.topView.gameDataPanel.waveStartButton.addActionListener(new ActionListener() {
             @Override
@@ -136,10 +133,10 @@ public class MainGameController {
         mainGameView.topView.gameDataPanel.showLogButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //TODO add a new window for this
                 System.out.println(LoggerCollection.getInstance().showAllLog());
             }
         });
-
     }
 
     private void initCrittersForWave(int waveNum) {
@@ -148,6 +145,7 @@ public class MainGameController {
         }
         currentCritterIndex = 0;
         critterCollection = WaveFactory.sharedInstance().getWave(waveNum).getCritterCollection();
+        LoggerCollection.getInstance().addLog(new Log(LogType.Wave, "Now in wave " + currentWaveNum + " : " + critterCollection.getCritters().size() + " critters have been created"));
     }
 
     private void initSellUpgradeButtons() {
@@ -333,6 +331,7 @@ public class MainGameController {
             if(c.getMovingBehavior() != null) {
                 if(c.getMovingBehavior().isArrivedAtExit() && !c.isDonated()){
                     coins --;
+                    LoggerCollection.getInstance().addLog(new Log(LogType.Wave, "Now in wave " + currentWaveNum + ": A critter just stole a coin"));
                     drawingDataPanelDelegate.reloadCoinDataView(coins);
                     c.setDonated(true);
                     if(coins == 0) gameShouldFinishedWithUserWin(false);
@@ -343,8 +342,10 @@ public class MainGameController {
 
     private void gameShouldFinishedWithUserWin(boolean win) {
         if(win) {
+            LoggerCollection.getInstance().addLog(new Log(LogType.Wave, "Player wins the game"));
             JOptionPane.showMessageDialog(mainGameView, "Good Job! You win!");
         } else {
+            LoggerCollection.getInstance().addLog(new Log(LogType.Wave, "Player lose the game"));
             JOptionPane.showMessageDialog(mainGameView, "Sorry, You lose the game!");
         }
         System.exit(0);
@@ -378,6 +379,7 @@ public class MainGameController {
                     }
                     if(c.getCurrentHealth() <= 0) {
                         c.setKilled(true);
+                        LoggerCollection.getInstance().addLog(new Log(LogType.Wave, "Now in wave " + currentWaveNum + ": A critter just got killed"));
                         account.deposit(c.getWorth());
                         drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
                         c.setVisible(false);
