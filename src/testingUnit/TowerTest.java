@@ -5,15 +5,16 @@ import static org.junit.Assert.assertTrue;
 import java.util.HashSet;
 import java.util.Set;
 
+import model.tower.BurningTower;
 import org.junit.Before;
 import org.junit.Test;
 
 import model.critter.Critter;
-import model.critter.CritterA;
-import model.tower.NormalTower;
 import model.tower.shootingstrategy.TargetBasedOnNearest;
 import model.tower.shootingstrategy.TargetBasedOnStrongest;
 import model.tower.shootingstrategy.TargetBasedOnWeakest;
+import view.critter.CritterType;
+import view.map.Position;
 
 
 /**
@@ -25,10 +26,10 @@ import model.tower.shootingstrategy.TargetBasedOnWeakest;
  */
 public class TowerTest {
 	
-	CritterA crriter1;
-	CritterA crriter2;
+	Critter crriter1;
+	Critter crriter2;
 	Set<Critter> crittersInRange;
-	NormalTower tower ;
+	BurningTower tower ;
 	private TargetBasedOnWeakest targetBasedOnWeakest;
 	private TargetBasedOnStrongest targetBasedOnStrongest;
 	private TargetBasedOnNearest targetBasedOnNearestest;
@@ -40,22 +41,20 @@ public class TowerTest {
 	@Before
 	public void setValues(){
 		
-		crriter1 = new CritterA();
-		crriter2 = new CritterA();
+		crriter1 = new Critter(CritterType.CritterA);
+		crriter2 = new Critter(CritterType.CritterA);
 		crriter1.setCurrentHealth(100);
 		crriter2.setCurrentHealth(60);
 		
-		crriter1.setCurrentPosX(0);
-		crriter1.setCurrentPosY(0);
-		crriter2.setCurrentPosX(0);
-		crriter2.setCurrentPosY(100);
-		
+		crriter1.getMovingBehavior().setCurrentPosition(new Position(0, 0));
+		crriter2.getMovingBehavior().setCurrentPosition(new Position(0, 100));
+
 		crittersInRange = new HashSet<>();
 		
 		crittersInRange.add(crriter1);
 		crittersInRange.add(crriter2);
 		
-		tower = new NormalTower(1);
+		tower = new BurningTower(1);
 	}
 	
 	/**

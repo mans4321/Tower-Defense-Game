@@ -3,8 +3,8 @@ package testingUnit;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
-import model.drawing.Drawing;
+import view.map.Drawing;
+import view.map.Position;
 
 
 /**
@@ -34,12 +34,11 @@ public class ConvertXYcoordinateConverter {
 	@Test
 	public void testXYCoordinate() {
 		
-		int[] arr = Drawing.indexToCoordinateConverter(0, 10);
+		Position arr = Drawing.indexToCoordinateConverter(0, 10);
 		
-		assertEquals(arr[0], 0);
-		assertEquals(arr[1], 0);
+		assertEquals(arr.getX(), 0);
+		assertEquals(arr.getY(), 0);
 	}
-	
-	
+
 
 }

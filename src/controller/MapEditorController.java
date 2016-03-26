@@ -1,39 +1,33 @@
 package controller;
 
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import javax.swing.*;
-import model.drawing.GameMapDrawing;
 import model.map.CellState;
 import model.map.GameMap;
 import model.map.GameMapCollection;
 import model.map.mapvalidation.MapValidationManager;
 import protocol.DrawingMapDelegate;
-import utility.Helper;
+import view.map.GameMapDrawing;
 import view.mapeditorview.MapEditorView;
+import utility.Helper;
 import view.mapeditorview.PopupMenuView;
 import view.mapeditorview.TopView;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 /**
- * Controller for the map editor area.
- * @author yongpinggao 
- * @version 1.0 3/12/16.
+ * Created by yongpinggao on 3/12/16.
  */
 public class MapEditorController {
 
     MapEditorView mapEditorView;
     GameMap gameMap;
     DrawingMapDelegate delegate;
-    
-    /**
-     * Constructor for the map editor.
-     * @param gameMap base map type for creating the custom map
-     */
-    public MapEditorController(final GameMap gameMap) {
+
+    public MapEditorController(GameMap gameMap){
 
         this.gameMap = gameMap;
 
@@ -41,14 +35,10 @@ public class MapEditorController {
         delegate = mapEditorView.mapView.mapPanel;
         delegate.refreshMap(gameMap);
         mapEditorView.topView.widthList.setSelectedIndex(Helper.getIndexFrom(TopView.widthStrings, gameMap.getmCols()));
-        
-        /**
-         * Sets listener to react to select list of widths.
-         */
         mapEditorView.topView.widthList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() instanceof JComboBox) {
+                if (e.getSource() instanceof JComboBox){
                     JComboBox cb = (JComboBox)(e.getSource());
                     String string = (String)cb.getSelectedItem();
                     gameMap.setmCols(Integer.parseInt(string));
@@ -59,14 +49,10 @@ public class MapEditorController {
         });
         mapEditorView.topView.heightList.setSelectedIndex(Helper.getIndexFrom(TopView.heightStrings, gameMap.getmRows()));
         mapEditorView.topView.heightList.setActionCommand("height");
-        
-        /**
-         * Sets listener to react to select list of heights 
-         */
-        mapEditorView.topView.heightList.addActionListener(new ActionListener() {
+        mapEditorView.topView.heightList.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() instanceof JComboBox) {
+                if (e.getSource() instanceof JComboBox){
                     JComboBox cb = (JComboBox)(e.getSource());
                     String string = (String)cb.getSelectedItem();
                     gameMap.setmRows(Integer.parseInt(string));
@@ -76,17 +62,14 @@ public class MapEditorController {
             }
         });
 
-        /**
-         * Sets listeners for all the functionalities of the map creation. 
-         */
         mapEditorView.mapView.mapPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
                 int x = e.getX();
                 int y = e.getY();
-                final ArrayList<CellState> cellList = gameMap.getCells();
-                final int index = GameMapDrawing.coordinateToIndexConverter(x, y, gameMap.getmCols());
+                ArrayList<CellState> cellList = gameMap.getCells();
+                int index = GameMapDrawing.coordinateToIndexConverter(x, y, gameMap.getmCols());
 
                 if (e.getButton() == MouseEvent.BUTTON1) {
                     // Left Click to set maps path
@@ -121,24 +104,19 @@ public class MapEditorController {
             }
         });
 
-        /**
-         * Sets listener for the save button 
-         */
+
         mapEditorView.topView.saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MapValidationManager manager = new MapValidationManager(gameMap);
                 if (manager.checkValidate()) {
-                     saveDataToFile();
+                    saveDataToFile();
                 } else {
                     JOptionPane.showMessageDialog(mapEditorView, manager.getErrorMessage(), "Illegal Map", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
 
-        /**
-         * Sets listener for the discard button
-         */
         mapEditorView.topView.discardButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -155,30 +133,22 @@ public class MapEditorController {
             }
         });
     }
-    
-    /**
-     * Clears the map of all entrances, exits and paths
-     */
+
     public void clearGameMap(){
         for(int i = 0; i < gameMap.getCells().size(); i++){
             gameMap.getCells().set(i, CellState.Grass);
         }
         delegate.refreshMap(gameMap);
     }
-    
-    /**
-     * Method to save the map
-     */
+
     public void saveDataToFile() {
         GameMapCollection mapCollection = GameMapCollection.loadMapsFromFile();
         boolean isReadyToCreate = true;
-        
-        if (!gameMap.getImageName().equals("")) {
-            //old map
+        if(!gameMap.getImageName().equals("")){// old map
             JOptionPane.showMessageDialog(mapEditorView, "Saved Successful!");
 
-            for (int i = 0; i < mapCollection.getMaps().size(); i++) {
-                if (gameMap.getImageName().equals(mapCollection.getMaps().get(i).getImageName())) {
+            for(int i = 0; i < mapCollection.getMaps().size(); i++){
+                if(gameMap.getImageName().equals(mapCollection.getMaps().get(i).getImageName())){
                     mapCollection.getMaps().set(i, gameMap);
                 }
             }
@@ -187,8 +157,7 @@ public class MapEditorController {
             mapEditorView.setVisible(false);
             new MapChooseController().mapChooseView.setVisible(true);
 
-        } else {
-            //brand new map
+        } else {//brand new map
             String mapName = (String) JOptionPane.showInputDialog(mapEditorView,
                     "Type in the maps name:",
                     "Save map to file",
@@ -213,17 +182,11 @@ public class MapEditorController {
                                             null,
                                             "map1");
                                 } while (mapName.equals(mapRename));
-                        
-                                if (mapRename != null) {
-                                    mapName = mapRename;
-                                } else {
-                                    isReadyToCreate = false;
-                                }
+                                if (mapRename != null) mapName = mapRename;
+                                else isReadyToCreate = false;
                             }
                         }
-                    } else {
-                        mapCollection = new GameMapCollection();
-                    }
+                    } else mapCollection = new GameMapCollection();
                 }
             }
 
@@ -234,9 +197,15 @@ public class MapEditorController {
                 clearGameMap();
                 mapEditorView.setVisible(false);
                 new MainMenuController().mainMenuView.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(mapEditorView, "File name invalidate");
-            }
+            } else JOptionPane.showMessageDialog(mapEditorView, "File name invalidate");
+
         }
+
+
+
     }
+
+
+
+
 }
