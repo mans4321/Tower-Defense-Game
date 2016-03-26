@@ -1,8 +1,8 @@
 package controller;
 
+import model.Store.GameMapCollection;
+import model.Store.StoredGameCollection;
 import model.map.GameMap;
-import model.map.GameMapCollection;
-import model.map.StoredGameCollection;
 import view.mainmenuview.MainMenuView;
 
 import javax.swing.*;

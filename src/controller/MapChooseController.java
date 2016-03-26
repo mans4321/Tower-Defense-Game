@@ -1,11 +1,12 @@
 package controller;
 
-import model.map.GameMapCollection;
 import view.mapchooseview.MapChooseView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+
+import model.Store.GameMapCollection;
 
 
 /**

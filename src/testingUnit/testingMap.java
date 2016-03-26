@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import model.Store.GameMapCollection;
 import model.map.CellState;
 import model.map.GameMap;
-import model.map.GameMapCollection;
 
 
 /**

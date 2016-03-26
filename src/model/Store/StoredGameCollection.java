@@ -1,4 +1,4 @@
-package model.map;
+package model.Store;
 
 import java.io.BufferedReader;
 import java.io.File;

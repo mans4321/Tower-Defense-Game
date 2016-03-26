@@ -7,10 +7,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.*;
+
+import model.Store.GameMapCollection;
 import model.drawing.GameMapDrawing;
 import model.map.CellState;
 import model.map.GameMap;
-import model.map.GameMapCollection;
 import model.map.mapvalidation.MapValidationManager;
 import protocol.DrawingMapDelegate;
 import utility.Helper;

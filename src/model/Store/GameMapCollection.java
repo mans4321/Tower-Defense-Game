@@ -1,8 +1,10 @@
-package model.map;
+package model.Store;
 
 import utility.FileProcessing;
 
 import java.util.ArrayList;
+
+import model.map.GameMap;
 
 /**
  * GameMapCollection class

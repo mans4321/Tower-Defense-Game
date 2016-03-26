@@ -1,4 +1,4 @@
-package model.map;
+package model.Store;
 
 import java.util.ArrayList;
 import java.util.HashMap;

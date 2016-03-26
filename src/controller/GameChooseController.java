@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.DefaultListModel;
 
-import model.map.GameMapCollection;
-import model.map.StoredGameCollection;
+import model.Store.GameMapCollection;
+import model.Store.StoredGameCollection;
 import view.gameChooseView.GameChooseView;
 import view.mapchooseview.MapChooseView;
 
