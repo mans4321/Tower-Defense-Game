@@ -13,8 +13,8 @@ import model.drawing.GameMapDrawing;
 import model.map.CellState;
 import model.map.GameMap;
 import model.map.GameMapCollection;
-import model.map.SaveGame;
-import model.map.SavedGamesCollection;
+import model.map.StoredGameCollection;
+import model.map.StoredGames;
 import model.tower.shootingstrategy.TargetBasedOnWeakest;
 import model.tower.shootingstrategy.TargetBasedOnStrongest;
 import model.tower.shootingstrategy.TargetBasedOnNearest;
@@ -79,7 +79,7 @@ public class MainGameController {
 
     private int coins = 10;
     
-    SavedGamesCollection saveGamecollection ;
+    StoredGames saveGamecollection ;
 
     /**
      * Contructor method, will set up internal properties and call internal initializator methods.
@@ -104,7 +104,7 @@ public class MainGameController {
         initFunctionalButtonsInTopPanel();
     }
 
-    public MainGameController(SavedGamesCollection savedgame){
+    public MainGameController(StoredGames savedgame){
     	
     }
     /**
@@ -535,10 +535,13 @@ public class MainGameController {
     }
     
     private void saveGame(){
-    	
-    	saveGamecollection = new SavedGamesCollection(towerCollection, gameMap, "", coins, account.getBalance() , currentWaveNum); 
+    	ArrayList<Tower> towers = new ArrayList<>();
+        for (Tower t : towerCollection.getTowers().values()) {
+        	towers.add(t);
+        }
+    	saveGamecollection = new StoredGames(towers, "", gameMap.getImageName(),coins, account.getBalance() , currentWaveNum); 
     	 
-    	SaveGame saveGame = SaveGame.loadGamesFromFile();
+    	StoredGameCollection saveGame = StoredGameCollection.loadGamesFromFile();
          boolean isReadyToCreate = true;
          
          if (!saveGamecollection.getGameName().equals("")) {
@@ -551,7 +554,7 @@ public class MainGameController {
                  }
              }
              
-             SaveGame.saveGamesToFile(saveGame);
+             StoredGameCollection.saveGamesToFile(saveGame);
            //  mainGameView.setVisible(false);
            // new MapChooseController().mapChooseView.setVisible(true);
 
@@ -589,7 +592,7 @@ public class MainGameController {
                              }
                          }
                      } else {
-                    	 saveGame = new SaveGame();
+                    	 saveGame = new StoredGameCollection();
                      }
                  }
              
@@ -598,7 +601,7 @@ public class MainGameController {
             	
             	 saveGamecollection.setGameName(gameName);
             	 saveGame.addGames(saveGamecollection);
-            	 SaveGame.saveGamesToFile(saveGame);
+            	 StoredGameCollection.saveGamesToFile(saveGame);
                  
                  //mapEditorView.setVisible(false);
                  //new MainMenuController().mainMenuView.setVisible(true);
@@ -608,4 +611,5 @@ public class MainGameController {
          }
 }
     }
-    }
+}
+    
