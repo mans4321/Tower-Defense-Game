@@ -14,7 +14,7 @@ public class Drawing {
 	 * @param x coordinate x
 	 * @param y coordinate y
 	 * @param cols map cols
-	 * @return index
+	 * @return index map index
 	 */
     public static int coordinateToIndexConverter(int x, int y, int cols) {
         return x / CELL_SIZE + (y / CELL_SIZE) * cols;

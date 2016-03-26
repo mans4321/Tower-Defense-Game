@@ -10,8 +10,8 @@ import java.util.HashMap;
 /**
  * This class is to validate whether Entrance or Exit is in the middle of the path.
  *
- * @author LiChong
- *
+ *@author LiChong
+ *@version 1.3
  */
 public class EntranceExitInMiddlePathValidator implements MapValidator {
 

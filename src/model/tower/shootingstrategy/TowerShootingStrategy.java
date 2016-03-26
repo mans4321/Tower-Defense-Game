@@ -12,5 +12,8 @@ import java.util.Set;
  */
 public interface TowerShootingStrategy {
 
+	/*
+	 * a method for Tower shooting strategy
+	 */
      Critter targetOnCritters(Set<Critter> crittersInRange);
 }

@@ -27,7 +27,7 @@ public class CritterImageCollection extends ImageCollection {
 
     /**
      * get bound of the critter
-     * @param critterName
+     * @param critterName critter name
      * @return dimension of critter image
      */
     public static Dimension getCritterImageSizeOf(CritterName critterName) {

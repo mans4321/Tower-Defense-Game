@@ -50,9 +50,9 @@ public class Helper {
     }
     /**
      * get dimension of image file
-     * @param imgSize
-     * @param boundary
-     * @return dimension
+     * @param imgSize image  dimension
+     * @param boundary image boundary
+     * @return new dimension
      * @reference http://stackoverflow.com/questions/10245220/java-image-resize-maintain-aspect-ratio 
      */
     public static Dimension getScaledDimension(Dimension imgSize, Dimension boundary) {

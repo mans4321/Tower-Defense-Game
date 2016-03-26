@@ -27,25 +27,42 @@ public class GameMapCollection {
     }
 
     /**
-     * g
-     * @return
+     * getter for maps
+     * @return maps
      */
     public ArrayList<GameMap> getMaps() {
         return maps;
     }
 
+    /**
+     * adding a game map 
+     * @param map game map
+     */
     public void addMap(GameMap map) {
         this.maps.add(map);
     }
 
+    /**
+     * deleting map
+     * @param index map index
+     */
     public void deleteMap(int index) {
         this.maps.remove(index);
     }
 
+    /**
+     * save maps to Json file 
+     * @param maps saved maps collection
+     * @return saving map status 
+     */
     public static boolean saveMapsToFile(GameMapCollection maps) {
         return FileProcessing.sharedInstance().writeToJsonFile(JSON_FILE, maps);
     }
 
+    /**
+     * load  maps for Json file 
+     * @return an instance of GameMapCollection class
+     */
     public static GameMapCollection loadMapsFromFile() {
         return FileProcessing.sharedInstance().readFromJsonFile(JSON_FILE, GameMapCollection.class);
     }

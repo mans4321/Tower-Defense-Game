@@ -22,7 +22,7 @@ public enum CritterName {
     /**
      * critter name
      * getter method
-     * @return
+     * @return critterName
      */
     public String getCritterName() {
         return critterName;

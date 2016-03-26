@@ -21,7 +21,7 @@ public class BankAccount {
     
     /**
      * setter method for balance
-     * @param balance
+     * @param balance player balance
      */
     public void setBalance(double balance) {
         this.balance = balance;
@@ -29,7 +29,7 @@ public class BankAccount {
 
     /**
      * add more gold to the account
-     * @param gold
+     * @param gold amount of money for a single transactions 
      */
     public void deposit(double gold) {
         balance += gold;
@@ -37,7 +37,7 @@ public class BankAccount {
 
     /**
      * withdraw some gold from account
-     * @param gold
+     * @param gold amount of money for a single transactions 
      */
     public void withDraw(double gold) {
         balance -= gold;

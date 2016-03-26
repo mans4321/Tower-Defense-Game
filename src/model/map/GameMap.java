@@ -72,7 +72,7 @@ public class GameMap {
     /**
      * cols of the map
      * getter method
-     * @return
+     * @return map Cols
      */
     public int getmCols() {
         return mCols;
@@ -81,7 +81,7 @@ public class GameMap {
     /**
      * cols of the map
      * setter method
-     * @return
+     *@param mCols map cols
      */
     public void setmCols(int mCols) {
         this.mCols = mCols;
@@ -90,7 +90,7 @@ public class GameMap {
     /**
      * rows of map
      * getter method
-     * @return
+     * @return mRows map rows
      */
     public int getmRows() {
         return mRows;
@@ -99,7 +99,7 @@ public class GameMap {
     /**
      * rows of map
      * setter method
-     * @return
+     * @param mRows map Rows 
      */
     public void setmRows(int mRows) {
         this.mRows = mRows;
@@ -108,7 +108,7 @@ public class GameMap {
     /**
      * image name of game map
      * getter method
-     * @return
+     * @return imageName
      */
     public String getImageName() {
         return imageName;
@@ -117,7 +117,7 @@ public class GameMap {
     /**
      * image name of game map
      * setter method
-     * @return
+     *@param imageName map name 
      */
     public void setImageName(String imageName) {
         this.imageName = imageName;
@@ -179,7 +179,7 @@ public class GameMap {
 
     /**
      * find exit index of game map
-     * @return
+     * @return Exit Index
      */
     public int findExitIndex(){
         for (int i = 0; i < cells.size() ; i++) {
@@ -192,7 +192,7 @@ public class GameMap {
 
     /**
      * find entrance index of game map
-     * @return
+     * @return Entrance Index
      */
     public int findEntranceIndex() {
         for (int i = 0; i < cells.size() ; i++) {
@@ -205,7 +205,7 @@ public class GameMap {
 
     /**
      * find path list of the game map
-     * @return
+     * @return pathList
      */
     public ArrayList<Integer> findPathList() {
         ArrayList<Integer> pathList = new ArrayList<>();

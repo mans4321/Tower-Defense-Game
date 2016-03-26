@@ -145,7 +145,7 @@ public class Tower implements ShootingBehavior, DrawingShootingEffect {
     }
     /**
      * Get the name of tower
-     * @return towerName
+     * @return towerName tower Name
      */
     public TowerName getTowerName() {
         return towerName;
@@ -271,7 +271,7 @@ public class Tower implements ShootingBehavior, DrawingShootingEffect {
     }
     /**
      * Get critters who in tower range
-     * @return crittersInRange
+     * @return crittersInRange 
      */
     public Set<Critter> getCrittersInRange() {
         return crittersInRange;

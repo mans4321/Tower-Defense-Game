@@ -12,7 +12,6 @@ import java.util.HashMap;
  *  
  * @author LiChong
  * @version 1.0 
- * @since 
  */
 public class MapValidationManager {
 

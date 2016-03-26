@@ -381,7 +381,7 @@ public class MainGameController {
     }
 
     /**
-     * 
+     *  initialize the painting timer to repaint the view
      */
     private void initPaintingTimers(){
         Timer paintingTimer = new Timer(REFRESH_RATE, new ActionListener() {
@@ -416,7 +416,7 @@ public class MainGameController {
     }
 
     /**
-     * 
+     * Initialize the wave timer to launch wave 
      */
     private void initWaveTimers() {
         critterGeneratorTimer = new Timer(CRITTER_GENERATE_TIME, new ActionListener() {

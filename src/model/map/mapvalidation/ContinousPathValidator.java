@@ -10,7 +10,6 @@ import model.map.CellState;
  * Having gap in path is illegal.
  * 
  * @version 1.3
- * 
  * @author LiChong
  *
  */

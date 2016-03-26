@@ -27,7 +27,7 @@ public class GameMapDrawing extends Drawing {
 	 * @param g Graphics
 	 * @param map map to draw
 	 * @param towerCollection all the towers to draw
-	 * @param observer
+	 * @param observer view observer
 	 */
     public static void drawMapAndTower(Graphics g, GameMap map, TowerCollection towerCollection, ImageObserver observer) {
         Graphics2D g2d = (Graphics2D) g.create();
@@ -76,7 +76,7 @@ public class GameMapDrawing extends Drawing {
      * @param g graphics 
      * @param towerCollection all the towers
      * @param map game map to draw
-     * @param observer
+     * @param observer view observer
      */
     public static void drawTowerRange(Graphics g, TowerCollection towerCollection, GameMap map, ImageObserver observer) {
 
