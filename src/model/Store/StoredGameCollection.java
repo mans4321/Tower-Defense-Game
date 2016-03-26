@@ -1,46 +1,57 @@
 package model.Store;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import utility.FileProcessing;
 
+import java.util.ArrayList;
+
+import model.map.GameMap;
+
+/**
+ * GameMapCollection class
+ * store all game map that user created
+ * @author yongpinggao
+ * @since 3/16/16.
+ * @version 2.0 
+ */
 public class StoredGameCollection {
 
-	private static String JSON_FILE = "Games.json";
-	private ArrayList<StoredGames> games;
 	
-	public StoredGameCollection() {
-		
-		this.games = new ArrayList<>();
-	}
-	
-	
-	
-	 public ArrayList<StoredGames> getGames() {
-	        return games;
-	    }
+    private static String JSON_FILE = "Games.json";
 
-	    public void addGames(StoredGames game) {
-	        this.games.add(game);
-	    }
+    private ArrayList<StoredGames> games;
 
-	    public void deleteGames(int index) {
-	        this.games.remove(index);
-	    }
+    /**
+     * constructor
+     * create a new arraylist
+     */
+    public StoredGameCollection(){
+        this.games = new ArrayList<>();
+    }
 
-	public static boolean saveGamesToFile(StoredGameCollection games) {
-		return FileProcessing.sharedInstance().writeToJsonFile(JSON_FILE, games);
+    /**
+     * g
+     * @return
+     */
+    public ArrayList<StoredGames> getGames() {
+        return games;
+    }
 
-}
-	   public static StoredGameCollection loadGamesFromFile() {
-		return FileProcessing.sharedInstance().readFromJsonFile(JSON_FILE, StoredGameCollection.class);
-}
+    public void addGames(StoredGames games) {
+        this.games.add(games);
+    }
+
+    public void deleteGames(int index) {
+        this.games.remove(index);
+    }
+
+    public static boolean saveGamesToFile(StoredGameCollection games) {
+        return FileProcessing.sharedInstance().writeToJsonFile(JSON_FILE, games);
+    }
+
+    public static StoredGameCollection loadGamesFromFile() {
+        return FileProcessing.sharedInstance().readFromJsonFile(JSON_FILE, StoredGameCollection.class);
+    }
+
+
 
 }

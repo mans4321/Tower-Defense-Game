@@ -14,13 +14,13 @@ import view.mapchooseview.MapChooseView;
 public class GameChooseController {
 
 	GameChooseView gameChooseView;
-    //SaveGame savedgames;
+	StoredGameCollection saveGame;
     DefaultListModel listModel;
     
 	public GameChooseController() {
 		
 		listModel = new DefaultListModel();
-		StoredGameCollection saveGame = StoredGameCollection.loadGamesFromFile();
+		 saveGame = StoredGameCollection.loadGamesFromFile();
 	
 	 for (int i = 0; i < saveGame.getGames().size(); i++) {
          listModel.addElement(saveGame.getGames().get(i).getGameName());
