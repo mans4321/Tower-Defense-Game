@@ -27,7 +27,7 @@ public class MapEditorController {
     GameMap gameMap;
     DrawingMapDelegate delegate;
 
-    public MapEditorController(GameMap gameMap){
+    public MapEditorController(GameMap gameMap) {
 
         this.gameMap = gameMap;
 

@@ -1,5 +1,6 @@
 package model.gamelog;
 
+
 import java.util.ArrayList;
 
 /**
@@ -20,6 +21,7 @@ public class LoggerCollection {
 
     public void addLog(Log log) {
         logList.add(log);
+
     }
 
     public String showAllLog() {
@@ -51,5 +53,16 @@ public class LoggerCollection {
         }
         return stringBuilder.toString();
     }
+
+    public String showWaveLog() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(Log log: logList) {
+            if(log.getWho() == LogType.Wave) {
+                stringBuilder.append(log.toString());
+            }
+        }
+        return stringBuilder.toString();
+    }
+
 
 }

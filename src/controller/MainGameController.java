@@ -19,10 +19,7 @@ import model.tower.Tower;
 import model.tower.TowerCollection;
 import model.tower.TowerFactory;
 import model.wave.WaveFactory;
-import protocol.DrawingDataPanelDelegate;
-import protocol.DrawingMapDelegate;
-import protocol.DrawingMapInGameDelegate;
-import protocol.DrawingPanelDelegate;
+import protocol.*;
 import view.maingameview.MainGameView;
 import view.map.Drawing;
 import view.tower.TowerType;
@@ -54,6 +51,7 @@ import view.tower.TowerType;
 public class MainGameController {
 
     MainGameView mainGameView;
+    GameLogController gameLogController;
 
     GameMap gameMap = new GameMap();
     TowerCollection towerCollection = new TowerCollection();
@@ -81,12 +79,14 @@ public class MainGameController {
 
     public MainGameController(GameMap gameMap){
         mainGameView = new MainGameView();
+        gameLogController = new GameLogController();
         this.gameMap = gameMap;
         drawingMapInGameDelegate = mainGameView.mapView.mapPanel;
         drawingMapDelegate = mainGameView.mapView.mapPanel;
         drawingSpecificationPanelDelegate = mainGameView.endView.towerSpecificationPanel;
         drawingSellUpgradePanelDelegate = mainGameView.endView.towerUpgradeSellPanel;
         drawingDataPanelDelegate = mainGameView.topView.gameDataPanel;
+
         drawingMapDelegate.refreshMap(gameMap);
         drawingDataPanelDelegate.reloadCoinDataView(coins);
 
@@ -133,8 +133,11 @@ public class MainGameController {
         mainGameView.topView.gameDataPanel.showLogButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO add a new window for this
-                System.out.println(LoggerCollection.getInstance().showAllLog());
+                if (gameLogController.gameLogView.isVisible()) {
+                    gameLogController.gameLogView.setVisible(false);
+                } else {
+                    gameLogController.gameLogView.setVisible(true);
+                }
             }
         });
     }
@@ -177,6 +180,7 @@ public class MainGameController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(currentTower != null) {
+                    LoggerCollection.getInstance().addLog(new Log(LogType.Tower, currentIndex, "Player sell a tower: " + currentTower.getTowerType() + " at position " + currentIndex));
                     account.deposit(currentTower.getSellPrice());
                     drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
                     currentTower = null;
@@ -220,6 +224,7 @@ public class MainGameController {
                             cellList.set(index, CellState.Tower);
                             currentTower.setPosition(Drawing.indexToCoordinateConverter(index, gameMap.getmCols()));
                             towerCollection.addTowerAtIndex(index, currentTower);
+                            LoggerCollection.getInstance().addLog(new Log(LogType.Tower, index, "Player plant a new tower: " + currentTower.getTowerType() + " at position " + index));
                             gameMap.setToGrassState();
                             refreshGamePanelsView();
                             currentTower = null;

@@ -1,7 +1,45 @@
 package view.gamelogview;
 
+
+import view.BaseWindowView;
+
+import javax.swing.*;
+
 /**
  * Created by yongpinggao on 3/26/16.
  */
-public class GameLogView {
+public class GameLogView extends BaseWindowView {
+
+    public JButton gameLogButton;
+    public JButton waveLogButton;
+    public JButton towerLogButton;
+
+    public JTextArea logArea;
+    public JScrollPane logScrollPane;
+
+    public GameLogView() {
+        super(600, 722, "Game Log");
+
+        gameLogButton = new JButton("GameLog");
+        waveLogButton = new JButton("WaveLog");
+        towerLogButton = new JButton("TowerLog");
+
+        logArea = new JTextArea(10, 50);
+        logArea.setEditable(false);
+        logScrollPane = new JScrollPane(logArea);
+
+
+        setLayout(null);
+        add(gameLogButton);
+        add(waveLogButton);
+        add(towerLogButton);
+        add(logScrollPane);
+
+        gameLogButton.setBounds(0, 0, 200, 50);
+        towerLogButton.setBounds(200, 0, 200, 50);
+        waveLogButton.setBounds(400, 0, 200, 50);
+        logScrollPane.setBounds(0, 50, 600, 672);
+        logArea.setCaretPosition(logArea.getDocument().getLength());
+
+    }
 }
