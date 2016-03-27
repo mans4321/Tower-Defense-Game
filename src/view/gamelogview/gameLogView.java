@@ -13,6 +13,7 @@ public class GameLogView extends BaseWindowView {
     public JButton gameLogButton;
     public JButton waveLogButton;
     public JButton towerLogButton;
+    public JButton mapLogButton;
 
     public JTextArea logArea;
     public JScrollPane logScrollPane;
@@ -23,6 +24,7 @@ public class GameLogView extends BaseWindowView {
         gameLogButton = new JButton("GameLog");
         waveLogButton = new JButton("WaveLog");
         towerLogButton = new JButton("TowerLog");
+        mapLogButton = new JButton("MapLog");
 
         logArea = new JTextArea(10, 50);
         logArea.setEditable(false);
@@ -33,11 +35,13 @@ public class GameLogView extends BaseWindowView {
         add(gameLogButton);
         add(waveLogButton);
         add(towerLogButton);
+        add(mapLogButton);
         add(logScrollPane);
 
-        gameLogButton.setBounds(0, 0, 200, 50);
-        towerLogButton.setBounds(200, 0, 200, 50);
-        waveLogButton.setBounds(400, 0, 200, 50);
+        gameLogButton.setBounds(0, 0, 150, 50);
+        towerLogButton.setBounds(150, 0, 150, 50);
+        waveLogButton.setBounds(300, 0, 150, 50);
+        mapLogButton.setBounds(450, 0, 150, 50);
         logScrollPane.setBounds(0, 50, 600, 672);
         logArea.setCaretPosition(logArea.getDocument().getLength());
 

@@ -15,6 +15,7 @@ import model.gamelog.LogType;
 import model.gamelog.LoggerCollection;
 import model.map.CellState;
 import model.map.GameMap;
+import model.map.GameMapCollection;
 import model.tower.Tower;
 import model.tower.TowerCollection;
 import model.tower.TowerFactory;
@@ -89,6 +90,9 @@ public class MainGameController {
 
         drawingMapDelegate.refreshMap(gameMap);
         drawingDataPanelDelegate.reloadCoinDataView(coins);
+
+        // TODO new Window score list
+        System.out.println("Highest score:" + gameMap.getFiveHighestScore());
 
         initBankAccount();
         initPaintingTimers();
@@ -346,14 +350,28 @@ public class MainGameController {
     }
 
     private void gameShouldFinishedWithUserWin(boolean win) {
+
+        GameMapCollection mapCollection = GameMapCollection.loadMapsFromFile();
+        gameMap.addScore(account.getBalance());
+
         if(win) {
-            LoggerCollection.getInstance().addLog(new Log(LogType.Wave, "Player wins the game"));
+            gameMap.addResultToMap("Win");
             JOptionPane.showMessageDialog(mainGameView, "Good Job! You win!");
+            LoggerCollection.getInstance().addLog(new Log(LogType.Map, "Player wins the game" + "Score: " + account.getBalance()));
         } else {
-            LoggerCollection.getInstance().addLog(new Log(LogType.Wave, "Player lose the game"));
+            gameMap.addResultToMap("Lose");
             JOptionPane.showMessageDialog(mainGameView, "Sorry, You lose the game!");
+            LoggerCollection.getInstance().addLog(new Log(LogType.Map, "Player loses the game" + "Score: " + account.getBalance()));
         }
-        System.exit(0);
+
+        mapCollection.getMaps().set(mapCollection.findGameMapInCollection(gameMap), gameMap);
+        GameMapCollection.saveMapsToFile(mapCollection);
+
+        // TODO new Window score list
+        System.out.println("Highest score:" + gameMap.getFiveHighestScore());
+
+        // TODO back to main menu and clear game states
+
     }
 
     private void initWaveTimers(){

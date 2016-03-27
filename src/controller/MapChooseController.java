@@ -1,10 +1,15 @@
 package controller;
 
+import model.gamelog.Log;
+import model.gamelog.LogType;
+import model.gamelog.LoggerCollection;
+import model.map.GameMap;
 import model.map.GameMapCollection;
 import view.mapchooseview.MapChooseView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import javax.swing.*;
 
 
@@ -27,7 +32,7 @@ public class MapChooseController {
         mapCollection = GameMapCollection.loadMapsFromFile();
         
         for (int i = 0; i < mapCollection.getMaps().size(); i++) {
-            listModel.addElement(mapCollection.getMaps().get(i).getImageName());
+            listModel.addElement(mapCollection.getMaps().get(i).getMapName());
         }
 
         mapChooseView = new MapChooseView(listModel);
@@ -39,7 +44,16 @@ public class MapChooseController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mapChooseView.setVisible(false);
-                new MainGameController(mapCollection.getMaps().get(mapChooseView.list.getSelectedIndex())).mainGameView.setVisible(true);
+
+                //load -> edit -> save back
+                GameMapCollection mapCollection = GameMapCollection.loadMapsFromFile();
+                GameMap gameMap = mapCollection.getMaps().get(mapChooseView.list.getSelectedIndex());
+                gameMap.addPlayedTime(new Date());
+                mapCollection.getMaps().set(mapCollection.findGameMapInCollection(gameMap), gameMap);
+                GameMapCollection.saveMapsToFile(mapCollection);
+                LoggerCollection.getInstance().addLog(new Log(LogType.Map, "Player played game using this Map at " + gameMap.getLastPlayedTime()));
+
+                new MainGameController(gameMap).mainGameView.setVisible(true);
             }
         });
 

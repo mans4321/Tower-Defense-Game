@@ -64,5 +64,16 @@ public class LoggerCollection {
         return stringBuilder.toString();
     }
 
+    public String showMapLog() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(Log log: logList) {
+            if(log.getWho() == LogType.Map) {
+                stringBuilder.append(log.toString());
+            }
+        }
+        return stringBuilder.toString();
+    }
+
+
 
 }

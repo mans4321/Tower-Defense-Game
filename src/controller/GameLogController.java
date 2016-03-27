@@ -1,5 +1,6 @@
 package controller;
 
+import model.gamelog.Log;
 import model.gamelog.LogType;
 import model.gamelog.LoggerCollection;
 import view.gamelogview.GameLogView;
@@ -34,6 +35,8 @@ public class GameLogController {
                     case Wave:
                         log = LoggerCollection.getInstance().showWaveLog();
                         break;
+                    case Map:
+                        log = LoggerCollection.getInstance().showMapLog();
                 }
                 gameLogView.logArea.setText("");
                 gameLogView.logArea.append(log);
@@ -66,8 +69,15 @@ public class GameLogController {
             }
         });
 
-    }
+        gameLogView.mapLogButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                log = LoggerCollection.getInstance().showWaveLog();
+                currentLogType = LogType.Map;
+            }
+        });
 
+    }
 
     public String getLog() {
         return log;

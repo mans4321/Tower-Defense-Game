@@ -50,6 +50,17 @@ public class GameMapCollection {
         return FileProcessing.sharedInstance().readFromJsonFile(JSON_FILE, GameMapCollection.class);
     }
 
+    public int findGameMapInCollection(GameMap gameMap) { // based on map name
+        int index = 0;
+        for(int i = 0; i < maps.size(); i++){
+            if(gameMap.getMapName().equals(maps.get(i).getMapName())){
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+
 
 
 }

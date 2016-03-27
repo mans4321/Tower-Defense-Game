@@ -1,5 +1,8 @@
 package controller;
 
+import model.gamelog.Log;
+import model.gamelog.LogType;
+import model.gamelog.LoggerCollection;
 import model.map.CellState;
 import model.map.GameMap;
 import model.map.GameMapCollection;
@@ -17,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by yongpinggao on 3/12/16.
@@ -144,14 +148,13 @@ public class MapEditorController {
     public void saveDataToFile() {
         GameMapCollection mapCollection = GameMapCollection.loadMapsFromFile();
         boolean isReadyToCreate = true;
-        if(!gameMap.getImageName().equals("")){// old map
+        if(!gameMap.getMapName().equals("")){// old map
             JOptionPane.showMessageDialog(mapEditorView, "Saved Successful!");
 
-            for(int i = 0; i < mapCollection.getMaps().size(); i++){
-                if(gameMap.getImageName().equals(mapCollection.getMaps().get(i).getImageName())){
-                    mapCollection.getMaps().set(i, gameMap);
-                }
-            }
+            //load -> edit -> save back
+            gameMap.addEditedTime(new Date());
+            LoggerCollection.getInstance().addLog(new Log(LogType.Map, "Player edited this Map at " + gameMap.getLastEditTime()));
+            mapCollection.getMaps().set(mapCollection.findGameMapInCollection(gameMap), gameMap);
             GameMapCollection.saveMapsToFile(mapCollection);
             clearGameMap();
             mapEditorView.setVisible(false);
@@ -171,7 +174,7 @@ public class MapEditorController {
                     if (mapCollection != null) { // if the file already exits, check the filename and volume
                         int size = mapCollection.getMaps().size();
                         for (int i = 0; i < size; i++) {
-                            if (mapCollection.getMaps().get(i).getImageName().equals(mapName)) {
+                            if (mapCollection.getMaps().get(i).getMapName().equals(mapName)) {
                                 String mapRename;// if they have the same name, please rename
                                 do {
                                     mapRename = (String) JOptionPane.showInputDialog(mapEditorView,
@@ -191,7 +194,9 @@ public class MapEditorController {
             }
 
             if (isReadyToCreate) {
-                gameMap.setImageName(mapName);
+                gameMap.setMapName(mapName);
+                gameMap.setCreateTime(new Date());
+                LoggerCollection.getInstance().addLog(new Log(LogType.Map, "Player created this Map at " + gameMap.getCreateTime()));
                 mapCollection.addMap(gameMap);
                 GameMapCollection.saveMapsToFile(mapCollection);
                 clearGameMap();

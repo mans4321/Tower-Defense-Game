@@ -1,6 +1,10 @@
 package model.map;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 
 /**
  * GameMap class for the Game
@@ -12,25 +16,31 @@ import java.util.ArrayList;
 public class GameMap {
     // cell image size in pixels
 
-
     private ArrayList<CellState> cells;
     private int mCols;
     private int mRows;
-    private String imageName;
+    private String mapName;
+
+    private String createTime;
+    private ArrayList<String> editedTimeList = new ArrayList<>();
+    private ArrayList<Double> scoreList = new ArrayList<>();
+
+    private ArrayList<String> playedTimeList = new ArrayList<>();
+    private HashMap<String, String> resultMap = new HashMap<>();
+
 
     /**
      * Constructor for game map
      * @param mapRows map rows
      * @param mapCols map cols 
      * @param cells map cells
-     * @param imageName image name for image
+     * @param mapName image name for image
      */
-    public GameMap(int mapRows, int mapCols, ArrayList<CellState> cells, String imageName) {
+    public GameMap(int mapRows, int mapCols, ArrayList<CellState> cells, String mapName) {
         this.cells = cells;
         this.mCols = mapCols;
         this.mRows = mapRows;
-        this.imageName = imageName;
-
+        this.mapName = mapName;
     }
 
     /**
@@ -48,7 +58,7 @@ public class GameMap {
         this.cells = cells;
         this.mCols = mCols;
         this.mRows = mRows;
-        this.imageName = imageName;
+        this.mapName = imageName;
     }
 
     /**
@@ -110,8 +120,8 @@ public class GameMap {
      * getter method
      * @return
      */
-    public String getImageName() {
-        return imageName;
+    public String getMapName() {
+        return mapName;
     }
 
     /**
@@ -119,8 +129,8 @@ public class GameMap {
      * setter method
      * @return
      */
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
+    public void setMapName(String mapName) {
+        this.mapName = mapName;
     }
 
     /**
@@ -216,4 +226,71 @@ public class GameMap {
         }
         return pathList;
     }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(createTime);
+    }
+
+    public ArrayList<String> getEditedTimeList() {
+        return editedTimeList;
+    }
+
+    public void addEditedTime(Date editedTime) {
+        this.editedTimeList.add(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(editedTime));
+    }
+
+    public ArrayList<String> getPlayedTimeList() {
+        return playedTimeList;
+    }
+
+    public void addPlayedTime(Date playedTime) {
+        this.playedTimeList.add(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(playedTime));
+    }
+
+    public ArrayList<Double> getScoreList() {
+        return scoreList;
+    }
+
+    public void addScore(Double score) {
+        this.scoreList.add(score);
+        // each time a new score is added, sort it
+        Collections.sort(scoreList, Collections.reverseOrder());
+    }
+
+
+    public ArrayList<Double> getFiveHighestScore() {
+        int size = scoreList.size();
+        ArrayList<Double> fiveHighestList = new ArrayList<>();
+        if(size <= 5) {
+            for(Double score: scoreList) {
+                fiveHighestList.add(score);
+            }
+        } else {
+            for(int i = 0; i < 5; i++)
+                fiveHighestList.add(scoreList.get(i));
+        }
+        return fiveHighestList;
+    }
+
+    public HashMap<String, String> getResultMap() {
+        return resultMap;
+    }
+
+    public void addResultToMap(String result) {
+        resultMap.put(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()), result);
+    }
+
+    public String getLastEditTime() {
+        return editedTimeList.get(editedTimeList.size() - 1);
+    }
+
+    public String getLastPlayedTime() {
+        return playedTimeList.get(playedTimeList.size() - 1);
+    }
+
+
 }
