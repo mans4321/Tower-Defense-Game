@@ -215,7 +215,7 @@ public class MainGameController {
 		                    	case "Target On Strongest":
 		                    		currentTower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnStrongest());
 		                    		if(currentTower.getTowerShootingBehavior().getShootingStrategy() instanceof  TargetBasedOnStrongest ){
-		                    			System.out.println("fuck u ");}
+		                    			System.out.println("Strat");}
 		                    		break;
 		                    	case "Target On Nearest to End":
 		                    		currentTower.getTowerShootingBehavior().setShootingStrategy(new  TowerBasedOnClosestToTower());
