@@ -28,7 +28,7 @@ public class BurningTower extends Tower {
                 sellPrice = 10.0;
                 towerType = TowerType.BurningTower1;
                 range = 120;
-                towerShootingBehavior = new BurningTowerShootingBehavior(5, 100, 5, new TargetBasedOnWeakest());
+                towerShootingBehavior = new BurningTowerShootingBehavior(5, 100, 5 );
                 towerView = new TowerView(towerType);
                 break;
             case 2:
@@ -36,7 +36,7 @@ public class BurningTower extends Tower {
                 sellPrice = 15.0;
                 towerType = TowerType.BurningTower2;
                 range = 150;
-                towerShootingBehavior = new BurningTowerShootingBehavior(10, 200, 10, new TargetBasedOnWeakest());
+                towerShootingBehavior = new BurningTowerShootingBehavior(10, 200, 10);
                 towerView = new TowerView(towerType);
                 break;
             case 3:
@@ -44,7 +44,7 @@ public class BurningTower extends Tower {
                 sellPrice = 20.0;
                 towerType = TowerType.BurningTower3;
                 range = 180;
-                towerShootingBehavior = new BurningTowerShootingBehavior(15, 300, 20, new TargetBasedOnWeakest());
+                towerShootingBehavior = new BurningTowerShootingBehavior(15, 300, 20);
                 towerView = new TowerView(towerType);
                 break;
         }

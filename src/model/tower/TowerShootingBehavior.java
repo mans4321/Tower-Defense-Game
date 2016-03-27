@@ -1,11 +1,13 @@
 package model.tower;
 
+import java.util.Set;
+
+import javax.swing.Timer;
+
 import model.critter.Critter;
+import model.tower.shootingstrategy.TargetBasedOnWeakest;
 import model.tower.shootingstrategy.TowerShootingStrategy;
 import protocol.TowerDidShotDelegate;
-
-import javax.swing.*;
-import java.util.Set;
 
 /**
  * Created by yongpinggao on 3/19/16.
@@ -14,7 +16,7 @@ public class TowerShootingBehavior {
     // tower shooting behavior
     protected int power;
     protected int rateOfFire;
-    protected TowerShootingStrategy shootingStrategy;
+    protected TowerShootingStrategy shootingStrategy = new TargetBasedOnWeakest();
     protected boolean isShooting;
     protected boolean timeToShoot;
 
@@ -61,9 +63,15 @@ public class TowerShootingBehavior {
         this.towerDidShotDelegate = towerDidShotDelegate;
     }
 
+    public TowerShootingStrategy getShootingStrategy() {
+		return shootingStrategy;
+	}
 
+	public void setShootingStrategy(TowerShootingStrategy shootingStrategy) {
+		this.shootingStrategy = shootingStrategy;
+	}
 
-    public void shoot() {}
+	public void shoot() {}
 
 
 

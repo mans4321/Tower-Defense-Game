@@ -15,10 +15,10 @@ public class IceTowerShootingBehavior extends TowerShootingBehavior {
 
     private int frozenTime;
 
-    public IceTowerShootingBehavior(int frozenTime, int rateOfFire, TowerShootingStrategy shootingStrategy) {
+    public IceTowerShootingBehavior(int frozenTime, int rateOfFire) {
         this.frozenTime = frozenTime;
         this.rateOfFire = rateOfFire;
-        this.shootingStrategy = shootingStrategy;
+       
 
         crittersInRange = new HashSet<>();
         towerTimer = new Timer(1000 - rateOfFire, new ActionListener() {

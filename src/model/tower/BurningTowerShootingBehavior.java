@@ -13,10 +13,9 @@ import java.util.HashSet;
 public class BurningTowerShootingBehavior extends TowerShootingBehavior {
     private int burningDamage;
 
-    public BurningTowerShootingBehavior(int power, int rateOfFire, int burningDamage, TowerShootingStrategy shootingStrategy) {
+    public BurningTowerShootingBehavior(int power, int rateOfFire, int burningDamage) {
         this.power = power;
         this.rateOfFire = rateOfFire;
-        this.shootingStrategy = shootingStrategy;
         this.burningDamage = burningDamage;
         crittersInRange = new HashSet<>();
         towerTimer = new Timer(1000 - rateOfFire, new ActionListener() {

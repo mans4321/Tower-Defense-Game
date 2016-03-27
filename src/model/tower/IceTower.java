@@ -28,7 +28,7 @@ public class IceTower extends Tower {
                 sellPrice = 15.0;
                 towerType = TowerType.IceTower1;
                 range = 80;
-                towerShootingBehavior = new IceTowerShootingBehavior(1000, 10, new TargetBasedOnWeakest());
+                towerShootingBehavior = new IceTowerShootingBehavior(1000, 10);
                 towerView = new TowerView(towerType);
                 break;
             case 2:
@@ -36,7 +36,7 @@ public class IceTower extends Tower {
                 sellPrice = 20.0;
                 towerType = TowerType.IceTower2;
                 range = 90;
-                towerShootingBehavior = new IceTowerShootingBehavior(1500, 20, new TargetBasedOnWeakest());
+                towerShootingBehavior = new IceTowerShootingBehavior(1500, 20);
                 towerView = new TowerView(towerType);
                 break;
             case 3:
@@ -44,7 +44,7 @@ public class IceTower extends Tower {
                 sellPrice = 25.0;
                 towerType = TowerType.IceTower3;
                 range = 100;
-                towerShootingBehavior = new IceTowerShootingBehavior(2000, 30, new TargetBasedOnWeakest());
+                towerShootingBehavior = new IceTowerShootingBehavior(2000, 30);
                 towerView = new TowerView(towerType);
                 break;
         }

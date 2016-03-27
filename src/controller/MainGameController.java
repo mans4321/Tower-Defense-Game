@@ -19,6 +19,10 @@ import model.map.GameMapCollection;
 import model.tower.Tower;
 import model.tower.TowerCollection;
 import model.tower.TowerFactory;
+import model.tower.shootingstrategy.TargetBasedOnNearest;
+import model.tower.shootingstrategy.TargetBasedOnStrongest;
+import model.tower.shootingstrategy.TargetBasedOnWeakest;
+import model.tower.shootingstrategy.TowerBasedOnClosestToTower;
 import model.wave.WaveFactory;
 import protocol.*;
 import view.maingameview.MainGameView;
@@ -194,6 +198,33 @@ public class MainGameController {
                     refreshGamePanelsView();
                 }
             }
+        });
+        
+        mainGameView.endView.towerUpgradeSellPanel.strategyComboBox.addActionListener(new ActionListener() {
+        	
+        	 @Override
+             public void actionPerformed(ActionEvent e) {
+        		 if (currentTower != null) {
+					 if (e.getSource() instanceof JComboBox) {
+		                    JComboBox cb = (JComboBox)(e.getSource());
+		                    String strategy = (String)cb.getSelectedItem();
+		                    switch(strategy){
+		                    	case "Target On Weakest":
+		                    		currentTower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnWeakest());
+		                    		break;
+		                    	case "Target On Strongest":
+		                    		currentTower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnStrongest());
+		                    		if(currentTower.getTowerShootingBehavior().getShootingStrategy() instanceof  TargetBasedOnStrongest ){
+		                    			System.out.println("fuck u ");}
+		                    		break;
+		                    	case "Target On Nearest to End":
+		                    		currentTower.getTowerShootingBehavior().setShootingStrategy(new  TowerBasedOnClosestToTower());
+		                    		break;
+		                    		
+				}
+			}
+		}
+        	 }
         });
     }
 
