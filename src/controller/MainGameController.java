@@ -6,7 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Map;
 
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -23,6 +23,7 @@ import model.map.CellState;
 import model.map.GameMap;
 import model.map.GameMapCollection;
 import model.svaeGame.GameCollection;
+import model.svaeGame.GameCollection2;
 import model.svaeGame.GameInfo;
 import model.tower.Tower;
 import model.tower.TowerCollection;
@@ -119,30 +120,44 @@ public class MainGameController {
     }
 
     public MainGameController(GameInfo gameInfo) {
+ 
     	mainGameView = new MainGameView();
     	GameMapCollection mapCollection = GameMapCollection.loadMapsFromFile(); 
    	 	for(int i = 0 ; i < mapCollection.getMaps().size(); i++ ){
    	 		String gameMapName = mapCollection.getMaps().get(i).getMapName();
-   	 		if(gameMapName.equalsIgnoreCase(gameInfo.getMapName())){
+   	 		if(gameMapName.equalsIgnoreCase("fhggg")){
    	 			this.gameMap = mapCollection.getMaps().get(i);
+   	 			
+   	 
    	 		}
-	}
    	 	
+	}
+   	 		
+      
         gameLogController = new GameLogController();
         drawingMapInGameDelegate = mainGameView.mapView.mapPanel;
         drawingMapDelegate = mainGameView.mapView.mapPanel;
+       
         drawingSpecificationPanelDelegate = mainGameView.endView.towerSpecificationPanel;
         drawingSellUpgradePanelDelegate = mainGameView.endView.towerUpgradeSellPanel;
         drawingDataPanelDelegate = mainGameView.topView.gameDataPanel;
-
-        drawingMapDelegate.refreshMap(gameMap);
-        drawingDataPanelDelegate.reloadCoinDataView(coins);
+        System.out.println(gameInfo.getTowers().size());
         towerCollection.setTowers(gameInfo.getTowers()); 
+        System.out.println(towerCollection.getTowers().size());
+		for (Map.Entry<Integer, Tower> entry : towerCollection.getTowers().entrySet()) {
+	   	 		
+	   	 		gameMap.getCells().set(entry.getKey(), CellState.Tower);
+	   	 		drawingMapDelegate.refreshMap(gameMap);
+	   	 	}
+		 
+		 
         account.setBalance(gameInfo.getGold());
         coins = gameInfo.getCoins();
+        drawingDataPanelDelegate.reloadCoinDataView(coins);
         currentWaveNum = gameInfo.getWaveNum();
         gameName = gameInfo.getGameName(); 
- 	 
+        drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
+        refreshGamePanelsView();
         initTowerButtons();
         initSellUpgradeButtons();
         initFunctionalButtonsInTopPanel();
@@ -197,14 +212,15 @@ public class MainGameController {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				GameInfo game = new GameInfo(towerCollection.getTowers() ,100.00 ,5,100,"mans","mans3");
-				GameCollection gameCollection = new GameCollection();
+				GameInfo game = new GameInfo(towerCollection.getTowers() ,100.00 ,5,100,"fhggg","fhggg");
+				GameCollection2 gameCollection = new GameCollection2();
 				gameCollection.addgame(game);
-				gameCollection.addgame(game);
+				GameCollection2 gameCollection2 = new GameCollection2();
 				try {
 					gameCollection.StoreInXMLFormate();
-					gameCollection.readXMLFormate();
-					gameCollection.print();
+					gameCollection2.readXMLFormate();
+					System.out.println(gameCollection2.getGames().get(0).getTowers().size());
+					System.out.println(gameCollection2.getGames().size());
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

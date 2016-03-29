@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
 
 import model.svaeGame.GameCollection;
+import model.svaeGame.GameCollection2;
 import view.mapchooseview.GameChooseView;
 
 
@@ -14,14 +15,14 @@ public class GameChooseController {
 	GameChooseView gameChooseView;
     DefaultListModel listModel;
     
-    GameCollection gameCollection;
+    GameCollection2 gameCollection;
 	public GameChooseController() throws Exception {
 		
 		listModel = new DefaultListModel();
-		gameCollection = new GameCollection();
+		gameCollection = new GameCollection2();
 		gameCollection.readXMLFormate();
 	
-	 for (int i = 0; i < gameCollection.getGames().size(); i+=2) {
+	 for (int i = 0; i < gameCollection.getGames().size(); i++) {
          listModel.addElement(gameCollection.getGames().get(i).getGameName());
      }
 

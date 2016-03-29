@@ -48,34 +48,7 @@ private ArrayList<GameInfo> games;
 	        return games;
 	    }
 	
-	  public void print (){
-		  System.out.println(games.size());
-//		  
-//			for (GameInfo game : games) {
-//				System.out.println(game.getTowers().size());
-//				System.out.println("*****************");
-//				System.out.println(game.getGold());
-//				System.out.println(game.getGameName());
-//				System.out.println(game.getMapName());
-//				System.out.println(game.getCoins());
-//				System.out.println(game.getWaveNum());
-//				Iterator it = game.getTowers().entrySet().iterator();
-//				System.out.println(game.getTowers().size() + "  **************");
-//				Tower tower;
-//			    while (it.hasNext()) {
-//			    	System.out.println("*****************");
-//			        Map.Entry pair = (Map.Entry)it.next();
-//			        tower = (Tower) pair.getValue();
-//			        System.out.println(tower.getPosition().getX() + "  "  + tower.getPosition().getY());
-//			        System.out.println(tower.getTowerShootingBehavior().getShootingStrategy().getClass().getSimpleName());
-//			        System.out.println(tower.getLevel());
-//			        System.out.println(tower.getClass().getSimpleName());
-//			        it.remove(); // avoids a ConcurrentModificationException
-//			        System.out.println("*****************");
-//			    }
-//			    System.out.println("*****************");
-//			}
-	  }
+
 	  
 		public void StoreInXMLFormate() throws FileNotFoundException{
 			
@@ -91,13 +64,16 @@ private ArrayList<GameInfo> games;
 					GameInfo jsongames =games.get(i);
 					out.println("<Towers>");
 			        for (Map.Entry<Integer, Tower> entry : jsongames.getTowers().entrySet()) {
-			        	Tower tower =entry.getValue();
+			        	 Tower tower =entry.getValue();
+			        	 out.println("<Tower>");
+			        	 out.println("<Index>"+ entry.getKey() + "</Index>");
 			             out.println("<Type>"+tower.getClass().getSimpleName() +"</Type>");
 			             out.println("<X>" + tower.getPosition().getX() + "</X>");
 			             out.println("<Y>" + tower.getPosition().getY() + "</Y>");
 			             out.println("<Level >"+tower.getLevel() +"</Level >");
 			             out.println("<Range>" + tower.getRange() + "</Range>");
 			             out.println("<Strategy>" + tower.getTowerShootingBehavior().getShootingStrategy().getClass().getSimpleName() + "</Strategy>"); 
+			             out.println("</Tower>");
 			        }
 			        out.println("</Towers>");
 			        out.println("<WaveNumber>" + jsongames.getWaveNum() + "</WaveNumber>");
@@ -122,7 +98,7 @@ private ArrayList<GameInfo> games;
 			double balance = 0;
 			String towerType = "   " , towerStrategy = "   "  ; 
 			 int towerLevel = 0 ,posX = 0 ,posY = 0;
-			 int range = 0;
+			 int range = 0 , index = 0;
 			
 			 Document xmldoc;
 			 DocumentBuilder docReader = DocumentBuilderFactory.newInstance().newDocumentBuilder();
@@ -151,68 +127,91 @@ private ArrayList<GameInfo> games;
                                         	 NodeList curveTowers = curveOfGameElement.getChildNodes();
                                         	 for (int jJ = 0; jJ < curveTowers.getLength(); jJ++) {
                                                  if (curveTowers.item(jJ) instanceof Element) {
-                                                     Element curveOfTowerElement = (Element)curveTowers.item(jJ);
-                                                     if(curveOfTowerElement.getTagName().equals("Type")){
-                                                    	 towerType =curveOfTowerElement.getTextContent();                	
-                                                     } else if(curveOfTowerElement.getTagName().equals("Strategy")){
-                                                    	 towerStrategy = curveOfTowerElement.getTextContent();
-                                                     }else if(curveOfTowerElement.getTagName().equals("X")){
-                                                    	 posX = Integer.parseInt(curveOfTowerElement.getTextContent());
-                                                     }else if(curveOfTowerElement.getTagName().equals("Y")){
-                                                    	 posY = Integer.parseInt(curveOfTowerElement.getTextContent());
-                                                     }else if(curveOfTowerElement.getTagName().equals("Level")){
-                                                    	 towerLevel = Integer.parseInt(curveOfTowerElement.getTextContent());
-                                                     }else if (curveOfTowerElement.getTagName().equals("Range")){
-                                                    	 range = Integer.parseInt(curveOfTowerElement.getTextContent());
-                                                     } 
-                                                     
-                                                    	 
-                                                 
-                                                 switch(towerType){
-                                                 case "BurningTower":
-                                                	 tower = TowerFactory.sharedInstance().getTower(TowerType.BurningTower1);
-                                                	 break;
-                                                 case "IceTower":
-                                                	 tower = TowerFactory.sharedInstance().getTower(TowerType.IceTower1);
-                                                	 break;
-                                                 case "SplashTower":
-                                                	 tower = TowerFactory.sharedInstance().getTower(TowerType.SplashTower1);
-                                                	 break;	 
-                                                 }
-                                                 switch(towerStrategy){
-                                                 case "TargetBasedOnNearest":
-                                                	 tower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnNearest());
-                                                	 break;
-                                                 case "TargetBasedOnStrongest":
-                                                	 tower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnStrongest());
-                                                	 break;
-                                                 case "TargetBasedOnWeakest":
-                                                	 tower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnWeakest());
-                                                	 break;
-                                                 case "TowerBasedOnClosestToTower":
-                                                	 tower.getTowerShootingBehavior().setShootingStrategy(new TowerBasedOnClosestToTower());
-                                                	 break;	 	 
+                                                     Element curveOfTowersElement = (Element)curveTowers.item(jJ);
+                                                     if(curveOfTowersElement.getTagName().equals("Tower")){
+                                                    	 NodeList curveTower = curveOfTowersElement.getChildNodes();
+                                                    	 for (int iI = 0; iI < curveTower.getLength(); iI++) {
+                                                             if (curveTower.item(iI) instanceof Element) {
+                                                                 Element curveOfTowerElement = (Element)curveTower.item(jJ);
+                                                                 if(curveOfTowerElement.getTagName().equals("Type")){
+                                                                	 towerType =curveOfTowerElement.getTextContent(); 
+                                                                	 switch(towerStrategy){
+                                                                     case "TargetBasedOnNearest":
+                                                                    	 tower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnNearest());
+                                                                    	 break;
+                                                                     case "TargetBasedOnStrongest":
+                                                                    	 tower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnStrongest());
+                                                                    	 break;
+                                                                     case "TargetBasedOnWeakest":
+                                                                    	 tower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnWeakest());
+                                                                    	 break;
+                                                                     case "TowerBasedOnClosestToTower":
+                                                                    	 tower.getTowerShootingBehavior().setShootingStrategy(new TowerBasedOnClosestToTower());
+                                                                    	 break;	 	 
+                                                                	 }
+                                                                	 
+                                                                 } else if(curveOfTowerElement.getTagName().equals("Strategy")){
+                                                                	 towerStrategy = curveOfTowerElement.getTextContent();
+                                                                	 switch(towerType){
+                                                                	 	case "BurningTower":
+                                                                	 		tower = TowerFactory.sharedInstance().getTower(TowerType.BurningTower1);
+                                                                	 		break;
+                                                                	 	case "IceTower":
+                                                                	 		tower = TowerFactory.sharedInstance().getTower(TowerType.IceTower1);
+                                                                	 		break;
+                                                                	 	case "SplashTower":
+                                                                	 		tower = TowerFactory.sharedInstance().getTower(TowerType.SplashTower1);
+                                                                	 		break;	 
+                                                                	 }
+                                                                 }else if(curveOfTowerElement.getTagName().equals("X")){
+                                                                	 posX = Integer.parseInt(curveOfTowerElement.getTextContent());
+                                                                 }else if(curveOfTowerElement.getTagName().equals("Y")){
+                                                                	 posY = Integer.parseInt(curveOfTowerElement.getTextContent());
+                                                                 }else if(curveOfTowerElement.getTagName().equals("Level")){
+                                                                	 towerLevel = Integer.parseInt(curveOfTowerElement.getTextContent());
+                                                                	 tower.setLevel(towerLevel);
+                                                                 }else if (curveOfTowerElement.getTagName().equals("Range")){
+                                                                	 range = Integer.parseInt(curveOfTowerElement.getTextContent());
+                                                                	 tower.setRange(range);
+                                                                 }else if (curveOfTowerElement.getTagName().equals("Index")){
+                                                                	 index = Integer.parseInt(curveOfTowerElement.getTextContent());
+                                                                 }
+                                              
+                                                                 
+                                                    	
                                         	 }
-                                                
+                                                          
+                                                             
+                                                 }   
+                                                    	
+                                                    	   tower.setPosition(new Position(posX,posY));
+                                                           towersCollection.put(index, tower);          
+                                                 	  	 
                                          }
+                                                 
+                                              
                                      }
-                                        	 tower.setRange(range);
-                                             tower.setPosition(new Position(posX,posY));
-                                             tower.setLevel(towerLevel);
-                                             towersCollection.put(count, tower);
-                                             count++; 
+                                                     
+                                            
                             	 }
-                                      //System.out.println(towerStrategy +   "||"  + mapName +"||"+ gameName + "||"  + "||" + posX + "||" + posY +"||" + towerType + "||" + towerLevel + "||" + coins+ "||" +balance + "||" + waveNum);
-                                     
+                                          	
+                                          	
+                                          	 
                             }
+                                         
+                                        	  
                         }
-                            	 newGame = new GameInfo(towersCollection, balance , coins , waveNum,gameName, mapName);
-                                 games.add(newGame);
-                                 towersCollection = new HashMap<Integer,Tower> ();
+                            	
 
                        
 		}
+                            	 newGame = new GameInfo(towersCollection, balance , coins , waveNum,gameName, mapName);
+                                 games.add(newGame);
+                                 towersCollection = new HashMap<Integer,Tower> ();    
+}
+                            	 	 
 }
 }
+                         
 }
-}
+		}
