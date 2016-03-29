@@ -80,6 +80,7 @@ public class MainGameController {
     BankAccount account =  new BankAccount();;
 
     Timer critterGeneratorTimer;
+    Timer paintingTimer;
 
     DrawingMapInGameDelegate drawingMapInGameDelegate;
     DrawingMapDelegate drawingMapDelegate;
@@ -107,9 +108,6 @@ public class MainGameController {
         drawingMapDelegate.refreshMap(gameMap);
         drawingDataPanelDelegate.reloadCoinDataView(coins);
 
-        // TODO new Window score list
-        System.out.println("Highest score:" + gameMap.getFiveHighestScore());
-
         initBankAccount();
         initPaintingTimers();
         initMapArea();
@@ -117,6 +115,7 @@ public class MainGameController {
         initTowerButtons();
         initSellUpgradeButtons();
         initFunctionalButtonsInTopPanel();
+        showHighScoreList();
     }
 
     public MainGameController(GameInfo gameInfo) {
@@ -185,7 +184,7 @@ public class MainGameController {
     }
 
     private void initFunctionalButtonsInTopPanel() {
-        LoggerCollection.getInstance().addLog(new Log(LogType.Wave, "Wave Preparation Phase"));
+        LoggerCollection.getInstance().addLog(new Log(LogType.Wave, "Wave Preparation Phase..."));
         // waveStartButton
         mainGameView.topView.gameDataPanel.waveStartButton.addActionListener(new ActionListener() {
             @Override
@@ -299,7 +298,8 @@ public class MainGameController {
 		                    	case "Target On Strongest":
 		                    		currentTower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnStrongest());
 		                    		if(currentTower.getTowerShootingBehavior().getShootingStrategy() instanceof  TargetBasedOnStrongest ){
-		                    			System.out.println("Strat");}
+		                    			System.out.println("Strat");
+                                    }
 		                    		break;
 		                    	case "Target On Nearest to End":
 		                    		currentTower.getTowerShootingBehavior().setShootingStrategy(new  TowerBasedOnClosestToTower());
@@ -427,7 +427,7 @@ public class MainGameController {
     }
 
     private void initPaintingTimers(){
-        Timer paintingTimer = new Timer(REFRESH_RATE, new ActionListener() {
+        paintingTimer = new Timer(REFRESH_RATE, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 drawingMapInGameDelegate.refreshCrittersInMap(critterCollection);
@@ -479,14 +479,28 @@ public class MainGameController {
             LoggerCollection.getInstance().addLog(new Log(LogType.Map, "Player loses the game" + "Score: " + account.getBalance()));
         }
 
+        gameMap.clearStateToPureMapState(); // Important! -> In case chosen state or to place tower state are saved to json File
         mapCollection.getMaps().set(mapCollection.findGameMapInCollection(gameMap), gameMap);
         GameMapCollection.saveMapsToFile(mapCollection);
 
-        // TODO new Window score list
-        System.out.println("Highest score:" + gameMap.getFiveHighestScore());
+        showHighScoreList();
 
-        // TODO back to main menu and clear game states
+        mainGameView.setVisible(false);
+        new MainMenuController().mainMenuView.setVisible(true);
+        clearGame();
 
+    }
+
+    private void clearGame() {
+        critterCollection = null;
+        towerCollection = null;
+        critterGeneratorTimer.stop();
+        critterGeneratorTimer = null;
+        paintingTimer.stop();
+        paintingTimer = null;
+        gameLogController.gameLogView.setVisible(false);
+        gameLogController = null;
+        currentTower = null;
     }
 
     private void initWaveTimers(){
@@ -531,5 +545,28 @@ public class MainGameController {
                     t.getTowerShootingBehavior().shoot();
             } else t.getTowerShootingBehavior().setShooting(false);
         }
+    }
+
+    private void showHighScoreList() {
+        ArrayList<Double> scoreList = gameMap.getFiveHighestScore();
+        if(!scoreList.isEmpty()) {
+            StringBuilder sb =new StringBuilder("<html>");
+            for(int i = 1; i <= scoreList.size(); i++) {
+                sb.append("<br>" + i + " : " + scoreList.get(i - 1));
+            }
+            sb.append("</html>");
+            JOptionPane.showMessageDialog(mainGameView,
+                    sb.toString(),
+                    "Top ScoreList",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null);
+        } else {
+            JOptionPane.showMessageDialog(mainGameView,
+                    "No score history of this map",
+                    "Top ScoreList",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null);
+        }
+
     }
 }

@@ -188,6 +188,18 @@ public class GameMap {
     }
 
     /**
+     * set state to pure map state
+     * it is usually invoked when the game finished
+     */
+    public void clearStateToPureMapState() {
+        for (int i = 0; i < cells.size(); i++) {
+            if (cells.get(i) == CellState.Chosen || cells.get(i) == CellState.ToPlaceTower || cells.get(i) == CellState.Tower) {
+                cells.set(i, CellState.Grass);
+            }
+        }
+    }
+
+    /**
      * find exit index of game map
      * @return
      */

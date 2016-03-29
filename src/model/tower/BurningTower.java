@@ -28,7 +28,7 @@ public class BurningTower extends Tower {
                 sellPrice = 10.0;
                 towerType = TowerType.BurningTower1;
                 range = 120;
-                towerShootingBehavior = new BurningTowerShootingBehavior(5, 100, 5 );
+                towerShootingBehavior = new BurningTowerShootingBehavior(5, 100, 5);
                 towerView = new TowerView(towerType);
                 break;
             case 2:
