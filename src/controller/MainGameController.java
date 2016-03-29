@@ -112,7 +112,6 @@ public class MainGameController {
     public MainGameController(GameInfo gameInfo) {
  
     	loadGame = true;
-    	//mainGameView = new MainGameView();
     	
     	GameMapCollection mapCollection = GameMapCollection.loadMapsFromFile(); 
    	 	for(int i = 0 ; i < mapCollection.getMaps().size(); i++ ){
@@ -124,6 +123,7 @@ public class MainGameController {
 	}
    	 		
    	 	towerCollection.setTowers(gameInfo.getTowers()); 
+   	 	// test 
         System.out.println(towerCollection.getTowers().size());
 		for (Map.Entry<Integer, Tower> entry : towerCollection.getTowers().entrySet()) { 		
 	   	 		gameMap.getCells().set(entry.getKey(), CellState.Tower);
@@ -131,19 +131,19 @@ public class MainGameController {
 		 balance = gameInfo.getGold();
         coins = gameInfo.getCoins();
         currentWaveNum = gameInfo.getWaveNum();
+        System.out.println(currentWaveNum);
         gameName = gameInfo.getGameName(); 
         
 		initializeProtocol();
-
-       // drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
-        
-        
+		initBankAccount();
+		initPaintingTimers();
         refreshGamePanelsView();
         initTowerButtons();
         initSellUpgradeButtons();
         initFunctionalButtonsInTopPanel();
         initWaveTimers();
         initMapArea();
+        
     }
 
     private void initializeProtocol(){
@@ -194,6 +194,7 @@ public class MainGameController {
                 preWavePhase = false;
                 startNextWave();
                 mainGameView.topView.gameDataPanel.waveStartButton.setEnabled(false);
+                mainGameView.topView.gameDataPanel.saveGame.setEnabled(false);
             }
         });
 
@@ -213,15 +214,13 @@ public class MainGameController {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				GameInfo game = new GameInfo(towerCollection.getTowers() ,100.00 ,5,100,"fhggg","fhggg");
+				GameInfo game = new GameInfo(towerCollection.getTowers() ,account.getBalance(),coins,currentWaveNum,"fhggg", gameMap.getMapName());
 				GameCollection2 gameCollection = new GameCollection2();
 				gameCollection.addgame(game);
 				GameCollection2 gameCollection2 = new GameCollection2();
 				try {
 					gameCollection.StoreInXMLFormate();
 					gameCollection2.readXMLFormate();
-					System.out.println(gameCollection2.getGames().get(0).getTowers().size());
-					System.out.println(gameCollection2.getGames().size());
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
