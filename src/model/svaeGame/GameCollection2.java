@@ -17,6 +17,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import model.map.GameMap;
 import model.tower.Tower;
 import model.tower.TowerFactory;
 import model.tower.shootingstrategy.TargetBasedOnNearest;
@@ -31,7 +32,7 @@ import view.tower.TowerType;
 public class GameCollection2 implements Serializable {
 
 	
-private ArrayList<GameInfo> games;
+	private  ArrayList<GameInfo> games;
 	
 	public GameCollection2(){
 		
@@ -48,20 +49,26 @@ private ArrayList<GameInfo> games;
 	        return games;
 	    }
 	
-
+	  public int findGameInCollection(String gameName) { // based on map name
+	        int index = 0;
+	        for(int i = 0; i < games.size(); i++){
+	            if(gameName.equalsIgnoreCase(games.get(i).getGameName())){
+	                index = i;
+	                break;
+	            }
+	        }
+	        return index;
+	    }
 	  
 		public void StoreInXMLFormate() throws FileNotFoundException{
 			
+			try{
 			PrintWriter out;
 			File selectedFile = new File("JSON_FILE.xml");
 			 FileOutputStream stream = new FileOutputStream(selectedFile); 
              out = new PrintWriter( stream );
-             
              out.println("<?xml version=\"1.0\"?>");
              out.println("<svaeGame version=\"1.0\">");
-             
-//             out.println("      <color red='" + c.color.getRed() + "' green='" +
-//                     c.color.getGreen() + "' blue='" + c.color.getBlue() + "'/>");
              
 			for (int i = 0; i < games.size(); i++) {
 					out.println("<Game>");
@@ -83,6 +90,9 @@ private ArrayList<GameInfo> games;
 					}
 					out.println("</svaeGame>");
 					out.close();
+			}catch(Exception e) {
+				System.out.println("Cannot Write To File ");
+			}
 	}
 		
 		public void readXMLFormate() throws Exception{
@@ -94,6 +104,7 @@ private ArrayList<GameInfo> games;
 			int waveNum = 0;
 			int coins = 0;
 			
+			try{
 			 Document xmldoc;
 			 DocumentBuilder docReader = DocumentBuilderFactory.newInstance().newDocumentBuilder();
              xmldoc = docReader.parse("JSON_FILE.xml");
@@ -173,7 +184,10 @@ private ArrayList<GameInfo> games;
                         
 		
                     }
+             } catch(Exception e){
+            	 System.out.println("Cannot Read From File");
              }
+		}
 		}
 
                                                     	

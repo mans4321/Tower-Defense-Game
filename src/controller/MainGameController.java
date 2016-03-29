@@ -6,6 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
 import javax.swing.JComboBox;
@@ -77,7 +78,7 @@ public class MainGameController {
     int currentIndex = 0;
     int currentWaveNum = 0;
     double balance = 0;
-    String gameName;
+    String gameName = "";
     BankAccount account ;
 
     Timer critterGeneratorTimer;
@@ -214,6 +215,7 @@ public class MainGameController {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
+				saveGame();
 				GameInfo game = new GameInfo(towerCollection.getTowers() ,account.getBalance(),coins,currentWaveNum,"fhggg", gameMap.getMapName());
 				GameCollection2 gameCollection = new GameCollection2();
 				gameCollection.addgame(game);
@@ -233,6 +235,75 @@ public class MainGameController {
         });
         
     }
+    
+    private void saveGame() {
+    	
+    	GameCollection2 gameCollection = new GameCollection2();
+    	try {
+			gameCollection.readXMLFormate();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        boolean isReadyToCreate = true;
+        if(!gameName.equals("")){// old game
+            JOptionPane.showMessageDialog(mainGameView, "Saved Successful!");
+            GameInfo game = new GameInfo(towerCollection.getTowers() ,account.getBalance(),coins,currentWaveNum,gameName, gameMap.getMapName());
+            gameCollection.getGames().set(gameCollection.findGameInCollection(gameName),game);
+            try {
+            	gameCollection.StoreInXMLFormate();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+        } else {//brand new map
+            String userGameName = (String) JOptionPane.showInputDialog(mainGameView,
+                    "Type in the game name:",
+                    "Save map to file",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    null,
+                    "Game1");
+            if (userGameName != null) { // if user choose cancel, mapName -> null
+                if (!userGameName.equals("")) { // if the name is empty then it's invalidate
+
+                    if (gameCollection != null) { // if the file already exits, check the filename and volume
+                        int size = gameCollection.getGames().size();
+                        for (int i = 0; i < size; i++) {
+                        	if(gameCollection.getGames().get(i).getGameName().equalsIgnoreCase(userGameName)){
+                        		
+                                String gameRename;// if they have the same name, please rename
+                                do {
+                                	gameRename = (String) JOptionPane.showInputDialog(mainGameView,
+                                            "Already taken, please rename:",
+                                            "Save map to file",
+                                            JOptionPane.PLAIN_MESSAGE,
+                                            null,
+                                            null,
+                                            "map1");
+                                } while (userGameName.equals(gameRename));
+                                if (gameRename != null) userGameName = gameRename;
+                                else isReadyToCreate = false;
+                            }
+                        }
+                    } 
+                }
+            }
+
+            if (isReadyToCreate) {
+            	 GameInfo game = new GameInfo(towerCollection.getTowers() ,account.getBalance(),coins,currentWaveNum,userGameName, gameMap.getMapName());
+            	gameCollection.addgame(game);
+            	try {
+            		gameCollection.StoreInXMLFormate();
+				} catch (FileNotFoundException e) {
+					JOptionPane.showMessageDialog(mainGameView, "Game Not saved");
+					e.printStackTrace();
+				}
+        }
+    }
+    }
+    	
 
     private void initCrittersForWave(int waveNum) {
         for(Tower t: towerCollection.getTowers().values()) {
