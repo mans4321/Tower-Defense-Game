@@ -447,7 +447,11 @@ public class MainGameController {
                 continue;
             } else break;
         }
-        if(count == critterCollection.getCritters().size()) startNextWave();
+        if(count == critterCollection.getCritters().size()){
+        	 mainGameView.topView.gameDataPanel.waveStartButton.setEnabled(true);
+             mainGameView.topView.gameDataPanel.saveGame.setEnabled(true);
+        }
+        	//startNextWave();             /////////////////
     }
 
     private void detectingCrittersStoleCoins() {
