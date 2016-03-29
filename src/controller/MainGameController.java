@@ -76,8 +76,9 @@ public class MainGameController {
     int currentCritterIndex = 0;
     int currentIndex = 0;
     int currentWaveNum = 0;
+    double balance = 0;
     String gameName;
-    BankAccount account =  new BankAccount();;
+    BankAccount account ;
 
     Timer critterGeneratorTimer;
 
@@ -92,24 +93,13 @@ public class MainGameController {
 
     private int coins = 10;
     private boolean preWavePhase = true;
-
+    private boolean loadGame = false;
 
     public MainGameController(GameMap gameMap){
-        mainGameView = new MainGameView();
-        gameLogController = new GameLogController();
+
         this.gameMap = gameMap;
-        drawingMapInGameDelegate = mainGameView.mapView.mapPanel;
-        drawingMapDelegate = mainGameView.mapView.mapPanel;
-        drawingSpecificationPanelDelegate = mainGameView.endView.towerSpecificationPanel;
-        drawingSellUpgradePanelDelegate = mainGameView.endView.towerUpgradeSellPanel;
-        drawingDataPanelDelegate = mainGameView.topView.gameDataPanel;
 
-        drawingMapDelegate.refreshMap(gameMap);
-        drawingDataPanelDelegate.reloadCoinDataView(coins);
-
-        // TODO new Window score list
-        System.out.println("Highest score:" + gameMap.getFiveHighestScore());
-
+        initializeProtocol();
         initBankAccount();
         initPaintingTimers();
         initMapArea();
@@ -121,42 +111,33 @@ public class MainGameController {
 
     public MainGameController(GameInfo gameInfo) {
  
-    	mainGameView = new MainGameView();
+    	loadGame = true;
+    	//mainGameView = new MainGameView();
+    	
     	GameMapCollection mapCollection = GameMapCollection.loadMapsFromFile(); 
    	 	for(int i = 0 ; i < mapCollection.getMaps().size(); i++ ){
    	 		String gameMapName = mapCollection.getMaps().get(i).getMapName();
-   	 		if(gameMapName.equalsIgnoreCase("fhggg")){
+   	 		if(gameMapName.equalsIgnoreCase(gameInfo.getMapName())){
    	 			this.gameMap = mapCollection.getMaps().get(i);
-   	 			
-   	 
+
    	 		}
-   	 	
 	}
    	 		
-      
-        gameLogController = new GameLogController();
-        drawingMapInGameDelegate = mainGameView.mapView.mapPanel;
-        drawingMapDelegate = mainGameView.mapView.mapPanel;
-       
-        drawingSpecificationPanelDelegate = mainGameView.endView.towerSpecificationPanel;
-        drawingSellUpgradePanelDelegate = mainGameView.endView.towerUpgradeSellPanel;
-        drawingDataPanelDelegate = mainGameView.topView.gameDataPanel;
-        System.out.println(gameInfo.getTowers().size());
-        towerCollection.setTowers(gameInfo.getTowers()); 
+   	 	towerCollection.setTowers(gameInfo.getTowers()); 
         System.out.println(towerCollection.getTowers().size());
-		for (Map.Entry<Integer, Tower> entry : towerCollection.getTowers().entrySet()) {
-	   	 		
+		for (Map.Entry<Integer, Tower> entry : towerCollection.getTowers().entrySet()) { 		
 	   	 		gameMap.getCells().set(entry.getKey(), CellState.Tower);
-	   	 		drawingMapDelegate.refreshMap(gameMap);
 	   	 	}
-		 
-		 
-        account.setBalance(gameInfo.getGold());
+		 balance = gameInfo.getGold();
         coins = gameInfo.getCoins();
-        drawingDataPanelDelegate.reloadCoinDataView(coins);
         currentWaveNum = gameInfo.getWaveNum();
         gameName = gameInfo.getGameName(); 
-        drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
+        
+		initializeProtocol();
+
+       // drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
+        
+        
         refreshGamePanelsView();
         initTowerButtons();
         initSellUpgradeButtons();
@@ -165,9 +146,29 @@ public class MainGameController {
         initMapArea();
     }
 
-	private void initBankAccount() {
+    private void initializeProtocol(){
+    	
+        // TODO new Window score list
+        System.out.println("Highest score:" + gameMap.getFiveHighestScore());
         
+        mainGameView = new MainGameView();
+        gameLogController = new GameLogController();
+        drawingMapInGameDelegate = mainGameView.mapView.mapPanel;
+        drawingMapDelegate = mainGameView.mapView.mapPanel;
+        drawingSpecificationPanelDelegate = mainGameView.endView.towerSpecificationPanel;
+        drawingSellUpgradePanelDelegate = mainGameView.endView.towerUpgradeSellPanel;
+        drawingDataPanelDelegate = mainGameView.topView.gameDataPanel;
+
+        drawingMapDelegate.refreshMap(gameMap);
+        drawingDataPanelDelegate.reloadCoinDataView(coins);
+    }
+	private void initBankAccount() {
+		account =  new BankAccount();
+		if(!loadGame){
         account.setBalance(BankAccount.INITIAL_BALANCE);
+		}else {
+			account.setBalance(balance);
+		}
         drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
     }
 
