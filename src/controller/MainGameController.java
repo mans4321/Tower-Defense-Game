@@ -6,6 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
 import javax.swing.JComboBox;
@@ -76,8 +77,9 @@ public class MainGameController {
     int currentCritterIndex = 0;
     int currentIndex = 0;
     int currentWaveNum = 0;
-    String gameName;
-    BankAccount account =  new BankAccount();;
+    double balance = 0;
+    String gameName = "";
+    BankAccount account ;
 
     Timer critterGeneratorTimer;
     Timer paintingTimer;
@@ -93,21 +95,16 @@ public class MainGameController {
 
     private int coins = 10;
     private boolean preWavePhase = true;
-
+    private boolean loadGame = false;
 
     public MainGameController(GameMap gameMap){
-        mainGameView = new MainGameView();
-        gameLogController = new GameLogController();
-        this.gameMap = gameMap;
-        drawingMapInGameDelegate = mainGameView.mapView.mapPanel;
-        drawingMapDelegate = mainGameView.mapView.mapPanel;
-        drawingSpecificationPanelDelegate = mainGameView.endView.towerSpecificationPanel;
-        drawingSellUpgradePanelDelegate = mainGameView.endView.towerUpgradeSellPanel;
-        drawingDataPanelDelegate = mainGameView.topView.gameDataPanel;
 
         drawingMapDelegate.refreshMap(gameMap);
         drawingDataPanelDelegate.reloadCoinDataView(coins);
 
+        //this.gameMap = gameMap;
+
+        //initializeProtocol();
         initBankAccount();
         initPaintingTimers();
         initMapArea();
@@ -120,53 +117,64 @@ public class MainGameController {
 
     public MainGameController(GameInfo gameInfo) {
  
-    	mainGameView = new MainGameView();
+    	loadGame = true;
+    	
     	GameMapCollection mapCollection = GameMapCollection.loadMapsFromFile(); 
    	 	for(int i = 0 ; i < mapCollection.getMaps().size(); i++ ){
    	 		String gameMapName = mapCollection.getMaps().get(i).getMapName();
-   	 		if(gameMapName.equalsIgnoreCase("fhggg")){
+   	 		if(gameMapName.equalsIgnoreCase(gameInfo.getMapName())){
    	 			this.gameMap = mapCollection.getMaps().get(i);
-   	 			
-   	 
+
    	 		}
-   	 	
 	}
    	 		
-      
-        gameLogController = new GameLogController();
-        drawingMapInGameDelegate = mainGameView.mapView.mapPanel;
-        drawingMapDelegate = mainGameView.mapView.mapPanel;
-       
-        drawingSpecificationPanelDelegate = mainGameView.endView.towerSpecificationPanel;
-        drawingSellUpgradePanelDelegate = mainGameView.endView.towerUpgradeSellPanel;
-        drawingDataPanelDelegate = mainGameView.topView.gameDataPanel;
-        System.out.println(gameInfo.getTowers().size());
-        towerCollection.setTowers(gameInfo.getTowers()); 
+   	 	towerCollection.setTowers(gameInfo.getTowers()); 
+   	 	// test 
         System.out.println(towerCollection.getTowers().size());
-		for (Map.Entry<Integer, Tower> entry : towerCollection.getTowers().entrySet()) {
-	   	 		
+		for (Map.Entry<Integer, Tower> entry : towerCollection.getTowers().entrySet()) { 		
 	   	 		gameMap.getCells().set(entry.getKey(), CellState.Tower);
-	   	 		drawingMapDelegate.refreshMap(gameMap);
 	   	 	}
-		 
-		 
-        account.setBalance(gameInfo.getGold());
+		 balance = gameInfo.getGold();
         coins = gameInfo.getCoins();
-        drawingDataPanelDelegate.reloadCoinDataView(coins);
         currentWaveNum = gameInfo.getWaveNum();
+        System.out.println(currentWaveNum);
         gameName = gameInfo.getGameName(); 
-        drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
+        
+		initializeProtocol();
+		initBankAccount();
+		initPaintingTimers();
         refreshGamePanelsView();
         initTowerButtons();
         initSellUpgradeButtons();
         initFunctionalButtonsInTopPanel();
         initWaveTimers();
         initMapArea();
+        
     }
 
-	private void initBankAccount() {
+    private void initializeProtocol(){
+    	
+        // TODO new Window score list
+        System.out.println("Highest score:" + gameMap.getFiveHighestScore());
         
+        mainGameView = new MainGameView();
+        gameLogController = new GameLogController();
+        drawingMapInGameDelegate = mainGameView.mapView.mapPanel;
+        drawingMapDelegate = mainGameView.mapView.mapPanel;
+        drawingSpecificationPanelDelegate = mainGameView.endView.towerSpecificationPanel;
+        drawingSellUpgradePanelDelegate = mainGameView.endView.towerUpgradeSellPanel;
+        drawingDataPanelDelegate = mainGameView.topView.gameDataPanel;
+
+        drawingMapDelegate.refreshMap(gameMap);
+        drawingDataPanelDelegate.reloadCoinDataView(coins);
+    }
+	private void initBankAccount() {
+		account =  new BankAccount();
+		if(!loadGame){
         account.setBalance(BankAccount.INITIAL_BALANCE);
+		}else {
+			account.setBalance(balance);
+		}
         drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
     }
 
@@ -192,6 +200,7 @@ public class MainGameController {
                 preWavePhase = false;
                 startNextWave();
                 mainGameView.topView.gameDataPanel.waveStartButton.setEnabled(false);
+                mainGameView.topView.gameDataPanel.saveGame.setEnabled(false);
             }
         });
 
@@ -211,15 +220,14 @@ public class MainGameController {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				GameInfo game = new GameInfo(towerCollection.getTowers() ,100.00 ,5,100,"fhggg","fhggg");
+				saveGame();
+				GameInfo game = new GameInfo(towerCollection.getTowers() ,account.getBalance(),coins,currentWaveNum,"fhggg", gameMap.getMapName());
 				GameCollection2 gameCollection = new GameCollection2();
 				gameCollection.addgame(game);
 				GameCollection2 gameCollection2 = new GameCollection2();
 				try {
 					gameCollection.StoreInXMLFormate();
 					gameCollection2.readXMLFormate();
-					System.out.println(gameCollection2.getGames().get(0).getTowers().size());
-					System.out.println(gameCollection2.getGames().size());
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -232,6 +240,75 @@ public class MainGameController {
         });
         
     }
+    
+    private void saveGame() {
+    	
+    	GameCollection2 gameCollection = new GameCollection2();
+    	try {
+			gameCollection.readXMLFormate();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        boolean isReadyToCreate = true;
+        if(!gameName.equals("")){// old game
+            JOptionPane.showMessageDialog(mainGameView, "Saved Successful!");
+            GameInfo game = new GameInfo(towerCollection.getTowers() ,account.getBalance(),coins,currentWaveNum,gameName, gameMap.getMapName());
+            gameCollection.getGames().set(gameCollection.findGameInCollection(gameName),game);
+            try {
+            	gameCollection.StoreInXMLFormate();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+        } else {//brand new map
+            String userGameName = (String) JOptionPane.showInputDialog(mainGameView,
+                    "Type in the game name:",
+                    "Save map to file",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    null,
+                    "Game1");
+            if (userGameName != null) { // if user choose cancel, mapName -> null
+                if (!userGameName.equals("")) { // if the name is empty then it's invalidate
+
+                    if (gameCollection != null) { // if the file already exits, check the filename and volume
+                        int size = gameCollection.getGames().size();
+                        for (int i = 0; i < size; i++) {
+                        	if(gameCollection.getGames().get(i).getGameName().equalsIgnoreCase(userGameName)){
+                        		
+                                String gameRename;// if they have the same name, please rename
+                                do {
+                                	gameRename = (String) JOptionPane.showInputDialog(mainGameView,
+                                            "Already taken, please rename:",
+                                            "Save map to file",
+                                            JOptionPane.PLAIN_MESSAGE,
+                                            null,
+                                            null,
+                                            "map1");
+                                } while (userGameName.equals(gameRename));
+                                if (gameRename != null) userGameName = gameRename;
+                                else isReadyToCreate = false;
+                            }
+                        }
+                    } 
+                }
+            }
+
+            if (isReadyToCreate) {
+            	 GameInfo game = new GameInfo(towerCollection.getTowers() ,account.getBalance(),coins,currentWaveNum,userGameName, gameMap.getMapName());
+            	gameCollection.addgame(game);
+            	try {
+            		gameCollection.StoreInXMLFormate();
+				} catch (FileNotFoundException e) {
+					JOptionPane.showMessageDialog(mainGameView, "Game Not saved");
+					e.printStackTrace();
+				}
+        }
+    }
+    }
+    	
 
     private void initCrittersForWave(int waveNum) {
         for(Tower t: towerCollection.getTowers().values()) {
@@ -447,7 +524,11 @@ public class MainGameController {
                 continue;
             } else break;
         }
-        if(count == critterCollection.getCritters().size()) startNextWave();
+        if(count == critterCollection.getCritters().size()){
+        	 mainGameView.topView.gameDataPanel.waveStartButton.setEnabled(true);
+             mainGameView.topView.gameDataPanel.saveGame.setEnabled(true);
+        }
+        	//startNextWave();             /////////////////
     }
 
     private void detectingCrittersStoleCoins() {
