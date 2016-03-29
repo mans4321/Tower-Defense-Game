@@ -13,60 +13,53 @@ import model.wave.Wave;
 
 
 /**
- * testing operation on Critters
+ * testing operation on Critters.
  *  
  * @author m_lzahra
- *@version 2.0
- *@since 14/3/2016
+ * @version 2.0
+ * @since 14/3/2016
  */
 public class CritterTest {
  
 
-	int sizeAfterAddingCritter;
-	int sizeBeforAddingCritter;
-	int sizeBeforAddingCritterWave;
-	int sizeAfterAddingCritterWave;
-	
-	CritterD critterD ;
-	 
-	/**
-	 * test adding critter to critter store 
-	 */
-	@Test
-	public void testAddingCritterToStore() {
-		
-        sizeBeforAddingCritter = CritterCollection.critters.size();
+    int sizeAfterAddingCritter;
+    int sizeBeforAddingCritter;
+    int sizeBeforAddingCritterWave;
+    int sizeAfterAddingCritterWave;
+    
+    CritterD critterD ;
+     
+    /**
+     * test adding critter to critter store.
+     */
+    @Test
+    public void testAddingCritterToStore() {
+        
+       sizeBeforAddingCritter = CritterCollection.critters.size();
         
        critterD = new CritterD();
        CritterCollection.critters.add(critterD);
        
        sizeAfterAddingCritter = CritterCollection.critters.size();
        
-       assertTrue(sizeBeforAddingCritter< sizeAfterAddingCritter);
+       assertTrue(sizeBeforAddingCritter < sizeAfterAddingCritter);
         
-       CritterCollection.critters.remove (critterD);
+       CritterCollection.critters.remove(critterD);
 
-	}
-	
-	/**
-	 * test building a wave of critters
-	 */
-	@Test
-	public void testBuildingCritter() {
-		
-		 
-	
-		
-		sizeBeforAddingCritterWave= CritterCollection.critters.size();
-		
-		new Wave.Builder().critterA(10).build();
-		
-	    sizeAfterAddingCritterWave = CritterCollection.critters.size();
-		
-		assertTrue(sizeBeforAddingCritterWave < sizeAfterAddingCritterWave);
-		
-	}
-	
-	
-	
+    }
+    
+    /**
+     * test building a wave of critters.
+     */
+    @Test
+    public void testBuildingCritter() {
+        
+        sizeBeforAddingCritterWave= CritterCollection.critters.size();
+        
+        new Wave.Builder().critterA(10).build();
+        
+        sizeAfterAddingCritterWave = CritterCollection.critters.size();
+        
+        assertTrue(sizeBeforAddingCritterWave < sizeAfterAddingCritterWave);
+    }
 }

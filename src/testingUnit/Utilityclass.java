@@ -18,42 +18,43 @@ import utility.Helper;
  */
 public class Utilityclass {
 
-	
-	private String[] arr;
-	Dimension imgSize;
-	Dimension boundary;
-	Dimension newDimension;
-	/**
-	 * setting values 
-	 */
-	@Before
-	public void setValues() {
-		
-		arr = new String[]{"11","21","41","31","1"};
-	}
-	
-	/**
-	 * test get the maximum values function
-	 */
-	@Test
-	public void maxValueTest() {
-		
-		assertEquals(41,Helper.getMaxValueFrom(arr));
-	}
-	
-	/**
-	 * test get scaled dimension
-	 */
-	@Test
-	public void getScaledDimension() {
-		
-		imgSize = new Dimension(500, 100);
-		boundary = new Dimension(200, 200);
-		
-	    newDimension = Helper.getScaledDimension(imgSize, boundary);
-		assertTrue((int)newDimension.getWidth() == 200);
-		assertTrue((int)newDimension.getHeight() == 40);
-		
-		
-	}
+    
+    private String[] arr;
+    Dimension imgSize;
+    Dimension boundary;
+    Dimension newDimension;
+    
+    /**
+     * setting values. 
+     */
+    @Before
+    public void setValues() {
+        
+        arr = new String[]{"11","21","41","31","1"};
+    }
+    
+    /**
+     * test get the maximum values function.
+     */
+    @Test
+    public void maxValueTest() {
+        
+        assertEquals(41,Helper.getMaxValueFrom(arr));
+    }
+    
+    /**
+     * test get scaled dimension.
+     */
+    @Test
+    public void getScaledDimension() {
+        
+        imgSize = new Dimension(500, 100);
+        boundary = new Dimension(200, 200);
+        
+        newDimension = Helper.getScaledDimension(imgSize, boundary);
+        assertTrue((int)newDimension.getWidth() == 200);
+        assertTrue((int)newDimension.getHeight() == 40);
+        
+        
+    }
 }
