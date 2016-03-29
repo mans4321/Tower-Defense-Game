@@ -11,14 +11,13 @@ import view.critter.CritterType;
 
 
 /**
- * testing operation on Critters
- *
+ * testing operation on Critters.
+ *  
  * @author m_lzahra
- *@version 2.0
- *@since 14/3/2016
+ * @version 2.0
+ * @since 14/3/2016
  */
 public class CritterTest {
-
 
 	int sizeAfterAddingCritter;
 	int sizeBeforAddingCritter;
@@ -63,7 +62,4 @@ public class CritterTest {
 		assertTrue(sizeBeforAddingCritterWave < sizeAfterAddingCritterWave);
 
 	}
-
-
-
 }
