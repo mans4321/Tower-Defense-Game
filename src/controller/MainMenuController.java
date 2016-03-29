@@ -50,5 +50,20 @@ public class MainMenuController {
                 }
             }
         });
-    }
+        
+        mainMenuView.loadGame.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					new GameChooseController();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+    });
+}
 }

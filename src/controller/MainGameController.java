@@ -4,8 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import javax.swing.*;
+import java.util.Date;
+
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
+
 import model.bankaccount.BankAccount;
 import model.critter.Critter;
 import model.critter.CritterCollection;
@@ -16,15 +22,19 @@ import model.gamelog.LoggerCollection;
 import model.map.CellState;
 import model.map.GameMap;
 import model.map.GameMapCollection;
+import model.svaeGame.GameCollection;
+import model.svaeGame.GameInfo;
 import model.tower.Tower;
 import model.tower.TowerCollection;
 import model.tower.TowerFactory;
-import model.tower.shootingstrategy.TargetBasedOnNearest;
 import model.tower.shootingstrategy.TargetBasedOnStrongest;
 import model.tower.shootingstrategy.TargetBasedOnWeakest;
 import model.tower.shootingstrategy.TowerBasedOnClosestToTower;
 import model.wave.WaveFactory;
-import protocol.*;
+import protocol.DrawingDataPanelDelegate;
+import protocol.DrawingMapDelegate;
+import protocol.DrawingMapInGameDelegate;
+import protocol.DrawingPanelDelegate;
 import view.maingameview.MainGameView;
 import view.map.Drawing;
 import view.tower.TowerType;
@@ -65,7 +75,8 @@ public class MainGameController {
     int currentCritterIndex = 0;
     int currentIndex = 0;
     int currentWaveNum = 0;
-    BankAccount account;
+    String gameName;
+    BankAccount account =  new BankAccount();;
 
     Timer critterGeneratorTimer;
 
@@ -107,8 +118,40 @@ public class MainGameController {
         initFunctionalButtonsInTopPanel();
     }
 
-    private void initBankAccount() {
-        account = new BankAccount();
+    public MainGameController(GameInfo gameInfo) {
+    	mainGameView = new MainGameView();
+    	GameMapCollection mapCollection = GameMapCollection.loadMapsFromFile(); 
+   	 	for(int i = 0 ; i < mapCollection.getMaps().size(); i++ ){
+   	 		String gameMapName = mapCollection.getMaps().get(i).getMapName();
+   	 		if(gameMapName.equalsIgnoreCase(gameInfo.getMapName())){
+   	 			this.gameMap = mapCollection.getMaps().get(i);
+   	 		}
+	}
+   	 	
+        gameLogController = new GameLogController();
+        drawingMapInGameDelegate = mainGameView.mapView.mapPanel;
+        drawingMapDelegate = mainGameView.mapView.mapPanel;
+        drawingSpecificationPanelDelegate = mainGameView.endView.towerSpecificationPanel;
+        drawingSellUpgradePanelDelegate = mainGameView.endView.towerUpgradeSellPanel;
+        drawingDataPanelDelegate = mainGameView.topView.gameDataPanel;
+
+        drawingMapDelegate.refreshMap(gameMap);
+        drawingDataPanelDelegate.reloadCoinDataView(coins);
+        towerCollection.setTowers(gameInfo.getTowers()); 
+        account.setBalance(gameInfo.getGold());
+        coins = gameInfo.getCoins();
+        currentWaveNum = gameInfo.getWaveNum();
+        gameName = gameInfo.getGameName(); 
+ 	 
+        initTowerButtons();
+        initSellUpgradeButtons();
+        initFunctionalButtonsInTopPanel();
+        initWaveTimers();
+        initMapArea();
+    }
+
+	private void initBankAccount() {
+        
         account.setBalance(BankAccount.INITIAL_BALANCE);
         drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
     }
@@ -148,6 +191,31 @@ public class MainGameController {
                 }
             }
         });
+        
+        mainGameView.topView.gameDataPanel.saveGame.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				GameInfo game = new GameInfo(towerCollection.getTowers() ,100.00 ,5,100,"mans","mans3");
+				GameCollection gameCollection = new GameCollection();
+				gameCollection.addgame(game);
+				gameCollection.addgame(game);
+				try {
+					gameCollection.StoreInXMLFormate();
+					gameCollection.readXMLFormate();
+					gameCollection.print();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+        	
+        });
+        
     }
 
     private void initCrittersForWave(int waveNum) {

@@ -39,6 +39,9 @@ public class Tower {
         this.level = level;
     }
 
+    public void setRange(int range) {
+        this.range = range;
+    }
     public void setPosition(Position position) {
         this.position = position;
     }
