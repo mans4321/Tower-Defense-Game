@@ -21,6 +21,14 @@ public class GameChooseController {
 		
 		listModel = new DefaultListModel();
 		gameCollection = new GameCollection();
+		
+		try {
+			gameCollection.readXMLFormate();
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(gameChooseView, "Cannot Read for File");
+			new MainMenuController().mainMenuView.setVisible(true);
+		}
+		
 		int size = gameCollection.getGames().size();
 		if(size > 0){
 			
