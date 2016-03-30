@@ -9,7 +9,12 @@ import javax.swing.JOptionPane;
 import model.svaeGame.GameCollection;
 import view.mapchooseview.GameChooseView;
 
-
+/**
+ * Controller for the game select view.
+ * @author M_lzahra
+ * @version 1.0
+ * @since 3/29/16
+ */
 public class GameChooseController {
 
 	GameChooseView gameChooseView;

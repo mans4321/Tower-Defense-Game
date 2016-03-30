@@ -16,7 +16,8 @@ import javax.swing.*;
 /**
  * Controller for the map select view
  * @author yongpinggao
- * @version 1.0 3/12/16.
+ * @version 1.0
+ * @since 1.0 3/12/16.
  */
 public class MapChooseController {
 
