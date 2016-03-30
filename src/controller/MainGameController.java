@@ -99,13 +99,13 @@ public class MainGameController {
 
     public MainGameController(GameMap gameMap){
 
-        drawingMapDelegate.refreshMap(gameMap);
-        drawingDataPanelDelegate.reloadCoinDataView(coins);
+      
 
-        //this.gameMap = gameMap;
+         this.gameMap = gameMap;
 
         //initializeProtocol();
         initBankAccount();
+        initializeProtocol();
         initPaintingTimers();
         initMapArea();
         initWaveTimers();
@@ -140,8 +140,8 @@ public class MainGameController {
         System.out.println(currentWaveNum);
         gameName = gameInfo.getGameName(); 
         
+        initBankAccount();
 		initializeProtocol();
-		initBankAccount();
 		initPaintingTimers();
         refreshGamePanelsView();
         initTowerButtons();
@@ -167,6 +167,7 @@ public class MainGameController {
 
         drawingMapDelegate.refreshMap(gameMap);
         drawingDataPanelDelegate.reloadCoinDataView(coins);
+        drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
     }
 	private void initBankAccount() {
 		account =  new BankAccount();
@@ -175,7 +176,6 @@ public class MainGameController {
 		}else {
 			account.setBalance(balance);
 		}
-        drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
     }
 
 

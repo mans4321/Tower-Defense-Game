@@ -23,7 +23,7 @@ public class GameChooseView extends BaseWindowView {
 	    
 	public GameChooseView(DefaultListModel listModel) {
 		
-		super(260, 200, "Choose a Map");
+		super(260, 200, "Choose a Game");
         startGameButton = new JButton("Start Game");
         list = new JList<>(listModel);
         list.setSelectedIndex(0);
