@@ -39,6 +39,8 @@ public class GameChooseController {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					gameChooseView.setVisible(false);
+					System.out.println(gameCollection.getGames().size());
+					
 					new MainGameController(gameCollection.getGames().get(gameChooseView.list.getSelectedIndex())).mainGameView.setVisible(true);
 				}
 			});

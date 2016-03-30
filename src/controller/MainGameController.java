@@ -221,24 +221,8 @@ public class MainGameController {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				saveGame();
-				GameInfo game = new GameInfo(towerCollection.getTowers() ,account.getBalance(),coins,currentWaveNum,"fhggg", gameMap.getMapName());
-				GameCollection2 gameCollection = new GameCollection2();
-				gameCollection.addgame(game);
-				GameCollection2 gameCollection2 = new GameCollection2();
-				try {
-					gameCollection.StoreInXMLFormate();
-					gameCollection2.readXMLFormate();
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			}
-        	
-        });
-        
+        }); 
     }
     
     private void saveGame() {
