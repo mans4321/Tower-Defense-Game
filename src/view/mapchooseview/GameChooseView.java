@@ -20,7 +20,11 @@ public class GameChooseView extends BaseWindowView {
 		public JButton startGameButton;
 	    public JScrollPane pane;
 	    public JList list;
-	    
+	
+	    /**
+	     * Constructs the list of options for games.
+	     * @param listModel listModel list of game options.
+	     */
 	public GameChooseView(DefaultListModel listModel) {
 		
 		super(260, 200, "Choose a Game");

@@ -17,20 +17,20 @@ public class GameChooseController {
     
     GameCollection gameCollection;
     
-	public GameChooseController() throws Exception {
+	public GameChooseController(){
 		
 		listModel = new DefaultListModel();
 		gameCollection = new GameCollection();
-		gameCollection.readXMLFormate();
-		
 		int size = gameCollection.getGames().size();
 		if(size > 0){
+			
 			for (int i = 0; i < size; i++) {
 				listModel.addElement(gameCollection.getGames().get(i).getGameName());
 			}
 
 			gameChooseView = new GameChooseView(listModel);
 			gameChooseView.setVisible(true);
+			
 			/**
 			 * Sets listener to start game
 			 */
@@ -45,7 +45,6 @@ public class GameChooseController {
 		}
 		else {
 			JOptionPane.showMessageDialog(gameChooseView, "There is no Games please play and save");
-			gameChooseView.setVisible(false);
 			new MainMenuController().mainMenuView.setVisible(true);
 		}
 	}

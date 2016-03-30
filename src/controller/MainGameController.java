@@ -114,6 +114,10 @@ public class MainGameController {
         showHighScoreList();
     }
 
+    /**
+     * A constructor to start the game with saved a game 
+     * @param gameInfo loaded game info
+     */
     public MainGameController(GameInfo gameInfo) {
  
     	loadGame = true;
@@ -127,13 +131,12 @@ public class MainGameController {
    	 		}
 	}
    	 		
-   	 	towerCollection.setTowers(gameInfo.getTowers()); 
-   	 	// test 
-        System.out.println(towerCollection.getTowers().size());
+   	 	towerCollection.setTowers(gameInfo.getTowerCollection()); 
 		for (Map.Entry<Integer, Tower> entry : towerCollection.getTowers().entrySet()) { 		
 	   	 		gameMap.getCells().set(entry.getKey(), CellState.Tower);
 	   	 	}
-		 balance = gameInfo.getGold();
+		
+		balance = gameInfo.getGold();
         coins = gameInfo.getCoins();
         currentWaveNum = gameInfo.getWaveNum();
         System.out.println(currentWaveNum);
@@ -169,6 +172,7 @@ public class MainGameController {
         drawingDataPanelDelegate.reloadCoinDataView(coins);
         drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
     }
+    
 	private void initBankAccount() {
 		account =  new BankAccount();
 		if(!loadGame){
@@ -225,73 +229,7 @@ public class MainGameController {
         }); 
     }
     
-    private void saveGame() {
-    	
-    	GameCollection gameCollection = new GameCollection();
-    	try {
-			gameCollection.readXMLFormate();
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-        boolean isReadyToCreate = true;
-        if(!gameName.equals("")){// old game
-            JOptionPane.showMessageDialog(mainGameView, "Saved Successful!");
-            GameInfo game = new GameInfo(towerCollection.getTowers(),LoggerCollection.getInstance().getLogList() ,account.getBalance(),coins,currentWaveNum,gameName, gameMap.getMapName());
-            gameCollection.getGames().set(gameCollection.findGameInCollection(gameName),game);
-            try {
-            	gameCollection.StoreInXMLFormate();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-        } else {//brand new map
-            String userGameName = (String) JOptionPane.showInputDialog(mainGameView,
-                    "Type in the game name:",
-                    "Save map to file",
-                    JOptionPane.PLAIN_MESSAGE,
-                    null,
-                    null,
-                    "Game1");
-            if (userGameName != null) { // if user choose cancel, mapName -> null
-                if (!userGameName.equals("")) { // if the name is empty then it's invalidate
-
-                    if (gameCollection != null) { // if the file already exits, check the filename and volume
-                        int size = gameCollection.getGames().size();
-                        for (int i = 0; i < size; i++) {
-                        	if(gameCollection.getGames().get(i).getGameName().equalsIgnoreCase(userGameName)){
-                        		
-                                String gameRename;// if they have the same name, please rename
-                                do {
-                                	gameRename = (String) JOptionPane.showInputDialog(mainGameView,
-                                            "Already taken, please rename:",
-                                            "Save map to file",
-                                            JOptionPane.PLAIN_MESSAGE,
-                                            null,
-                                            null,
-                                            "map1");
-                                } while (userGameName.equals(gameRename));
-                                if (gameRename != null) userGameName = gameRename;
-                                else isReadyToCreate = false;
-                            }
-                        }
-                    } 
-                }
-            }
-
-            if (isReadyToCreate) {
-            	 GameInfo game = new GameInfo(towerCollection.getTowers() , LoggerCollection.getInstance().getLogList() ,account.getBalance(),coins,currentWaveNum,userGameName, gameMap.getMapName());
-            	gameCollection.addgame(game);
-            	try {
-            		gameCollection.StoreInXMLFormate();
-				} catch (FileNotFoundException e) {
-					JOptionPane.showMessageDialog(mainGameView, "Game Not saved");
-					e.printStackTrace();
-				}
-        }
-    }
-    }
+    
     	
 
     private void initCrittersForWave(int waveNum) {
@@ -633,5 +571,75 @@ public class MainGameController {
                     null);
         }
 
+    }
+    /**
+     * save game info to file
+     */
+    private void saveGame() {
+    	
+    	GameCollection gameCollection = new GameCollection();
+    	try {
+			gameCollection.readXMLFormate();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        boolean isReadyToCreate = true;
+        if(!gameName.equals("")){// old game
+            JOptionPane.showMessageDialog(mainGameView, "Saved Successful!");
+            GameInfo game = new GameInfo(towerCollection.getTowers(),LoggerCollection.getInstance().getLogList() ,account.getBalance(),coins,currentWaveNum,gameName, gameMap.getMapName());
+            gameCollection.getGames().set(gameCollection.findGameInCollection(gameName),game);
+            try {
+            	gameCollection.StoreInXMLFormate();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+        } else {//brand new map
+            String userGameName = (String) JOptionPane.showInputDialog(mainGameView,
+                    "Type in the game name:",
+                    "Save map to file",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    null,
+                    "Game1");
+            if (userGameName != null) { // if user choose cancel, mapName -> null
+                if (!userGameName.equals("")) { // if the name is empty then it's invalidate
+
+                    if (gameCollection != null) { // if the file already exits, check the filename and volume
+                        int size = gameCollection.getGames().size();
+                        for (int i = 0; i < size; i++) {
+                        	if(gameCollection.getGames().get(i).getGameName().equalsIgnoreCase(userGameName)){
+                        		
+                                String gameRename;// if they have the same name, please rename
+                                do {
+                                	gameRename = (String) JOptionPane.showInputDialog(mainGameView,
+                                            "Already taken, please rename:",
+                                            "Save map to file",
+                                            JOptionPane.PLAIN_MESSAGE,
+                                            null,
+                                            null,
+                                            "map1");
+                                } while (userGameName.equals(gameRename));
+                                if (gameRename != null) userGameName = gameRename;
+                                else isReadyToCreate = false;
+                            }
+                        }
+                    } 
+                }
+            }
+
+            if (isReadyToCreate) {
+            	 GameInfo game = new GameInfo(towerCollection.getTowers() , LoggerCollection.getInstance().getLogList() ,account.getBalance(),coins,currentWaveNum,userGameName, gameMap.getMapName());
+            	gameCollection.addgame(game);
+            	try {
+            		gameCollection.StoreInXMLFormate();
+				} catch (FileNotFoundException e) {
+					JOptionPane.showMessageDialog(mainGameView, "Game Not saved");
+					e.printStackTrace();
+				}
+        }
+    }
     }
 }
