@@ -88,7 +88,7 @@ public class GameCollection implements Serializable {
 	   * Store all saved games info in xml file 
 	   * @throws FileNotFoundException file not found exception
 	   */
-		public void StoreInXMLFormate() throws FileNotFoundException{
+		public void saveGame() throws FileNotFoundException{
 			
 			try{
 				PrintWriter out;
@@ -134,7 +134,7 @@ public class GameCollection implements Serializable {
 		 * Read game info from xml file 
 		 * @throws Exception file exception
 		 */
-		public void readXMLFormate() throws Exception{
+		public void loadGame() throws Exception{
 			
           	HashMap<Integer,Tower> towersCollection = new HashMap<Integer,Tower> ();
           	ArrayList<Log> gameLog= new ArrayList<>();

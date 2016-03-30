@@ -579,7 +579,7 @@ public class MainGameController {
     	
     	GameCollection gameCollection = new GameCollection();
     	try {
-			gameCollection.readXMLFormate();
+			gameCollection.loadGame();;
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -590,7 +590,7 @@ public class MainGameController {
             GameInfo game = new GameInfo(towerCollection.getTowers(),LoggerCollection.getInstance().getLogList() ,account.getBalance(),coins,currentWaveNum,gameName, gameMap.getMapName());
             gameCollection.getGames().set(gameCollection.findGameInCollection(gameName),game);
             try {
-            	gameCollection.StoreInXMLFormate();
+            	gameCollection.saveGame();;
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -634,7 +634,7 @@ public class MainGameController {
             	 GameInfo game = new GameInfo(towerCollection.getTowers() , LoggerCollection.getInstance().getLogList() ,account.getBalance(),coins,currentWaveNum,userGameName, gameMap.getMapName());
             	gameCollection.addgame(game);
             	try {
-            		gameCollection.StoreInXMLFormate();
+            		gameCollection.saveGame();
 				} catch (FileNotFoundException e) {
 					JOptionPane.showMessageDialog(mainGameView, "Game Not saved");
 					e.printStackTrace();

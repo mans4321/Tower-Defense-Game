@@ -28,7 +28,7 @@ public class GameChooseController {
 		gameCollection = new GameCollection();
 		
 		try {
-			gameCollection.readXMLFormate();
+			gameCollection.loadGame();;
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(gameChooseView, "Cannot Read for File");
 			new MainMenuController().mainMenuView.setVisible(true);
