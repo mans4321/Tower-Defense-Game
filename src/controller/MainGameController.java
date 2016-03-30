@@ -24,7 +24,6 @@ import model.map.CellState;
 import model.map.GameMap;
 import model.map.GameMapCollection;
 import model.svaeGame.GameCollection;
-import model.svaeGame.GameCollection2;
 import model.svaeGame.GameInfo;
 import model.tower.Tower;
 import model.tower.TowerCollection;
@@ -227,7 +226,7 @@ public class MainGameController {
     
     private void saveGame() {
     	
-    	GameCollection2 gameCollection = new GameCollection2();
+    	GameCollection gameCollection = new GameCollection();
     	try {
 			gameCollection.readXMLFormate();
 		} catch (Exception e1) {

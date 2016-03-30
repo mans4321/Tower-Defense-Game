@@ -5,9 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-
 import model.svaeGame.GameCollection;
-import model.svaeGame.GameCollection2;
 import view.mapchooseview.GameChooseView;
 
 
@@ -16,12 +14,12 @@ public class GameChooseController {
 	GameChooseView gameChooseView;
     DefaultListModel listModel;
     
-    GameCollection2 gameCollection;
+    GameCollection gameCollection;
     
 	public GameChooseController() throws Exception {
 		
 		listModel = new DefaultListModel();
-		gameCollection = new GameCollection2();
+		gameCollection = new GameCollection();
 		gameCollection.readXMLFormate();
 		
 		int size = gameCollection.getGames().size();
