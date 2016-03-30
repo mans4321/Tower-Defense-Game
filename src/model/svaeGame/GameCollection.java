@@ -7,7 +7,6 @@ import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -17,7 +16,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import model.map.GameMap;
+import model.gamelog.Log;
+import model.gamelog.LogType;
 import model.tower.Tower;
 import model.tower.TowerFactory;
 import model.tower.shootingstrategy.TargetBasedOnNearest;
@@ -33,6 +33,7 @@ public class GameCollection implements Serializable {
 
 	
 	private  ArrayList<GameInfo> games;
+	private Object Log;
 	
 	public GameCollection(){
 		
@@ -60,11 +61,12 @@ public class GameCollection implements Serializable {
 	        return index;
 	    }
 	  
+	  
 		public void StoreInXMLFormate() throws FileNotFoundException{
 			
 			try{
 			PrintWriter out;
-			File selectedFile = new File("JSON_FILE.xml");
+			File selectedFile = new File("JSON_FILE2.xml");
 			 FileOutputStream stream = new FileOutputStream(selectedFile); 
              out = new PrintWriter( stream );
              out.println("<?xml version=\"1.0\"?>");
@@ -80,7 +82,12 @@ public class GameCollection implements Serializable {
 			        			 tower.getTowerShootingBehavior().getShootingStrategy().getClass().getSimpleName() + "' range='" + 
 					        			 tower.getRange() + "' x='" + tower.getPosition().getX() + "' y='" + tower.getPosition().getY()  + "' />");
 
-			        }
+			        } 
+			        for (Log gameLogInfo : jsongames.getLogList()) {
+			        	 out.println("<Log currentTime='" + gameLogInfo.getCurrentTime() + "' content='" +
+			        			 gameLogInfo.getContent() + "' id='" + gameLogInfo.getId()+ "' logType='" +
+			        			 gameLogInfo.getWho().toString() + "' />");
+					}
 			        out.println("<WaveNumber>" + jsongames.getWaveNum() + "</WaveNumber>");
 			        out.println("<MapName>" + jsongames.getMapName()+ "</MapName>");
 			        out.println("<Coins>" + jsongames.getCoins() + "</Coins>");
@@ -98,6 +105,7 @@ public class GameCollection implements Serializable {
 		public void readXMLFormate() throws Exception{
 			
           	HashMap<Integer,Tower> towersCollection = new HashMap<Integer,Tower> ();
+          	ArrayList<Log> gameLog= new ArrayList<>();
         	double balance = 0;
         	String gameName = "" ;
 			String mapName = "" ;
@@ -107,7 +115,7 @@ public class GameCollection implements Serializable {
 			try{
 			 Document xmldoc;
 			 DocumentBuilder docReader = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-             xmldoc = docReader.parse("JSON_FILE.xml");
+             xmldoc = docReader.parse("JSON_FILE2.xml");
              Element rootElement = xmldoc.getDocumentElement();
              if ( ! rootElement.getNodeName().equals("svaeGame") )
             	 throw new Exception("File is not a svaeGame file.");
@@ -132,6 +140,34 @@ public class GameCollection implements Serializable {
                                         	 coins = Integer.parseInt(curveOfGameElement.getTextContent());
                                          }else if(curveOfGameElement.getTagName().equals("Balance")){
                                         	 balance = Double.parseDouble(curveOfGameElement.getTextContent());
+                                         }else if(curveOfGameElement.getTagName().equals("Log")){
+                                        	    String currentTime = curveOfGameElement.getAttribute("currentTime");
+                                        	    String content = curveOfGameElement.getAttribute("content");
+                                        	    String who = curveOfGameElement.getAttribute("logType");
+                                        	    int id = Integer.parseInt(curveOfGameElement.getAttribute("id"));
+                                        	    LogType whoIs = null;
+                                                switch(who){
+                                                case "Game":
+                                                	whoIs = LogType.Game;
+                                                	break;
+                                                case "Map":
+                                                	whoIs = LogType.Map;
+                                                	break;
+                                                case "Tower":
+                                                	whoIs = LogType.Tower;
+                                                	break;
+                                                case "Wave":
+                                                	whoIs = LogType.Wave;
+                                                	break;
+                                                }
+                                        	    if(! whoIs.equals("Tower")){
+                                        	    	Log logNotTower = new Log(whoIs , content); 
+                                        	    	gameLog.add(logNotTower);
+                                        	    } else {
+                                        	    	Log logTower = new Log(whoIs ,id, content); 
+                                        	    	gameLog.add(logTower);
+                                        	    }
+                                        	    	
                                          }else if(curveOfGameElement.getTagName().equals("Tower")){
                                         	 String towerType = curveOfGameElement.getAttribute("type");
                                         	 String towerStrategy = curveOfGameElement.getAttribute("Strategy");
@@ -177,8 +213,9 @@ public class GameCollection implements Serializable {
                                                  }
                                      
                             	 }
-                            	 GameInfo gameInfo = new GameInfo(towersCollection,balance,coins,waveNum,gameName,mapName );
+                            	 GameInfo gameInfo = new GameInfo(towersCollection, gameLog , balance,coins,waveNum,gameName,mapName );
                             	 towersCollection = new HashMap<Integer,Tower> ();
+                            	 gameLog = new ArrayList<>();
                                  games.add(gameInfo);
                             }
                         }

@@ -6,7 +6,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Map;
 
 import javax.swing.JComboBox;
@@ -24,6 +23,7 @@ import model.map.CellState;
 import model.map.GameMap;
 import model.map.GameMapCollection;
 import model.svaeGame.GameCollection;
+import model.svaeGame.GameInfo;
 import model.svaeGame.GameInfo;
 import model.tower.Tower;
 import model.tower.TowerCollection;
@@ -138,6 +138,7 @@ public class MainGameController {
         currentWaveNum = gameInfo.getWaveNum();
         System.out.println(currentWaveNum);
         gameName = gameInfo.getGameName(); 
+        LoggerCollection.getInstance().setLogList(gameInfo.getLogList());
         
         initBankAccount();
 		initializeProtocol();
@@ -236,7 +237,7 @@ public class MainGameController {
         boolean isReadyToCreate = true;
         if(!gameName.equals("")){// old game
             JOptionPane.showMessageDialog(mainGameView, "Saved Successful!");
-            GameInfo game = new GameInfo(towerCollection.getTowers() ,account.getBalance(),coins,currentWaveNum,gameName, gameMap.getMapName());
+            GameInfo game = new GameInfo(towerCollection.getTowers(),LoggerCollection.getInstance().getLogList() ,account.getBalance(),coins,currentWaveNum,gameName, gameMap.getMapName());
             gameCollection.getGames().set(gameCollection.findGameInCollection(gameName),game);
             try {
             	gameCollection.StoreInXMLFormate();
@@ -280,7 +281,7 @@ public class MainGameController {
             }
 
             if (isReadyToCreate) {
-            	 GameInfo game = new GameInfo(towerCollection.getTowers() ,account.getBalance(),coins,currentWaveNum,userGameName, gameMap.getMapName());
+            	 GameInfo game = new GameInfo(towerCollection.getTowers() , LoggerCollection.getInstance().getLogList() ,account.getBalance(),coins,currentWaveNum,userGameName, gameMap.getMapName());
             	gameCollection.addgame(game);
             	try {
             		gameCollection.StoreInXMLFormate();
