@@ -178,6 +178,7 @@ public class GameCollection2 implements Serializable {
                                      
                             	 }
                             	 GameInfo gameInfo = new GameInfo(towersCollection,balance,coins,waveNum,gameName,mapName );
+                            	 towersCollection = new HashMap<Integer,Tower> ();
                                  games.add(gameInfo);
                             }
                         }
