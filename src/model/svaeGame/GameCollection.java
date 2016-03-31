@@ -18,12 +18,15 @@ import org.w3c.dom.NodeList;
 
 import model.gamelog.Log;
 import model.gamelog.LogType;
+import model.map.GameMap;
+import model.map.GameMapCollection;
 import model.tower.Tower;
 import model.tower.TowerFactory;
 import model.tower.shootingstrategy.TargetBasedOnNearest;
 import model.tower.shootingstrategy.TargetBasedOnStrongest;
 import model.tower.shootingstrategy.TargetBasedOnWeakest;
 import model.tower.shootingstrategy.TowerBasedOnClosestToTower;
+import utility.FileProcessing;
 import view.map.Position;
 import view.tower.TowerType;
 
@@ -39,7 +42,7 @@ import view.tower.TowerType;
 public class GameCollection implements Serializable {
 
 	private  ArrayList<GameInfo> games;
-	private Object Log;
+	private Log Log;
 	
 	/**
 	 * Constructor for GameCollection
@@ -50,9 +53,11 @@ public class GameCollection implements Serializable {
 	}
 
 
+
+
 	/**
 	 * add a new game
-	 * @param game gmae for file or saved game
+	 * @param game game for file or saved game
 	 */
 	public void addgame(GameInfo game){
 		
@@ -258,6 +263,8 @@ public class GameCollection implements Serializable {
             	 System.out.println("Cannot Read From File");
            }
 	}
+		
+	
 }
 
                                                     	

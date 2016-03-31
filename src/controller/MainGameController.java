@@ -24,6 +24,7 @@ import model.map.GameMap;
 import model.map.GameMapCollection;
 import model.svaeGame.GameCollection;
 import model.svaeGame.GameInfo;
+import model.svaeGame.SavedGamesMaps;
 import model.svaeGame.GameInfo;
 import model.tower.Tower;
 import model.tower.TowerCollection;
@@ -123,15 +124,14 @@ public class MainGameController {
  
     	loadGame = true;
     	
-    	GameMapCollection mapCollection = GameMapCollection.loadMapsFromFile(); 
+    	SavedGamesMaps mapCollection = SavedGamesMaps.loadMapsFromFile();  	
    	 	for(int i = 0 ; i < mapCollection.getMaps().size(); i++ ){
    	 		String gameMapName = mapCollection.getMaps().get(i).getMapName();
    	 		if(gameMapName.equalsIgnoreCase(gameInfo.getMapName())){
    	 			this.gameMap = mapCollection.getMaps().get(i);
-
    	 		}
 	}
-   	 		
+	 		
    	 	towerCollection.setTowers(gameInfo.getTowerCollection()); 
 		for (Map.Entry<Integer, Tower> entry : towerCollection.getTowers().entrySet()) { 		
 	   	 		gameMap.getCells().set(entry.getKey(), CellState.Tower);
@@ -644,8 +644,15 @@ public class MainGameController {
             }
 
             if (isReadyToCreate) {
-            	 GameInfo game = new GameInfo(towerCollection.getTowers() , LoggerCollection.getInstance().getLogList() ,account.getBalance(),coins,currentWaveNum,userGameName, gameMap.getMapName());
-            	gameCollection.addgame(game);
+            	GameInfo game = new GameInfo(towerCollection.getTowers() , LoggerCollection.getInstance().getLogList() ,account.getBalance(),coins,currentWaveNum,userGameName, gameMap.getMapName());
+               	gameCollection.addgame(game);
+               	SavedGamesMaps mapCollection = SavedGamesMaps.loadMapsFromFile();
+               	if (mapCollection == null) {
+               		mapCollection = new  SavedGamesMaps();
+               	}
+               	mapCollection.addMap(gameMap);
+               	mapCollection.saveMapsToFile(mapCollection);
+               	
             	try {
             		gameCollection.saveGame();
 				} catch (FileNotFoundException e) {
