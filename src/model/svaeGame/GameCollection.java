@@ -191,7 +191,7 @@ public class GameCollection implements Serializable {
                                                 		break;
                                                 	}
                                                 
-                                        	    if(! whoIs.equals("Tower")){
+                                        	    if(! who.equals("Tower")){
                                         	    	Log logNotTower = new Log(whoIs , content); 
                                         	    	gameLog.add(logNotTower);
                                         	    } else {
