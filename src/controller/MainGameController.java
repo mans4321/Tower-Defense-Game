@@ -28,6 +28,7 @@ import model.svaeGame.GameInfo;
 import model.tower.Tower;
 import model.tower.TowerCollection;
 import model.tower.TowerFactory;
+import model.tower.shootingstrategy.TargetBasedOnNearest;
 import model.tower.shootingstrategy.TargetBasedOnStrongest;
 import model.tower.shootingstrategy.TargetBasedOnWeakest;
 import model.tower.shootingstrategy.TowerBasedOnClosestToTower;
@@ -264,7 +265,8 @@ public class MainGameController {
                     } else { // warning!
                         drawingDataPanelDelegate.reloadInfoDataView("Max Level of tower is " + Tower.MAX_LEVEL);
                     }
-                    towerCollection.addTowerAtIndex(currentIndex, currentTower);
+                  towerCollection.addTowerAtIndex(currentIndex, currentTower);
+                   ////// test 
                   Tower tower=  towerCollection.getTowers().get(currentIndex);
                   System.out.println(tower.getLevel());
                     }
@@ -305,11 +307,18 @@ public class MainGameController {
                                     }
 		                    		break;
 		                    	case "Target On Nearest to End":
+		                    		currentTower.getTowerShootingBehavior().setShootingStrategy(new  TargetBasedOnNearest());
+		                    		break;
+		                    	case "Target On Closest to Tower":
 		                    		currentTower.getTowerShootingBehavior().setShootingStrategy(new  TowerBasedOnClosestToTower());
 		                    		break;
 		                    		
 				}
 			}
+	                    towerCollection.addTowerAtIndex(currentIndex, currentTower);
+	                    ////// test 
+	                    Tower tower=  towerCollection.getTowers().get(currentIndex);
+	                    System.out.println(tower.getTowerShootingBehavior().getShootingStrategy().getClass().getSimpleName());
 		}
         	 }
         });
