@@ -1,5 +1,8 @@
 package model.bankaccount;
 
+import com.google.gson.annotations.Expose;
+import testingUnit.Bank;
+
 /**
  * Bank account for the game
  * @author yongpinggao
@@ -8,9 +11,12 @@ package model.bankaccount;
  */
 public class BankAccount {
 
-    public static int INITIAL_BALANCE = 5000;
+    @Expose
     private double balance;
 
+    public BankAccount() {
+        balance = 5000;
+    }
     /**
      * getter method for balance
      * @return balance

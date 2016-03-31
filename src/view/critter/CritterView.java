@@ -12,8 +12,8 @@ public class CritterView {
 
     private String BASE_URL = "res/";
     private String PNG = ".png";
-    private Image critterImage;
-    private ImageIcon critterImageIcon;
+    private transient Image critterImage;
+    private transient ImageIcon critterImageIcon;
 
     public CritterView(CritterType critterType){
         this.critterImageIcon = new ImageIcon(BASE_URL + critterType.getCritterImageName() + PNG);

@@ -1,10 +1,14 @@
 package view.map;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * Created by yongpinggao on 3/19/16.
  */
 public class Position {
+    @Expose
     private int x;
+    @Expose
     private int y;
 
     public Position(int x, int y){

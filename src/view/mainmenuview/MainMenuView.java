@@ -15,7 +15,7 @@ public class MainMenuView extends JFrame {
     private final String MENU_TITLE = "Defence of the Tower";
     public JButton editorButton;
     public JButton startGameButton;
-
+    public JButton loadGameButton;
     /**
      * Default constructor, calls init.
      */
@@ -34,11 +34,13 @@ public class MainMenuView extends JFrame {
         this.setResizable(false);
         this.pack();
         this.setLocationRelativeTo(null);
-        editorButton = new JButton("Map Editor");
+        editorButton = new JButton("Create New Map");
         startGameButton = new JButton("Start Game");
+        loadGameButton = new JButton("Load Game");
         Container c = this.getContentPane();
         c.setLayout(new GridBagLayout());
         c.add(editorButton, new GridBagConstraints());
+        c.add(loadGameButton, new GridBagConstraints());
         c.add(startGameButton, new GridBagConstraints());
     }
 }

@@ -1,0 +1,163 @@
+{
+  "savedGames": [
+    {
+      "mapName": "map1",
+      "towerCollection": {
+        "towers": {
+          "160": {
+            "towerType": "SplashTower1",
+            "towerShootingBehavior": {
+              "isShooting": true,
+              "timeToShoot": false,
+              "shootingStrategyType": "TargetBasedOnWeakest"
+            }
+          }
+        }
+      },
+      "critterCollection": {
+        "critters": [
+          {
+            "critterType": "CritterA",
+            "movingBehavior": {
+              "currentPosition": {
+                "x": 355,
+                "y": 180
+              },
+              "nextIndex": 192,
+              "pathList": [
+                192,
+                193,
+                194,
+                195,
+                196,
+                197,
+                198,
+                199,
+                200
+              ],
+              "cols": 30,
+              "entranceIndex": 185,
+              "arrivedAtExit": false,
+              "initialMoveSpeed": 20
+            },
+            "currentHealth": 60,
+            "maxHealth": 100,
+            "worth": 20.0,
+            "movingSpeed": 20,
+            "isVisible": true,
+            "isKilled": false,
+            "isDonated": false,
+            "specicalEffectTimer": {}
+          },
+          {
+            "critterType": "CritterB",
+            "movingBehavior": {
+              "currentPosition": {
+                "x": 600,
+                "y": 180
+              },
+              "nextIndex": -1,
+              "pathList": [
+                200
+              ],
+              "cols": 30,
+              "entranceIndex": 185,
+              "arrivedAtExit": true,
+              "initialMoveSpeed": 40
+            },
+            "currentHealth": 50,
+            "maxHealth": 60,
+            "worth": 30.0,
+            "movingSpeed": 40,
+            "isVisible": true,
+            "isKilled": false,
+            "isDonated": true,
+            "specicalEffectTimer": {}
+          },
+          {
+            "critterType": "CritterC",
+            "movingBehavior": {
+              "currentPosition": {
+                "x": 259,
+                "y": 180
+              },
+              "nextIndex": 189,
+              "pathList": [
+                189,
+                190,
+                191,
+                192,
+                193,
+                194,
+                195,
+                196,
+                197,
+                198,
+                199,
+                200
+              ],
+              "cols": 30,
+              "entranceIndex": 185,
+              "arrivedAtExit": false,
+              "initialMoveSpeed": 10
+            },
+            "currentHealth": 200,
+            "maxHealth": 200,
+            "worth": 40.0,
+            "movingSpeed": 10,
+            "isVisible": true,
+            "isKilled": false,
+            "isDonated": false,
+            "specicalEffectTimer": {}
+          }
+        ]
+      },
+      "currentCritterIndex": 3,
+      "currentWaveNum": 1,
+      "account": {
+        "balance": 4960.0
+      },
+      "coins": 9,
+      "preWavePhase": false,
+      "logs": [
+        {
+          "currentTime": "23:48:45",
+          "content": "Wave Preparation Phase...",
+          "logType": "Wave",
+          "id": 0
+        },
+        {
+          "currentTime": "23:48:56",
+          "content": "Player plant a new tower: SplashTower1 at position 160",
+          "logType": "Tower",
+          "id": 160
+        },
+        {
+          "currentTime": "23:48:57",
+          "content": "Now in wave 1 : 3 critters have been created",
+          "logType": "Wave",
+          "id": 0
+        },
+        {
+          "currentTime": "23:48:57",
+          "content": "Wave 1 starts",
+          "logType": "Wave",
+          "id": 0
+        },
+        {
+          "currentTime": "23:49:04",
+          "content": "Now in wave 1: A critter just stole a coin",
+          "logType": "Wave",
+          "id": 0
+        }
+      ],
+      "savedTimeList": [
+        "2016-03-30 23:49:04"
+      ],
+      "playedTimeList": [
+        "2016-03-30 23:48:45"
+      ],
+      "resultMap": {}
+    }
+  ]
+}

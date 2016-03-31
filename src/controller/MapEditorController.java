@@ -153,7 +153,6 @@ public class MapEditorController {
 
             //load -> edit -> save back
             gameMap.addEditedTime(new Date());
-            LoggerCollection.getInstance().addLog(new Log(LogType.Map, "Player edited this Map at " + gameMap.getLastEditTime()));
             mapCollection.getMaps().set(mapCollection.findGameMapInCollection(gameMap), gameMap);
             GameMapCollection.saveMapsToFile(mapCollection);
             clearGameMap();
@@ -196,7 +195,6 @@ public class MapEditorController {
             if (isReadyToCreate) {
                 gameMap.setMapName(mapName);
                 gameMap.setCreateTime(new Date());
-                LoggerCollection.getInstance().addLog(new Log(LogType.Map, "Player created this Map at " + gameMap.getCreateTime()));
                 mapCollection.addMap(gameMap);
                 GameMapCollection.saveMapsToFile(mapCollection);
                 clearGameMap();

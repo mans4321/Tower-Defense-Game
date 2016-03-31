@@ -42,4 +42,14 @@ public class SplashTowerShootingBehavior extends TowerShootingBehavior {
             crittersInRange.removeAll(killedCritters);
         }
     }
+
+    @Override
+    public void setShooting(boolean shooting) {
+        super.setShooting(shooting);
+        if(shooting) {
+            towerTimer.start();
+        } else {
+            towerTimer.stop();
+        }
+    }
 }

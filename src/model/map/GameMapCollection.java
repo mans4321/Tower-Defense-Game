@@ -1,5 +1,6 @@
 package model.map;
 
+import com.google.gson.annotations.Expose;
 import utility.FileProcessing;
 
 import java.util.ArrayList;
@@ -13,9 +14,8 @@ import java.util.ArrayList;
  */
 public class GameMapCollection {
 
-	
     private static String JSON_FILE = "maps.json";
-
+    @Expose
     private ArrayList<GameMap> maps;
 
     /**
@@ -54,6 +54,17 @@ public class GameMapCollection {
         int index = 0;
         for(int i = 0; i < maps.size(); i++){
             if(gameMap.getMapName().equals(maps.get(i).getMapName())){
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+
+    public int findGameMapInCollection(String mapName) { // based on map name
+        int index = 0;
+        for(int i = 0; i < maps.size(); i++){
+            if(mapName.equals(maps.get(i).getMapName())){
                 index = i;
                 break;
             }

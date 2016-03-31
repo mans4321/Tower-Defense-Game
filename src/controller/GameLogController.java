@@ -72,7 +72,7 @@ public class GameLogController {
         gameLogView.mapLogButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                log = LoggerCollection.getInstance().showWaveLog();
+                log = LoggerCollection.getInstance().showMapLog();
                 currentLogType = LogType.Map;
             }
         });

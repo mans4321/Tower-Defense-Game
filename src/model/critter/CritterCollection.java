@@ -1,6 +1,8 @@
 package model.critter;
 
 
+import com.google.gson.annotations.Expose;
+
 import java.util.ArrayList;
 
 
@@ -9,6 +11,7 @@ import java.util.ArrayList;
  */
 public class CritterCollection {
 
+    @Expose
     private ArrayList<Critter> critters = new ArrayList<>();
 
     public void addCritter(Critter critter){

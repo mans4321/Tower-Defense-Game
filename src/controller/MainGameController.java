@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.*;
 import model.bankaccount.BankAccount;
 import model.critter.Critter;
@@ -16,13 +19,12 @@ import model.gamelog.LoggerCollection;
 import model.map.CellState;
 import model.map.GameMap;
 import model.map.GameMapCollection;
+import model.savegame.GameInfo;
+import model.savegame.GameInfoCollection;
 import model.tower.Tower;
 import model.tower.TowerCollection;
 import model.tower.TowerFactory;
-import model.tower.shootingstrategy.TargetBasedOnNearest;
-import model.tower.shootingstrategy.TargetBasedOnStrongest;
-import model.tower.shootingstrategy.TargetBasedOnWeakest;
-import model.tower.shootingstrategy.TowerBasedOnClosestToTower;
+import model.tower.shootingstrategy.ShootingStrategyType;
 import model.wave.WaveFactory;
 import protocol.*;
 import view.maingameview.MainGameView;
@@ -55,63 +57,112 @@ import view.tower.TowerType;
  */
 public class MainGameController {
 
-    MainGameView mainGameView;
-    GameLogController gameLogController;
-
-    GameMap gameMap = new GameMap();
-    TowerCollection towerCollection = new TowerCollection();
-    CritterCollection critterCollection = new CritterCollection();
+    MainGameView mainGameView = new MainGameView();
+    GameLogController gameLogController = new GameLogController();
+    GameMap gameMap;
+    Date playDate = new Date();
+    TowerCollection towerCollection;
+    CritterCollection critterCollection;
     Tower currentTower;
-    int currentCritterIndex = 0;
-    int currentIndex = 0;
-    int currentWaveNum = 0;
+    int currentCritterIndex;
+    int currentCellIndex;
+    int currentWaveNum;
     BankAccount account;
+    private int coins;
+    private boolean preWavePhase = true;
+
 
     Timer critterGeneratorTimer;
     Timer paintingTimer;
 
-    DrawingMapInGameDelegate drawingMapInGameDelegate;
-    DrawingMapDelegate drawingMapDelegate;
-    DrawingPanelDelegate drawingSpecificationPanelDelegate;
-    DrawingPanelDelegate drawingSellUpgradePanelDelegate;
-    DrawingDataPanelDelegate drawingDataPanelDelegate;
+    DrawingMapInGameDelegate drawingMapInGameDelegate = mainGameView.mapView.mapPanel;
+    DrawingMapDelegate drawingMapDelegate = mainGameView.mapView.mapPanel;
+    DrawingPanelDelegate drawingSpecificationPanelDelegate = mainGameView.endView.towerSpecificationPanel;
+    DrawingPanelDelegate drawingSellUpgradePanelDelegate = mainGameView.endView.towerUpgradeSellPanel;
+    DrawingDataPanelDelegate drawingDataPanelDelegate = mainGameView.topView.gameDataPanel;
 
     private final int REFRESH_RATE = 100;
     private final int CRITTER_GENERATE_TIME = 1000;
 
-    private int coins = 10;
-    private boolean preWavePhase = true;
 
 
-    public MainGameController(GameMap gameMap){
-        mainGameView = new MainGameView();
-        gameLogController = new GameLogController();
+    public MainGameController(GameMap gameMap) {
+
+        // if user play a new game using this map after this map has been saved before
+        gameMap.clearStateToPureMapState();
         this.gameMap = gameMap;
-        drawingMapInGameDelegate = mainGameView.mapView.mapPanel;
-        drawingMapDelegate = mainGameView.mapView.mapPanel;
-        drawingSpecificationPanelDelegate = mainGameView.endView.towerSpecificationPanel;
-        drawingSellUpgradePanelDelegate = mainGameView.endView.towerUpgradeSellPanel;
-        drawingDataPanelDelegate = mainGameView.topView.gameDataPanel;
+        towerCollection = new TowerCollection();
+        critterCollection = new CritterCollection();
+        currentTower = null;
+        currentCritterIndex = 0;
+        currentCellIndex = 0;
+        currentWaveNum = 0;
+        account = new BankAccount();
+        coins = 10;
+        preWavePhase = true;
 
         drawingMapDelegate.refreshMap(gameMap);
-        drawingDataPanelDelegate.reloadCoinDataView(coins);
-
-        initBankAccount();
+        LoggerCollection.getInstance().addAllMapLog(gameMap);
+        initGameDataPanel();
         initPaintingTimers();
         initMapArea();
         initWaveTimers();
         initTowerButtons();
-        initSellUpgradeButtons();
-        initFunctionalButtonsInTopPanel();
+        initTowerInspectionPanel();
+        initTopPanel();
         showHighScoreList();
     }
 
-    private void initBankAccount() {
-        account = new BankAccount();
-        account.setBalance(BankAccount.INITIAL_BALANCE);
-        drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
+    public MainGameController(GameMap gameMap, GameInfo gameInfo) {
+
+        this.gameMap = gameMap;
+
+        towerCollection = gameInfo.getTowerCollection();
+        HashMap<Integer, Tower> newTowers = new HashMap<>();
+        for (Map.Entry<Integer, Tower> towerEntry : towerCollection.getTowers().entrySet()) {
+            Tower t = TowerFactory.sharedInstance().getTower(towerEntry.getValue().getTowerType());
+            t.setPosition(Drawing.indexToCoordinateConverter(towerEntry.getKey().intValue(),gameMap.getmCols()));
+            newTowers.put(towerEntry.getKey(), t);
+        }
+        towerCollection.setTowers(newTowers);
+
+        critterCollection = gameInfo.getCritterCollection();
+        currentTower = null;
+        currentCritterIndex = gameInfo.getCurrentCritterIndex();
+        currentCellIndex = 0;
+        currentWaveNum = gameInfo.getCurrentWaveNum();
+        account = gameInfo.getAccount();
+        coins = gameInfo.getCoins();
+        preWavePhase = gameInfo.isPreWavePhase();
+
+        refreshGamePanelsView();
+
+        LoggerCollection.getInstance().addAllMapLog(gameMap);
+        initGameDataPanel();
+        initPaintingTimers();
+        initTowerButtons();
+        initMapArea();
+        initWaveTimers();
+        initTowerInspectionPanel();
+        initTopPanel();
+
+        for(Log log: gameInfo.getLogs()) {
+            LoggerCollection.getInstance().addLog(log);
+        }
+
+        showHighScoreList();
     }
 
+    private void initGameDataPanel() {
+        if(!preWavePhase) {
+            mainGameView.topView.gameDataPanel.waveStartButton.setEnabled(false);
+        } else {
+            LoggerCollection.getInstance().addLog(new Log(LogType.Wave, "Wave Preparation Phase..."));
+        }
+        drawingDataPanelDelegate.reloadCoinDataView(coins);
+        drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
+        drawingDataPanelDelegate.reloadWaveDataView(currentWaveNum);
+    }
 
     private void startNextWave() {
         if(!preWavePhase) {
@@ -125,8 +176,7 @@ public class MainGameController {
         }
     }
 
-    private void initFunctionalButtonsInTopPanel() {
-        LoggerCollection.getInstance().addLog(new Log(LogType.Wave, "Wave Preparation Phase..."));
+    private void initTopPanel() {
         // waveStartButton
         mainGameView.topView.gameDataPanel.waveStartButton.addActionListener(new ActionListener() {
             @Override
@@ -147,6 +197,30 @@ public class MainGameController {
                 }
             }
         });
+
+        mainGameView.topView.gameDataPanel.saveGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LoggerCollection.getInstance().addLog(new Log(LogType.Map, "Player saved the game"));
+                GameInfo thisGame = new GameInfo(gameMap.getMapName(), LoggerCollection.getInstance().getGameLogList(), towerCollection, critterCollection, currentCritterIndex, currentWaveNum, account, coins, preWavePhase);
+                thisGame.addPlayedTime(playDate);
+                thisGame.addSavedTime(new Date());
+                GameInfoCollection games = GameInfoCollection.loadGamesFromFile();
+                if(games == null) {
+                    games = new GameInfoCollection();
+                }
+                games.addGame(thisGame);
+                GameInfoCollection.saveGamesToFile(games);
+
+                GameMapCollection mapCollection = GameMapCollection.loadMapsFromFile();
+                mapCollection.getMaps().set(mapCollection.findGameMapInCollection(gameMap), gameMap);
+                GameMapCollection.saveMapsToFile(mapCollection);
+
+                gameShouldFinishedWithUserWin();
+                JOptionPane.showMessageDialog(mainGameView, "Saved Successful!");
+
+            }
+        });
     }
 
     private void initCrittersForWave(int waveNum) {
@@ -158,7 +232,7 @@ public class MainGameController {
         LoggerCollection.getInstance().addLog(new Log(LogType.Wave, "Now in wave " + currentWaveNum + " : " + critterCollection.getCritters().size() + " critters have been created"));
     }
 
-    private void initSellUpgradeButtons() {
+    private void initTowerInspectionPanel() {
         mainGameView.endView.towerUpgradeSellPanel.upgradeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -174,7 +248,7 @@ public class MainGameController {
                         } else {
                             account.withDraw(newPrice - oldPrice);
                             drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
-                            LoggerCollection.getInstance().addLog(new Log(LogType.Tower, currentIndex, "Player update a tower to: " + currentTower.getTowerType() + " at position " + currentIndex));
+                            LoggerCollection.getInstance().addLog(new Log(LogType.Tower, currentCellIndex, "Player update a tower to: " + currentTower.getTowerType() + " at position " + currentCellIndex));
                         }
                         refreshGamePanelsView();
                     } else { // warning!
@@ -187,13 +261,13 @@ public class MainGameController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(currentTower != null) {
-                    LoggerCollection.getInstance().addLog(new Log(LogType.Tower, currentIndex, "Player sell a tower: " + currentTower.getTowerType() + " at position " + currentIndex));
+                    LoggerCollection.getInstance().addLog(new Log(LogType.Tower, currentCellIndex, "Player sell a tower: " + currentTower.getTowerType() + " at position " + currentCellIndex));
                     account.deposit(currentTower.getSellPrice());
                     drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
                     currentTower = null;
-                    towerCollection.removeTowerAtIndex(currentIndex);
-                    gameMap.getCells().set(currentIndex, CellState.Grass);
-                    currentIndex = -1;
+                    towerCollection.removeTowerAtIndex(currentCellIndex);
+                    gameMap.getCells().set(currentCellIndex, CellState.Grass);
+                    currentCellIndex = -1;
                     refreshGamePanelsView();
                 }
             }
@@ -209,16 +283,13 @@ public class MainGameController {
 		                    String strategy = (String)cb.getSelectedItem();
 		                    switch(strategy){
 		                    	case "Target On Weakest":
-		                    		currentTower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnWeakest());
+		                    		currentTower.getTowerShootingBehavior().setShootingStrategyType(ShootingStrategyType.TargetBasedOnWeakest);
 		                    		break;
 		                    	case "Target On Strongest":
-		                    		currentTower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnStrongest());
-		                    		if(currentTower.getTowerShootingBehavior().getShootingStrategy() instanceof  TargetBasedOnStrongest ){
-		                    			System.out.println("Strat");
-                                    }
+		                    		currentTower.getTowerShootingBehavior().setShootingStrategyType(ShootingStrategyType.TargetBasedOnStrongest);
 		                    		break;
 		                    	case "Target On Nearest to End":
-		                    		currentTower.getTowerShootingBehavior().setShootingStrategy(new  TowerBasedOnClosestToTower());
+		                    		currentTower.getTowerShootingBehavior().setShootingStrategyType(ShootingStrategyType.TargetBasedOnNearest);
 		                    		break;
 		                    		
 				}
@@ -232,9 +303,8 @@ public class MainGameController {
         drawingMapInGameDelegate.refreshMap(gameMap, towerCollection);
         drawingSpecificationPanelDelegate.reloadPanelBasedOnTower(currentTower);
         drawingSellUpgradePanelDelegate.reloadPanelBasedOnTower(currentTower);
-        drawingSellUpgradePanelDelegate.reloadLogPanelBasedOnIndexOfTower(currentIndex);
+        drawingSellUpgradePanelDelegate.reloadLogPanelBasedOnIndexOfTower(currentCellIndex);
     }
-
 
     private void initMapArea() {
         mainGameView.mapView.mapPanel.addMouseListener(new MouseAdapter() {
@@ -269,7 +339,7 @@ public class MainGameController {
                             gameMap.setToGrassState();
                             gameMap.toggleChosenState(index);
                             currentTower = towerCollection.getTowers().get(index);
-                            currentIndex = index;
+                            currentCellIndex = index;
 
                             refreshGamePanelsView();
                         }
@@ -277,7 +347,7 @@ public class MainGameController {
                         else if (cellList.get(index) == CellState.Chosen){
                             cellList.set(index, CellState.Tower);
                             currentTower = null;
-                            currentIndex = -1;
+                            currentCellIndex = -1;
                             refreshGamePanelsView();
                         }
                         // 4. Other Cells: Chosen state -> Tower state.
@@ -287,7 +357,7 @@ public class MainGameController {
                             // set state back to grass
                             gameMap.clearState();
                             currentTower = null;
-                            currentIndex = -1;
+                            currentCellIndex = -1;
                             refreshGamePanelsView();
                         }
                     }
@@ -357,13 +427,16 @@ public class MainGameController {
 
     private void detectingNextWaveShouldStart() {
         int count = 0;
-        for(Critter c : critterCollection.getCritters()) {
-            if (c.isKilled() || c.isDonated()) {
-                count ++;
-                continue;
-            } else break;
+        if(critterCollection != null) {
+            for(Critter c : critterCollection.getCritters()) {
+                if (c.isKilled() || c.isDonated()) {
+                    count ++;
+                    continue;
+                } else break;
+            }
+            if(count == critterCollection.getCritters().size()) startNextWave();
         }
-        if(count == critterCollection.getCritters().size()) startNextWave();
+
     }
 
     private void detectingCrittersStoleCoins() {
@@ -380,30 +453,33 @@ public class MainGameController {
         }
     }
 
+    private void gameShouldFinishedWithUserWin() {
+        clearGame();
+        mainGameView.setVisible(false);
+        new MainMenuController().mainMenuView.setVisible(true);
+    }
+
     private void gameShouldFinishedWithUserWin(boolean win) {
 
-        GameMapCollection mapCollection = GameMapCollection.loadMapsFromFile();
         gameMap.addScore(account.getBalance());
 
         if(win) {
             gameMap.addResultToMap("Win");
             JOptionPane.showMessageDialog(mainGameView, "Good Job! You win!");
-            LoggerCollection.getInstance().addLog(new Log(LogType.Map, "Player wins the game" + "Score: " + account.getBalance()));
         } else {
             gameMap.addResultToMap("Lose");
             JOptionPane.showMessageDialog(mainGameView, "Sorry, You lose the game!");
-            LoggerCollection.getInstance().addLog(new Log(LogType.Map, "Player loses the game" + "Score: " + account.getBalance()));
         }
 
-        gameMap.clearStateToPureMapState(); // Important! -> In case chosen state or to place tower state are saved to json File
+        GameMapCollection mapCollection = GameMapCollection.loadMapsFromFile();
         mapCollection.getMaps().set(mapCollection.findGameMapInCollection(gameMap), gameMap);
         GameMapCollection.saveMapsToFile(mapCollection);
 
         showHighScoreList();
-
+        clearGame();
         mainGameView.setVisible(false);
         new MainMenuController().mainMenuView.setVisible(true);
-        clearGame();
+
 
     }
 
@@ -417,9 +493,20 @@ public class MainGameController {
         gameLogController.gameLogView.setVisible(false);
         gameLogController = null;
         currentTower = null;
+        currentCritterIndex = 0;
+        currentCellIndex = 0;
+        currentWaveNum = 0;
+        LoggerCollection.getInstance().clearAllLogs();
     }
 
-    private void initWaveTimers(){
+    private void initWaveTimers() {
+
+        for(int i = 0; i < currentCritterIndex; i++) {
+            Critter c = critterCollection.getCritters().get(i);
+            if(c.isVisible()) {
+                c.getMovingBehavior().move();
+            }
+        }
 
         critterGeneratorTimer = new Timer(CRITTER_GENERATE_TIME, new ActionListener() {
             @Override
@@ -428,7 +515,6 @@ public class MainGameController {
                     Critter c = critterCollection.getCritters().get(currentCritterIndex);
                     c.setMovingBehavior(new CritterMovingBehavior(gameMap, c.getMovingSpeed()));
                     c.setVisible(true);
-                    c.getMovingBehavior().move();
                     currentCritterIndex++;
                 }
             }
@@ -436,7 +522,7 @@ public class MainGameController {
         critterGeneratorTimer.start();
     }
 
-    private void detectingCrittersInRange(){
+    private void detectingCrittersInRange() {
         for(Tower t: towerCollection.getTowers().values()){
             for(Critter c : critterCollection.getCritters()) {
                 if(c.isVisible() && !c.isKilled()){

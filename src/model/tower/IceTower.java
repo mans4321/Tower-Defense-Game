@@ -21,6 +21,7 @@ public class IceTower extends Tower {
     }
 
     private void initTower(){
+        this.hdImageName = "res/towerB_high.png";
         this.specification = "<html>" + "Ice Tower" + "<br> Level: " + level + "<br> Good at attack fast creatures with its freezing effect</html>";
         switch(level){
             case 1:
@@ -29,7 +30,6 @@ public class IceTower extends Tower {
                 towerType = TowerType.IceTower1;
                 range = 80;
                 towerShootingBehavior = new IceTowerShootingBehavior(1000, 10);
-                towerView = new TowerView(towerType);
                 break;
             case 2:
                 buyPrice = 40.0;
@@ -37,7 +37,6 @@ public class IceTower extends Tower {
                 towerType = TowerType.IceTower2;
                 range = 90;
                 towerShootingBehavior = new IceTowerShootingBehavior(1500, 20);
-                towerView = new TowerView(towerType);
                 break;
             case 3:
                 buyPrice = 50.0;
@@ -45,14 +44,13 @@ public class IceTower extends Tower {
                 towerType = TowerType.IceTower3;
                 range = 100;
                 towerShootingBehavior = new IceTowerShootingBehavior(2000, 30);
-                towerView = new TowerView(towerType);
                 break;
         }
     }
 
     @Override
     public String getHdImageName() {
-        return "res/towerB_high.png";
+        return hdImageName;
     }
 
     @Override
@@ -80,5 +78,7 @@ public class IceTower extends Tower {
         }
         towerShootingBehavior.setTowerDidShotDelegate(towerShootingView);
     }
+
+
 
 }

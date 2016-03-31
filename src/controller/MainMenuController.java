@@ -1,12 +1,17 @@
 package controller;
 
+import model.gamelog.LoggerCollection;
 import model.map.GameMap;
 import model.map.GameMapCollection;
+import model.savegame.GameInfo;
+import model.savegame.GameInfoCollection;
+import utility.FileProcessing;
 import view.mainmenuview.MainMenuView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FilePermission;
 
 /**
  * Controller class for the first menu where player can select to play or create a map.
@@ -47,6 +52,19 @@ public class MainMenuController {
                     new MapEditorController(new GameMap()).mapEditorView.setVisible(true);
                 } else {
                     new MapChooseController().mapChooseView.setVisible(true);
+                }
+            }
+        });
+
+        mainMenuView.loadGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if (GameInfoCollection.loadGamesFromFile() == null) {
+                    JOptionPane.showMessageDialog(mainMenuView, "No Saved Games", "Error", JOptionPane.YES_OPTION);
+                } else {
+                    mainMenuView.setVisible(false);
+                    new GameChooseController().gameChooseView.setVisible(true);
                 }
             }
         });

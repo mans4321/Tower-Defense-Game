@@ -1,5 +1,6 @@
 package model.critter;
 
+import com.google.gson.annotations.Expose;
 import view.map.Position;
 import view.map.Drawing;
 import model.map.GameMap;
@@ -15,15 +16,23 @@ public class CritterMovingBehavior implements ActionListener {
 
     private final int DELAY = 50;
     private Timer movingTimer;
-    private int initialMoveSpeed;
 
+
+    @Expose
     private Position currentPosition;
-    private int nextIndex;
-    private ArrayList<Integer> pathList;
-    private int cols;
-    private int entranceIndex;
 
+    @Expose
+    private int nextIndex;
+    @Expose
+    private ArrayList<Integer> pathList;
+    @Expose
+    private int cols;
+    @Expose
+    private int entranceIndex;
+    @Expose
     private boolean arrivedAtExit;
+    @Expose
+    private int initialMoveSpeed;
 
     public CritterMovingBehavior(GameMap gameMap, int movingSpeed){
         pathList = gameMap.findPathList();

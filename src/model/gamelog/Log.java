@@ -1,5 +1,7 @@
 package model.gamelog;
 
+import com.google.gson.annotations.Expose;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,28 +11,31 @@ import java.util.Date;
  */
 public class Log {
 
-
+    @Expose
     private String currentTime;
+    @Expose
     private String content;
-    private LogType who;
+    @Expose
+    private LogType logType;
+    @Expose
     private int id;
     DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    public Log(LogType who, String content) {
+    public Log(LogType logType, String content) {
         this.currentTime = dateFormat.format(new Date());
         this.content = content;
-        this.who = who;
+        this.logType = logType;
     }
 
-    public Log(LogType who, int id, String content) {
+    public Log(LogType logType, int id, String content) {
         this.currentTime = dateFormat.format(new Date());
         this.content = content;
-        this.who = who;
+        this.logType = logType;
         this.id = id;
     }
 
-    public LogType getWho() {
-        return who;
+    public LogType getLogType() {
+        return logType;
     }
 
     public int getId() {

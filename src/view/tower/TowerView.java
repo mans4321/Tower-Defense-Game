@@ -10,7 +10,7 @@ public class TowerView {
 
     private String BASE_URL = "res/";
     private String PNG = ".png";
-    private Image towerImage;
+    private transient Image towerImage;
 
 
     public TowerView(TowerType towerType) {

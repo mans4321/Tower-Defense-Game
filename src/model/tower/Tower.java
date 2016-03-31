@@ -1,5 +1,6 @@
 package model.tower;
 
+import com.google.gson.annotations.Expose;
 import view.map.Position;
 import view.tower.TowerShootingRangeView;
 import view.tower.TowerShootingView;
@@ -16,21 +17,22 @@ public class Tower {
 
     // tower normal attributes
     protected int level;
+    // tower shooting range attributes
+    protected Position position;
+    @Expose
     protected TowerType towerType;
+
     protected String specification;
     protected double buyPrice;
     protected double sellPrice;
     protected int range;
-
     protected String hdImageName;
-
+    @Expose
     protected TowerShootingBehavior towerShootingBehavior;
 
-    // tower shooting range attributes
-    protected Position position;
+
 
     // View
-    protected TowerView towerView;
     protected TowerShootingView towerShootingView;
     protected TowerShootingRangeView towerShootingRangeView;
 
@@ -48,7 +50,7 @@ public class Tower {
     }
 
     public TowerView getTowerView() {
-        return towerView;
+        return new TowerView(towerType);
     }
 
     public TowerShootingRangeView getTowerShootingRangeView() {
@@ -90,4 +92,5 @@ public class Tower {
     public TowerType getTowerType() {
         return towerType;
     }
+
 }

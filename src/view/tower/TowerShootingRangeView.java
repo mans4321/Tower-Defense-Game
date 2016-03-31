@@ -1,5 +1,6 @@
 package view.tower;
 
+import javafx.geometry.Pos;
 import view.map.Position;
 import view.map.Drawing;
 
@@ -11,21 +12,21 @@ import java.awt.geom.Ellipse2D;
  */
 public class TowerShootingRangeView {
 
-    private Ellipse2D towerRangeCircle;
     private int range;
+    private Position position;
 
     public TowerShootingRangeView(Position position, int range){
         this.range = range;
-        towerRangeCircle = new Ellipse2D.Float(position.getX() + Drawing.CELL_SIZE / 2 - range / 2, position.getY() + Drawing.CELL_SIZE  / 2 - range / 2, range, range);
+        this.position = position;
     }
 
 
     public Ellipse2D getTowerRangeCircle() {
-        return towerRangeCircle;
+        return new Ellipse2D.Float(position.getX() + Drawing.CELL_SIZE / 2 - range / 2, position.getY() + Drawing.CELL_SIZE  / 2 - range / 2, range, range);
     }
 
     public Rectangle getBounds(){
-        return towerRangeCircle.getBounds();
+        return getTowerRangeCircle().getBounds();
     }
 
     public int getRange() {

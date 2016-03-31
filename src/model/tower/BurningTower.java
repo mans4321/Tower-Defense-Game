@@ -21,6 +21,7 @@ public class BurningTower extends Tower {
     }
 
     private void initTower(){
+        this.hdImageName = "res/towerA_high.png";
         this.specification = "<html>" + "Burning Tower" + "<br> Level: " + level + "<br> Good at attack normal creature</html>";
         switch(level){
             case 1:
@@ -29,7 +30,6 @@ public class BurningTower extends Tower {
                 towerType = TowerType.BurningTower1;
                 range = 120;
                 towerShootingBehavior = new BurningTowerShootingBehavior(5, 100, 5);
-                towerView = new TowerView(towerType);
                 break;
             case 2:
                 buyPrice = 30.0;
@@ -37,7 +37,6 @@ public class BurningTower extends Tower {
                 towerType = TowerType.BurningTower2;
                 range = 150;
                 towerShootingBehavior = new BurningTowerShootingBehavior(10, 200, 10);
-                towerView = new TowerView(towerType);
                 break;
             case 3:
                 buyPrice = 40.0;
@@ -45,7 +44,6 @@ public class BurningTower extends Tower {
                 towerType = TowerType.BurningTower3;
                 range = 180;
                 towerShootingBehavior = new BurningTowerShootingBehavior(15, 300, 20);
-                towerView = new TowerView(towerType);
                 break;
         }
     }
@@ -78,6 +76,6 @@ public class BurningTower extends Tower {
 
     @Override
     public String getHdImageName() {
-        return "res/towerA_high.png";
+        return hdImageName;
     }
 }

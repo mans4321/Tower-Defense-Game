@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * Created by yongpinggao on 3/25/16.
  */
-public class TowerBasedOnClosestToTower implements TowerShootingStrategy {
+public class TargetBasedOnClosestToTower implements TowerShootingStrategy {
     @Override
     public Critter targetOnCritters(Set<Critter> crittersInRange) {
 //        if(!crittersInRange.isEmpty()){

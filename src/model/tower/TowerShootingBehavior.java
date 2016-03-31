@@ -4,9 +4,9 @@ import java.util.Set;
 
 import javax.swing.Timer;
 
+import com.google.gson.annotations.Expose;
 import model.critter.Critter;
-import model.tower.shootingstrategy.TargetBasedOnWeakest;
-import model.tower.shootingstrategy.TowerShootingStrategy;
+import model.tower.shootingstrategy.*;
 import protocol.TowerDidShotDelegate;
 
 /**
@@ -16,15 +16,39 @@ public class TowerShootingBehavior {
     // tower shooting behavior
     protected int power;
     protected int rateOfFire;
-    protected TowerShootingStrategy shootingStrategy = new TargetBasedOnWeakest();
+    @Expose
     protected boolean isShooting;
+    @Expose
     protected boolean timeToShoot;
-
+    @Expose
+    protected ShootingStrategyType shootingStrategyType = ShootingStrategyType.TargetBasedOnWeakest;
     protected Timer towerTimer;
+    protected TowerShootingStrategy shootingStrategy = new TargetBasedOnWeakest();;
 
     protected Set<Critter> crittersInRange;
-
     protected TowerDidShotDelegate towerDidShotDelegate;
+
+    public TowerShootingBehavior() {
+        initTowerShootingStrategy();
+    }
+
+    private void initTowerShootingStrategy() {
+
+        switch (shootingStrategyType) {
+            case TargetBasedOnNearest:
+                shootingStrategy = new TargetBasedOnNearest();
+                break;
+            case TargetBasedOnStrongest:
+                shootingStrategy = new TargetBasedOnStrongest();
+                break;
+            case TargetBasedOnWeakest:
+                shootingStrategy = new TargetBasedOnWeakest();
+                break;
+            case TargetBasedOnClosestToTower:
+                shootingStrategy = new TargetBasedOnClosestToTower();
+                break;
+        }
+    }
 
     public int getPower() {
         return power;
@@ -43,11 +67,6 @@ public class TowerShootingBehavior {
     }
 
     public void setShooting(boolean shooting) {
-        if(shooting) {
-            towerTimer.start();
-        } else {
-            towerTimer.stop();
-        }
         isShooting = shooting;
     }
 
@@ -63,15 +82,16 @@ public class TowerShootingBehavior {
         this.towerDidShotDelegate = towerDidShotDelegate;
     }
 
-    public TowerShootingStrategy getShootingStrategy() {
-		return shootingStrategy;
-	}
+    public ShootingStrategyType getShootingStrategyType() {
+        return shootingStrategyType;
+    }
 
-	public void setShootingStrategy(TowerShootingStrategy shootingStrategy) {
-		this.shootingStrategy = shootingStrategy;
-	}
+    public void setShootingStrategyType(ShootingStrategyType shootingStrategyType) {
+        this.shootingStrategyType = shootingStrategyType;
+        initTowerShootingStrategy();
+    }
 
-	public void shoot() {}
+    public void shoot() {}
 
 
 

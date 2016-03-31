@@ -21,7 +21,7 @@ public class FileProcessing {
 
     private static Gson gson;
     private FileProcessing() {
-        gson = new GsonBuilder().setPrettyPrinting().create();
+        gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
     }
 
     /**

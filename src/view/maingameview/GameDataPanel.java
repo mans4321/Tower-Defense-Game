@@ -19,7 +19,7 @@ public class GameDataPanel extends JPanel implements DrawingDataPanelDelegate{
     public JLabel infoLabel;
     public JButton waveStartButton;
     public JButton showLogButton;
-    public JButton saveGame;
+    public JButton saveGameButton;
 
 
     public GameDataPanel() {
@@ -33,13 +33,13 @@ public class GameDataPanel extends JPanel implements DrawingDataPanelDelegate{
         infoLabel = new JLabel("");
         waveStartButton = new JButton("Game Start");
         showLogButton = new JButton("Log");
-        saveGame = new JButton("Save Game");
+        saveGameButton = new JButton("Save Game");
         
         add(balanceLabel);
         add(coinsLabel);
         add(waveNumLabel);
         add(waveStartButton);
-        add(saveGame);
+        add(saveGameButton);
         add(showLogButton);
         add(infoLabel);
 

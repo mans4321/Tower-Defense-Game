@@ -51,4 +51,14 @@ public class BurningTowerShootingBehavior extends TowerShootingBehavior {
             crittersInRange.remove(critterUnderAttack);
         }
     }
+
+    @Override
+    public void setShooting(boolean shooting) {
+        super.setShooting(shooting);
+        if(shooting) {
+            towerTimer.start();
+        } else {
+            towerTimer.stop();
+        }
+    }
 }

@@ -21,6 +21,7 @@ public class SplashTower extends Tower {
     }
 
     private void initTower(){
+        this.hdImageName = "res/towerC_high.png";
         this.specification = "<html>" + "Splash Tower" + "<br> Level: " + level + "<br> Good at attack all the critters in the shooting range</html>";
         switch(level){
             case 1:
@@ -29,7 +30,6 @@ public class SplashTower extends Tower {
                 towerType = TowerType.SplashTower1;
                 range = 120;
                 towerShootingBehavior = new SplashTowerShootingBehavior(10, 100);
-                towerView = new TowerView(towerType);
                 break;
             case 2:
                 buyPrice = 50.0;
@@ -37,7 +37,6 @@ public class SplashTower extends Tower {
                 towerType = TowerType.SplashTower2;
                 range = 150;
                 towerShootingBehavior = new SplashTowerShootingBehavior(20, 200);
-                towerView = new TowerView(towerType);
                 break;
             case 3:
                 buyPrice = 60.0;
@@ -45,14 +44,13 @@ public class SplashTower extends Tower {
                 towerType = TowerType.SplashTower3;
                 range = 180;
                 towerShootingBehavior = new SplashTowerShootingBehavior(30, 300);
-                towerView = new TowerView(towerType);
                 break;
         }
     }
 
     @Override
     public String getHdImageName() {
-        return "res/towerC_high.png";
+        return hdImageName;
     }
 
     @Override

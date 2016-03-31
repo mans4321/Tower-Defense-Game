@@ -1,5 +1,6 @@
 package model.critter;
 
+import com.google.gson.annotations.Expose;
 import view.critter.CritterType;
 import view.critter.CritterView;
 import javax.swing.*;
@@ -12,21 +13,32 @@ import java.awt.event.ActionListener;
  */
 public class Critter implements ActionListener{
 
+    @Expose
     private CritterType critterType;
     private CritterView critterView;
+    @Expose
     private CritterMovingBehavior movingBehavior;
+    @Expose
     private int currentHealth;
+    @Expose
     private int maxHealth;
+    @Expose
     private double worth;
+    @Expose
     private int movingSpeed;
+    @Expose
+    private boolean isVisible;
+    @Expose
+    private boolean isKilled;
+    @Expose
+    private boolean isDonated;
 
     private int damage;
-    private Timer innerTimer;
-    private Timer specicalEffectTimer = new Timer(0, this);
 
-    private boolean isVisible;
-    private boolean isKilled;
-    private boolean isDonated;
+    private Timer innerTimer;
+    @Expose
+    private Timer specicalEffectTimer = new Timer(0, null);;
+
 
 
     public boolean isDonated() {
@@ -139,10 +151,11 @@ public class Critter implements ActionListener{
 
     public void setVisible(boolean visible) {
         isVisible = visible;
+        if(isVisible()) movingBehavior.move();
     }
 
     public CritterView getCritterView() {
-        return critterView;
+        return new CritterView(critterType);
     }
 
     public Timer getInnerTimer() {
