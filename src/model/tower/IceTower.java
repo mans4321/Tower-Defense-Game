@@ -28,21 +28,21 @@ public class IceTower extends Tower {
                 buyPrice = 30.0;
                 sellPrice = 15.0;
                 towerType = TowerType.IceTower1;
-                range = 80;
+                range = 110;
                 towerShootingBehavior = new IceTowerShootingBehavior(1000, 10);
                 break;
             case 2:
                 buyPrice = 40.0;
                 sellPrice = 20.0;
                 towerType = TowerType.IceTower2;
-                range = 90;
+                range = 130;
                 towerShootingBehavior = new IceTowerShootingBehavior(1500, 20);
                 break;
             case 3:
                 buyPrice = 50.0;
                 sellPrice = 25.0;
                 towerType = TowerType.IceTower3;
-                range = 100;
+                range = 150;
                 towerShootingBehavior = new IceTowerShootingBehavior(2000, 30);
                 break;
         }

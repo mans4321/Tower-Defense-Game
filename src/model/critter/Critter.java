@@ -123,8 +123,6 @@ public class Critter implements ActionListener{
         return movingBehavior;
     }
 
-
-
     public void setMovingBehavior(CritterMovingBehavior movingBehavior) {
         this.movingBehavior = movingBehavior;
     }

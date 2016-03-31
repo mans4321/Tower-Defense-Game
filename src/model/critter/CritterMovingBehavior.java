@@ -20,7 +20,6 @@ public class CritterMovingBehavior implements ActionListener {
 
     @Expose
     private Position currentPosition;
-
     @Expose
     private int nextIndex;
     @Expose
@@ -33,6 +32,8 @@ public class CritterMovingBehavior implements ActionListener {
     private boolean arrivedAtExit;
     @Expose
     private int initialMoveSpeed;
+
+
 
     public CritterMovingBehavior(GameMap gameMap, int movingSpeed){
         pathList = gameMap.findPathList();
@@ -133,6 +134,7 @@ public class CritterMovingBehavior implements ActionListener {
             }
         }
     }
+
 
     public void move() {
         movingTimer = new Timer(DELAY - initialMoveSpeed, this);

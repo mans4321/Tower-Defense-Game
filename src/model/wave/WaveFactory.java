@@ -15,7 +15,7 @@ public class WaveFactory {
     public WaveBuilder getWave(int waveNum) {
         switch (waveNum) {
             case 1:
-                return new WaveBuilder(waveNum).critterA(1).critterB(1).critterC(1);
+                return new WaveBuilder(waveNum).critterA(15);
             case 2:
                 return new WaveBuilder(waveNum).critterA(3).critterB(2).critterC(1);
             case 3:

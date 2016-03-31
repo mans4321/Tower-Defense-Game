@@ -18,7 +18,7 @@ public class Tower {
     // tower normal attributes
     protected int level;
     // tower shooting range attributes
-    protected Position position;
+    protected Position position = null;
     @Expose
     protected TowerType towerType;
 

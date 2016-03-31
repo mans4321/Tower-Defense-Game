@@ -1,9 +1,6 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -272,33 +269,41 @@ public class MainGameController {
                 }
             }
         });
-        
+
+//
         mainGameView.endView.towerUpgradeSellPanel.strategyComboBox.addActionListener(new ActionListener() {
-        	
+
         	 @Override
              public void actionPerformed(ActionEvent e) {
-        		 if (currentTower != null) {
-					 if (e.getSource() instanceof JComboBox) {
+                 if (currentTower != null && currentTower.getPosition() != null) {
+                     if (e.getSource() instanceof JComboBox) {
 		                    JComboBox cb = (JComboBox)(e.getSource());
 		                    String strategy = (String)cb.getSelectedItem();
+                            String oldStrategy = currentTower.getTowerShootingBehavior().getShootingStrategyType().toString();
 		                    switch(strategy){
-		                    	case "Target On Weakest":
+		                    	case "TargetBasedOnWeakest":
 		                    		currentTower.getTowerShootingBehavior().setShootingStrategyType(ShootingStrategyType.TargetBasedOnWeakest);
 		                    		break;
-		                    	case "Target On Strongest":
+		                    	case "TargetBasedOnStrongest":
 		                    		currentTower.getTowerShootingBehavior().setShootingStrategyType(ShootingStrategyType.TargetBasedOnStrongest);
 		                    		break;
-		                    	case "Target On Nearest to End":
+		                    	case "TargetBasedOnNearest":
 		                    		currentTower.getTowerShootingBehavior().setShootingStrategyType(ShootingStrategyType.TargetBasedOnNearest);
 		                    		break;
-		                    		
-				}
-			}
-		}
+                                case "TargetBasedOnClosestToTower":
+                                    currentTower.getTowerShootingBehavior().setShootingStrategyType(ShootingStrategyType.TargetBasedOnClosestToTower);
+                                    break;
+				            }
+
+                         if(!oldStrategy.equals(strategy)) {
+                             LoggerCollection.getInstance().addLog(new Log(LogType.Tower, currentCellIndex, "Player set a \"" + strategy + "\" strategy to " + currentTower.getTowerType() + " at position " + currentCellIndex));
+                         }
+
+			        }
+		        }
         	 }
         });
     }
-
     private void refreshGamePanelsView(){
         drawingMapInGameDelegate.refreshMap(gameMap, towerCollection);
         drawingSpecificationPanelDelegate.reloadPanelBasedOnTower(currentTower);
