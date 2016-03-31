@@ -206,6 +206,7 @@ public class GameCollection implements Serializable {
                                         	 int posX = Integer.parseInt(curveOfGameElement.getAttribute("x"));
                                         	 int posY = Integer.parseInt(curveOfGameElement.getAttribute("y"));
                                         	 int index = Integer.parseInt(curveOfGameElement.getAttribute("index"));
+                                        	 int level = Integer.parseInt(curveOfGameElement.getAttribute("level"));
                                         	 Tower tower = null ;
                                         	  switch(towerType){
                                               case "BurningTower":
@@ -218,6 +219,7 @@ public class GameCollection implements Serializable {
                                                     tower = TowerFactory.sharedInstance().getTower(TowerType.SplashTower1);
                                                     break;	 
                                                         	 }
+                                        	
                                         	 switch(towerStrategy){
                                         	 	case "TargetBasedOnNearest":
                                         	 				tower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnNearest());
@@ -234,6 +236,7 @@ public class GameCollection implements Serializable {
                                                           }
                      
                                             tower.setPosition(new Position(posX,posY));
+                                            tower.setLevel(level);
                                             towersCollection.put(index, tower);     
                                                     	
                                         	 }

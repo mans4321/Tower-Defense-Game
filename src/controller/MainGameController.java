@@ -171,6 +171,7 @@ public class MainGameController {
         drawingMapDelegate.refreshMap(gameMap);
         drawingDataPanelDelegate.reloadCoinDataView(coins);
         drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
+        drawingDataPanelDelegate.reloadWaveDataView(currentWaveNum);
     }
     
 	private void initBankAccount() {
@@ -263,7 +264,10 @@ public class MainGameController {
                     } else { // warning!
                         drawingDataPanelDelegate.reloadInfoDataView("Max Level of tower is " + Tower.MAX_LEVEL);
                     }
-                }
+                    towerCollection.addTowerAtIndex(currentIndex, currentTower);
+                  Tower tower=  towerCollection.getTowers().get(currentIndex);
+                  System.out.println(tower.getLevel());
+                    }
             }
         });
         mainGameView.endView.towerUpgradeSellPanel.sellButton.addActionListener(new ActionListener() {
