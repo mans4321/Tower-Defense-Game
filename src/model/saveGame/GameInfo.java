@@ -1,4 +1,4 @@
-package model.svaeGame;
+package model.saveGame;
 
 import java.io.FileWriter;
 import java.io.IOException;

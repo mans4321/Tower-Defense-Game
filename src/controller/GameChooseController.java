@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-import model.svaeGame.GameCollection;
+import model.saveGame.GameCollection;
 import view.mapchooseview.GameChooseView;
 
 /**
