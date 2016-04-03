@@ -33,4 +33,9 @@ public class TargetBasedOnClosestToTower implements TowerShootingStrategy {
         
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "Target On Closest to Tower";
+    }
 }

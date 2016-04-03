@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<svaeGame version="1.0">
+<Game>
+<Tower type='BurningTower' index='0' level='1' strategy='TargetBasedOnWeakest' range='120' x='360' y='180' />
+<Tower type='BurningTower' index='192' level='1' strategy='TargetBasedOnWeakest' range='120' x='360' y='180' />
+<Tower type='BurningTower' index='98' level='3' strategy='TargetBasedOnWeakest' range='180' x='240' y='90' />
+<Tower type='SplashTower' index='196' level='1' strategy='TargetBasedOnWeakest' range='120' x='480' y='180' />
+<Tower type='IceTower' index='102' level='1' strategy='TargetBasedOnWeakest' range='80' x='360' y='90' />
+<Tower type='IceTower' index='40' level='1' strategy='TargetBasedOnWeakest' range='80' x='270' y='240' />
+<Tower type='IceTower' index='249' level='1' strategy='TargetBasedOnWeakest' range='80' x='270' y='240' />
+<Tower type='SplashTower' index='45' level='1' strategy='TargetBasedOnWeakest' range='120' x='450' y='30' />
+<Log currentTime='12:29:23' content='Player played game using this Map at 2016-04-03 12:26:55' id='0' logType='Map' />
+<Log currentTime='12:29:23' content='Wave Preparation Phase...' id='0' logType='Wave' />
+<Log currentTime='12:29:23' content='Player plant a new tower: SplashTower1 at position 45' id='45' logType='Tower' />
+<Log currentTime='12:29:23' content='Player plant a new tower: IceTower1 at position 40' id='40' logType='Tower' />
+<Log currentTime='12:29:23' content='Player plant a new tower: IceTower1 at position 102' id='102' logType='Tower' />
+<Log currentTime='12:29:23' content='Player plant a new tower: BurningTower1 at position 192' id='192' logType='Tower' />
+<Log currentTime='12:29:23' content='Now in wave 1 : 3 critters have been created' id='0' logType='Wave' />
+<Log currentTime='12:29:23' content='Wave 1 starts' id='0' logType='Wave' />
+<Log currentTime='12:29:23' content='Now in wave 1: A critter just stole a coin' id='0' logType='Wave' />
+<Log currentTime='12:29:23' content='Now in wave 1: A critter just got killed' id='0' logType='Wave' />
+<Log currentTime='12:29:23' content='Now in wave 1: A critter just got killed' id='0' logType='Wave' />
+<Log currentTime='12:29:23' content='Now in wave 1: A critter just stole a coin' id='0' logType='Wave' />
+<Log currentTime='12:29:23' content='Wave Preparation Phase...' id='0' logType='Wave' />
+<Log currentTime='12:29:23' content='Now in wave 2 : 6 critters have been created' id='0' logType='Wave' />
+<Log currentTime='12:29:23' content='Wave 2 starts' id='0' logType='Wave' />
+<Log currentTime='12:29:23' content='Player set a "Target On Nearest to End" strategy to IceTower1 at position 102' id='102' logType='Tower' />
+<Log currentTime='12:29:23' content='Now in wave 2: A critter just stole a coin' id='0' logType='Wave' />
+<Log currentTime='12:29:23' content='Now in wave 2: A critter just got killed' id='0' logType='Wave' />
+<Log currentTime='12:29:23' content='Player set a "Target On Closest to Tower" strategy to IceTower1 at position 40' id='40' logType='Tower' />
+<Log currentTime='12:29:23' content='Player plant a new tower: SplashTower1 at position 196' id='196' logType='Tower' />
+<Log currentTime='12:29:23' content='Player plant a new tower: BurningTower1 at position 98' id='98' logType='Tower' />
+<Log currentTime='12:29:23' content='Player plant a new tower: IceTower1 at position 249' id='249' logType='Tower' />
+<Log currentTime='12:29:23' content='Now in wave 2: A critter just stole a coin' id='0' logType='Wave' />
+<Log currentTime='12:29:23' content='Player set a "Target On Strongest" strategy to BurningTower1 at position 98' id='98' logType='Tower' />
+<Log currentTime='12:29:23' content='Now in wave 2: A critter just stole a coin' id='0' logType='Wave' />
+<Log currentTime='12:29:23' content='Player update a tower to: BurningTower2 at position 98' id='98' logType='Tower' />
+<Log currentTime='12:29:23' content='Player update a tower to: BurningTower3 at position 98' id='98' logType='Tower' />
+<Log currentTime='12:29:23' content='Now in wave 2: A critter just stole a coin' id='0' logType='Wave' />
+<Log currentTime='12:29:23' content='Player set a "Target On Strongest" strategy to BurningTower3 at position 98' id='98' logType='Tower' />
+<Log currentTime='12:29:23' content='Now in wave 2: A critter just stole a coin' id='0' logType='Wave' />
+<Log currentTime='12:29:23' content='Wave Preparation Phase...' id='0' logType='Wave' />
+<WaveNumber>2</WaveNumber>
+<MapName>map1</MapName>
+<Coins>3</Coins>
+<Balance>4860.0</Balance>
+<GameName>Game1</GameName>
+</Game>
+<Game>
+<Tower type='BurningTower' index='0' level='1' strategy='TargetBasedOnStrongest' range='120' x='270' y='150' />
+<Tower type='SplashTower' index='-1' level='1' strategy='TargetBasedOnWeakest' range='120' x='480' y='30' />
+<Tower type='IceTower' index='99' level='3' strategy='TargetBasedOnNearest' range='100' x='270' y='90' />
+<Tower type='SplashTower' index='103' level='1' strategy='TargetBasedOnWeakest' range='120' x='390' y='90' />
+<Tower type='BurningTower' index='168' level='1' strategy='TargetBasedOnWeakest' range='120' x='540' y='150' />
+<Tower type='BurningTower' index='46' level='1' strategy='TargetBasedOnWeakest' range='120' x='30' y='30' />
+<Tower type='BurningTower' index='159' level='1' strategy='TargetBasedOnStrongest' range='120' x='270' y='150' />
+<Tower type='SplashTower' index='47' level='1' strategy='TargetBasedOnWeakest' range='120' x='510' y='30' />
+<Tower type='BurningTower' index='31' level='1' strategy='TargetBasedOnWeakest' range='120' x='30' y='30' />
+<Log currentTime='12:28:54' content='Player played game using this Map at 2016-04-03 12:28:54' id='0' logType='Map' />
+<Log currentTime='12:28:55' content='Wave Preparation Phase...' id='0' logType='Wave' />
+<Log currentTime='12:28:57' content='Player plant a new tower: SplashTower1 at position 103' id='103' logType='Tower' />
+<Log currentTime='12:28:58' content='Player plant a new tower: IceTower1 at position 99' id='99' logType='Tower' />
+<Log currentTime='12:28:59' content='Player plant a new tower: BurningTower1 at position 159' id='159' logType='Tower' />
+<Log currentTime='12:29:01' content='Player update a tower to: IceTower2 at position 99' id='99' logType='Tower' />
+<Log currentTime='12:29:02' content='Player set a "Target On Nearest to End" strategy to IceTower2 at position 99' id='99' logType='Tower' />
+<Log currentTime='12:29:04' content='Player update a tower to: IceTower3 at position 99' id='99' logType='Tower' />
+<Log currentTime='12:29:05' content='Player set a "Target On Nearest to End" strategy to IceTower3 at position 99' id='99' logType='Tower' />
+<Log currentTime='12:29:07' content='Player set a "Target On Strongest" strategy to BurningTower1 at position 159' id='159' logType='Tower' />
+<Log currentTime='12:29:10' content='Now in wave 1 : 3 critters have been created' id='0' logType='Wave' />
+<Log currentTime='12:29:10' content='Wave 1 starts' id='0' logType='Wave' />
+<Log currentTime='12:29:12' content='Player plant a new tower: BurningTower1 at position 168' id='168' logType='Tower' />
+<Log currentTime='12:29:13' content='Player plant a new tower: SplashTower1 at position 47' id='47' logType='Tower' />
+<Log currentTime='12:29:14' content='Now in wave 1: A critter just got killed' id='0' logType='Wave' />
+<Log currentTime='12:29:14' content='Player plant a new tower: SplashTower1 at position 46' id='46' logType='Tower' />
+<Log currentTime='12:29:15' content='Now in wave 1: A critter just got killed' id='0' logType='Wave' />
+<Log currentTime='12:29:16' content='Now in wave 1: A critter just got killed' id='0' logType='Wave' />
+<Log currentTime='12:29:17' content='Player plant a new tower: BurningTower1 at position 31' id='31' logType='Tower' />
+<WaveNumber>1</WaveNumber>
+<MapName>map1</MapName>
+<Coins>10</Coins>
+<Balance>4860.0</Balance>
+<GameName>Game2</GameName>
+</Game>
+</svaeGame>

@@ -35,5 +35,8 @@ public class TargetBasedOnWeakest implements TowerShootingStrategy {
         }
     }
 
-
+    @Override
+    public String toString() {
+        return "Target On Weakest";
+    }
 }

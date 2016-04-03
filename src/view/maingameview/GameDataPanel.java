@@ -31,7 +31,7 @@ public class GameDataPanel extends JPanel implements DrawingDataPanelDelegate{
         waveNumLabel = new JLabel("Wave: ");
 
         infoLabel = new JLabel("");
-        waveStartButton = new JButton("Game Start");
+        waveStartButton = new JButton("Next Wave");
         showLogButton = new JButton("Log");
         saveGame = new JButton("Save Game");
         

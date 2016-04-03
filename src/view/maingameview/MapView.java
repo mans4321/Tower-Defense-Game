@@ -109,6 +109,7 @@ public class MapView extends JPanel {
                         g2d.setColor(Color.YELLOW);
                     } else g2d.setColor(Color.RED);
                     g2d.fillRect(c.getMovingBehavior().getCurrentPosition().getX(), c.getMovingBehavior().getCurrentPosition().getY() - 5, (int)(c.getHealthBarLength() * Drawing.CELL_SIZE), 3);
+                    g2d.drawString(c.getCurrentHealth() + "",c.getMovingBehavior().getCurrentPosition().getX() - 5, c.getMovingBehavior().getCurrentPosition().getY() - 5);
                 }
             }
             g2d.dispose();

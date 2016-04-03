@@ -1,6 +1,7 @@
 package view.maingameview;
 
 import model.gamelog.LoggerCollection;
+import model.tower.SplashTower;
 import protocol.DrawingPanelDelegate;
 import model.tower.Tower;
 
@@ -25,9 +26,12 @@ public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegat
     public TowerUpgradeSellPanel() {
         setBackground(Color.black);
         sellButton = new JButton("Sell");
+        sellButton.setEnabled(false);
         upgradeButton = new JButton("Upgrade");
+        upgradeButton.setEnabled(false);
         towerImageLabel = new JLabel(new ImageIcon());
         strategyComboBox = new JComboBox(towerStrategies);
+        strategyComboBox.setEnabled(false);
         towerLogArea = new JTextArea(3, 5);
         towerLogArea.setEditable(false);
         towerLogScrollPane = new JScrollPane(towerLogArea);
@@ -44,16 +48,30 @@ public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegat
         strategyComboBox.setBounds(0, 188, 240, 30);
         towerLogScrollPane.setBounds(0, 218, 240, 70);
         towerLogArea.setCaretPosition(towerLogArea.getDocument().getLength());
-
     }
 
     @Override
     public void reloadPanelBasedOnTower(Tower tower) {
-        if (tower != null) {
+        if(tower != null){
+            if(tower.getPosition() != null) {
+                sellButton.setEnabled(true);
+                upgradeButton.setEnabled(true);
+            } else {
+                sellButton.setEnabled(false);
+                upgradeButton.setEnabled(false);
+            }
             towerImageLabel.setIcon(new ImageIcon(tower.getHdImageName()));
+            strategyComboBox.setSelectedItem(tower.getTowerShootingBehavior().getShootingStrategy().toString());
+            if(tower instanceof SplashTower) {
+                strategyComboBox.setEnabled(false);
+            } else {
+                strategyComboBox.setEnabled(true);
+            }
         } else {
             towerImageLabel.setIcon(null);
-
+            strategyComboBox.setEnabled(false);
+            sellButton.setEnabled(false);
+            upgradeButton.setEnabled(false);
         }
 
     }

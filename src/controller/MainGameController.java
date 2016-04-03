@@ -130,7 +130,7 @@ public class MainGameController {
    	 		if (gameMapName.equalsIgnoreCase(gameInfo.getMapName())) {
    	 			this.gameMap = mapCollection.getMaps().get(i);
    	 		}
-	}
+	    }
 	 		
    	 	towerCollection.setTowers(gameInfo.getTowerCollection()); 
 		for (Map.Entry<Integer, Tower> entry : towerCollection.getTowers().entrySet()) { 		
@@ -158,7 +158,6 @@ public class MainGameController {
 
     private void initializeProtocol() {
     	
-        // TODO new Window score list
         System.out.println("Highest score:" + gameMap.getFiveHighestScore());
         
         mainGameView = new MainGameView();
@@ -225,7 +224,6 @@ public class MainGameController {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
 				saveGame();
 			}
         }); 
@@ -266,9 +264,6 @@ public class MainGameController {
                         drawingDataPanelDelegate.reloadInfoDataView("Max Level of tower is " + Tower.MAX_LEVEL);
                     }
                     towerCollection.addTowerAtIndex(currentIndex, currentTower);
-                    ////// test 
-                    Tower tower=  towerCollection.getTowers().get(currentIndex);
-                    System.out.println(tower.getLevel());
                 }
             }
         });
@@ -292,11 +287,11 @@ public class MainGameController {
         	
         	@Override
             public void actionPerformed(ActionEvent e) {
-                if (currentTower != null) {
+                if (currentTower != null && currentTower.getPosition() != null) {
 				    if (e.getSource() instanceof JComboBox) {
 	                    JComboBox cb = (JComboBox)(e.getSource());
 	                    String strategy = (String)cb.getSelectedItem();
-	            
+                        String oldStrategy = currentTower.getTowerShootingBehavior().getShootingStrategy().toString();
                         switch (strategy) {
 	                    	case "Target On Weakest":
 	                    		currentTower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnWeakest());
@@ -311,11 +306,12 @@ public class MainGameController {
 	                    		currentTower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnClosestToTower());
 	                    		break;
 				        }
+                        if(!oldStrategy.equals(strategy)) {
+                            LoggerCollection.getInstance().addLog(new Log(LogType.Tower, currentIndex, "Player set a \"" + strategy + "\" strategy to " + currentTower.getTowerType() + " at position " + currentIndex));
+                        }
                     }
-                    towerCollection.addTowerAtIndex(currentIndex, currentTower);
-                    ////// test 
-                    Tower tower =  towerCollection.getTowers().get(currentIndex);
-                    System.out.println(tower.getTowerShootingBehavior().getShootingStrategy().getClass().getSimpleName());
+
+
         		}
         	 }
         });
@@ -450,17 +446,18 @@ public class MainGameController {
 
     private void detectingNextWaveShouldStart() {
         int count = 0;
-        for (Critter c : critterCollection.getCritters()) {
-            if (c.isKilled() || c.isDonated()) {
-                count ++;
-                continue;
-            } else break;
+        if(critterCollection != null) {
+            for (Critter c : critterCollection.getCritters()) {
+                if (c.isKilled() || c.isDonated()) {
+                    count++;
+                    continue;
+                } else break;
+            }
+            if (count == critterCollection.getCritters().size()) {
+                mainGameView.topView.gameDataPanel.waveStartButton.setEnabled(true);
+                mainGameView.topView.gameDataPanel.saveGame.setEnabled(true);
+            }
         }
-        if (count == critterCollection.getCritters().size()) {
-        	 mainGameView.topView.gameDataPanel.waveStartButton.setEnabled(true);
-             mainGameView.topView.gameDataPanel.saveGame.setEnabled(true);
-        }
-        	//startNextWave();             /////////////////
     }
 
     private void detectingCrittersStoleCoins() {
@@ -597,7 +594,6 @@ public class MainGameController {
     	try {
 			gameCollection.loadGame();;
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
         boolean isReadyToCreate = true;
@@ -608,7 +604,6 @@ public class MainGameController {
             try {
             	gameCollection.saveGame();;
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -636,7 +631,7 @@ public class MainGameController {
                                             JOptionPane.PLAIN_MESSAGE,
                                             null,
                                             null,
-                                            "map1");
+                                            "Game1");
                                 } while (userGameName.equals(gameRename));
                                 if (gameRename != null) userGameName = gameRename;
                                 else isReadyToCreate = false;

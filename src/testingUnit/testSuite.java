@@ -12,7 +12,7 @@ import org.junit.runners.Suite.SuiteClasses;
     EntranceExit.class, 
     TestingMap.class,
     TowerFactoryTest.class, 
-    TowerTest.class,
+//    TowerTest.class,
     Utilityclass.class, 
     ValidateMap.class 
 })

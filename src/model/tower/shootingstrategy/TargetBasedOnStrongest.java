@@ -34,4 +34,9 @@ public class TargetBasedOnStrongest implements TowerShootingStrategy {
             return null;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Target On Strongest";
+    }
 }

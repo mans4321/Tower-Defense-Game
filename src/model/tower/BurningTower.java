@@ -76,8 +76,6 @@ public class BurningTower extends Tower {
 
     @Override
     public void setPosition(Position position) {
-        System.err.println("setting position");
-
         this.position = position;
         towerShootingRangeView = new TowerShootingRangeView(position, range);
         switch (level) {

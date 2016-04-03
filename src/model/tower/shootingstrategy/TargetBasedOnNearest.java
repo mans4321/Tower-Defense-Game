@@ -27,4 +27,11 @@ public class TargetBasedOnNearest implements TowerShootingStrategy {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "Target On Nearest to End";
+    }
 }
+
+
