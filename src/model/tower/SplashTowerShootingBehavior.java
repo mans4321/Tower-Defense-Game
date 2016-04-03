@@ -12,7 +12,6 @@ import java.util.HashSet;
  */
 public class SplashTowerShootingBehavior extends TowerShootingBehavior {
 
-
     public SplashTowerShootingBehavior(int power, int rateOfFire) {
         isShooting = true;
         this.power = power;
@@ -30,12 +29,13 @@ public class SplashTowerShootingBehavior extends TowerShootingBehavior {
         // to avoid ConcurrentModificationException for removing item during iteration
         HashSet<Critter> killedCritters = new HashSet<>();
 
-        if(!crittersInRange.isEmpty()) {
-            for(Critter c: crittersInRange){
+        if (!crittersInRange.isEmpty()) {
+            for (Critter c: crittersInRange) {
                 int health = c.getCurrentHealth();
                 health -= power;
                 c.setCurrentHealth(health);
-                if(c.getCurrentHealth() <= 0) {
+
+                if (c.getCurrentHealth() <= 0) {
                     killedCritters.add(c);
                 }
             }

@@ -50,7 +50,7 @@ public class GameMap {
         int mCols = 30;
         int mRows = 15;
         ArrayList<CellState> cells = new ArrayList<>();
-        for(int i = 0; i < mCols * mRows; i++){
+        for (int i = 0; i < mCols * mRows; i++) {
             cells.add(CellState.Grass);
         }
         String imageName = "";
@@ -140,7 +140,7 @@ public class GameMap {
         for (int i = 0; i < cells.size(); i++) {
             if (cells.get(i) == CellState.Grass) {
                 cells.set(i, CellState.ToPlaceTower);
-            } else if(cells.get(i) == CellState.Chosen) {
+            } else if (cells.get(i) == CellState.Chosen) {
                 cells.set(i, CellState.Tower);
             }
         }
@@ -149,7 +149,7 @@ public class GameMap {
     /**
      * change toPlaceTower state back to grass state
      */ 
-    public void setToGrassState(){
+    public void setToGrassState() {
         for (int i = 0; i < cells.size(); i++) {
             if (cells.get(i) == CellState.ToPlaceTower) {
                 cells.set(i, CellState.Grass);
@@ -161,7 +161,7 @@ public class GameMap {
      * toggle chosen state of cell
      * @param index the index of cells
      */
-    public void toggleChosenState(int index){
+    public void toggleChosenState(int index) {
 
         for (int i = 0; i < cells.size(); i++) {
             if (cells.get(i) == CellState.Chosen) {
@@ -203,7 +203,7 @@ public class GameMap {
      * find exit index of game map
      * @return
      */
-    public int findExitIndex(){
+    public int findExitIndex() {
         for (int i = 0; i < cells.size() ; i++) {
             if (cells.get(i) == CellState.Exit) { // Entrance -> indexEntrance
                 return i;
@@ -277,12 +277,12 @@ public class GameMap {
     public ArrayList<Double> getFiveHighestScore() {
         int size = scoreList.size();
         ArrayList<Double> fiveHighestList = new ArrayList<>();
-        if(size <= 5) {
-            for(Double score: scoreList) {
+        if (size <= 5) {
+            for (Double score: scoreList) {
                 fiveHighestList.add(score);
             }
         } else {
-            for(int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
                 fiveHighestList.add(scoreList.get(i));
         }
         return fiveHighestList;

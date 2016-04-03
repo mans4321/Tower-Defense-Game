@@ -16,7 +16,7 @@ public class TowerCollection {
 
     private HashMap<Integer, Tower> towers;
 
-    public TowerCollection(){
+    public TowerCollection() {
         this.towers = new HashMap<>();
     }
 
@@ -28,12 +28,11 @@ public class TowerCollection {
 		this.towers = towers;
 	}
 
-	public void addTowerAtIndex(int index, Tower tower){
+	public void addTowerAtIndex(int index, Tower tower) {
         towers.put(index, tower);
     }
 
-    public void removeTowerAtIndex(int index){
+    public void removeTowerAtIndex(int index) {
         towers.remove(index);
     }
-
 }

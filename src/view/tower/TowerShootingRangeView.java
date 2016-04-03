@@ -14,7 +14,7 @@ public class TowerShootingRangeView {
     private Ellipse2D towerRangeCircle;
     private int range;
 
-    public TowerShootingRangeView(Position position, int range){
+    public TowerShootingRangeView(Position position, int range) {
         this.range = range;
         towerRangeCircle = new Ellipse2D.Float(position.getX() + Drawing.CELL_SIZE / 2 - range / 2, position.getY() + Drawing.CELL_SIZE  / 2 - range / 2, range, range);
     }
@@ -24,7 +24,7 @@ public class TowerShootingRangeView {
         return towerRangeCircle;
     }
 
-    public Rectangle getBounds(){
+    public Rectangle getBounds() {
         return towerRangeCircle.getBounds();
     }
 

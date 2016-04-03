@@ -11,13 +11,13 @@ import java.util.ArrayList;
  */
 public class GameMapDrawing extends Drawing {
 
-    public static void drawGameMap(Graphics g, GameMap map){
+    public static void drawGameMap(Graphics g, GameMap map) {
         Graphics2D g2d = (Graphics2D) g.create();
         ArrayList<CellState> cellList = map.getCells();
         int mapCols = map.getmCols();
-        for(int i = 0; i < CELL_SIZE * map.getmCols(); i = i + CELL_SIZE){
-            for(int j = 0; j < CELL_SIZE * map.getmRows(); j = j + CELL_SIZE){
-                switch (cellList.get(coordinateToIndexConverter(i, j, mapCols))){
+        for (int i = 0; i < CELL_SIZE * map.getmCols(); i = i + CELL_SIZE) {
+            for (int j = 0; j < CELL_SIZE * map.getmRows(); j = j + CELL_SIZE) {
+                switch (cellList.get(coordinateToIndexConverter(i, j, mapCols))) {
                     case Grass:
                         g2d.drawImage(MapImageCollection.mapImages.get(CellState.Grass), i, j, null);
                         break;

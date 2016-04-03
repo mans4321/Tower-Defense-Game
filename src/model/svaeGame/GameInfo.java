@@ -41,16 +41,16 @@ public class GameInfo{
 	 * @param gameName game name pick by user 
 	 * @param mapName  map name 
 	 */
-	public GameInfo( HashMap<Integer, Tower> towerCollection,ArrayList<Log> logList, double balance,int coins,int waveNum, String gameName,String mapName ){
+	public GameInfo( HashMap<Integer, Tower> towerCollection,ArrayList<Log> logList, double balance,int coins,int waveNum, String gameName,String mapName ) {
 	
-	this.towerCollection = towerCollection;
-	this.logList = logList;
-	this.balance = balance;
-	this.gameName = gameName;
-	this.mapName = mapName;
-	this.coins = coins;
-	this.waveNum = waveNum;
-}
+		this.towerCollection = towerCollection;
+		this.logList = logList;
+		this.balance = balance;
+		this.gameName = gameName;
+		this.mapName = mapName;
+		this.coins = coins;
+		this.waveNum = waveNum;
+	}
 
 
 

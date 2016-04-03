@@ -22,7 +22,7 @@ public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegat
     public JTextArea towerLogArea;
     public JScrollPane towerLogScrollPane;
 
-    public TowerUpgradeSellPanel(){
+    public TowerUpgradeSellPanel() {
         setBackground(Color.black);
         sellButton = new JButton("Sell");
         upgradeButton = new JButton("Upgrade");
@@ -49,7 +49,7 @@ public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegat
 
     @Override
     public void reloadPanelBasedOnTower(Tower tower) {
-        if(tower != null){
+        if (tower != null) {
             towerImageLabel.setIcon(new ImageIcon(tower.getHdImageName()));
         } else {
             towerImageLabel.setIcon(null);

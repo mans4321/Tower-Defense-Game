@@ -11,7 +11,7 @@ public class Drawing {
         return x / CELL_SIZE + (y / CELL_SIZE) * cols;
     }
 
-    public static Position indexToCoordinateConverter(int index, int cols){
+    public static Position indexToCoordinateConverter(int index, int cols) {
         int x = index % cols;
         int y = index / cols;
         return new Position(x * CELL_SIZE, y * CELL_SIZE);

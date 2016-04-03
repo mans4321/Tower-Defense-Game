@@ -15,7 +15,7 @@ public class CritterView {
     private Image critterImage;
     private ImageIcon critterImageIcon;
 
-    public CritterView(CritterType critterType){
+    public CritterView(CritterType critterType) {
         this.critterImageIcon = new ImageIcon(BASE_URL + critterType.getCritterImageName() + PNG);
         this.critterImage = critterImageIcon.getImage();
     }

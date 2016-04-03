@@ -25,7 +25,7 @@ public class CritterMovingBehavior implements ActionListener {
 
     private boolean arrivedAtExit;
 
-    public CritterMovingBehavior(GameMap gameMap, int movingSpeed){
+    public CritterMovingBehavior(GameMap gameMap, int movingSpeed) {
         pathList = gameMap.findPathList();
         cols = gameMap.getmCols();
         entranceIndex = gameMap.findEntranceIndex();
@@ -54,19 +54,19 @@ public class CritterMovingBehavior implements ActionListener {
     }
 
     // x, y -> current position
-    private void moveRight(){
+    private void moveRight() {
         currentPosition.setX(currentPosition.getX() + 1);
     }
 
-    private void moveDown(){
+    private void moveDown() {
         currentPosition.setY(currentPosition.getY() + 1);
     }
 
-    private void moveLeft(){
+    private void moveLeft() {
         currentPosition.setX(currentPosition.getX() - 1);
     }
 
-    private void moveUp(){
+    private void moveUp() {
         currentPosition.setY(currentPosition.getY() - 1);
     }
 
@@ -96,30 +96,30 @@ public class CritterMovingBehavior implements ActionListener {
     }
 
     // recursion make it consecutive
-    private void moveToIndex(int index){
+    private void moveToIndex(int index) {
         Position position = Drawing.indexToCoordinateConverter(index, cols);
         int x = position.getX();
         int y = position.getY();
 
-        if (currentPosition.getX() == x && currentPosition.getY() == y){
+        if (currentPosition.getX() == x && currentPosition.getY() == y) {
             nextIndex = getDestination(Drawing.coordinateToIndexConverter(x, y ,cols));
-            if(nextIndex != -1) {
+            if (nextIndex != -1) {
                 moveToIndex(nextIndex);
             } else {
                 movingTimer.stop();
                 arrivedAtExit = true;
             }
         } else {
-            if(currentPosition.getY() > y){
+            if (currentPosition.getY() > y) {
                 moveUp();
             }
-            else if (y > currentPosition.getY()){
+            else if (y > currentPosition.getY()) {
                 moveDown();
             }
-            else if (currentPosition.getX() > x){
+            else if (currentPosition.getX() > x) {
                 moveLeft();
             }
-            else if (x > currentPosition.getX()){
+            else if (x > currentPosition.getX()) {
                 moveRight();
             }
         }
