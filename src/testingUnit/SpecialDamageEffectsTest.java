@@ -44,6 +44,10 @@ public class SpecialDamageEffectsTest {
 		int currentSpeed = c.getMovingSpeed();
 		assertEquals("still moving",priorSpeed,currentSpeed);
 	}
+	
+	/**
+	 * Test splash effect
+	 */
 	@Test
 	public void testSplash(){
 		SplashTowerShootingBehavior stsb = new SplashTowerShootingBehavior(100, 10);
