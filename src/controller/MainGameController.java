@@ -651,12 +651,14 @@ public class MainGameController {
                	mapCollection.addMap(gameMap);
                	mapCollection.saveMapsToFile(mapCollection);
                	
+               	
             	try {
             		gameCollection.saveGame();
 				} catch (FileNotFoundException e) {
 					JOptionPane.showMessageDialog(mainGameView, "Game Not saved");
 					e.printStackTrace();
 				}
+            	gameName = userGameName;   /// more then one save while playing the game 
             }
         }
     }
