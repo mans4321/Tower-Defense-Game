@@ -36,18 +36,18 @@ public class ContinousPathValidator implements MapValidator{
 			if (cellList.get(i) == CellState.Path 
 					&& cMap.get(i) == 0) {//some path grid alone
 				return false;
-			}else if (cellList.get(i) == CellState.Path 
+			} else if (cellList.get(i) == CellState.Path 
 					&& cMap.get(i) == 1) {//path break in somewhere
 				if (cellList.get(i-1) == CellState.Entrance
-						||cellList.get(i-1) == CellState.Exit
-						||cellList.get(i+1) == CellState.Entrance
-						||cellList.get(i+1) == CellState.Exit
-						||cellList.get(i-Cols) == CellState.Entrance
-						||cellList.get(i-Cols) == CellState.Exit
-						||cellList.get(i+Cols) == CellState.Entrance
-						||cellList.get(i+Cols) == CellState.Exit) {
+						|| cellList.get(i-1) == CellState.Exit
+						|| cellList.get(i+1) == CellState.Entrance
+						|| cellList.get(i+1) == CellState.Exit
+						|| cellList.get(i-Cols) == CellState.Entrance
+						|| cellList.get(i-Cols) == CellState.Exit
+						|| cellList.get(i+Cols) == CellState.Entrance
+						|| cellList.get(i+Cols) == CellState.Exit) {
 					return true;
-				}else{
+				} else {
 					return false;
 					}
 			}
