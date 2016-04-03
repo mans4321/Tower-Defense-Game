@@ -8,6 +8,7 @@ import model.critter.Critter;
 import model.tower.shootingstrategy.TargetBasedOnWeakest;
 import model.tower.shootingstrategy.TowerShootingStrategy;
 import protocol.TowerDidShotDelegate;
+import view.map.Position;
 
 /**
  * Created by yongpinggao on 3/19/16.
@@ -25,6 +26,7 @@ public class TowerShootingBehavior {
     protected Set<Critter> crittersInRange;
 
     protected TowerDidShotDelegate towerDidShotDelegate;
+    private Position towerPosition;
 
     public int getPower() {
         return power;
@@ -73,6 +75,11 @@ public class TowerShootingBehavior {
 
 	public void shoot() {}
 
-
-
+    public void setTowerPosition(Position towerPosition) {
+        this.towerPosition = towerPosition;
+    }
+    
+    public Position getTowerPosition() {
+        return this.towerPosition;
+    }
 }

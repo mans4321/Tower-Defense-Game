@@ -22,13 +22,19 @@ public class IceTower extends Tower {
 
     private void initTower(){
         this.specification = "<html>" + "Ice Tower" + "<br> Level: " + level + "<br> Good at attack fast creatures with its freezing effect</html>";
-        switch(level){
+        int baseFrozenTime = 1000;
+        int baseRateOfFire = 10;
+
+        switch (level) {
             case 1:
                 buyPrice = 30.0;
                 sellPrice = 15.0;
                 towerType = TowerType.IceTower1;
                 range = 80;
-                towerShootingBehavior = new IceTowerShootingBehavior(1000, 10);
+                towerShootingBehavior = new IceTowerShootingBehavior(
+                    baseFrozenTime,
+                    baseRateOfFire
+                );
                 towerView = new TowerView(towerType);
                 break;
             case 2:
@@ -36,7 +42,10 @@ public class IceTower extends Tower {
                 sellPrice = 20.0;
                 towerType = TowerType.IceTower2;
                 range = 90;
-                towerShootingBehavior = new IceTowerShootingBehavior(1500, 20);
+                towerShootingBehavior = new IceTowerShootingBehavior(
+                    baseFrozenTime * Double.valueOf(level * 0.75).intValue(),
+                    baseRateOfFire * level
+                );
                 towerView = new TowerView(towerType);
                 break;
             case 3:
@@ -44,7 +53,10 @@ public class IceTower extends Tower {
                 sellPrice = 25.0;
                 towerType = TowerType.IceTower3;
                 range = 100;
-                towerShootingBehavior = new IceTowerShootingBehavior(2000, 30);
+                towerShootingBehavior = new IceTowerShootingBehavior(
+                    baseFrozenTime * Double.valueOf(level * 0.66).intValue(), 
+                    baseRateOfFire * level
+                );
                 towerView = new TowerView(towerType);
                 break;
         }
@@ -79,6 +91,8 @@ public class IceTower extends Tower {
                 break;
         }
         towerShootingBehavior.setTowerDidShotDelegate(towerShootingView);
+        towerShootingBehavior.setTowerPosition(this.getPosition());
+
     }
 
 }
