@@ -14,7 +14,7 @@ import view.tower.TowerView;
 public class IceTower extends Tower {
 
     public IceTower(int level) {
-        if(level <= MAX_LEVEL) {
+        if (level <= MAX_LEVEL) {
             this.level = level;
             initTower();
         }

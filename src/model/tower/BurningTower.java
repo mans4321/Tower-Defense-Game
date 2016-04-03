@@ -14,7 +14,7 @@ import view.tower.TowerView;
 public class BurningTower extends Tower {
 
     public BurningTower(int level) {
-        if(level <= MAX_LEVEL) {
+        if (level <= MAX_LEVEL) {
             this.level = level;
             initTower();
         }

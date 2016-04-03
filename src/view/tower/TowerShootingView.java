@@ -37,7 +37,7 @@ public class TowerShootingView implements TowerDidShotDelegate {
         g2d.setStroke(new BasicStroke(shootingEffect.getWidth(), BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
         g2d.setColor(shootingEffect.getColor());
 
-        if(range == 0 && critterPosition != null) { // one on one
+        if (range == 0 && critterPosition != null) { // one on one
             g2d.drawLine(towerPosition.getCenterPosition().getX(), towerPosition.getCenterPosition().getY(), critterPosition.getCenterPosition().getX(), critterPosition.getCenterPosition().getY());
         } else if (range != 0) { // area of effect
             Ellipse2D towerRangeCircle = new Ellipse2D.Float(towerPosition.getX() + Drawing.CELL_SIZE / 2 - range / 2, towerPosition.getY() + Drawing.CELL_SIZE  / 2 - range / 2, range, range);

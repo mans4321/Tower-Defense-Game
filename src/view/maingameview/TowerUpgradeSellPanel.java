@@ -49,7 +49,7 @@ public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegat
 
     @Override
     public void reloadPanelBasedOnTower(Tower tower) {
-        if(tower != null) {
+        if (tower != null) {
             towerImageLabel.setIcon(new ImageIcon(tower.getHdImageName()));
         } else {
             towerImageLabel.setIcon(null);

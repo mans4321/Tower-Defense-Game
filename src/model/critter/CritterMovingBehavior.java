@@ -103,14 +103,14 @@ public class CritterMovingBehavior implements ActionListener {
 
         if (currentPosition.getX() == x && currentPosition.getY() == y) {
             nextIndex = getDestination(Drawing.coordinateToIndexConverter(x, y ,cols));
-            if(nextIndex != -1) {
+            if (nextIndex != -1) {
                 moveToIndex(nextIndex);
             } else {
                 movingTimer.stop();
                 arrivedAtExit = true;
             }
         } else {
-            if(currentPosition.getY() > y) {
+            if (currentPosition.getY() > y) {
                 moveUp();
             }
             else if (y > currentPosition.getY()) {

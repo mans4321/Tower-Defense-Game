@@ -50,7 +50,7 @@ public class GameMap {
         int mCols = 30;
         int mRows = 15;
         ArrayList<CellState> cells = new ArrayList<>();
-        for(int i = 0; i < mCols * mRows; i++) {
+        for (int i = 0; i < mCols * mRows; i++) {
             cells.add(CellState.Grass);
         }
         String imageName = "";
@@ -140,7 +140,7 @@ public class GameMap {
         for (int i = 0; i < cells.size(); i++) {
             if (cells.get(i) == CellState.Grass) {
                 cells.set(i, CellState.ToPlaceTower);
-            } else if(cells.get(i) == CellState.Chosen) {
+            } else if (cells.get(i) == CellState.Chosen) {
                 cells.set(i, CellState.Tower);
             }
         }
@@ -277,12 +277,12 @@ public class GameMap {
     public ArrayList<Double> getFiveHighestScore() {
         int size = scoreList.size();
         ArrayList<Double> fiveHighestList = new ArrayList<>();
-        if(size <= 5) {
-            for(Double score: scoreList) {
+        if (size <= 5) {
+            for (Double score: scoreList) {
                 fiveHighestList.add(score);
             }
         } else {
-            for(int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
                 fiveHighestList.add(scoreList.get(i));
         }
         return fiveHighestList;

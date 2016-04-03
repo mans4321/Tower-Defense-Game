@@ -22,7 +22,7 @@ public class Helper {
             arr.add(Integer.parseInt(s));
         }
         int max = arr.get(0);
-        for(int i = 1; i < arr.size(); i++) {
+        for (int i = 1; i < arr.size(); i++) {
             if (arr.get(i) > max)
                 max = arr.get(i);
         }

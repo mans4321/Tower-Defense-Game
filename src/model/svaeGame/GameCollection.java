@@ -79,8 +79,8 @@ public class GameCollection implements Serializable {
     */
     public int findGameInCollection(String gameName) { // based on map name
         int index = 0;
-        for(int i = 0; i < games.size(); i++) {
-            if(gameName.equalsIgnoreCase(games.get(i).getGameName())) {
+        for (int i = 0; i < games.size(); i++) {
+            if (gameName.equalsIgnoreCase(games.get(i).getGameName())) {
                 index = i;
                 break;
             }
@@ -173,13 +173,13 @@ public class GameCollection implements Serializable {
                                     gameName = curveOfGameElement.getTextContent();
                                 } else if (curveOfGameElement.getTagName().equals("MapName")) { 
                                 	 mapName =curveOfGameElement.getTextContent();
-                                } else if(curveOfGameElement.getTagName().equals("WaveNumber")) {
+                                } else if (curveOfGameElement.getTagName().equals("WaveNumber")) {
                                 	  waveNum = Integer.parseInt(curveOfGameElement.getTextContent());
-                                } else if(curveOfGameElement.getTagName().equals("Coins")) {
+                                } else if (curveOfGameElement.getTagName().equals("Coins")) {
                                 	 coins = Integer.parseInt(curveOfGameElement.getTextContent());
-                                } else if(curveOfGameElement.getTagName().equals("Balance")) {
+                                } else if (curveOfGameElement.getTagName().equals("Balance")) {
                                 	 balance = Double.parseDouble(curveOfGameElement.getTextContent());
-                                } else if(curveOfGameElement.getTagName().equals("Log")) {
+                                } else if (curveOfGameElement.getTagName().equals("Log")) {
                             	    String currentTime = curveOfGameElement.getAttribute("currentTime");
                             	    String content = curveOfGameElement.getAttribute("content");
                             	    String who = curveOfGameElement.getAttribute("logType");
@@ -209,7 +209,7 @@ public class GameCollection implements Serializable {
                             	    	gameLog.add(logTower);
                             	    }
                                 	    	
-                                } else if(curveOfGameElement.getTagName().equals("Tower")) {
+                                } else if (curveOfGameElement.getTagName().equals("Tower")) {
                                     String towerType = curveOfGameElement.getAttribute("type");
                                     String towerStrategy = curveOfGameElement.getAttribute("Strategy");
                                     int range =  Integer.parseInt(curveOfGameElement.getAttribute("range"));

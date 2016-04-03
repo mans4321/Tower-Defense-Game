@@ -45,7 +45,7 @@ public class TowerShootingBehavior {
     }
 
     public void setShooting(boolean shooting) {
-        if(shooting) {
+        if (shooting) {
             towerTimer.start();
         } else {
             towerTimer.stop();

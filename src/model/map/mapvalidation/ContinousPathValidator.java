@@ -32,13 +32,13 @@ public class ContinousPathValidator implements MapValidator{
 	public boolean validate() {
 		// TODO Auto-generated method stub
 		
-		for(int i = 0;i < cellList.size(); i++) {
-			if(cellList.get(i) == CellState.Path 
+		for (int i = 0;i < cellList.size(); i++) {
+			if (cellList.get(i) == CellState.Path 
 					&& cMap.get(i) == 0) {//some path grid alone
 				return false;
-			}else if(cellList.get(i) == CellState.Path 
+			}else if (cellList.get(i) == CellState.Path 
 					&& cMap.get(i) == 1) {//path break in somewhere
-				if(cellList.get(i-1) == CellState.Entrance
+				if (cellList.get(i-1) == CellState.Entrance
 						||cellList.get(i-1) == CellState.Exit
 						||cellList.get(i+1) == CellState.Entrance
 						||cellList.get(i+1) == CellState.Exit
@@ -67,7 +67,5 @@ public class ContinousPathValidator implements MapValidator{
 		this.cMap = countMap;
 		this.cellList = cellList;
 		this.Cols = mapCols;
- 
 	}
-	
 }

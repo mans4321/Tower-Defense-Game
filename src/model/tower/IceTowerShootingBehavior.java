@@ -32,7 +32,7 @@ public class IceTowerShootingBehavior extends TowerShootingBehavior {
     public void shoot() {
         super.shoot();
         Critter critterUnderAttack = shootingStrategy.targetOnCritters(crittersInRange, this.getTowerPosition());
-        if(critterUnderAttack != null && !critterUnderAttack.getSpecicalEffectTimer().isRunning() && !critterUnderAttack.isKilled()) {
+        if (critterUnderAttack != null && !critterUnderAttack.getSpecicalEffectTimer().isRunning() && !critterUnderAttack.isKilled()) {
             towerDidShotDelegate.towerDidShotAt(critterUnderAttack.getMovingBehavior().getCurrentPosition());
             critterUnderAttack.getMovingBehavior().getMovingTimer().stop();
             Timer frozenTimer = new Timer(0, critterUnderAttack);
@@ -43,7 +43,7 @@ public class IceTowerShootingBehavior extends TowerShootingBehavior {
             critterUnderAttack.getSpecicalEffectTimer().start();
         } else towerDidShotDelegate.towerDidShotAt(null);
 
-        if(critterUnderAttack.getCurrentHealth() <= 0) {
+        if (critterUnderAttack.getCurrentHealth() <= 0) {
             crittersInRange.remove(critterUnderAttack);
         }
     }

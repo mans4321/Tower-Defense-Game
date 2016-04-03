@@ -14,7 +14,7 @@ import java.awt.*;
 public class SplashTower extends Tower {
 
     public SplashTower(int level) {
-        if(level <= MAX_LEVEL) {
+        if (level <= MAX_LEVEL) {
             this.level = level;
             initTower();
         }

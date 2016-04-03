@@ -77,11 +77,11 @@ public class MapEditorController {
 
                 if (e.getButton() == MouseEvent.BUTTON1) {
                     // Left Click to set maps path
-                    if(cellList.get(index) == CellState.Grass) {
+                    if (cellList.get(index) == CellState.Grass) {
                         cellList.set(index, CellState.Path);
-                    } else if(cellList.get(index) == CellState.Path) {
+                    } else if (cellList.get(index) == CellState.Path) {
                         cellList.set(index, CellState.Grass);
-                    } else if(cellList.get(index) == CellState.Entrance || cellList.get(index) == CellState.Exit) {
+                    } else if (cellList.get(index) == CellState.Entrance || cellList.get(index) == CellState.Exit) {
                         cellList.set(index, CellState.Path);
                     }
                 } else if (e.getButton() == MouseEvent.BUTTON3) {
@@ -129,7 +129,7 @@ public class MapEditorController {
                         "Are you Sure, all unsaved changes will be discarded!!",
                         "Warning",
                         JOptionPane.YES_NO_OPTION);
-                if(n == 0) { // User select "yes"
+                if (n == 0) { // User select "yes"
                     clearGameMap();
                     mapEditorView.setVisible(false);
                     new MainMenuController().mainMenuView.setVisible(true);
@@ -139,7 +139,7 @@ public class MapEditorController {
     }
 
     public void clearGameMap() {
-        for(int i = 0; i < gameMap.getCells().size(); i++) {
+        for (int i = 0; i < gameMap.getCells().size(); i++) {
             gameMap.getCells().set(i, CellState.Grass);
         }
         delegate.refreshMap(gameMap);
@@ -148,7 +148,7 @@ public class MapEditorController {
     public void saveDataToFile() {
         GameMapCollection mapCollection = GameMapCollection.loadMapsFromFile();
         boolean isReadyToCreate = true;
-        if(!gameMap.getMapName().equals("")) {// old map
+        if (!gameMap.getMapName().equals("")) {// old map
             JOptionPane.showMessageDialog(mapEditorView, "Saved Successful!");
 
             //load -> edit -> save back
