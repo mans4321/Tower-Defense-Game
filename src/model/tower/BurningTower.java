@@ -20,7 +20,7 @@ public class BurningTower extends Tower {
         }
     }
 
-    private void initTower(){
+    private void initTower() {
         this.specification = "<html>" + "Burning Tower" + "<br> Level: " + level + "<br> Good at attack normal creature</html>";
         int basePower = 5;
         int baseRateOfFire = 100;

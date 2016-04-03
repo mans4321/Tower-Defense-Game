@@ -11,7 +11,7 @@ public class CritterCollection {
 
     private ArrayList<Critter> critters = new ArrayList<>();
 
-    public void addCritter(Critter critter){
+    public void addCritter(Critter critter) {
         critters.add(critter);
     }
 
@@ -19,7 +19,7 @@ public class CritterCollection {
         critters.remove(critter);
     }
 
-    public void clearAllCritters(){
+    public void clearAllCritters() {
         critters.clear();
     }
 

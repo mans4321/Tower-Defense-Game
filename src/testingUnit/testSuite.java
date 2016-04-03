@@ -10,11 +10,11 @@ import org.junit.runners.Suite.SuiteClasses;
     ConvertXYcoordinateConverter.class, 
     CritterTest.class, 
     EntranceExit.class, 
-    testingMap.class,
+    TestingMap.class,
     TowerFactoryTest.class, 
     TowerTest.class, 
     Utilityclass.class, 
-    validatemap.class 
+    ValidateMap.class 
 })
 public class testSuite {
 

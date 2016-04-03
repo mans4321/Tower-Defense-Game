@@ -13,14 +13,14 @@ import view.tower.TowerView;
 // Freezing the critter for a time (have a higher priority to poison tower)
 public class IceTower extends Tower {
 
-    public IceTower(int level){
+    public IceTower(int level) {
         if(level <= MAX_LEVEL) {
             this.level = level;
             initTower();
         }
     }
 
-    private void initTower(){
+    private void initTower() {
         this.specification = "<html>" + "Ice Tower" + "<br> Level: " + level + "<br> Good at attack fast creatures with its freezing effect</html>";
         int baseFrozenTime = 1000;
         int baseRateOfFire = 10;
@@ -79,7 +79,7 @@ public class IceTower extends Tower {
     public void setPosition(Position position) {
         this.position = position;
         towerShootingRangeView = new TowerShootingRangeView(position, range);
-        switch(level){
+        switch(level) {
             case 1:
                 towerShootingView = new TowerShootingView(position, new ShootingEffect(java.awt.Color.WHITE, 3));
                 break;
@@ -92,7 +92,5 @@ public class IceTower extends Tower {
         }
         towerShootingBehavior.setTowerDidShotDelegate(towerShootingView);
         towerShootingBehavior.setTowerPosition(this.getPosition());
-
     }
-
 }

@@ -15,7 +15,7 @@ public class TowerSelectionPanel extends JPanel{
     public JButton towerBButton;
     public JButton towerCButton;
 
-    public TowerSelectionPanel(){
+    public TowerSelectionPanel() {
         towerAButton = new JButton(new ImageIcon(TowerFactory.sharedInstance().getTower(TowerType.BurningTower1).getHdImageName()));
         towerBButton = new JButton(new ImageIcon(TowerFactory.sharedInstance().getTower(TowerType.IceTower1).getHdImageName()));
         towerCButton = new JButton(new ImageIcon(TowerFactory.sharedInstance().getTower(TowerType.SplashTower1).getHdImageName()));

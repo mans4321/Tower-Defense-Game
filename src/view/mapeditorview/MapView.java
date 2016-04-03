@@ -16,7 +16,7 @@ public class MapView extends JPanel {
     public MapPanel mapPanel;
 
 
-    public MapView(){
+    public MapView() {
         setPreferredSize(new Dimension(BaseWindowView.WINDOW_WIDTH, BaseWindowView.WINDOW_HEIGHT / 10 * 9));
         mapPanel = new MapPanel();
         setLayout(new GridBagLayout());
@@ -48,10 +48,4 @@ public class MapView extends JPanel {
             repaint();
         }
     }
-
-
-
-
-
-
 }

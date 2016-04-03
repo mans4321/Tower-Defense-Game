@@ -17,7 +17,7 @@ public class SavedGamesMaps {
 	     * constructor
 	     * create a new arraylist
 	     */
-	    public SavedGamesMaps(){
+	    public SavedGamesMaps() {
 	        this.maps = new ArrayList<>();
 	    }
 

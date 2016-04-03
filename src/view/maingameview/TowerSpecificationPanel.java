@@ -17,7 +17,7 @@ public class TowerSpecificationPanel extends JPanel implements DrawingPanelDeleg
     public JLabel powerLabel;
     public JLabel rateOfFireLabel;
 
-    public TowerSpecificationPanel(){
+    public TowerSpecificationPanel() {
         setBackground(Color.white);
         specificationLabel = new JLabel("");
         buyPriceLabel = new JLabel("");
@@ -39,7 +39,7 @@ public class TowerSpecificationPanel extends JPanel implements DrawingPanelDeleg
 
     @Override
     public void reloadPanelBasedOnTower(Tower tower) {
-        if (tower != null){
+        if (tower != null) {
             specificationLabel.setText(tower.getSpecification());
             buyPriceLabel.setText("Buy Price: " + tower.getBuyPrice()+"");
             sellPriceLabel.setText("Sell Price: " + tower.getSellPrice() + "");

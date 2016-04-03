@@ -22,7 +22,7 @@ public class WaveBuilder {
 
         for (int i = 0; i < num; ++i) {
             Critter critter = new Critter(CritterType.CritterA);
-            if(waveNum > 1 && waveNum <= 6 ){
+            if(waveNum > 1 && waveNum <= 6 ) {
             	critter.setCurrentHealth(critter.getCurrentHealth() + (waveNum *increasingHealthRation));
             	critter.setMovingSpeed(critter.getMovingSpeed()+ waveNum + icreacingSpeedRation);
             }
@@ -34,7 +34,7 @@ public class WaveBuilder {
     public WaveBuilder critterB(int num) {
         for (int i = 0; i < num; ++i) {
             Critter critter = new Critter(CritterType.CritterB);
-            if(waveNum > 1 && waveNum <= 6 ){
+            if(waveNum > 1 && waveNum <= 6 ) {
             	critter.setCurrentHealth(critter.getCurrentHealth() + (waveNum *increasingHealthRation));
             	critter.setMovingSpeed(critter.getMovingSpeed()+ waveNum + icreacingSpeedRation);
             }
@@ -46,7 +46,7 @@ public class WaveBuilder {
     public WaveBuilder critterC(int num) {
         for (int i = 0; i < num; ++i) {
             Critter critter = new Critter(CritterType.CritterC);
-            if(waveNum > 1 && waveNum <= 6 ){
+            if(waveNum > 1 && waveNum <= 6 ) {
             	critter.setCurrentHealth(critter.getCurrentHealth() + (waveNum *increasingHealthRation));
             	critter.setMovingSpeed(critter.getMovingSpeed()+ waveNum + icreacingSpeedRation);
             }
@@ -58,7 +58,7 @@ public class WaveBuilder {
     public WaveBuilder critterD(int num) {
         for (int i = 0; i < num; ++i) {
             Critter critter = new Critter(CritterType.CritterD);
-            if(waveNum > 1 && waveNum <= 6 ){
+            if(waveNum > 1 && waveNum <= 6 ) {
             	critter.setCurrentHealth(critter.getCurrentHealth() + (waveNum *increasingHealthRation));
             	critter.setMovingSpeed(critter.getMovingSpeed()+ waveNum + icreacingSpeedRation);
             }
@@ -71,5 +71,3 @@ public class WaveBuilder {
         return critterCollection;
     }
 }
-
-

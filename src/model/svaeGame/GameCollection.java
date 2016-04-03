@@ -25,7 +25,7 @@ import model.tower.TowerFactory;
 import model.tower.shootingstrategy.TargetBasedOnNearest;
 import model.tower.shootingstrategy.TargetBasedOnStrongest;
 import model.tower.shootingstrategy.TargetBasedOnWeakest;
-import model.tower.shootingstrategy.TowerBasedOnClosestToTower;
+import model.tower.shootingstrategy.TargetBasedOnClosestToTower;
 import utility.FileProcessing;
 import view.map.Position;
 import view.tower.TowerType;
@@ -47,7 +47,7 @@ public class GameCollection implements Serializable {
 	/**
 	 * Constructor for GameCollection
 	 */
-	public GameCollection(){
+	public GameCollection() {
 		
 		this.games = new ArrayList<>();
 	}
@@ -59,7 +59,7 @@ public class GameCollection implements Serializable {
 	 * add a new game
 	 * @param game game for file or saved game
 	 */
-	public void addgame(GameInfo game){
+	public void addgame(GameInfo game) {
 		
 		games.add(game);
 	}
@@ -68,204 +68,200 @@ public class GameCollection implements Serializable {
 	 * getter for game 
 	 * @return arrayList of all games
 	 */
-	  public ArrayList<GameInfo> getGames() {
-	        return games;
-	    }
+    public ArrayList<GameInfo> getGames() {
+        return games;
+    }
 	
-	  /**
-	   * find a game index base on the game name
-	   * @param gameName game name
-	   * @return game index
-	   */
-	  public int findGameInCollection(String gameName) { // based on map name
-	        int index = 0;
-	        for(int i = 0; i < games.size(); i++){
-	            if(gameName.equalsIgnoreCase(games.get(i).getGameName())){
-	                index = i;
-	                break;
-	            }
-	        }
-	        return index;
-	    }
+    /**
+    * find a game index base on the game name
+    * @param gameName game name
+    * @return game index
+    */
+    public int findGameInCollection(String gameName) { // based on map name
+        int index = 0;
+        for(int i = 0; i < games.size(); i++) {
+            if(gameName.equalsIgnoreCase(games.get(i).getGameName())) {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
 	  
 	  
-	  /**
-	   * Store all saved games info in xml file 
-	   * @throws FileNotFoundException file not found exception
-	   */
-		public void saveGame() throws FileNotFoundException{
-			
-			try{
-				PrintWriter out;
-				File selectedFile = new File("JSON_FILE2.xml");
-				FileOutputStream stream = new FileOutputStream(selectedFile); 
-				out = new PrintWriter( stream );
-				out.println("<?xml version=\"1.0\"?>");
-				out.println("<svaeGame version=\"1.0\">");
-             
-				for (int i = 0; i < games.size(); i++) {
-					out.println("<Game>");
-					GameInfo jsongames =games.get(i);
-			        for (Map.Entry<Integer, Tower> entry : jsongames.getTowerCollection().entrySet()) {
-			        	 Tower tower =entry.getValue();
-			        	 out.println("<Tower type='" + tower.getClass().getSimpleName() + "' index='" +
-			        			 	entry.getKey() + "' level='" + tower.getLevel() + "' strategy='" +
-			        			 	tower.getTowerShootingBehavior().getShootingStrategy().getClass().getSimpleName() + "' range='" + 
-					        	    tower.getRange() + "' x='" + tower.getPosition().getX() + "' y='" + tower.getPosition().getY()  + "' />");
-			        } 
-			        
-			        for (Log gameLogInfo : jsongames.getLogList()) {
-			        	 out.println("<Log currentTime='" + gameLogInfo.getCurrentTime() + "' content='" +
-			        			 	gameLogInfo.getContent() + "' id='" + gameLogInfo.getId()+ "' logType='" +
-			        			 	gameLogInfo.getWho().toString() + "' />");
-					}
-			        
-			        out.println("<WaveNumber>" + jsongames.getWaveNum() + "</WaveNumber>");
-			        out.println("<MapName>" + jsongames.getMapName()+ "</MapName>");
-			        out.println("<Coins>" + jsongames.getCoins() + "</Coins>");
-			        out.println("<Balance>"  + jsongames.getGold() +"</Balance>");
-			        out.println("<GameName>" + jsongames.getGameName() + "</GameName>");
-			        out.println("</Game>");
-					}
-			
-					out.println("</svaeGame>");
-					out.close();
-			}catch(Exception e) {
-				System.out.println("Cannot Write To File ");
-			}
-	}
+    /**
+    * Store all saved games info in xml file 
+    * @throws FileNotFoundException file not found exception
+    */
+    public void saveGame() throws FileNotFoundException{
+    	
+    	try {
+    		PrintWriter out;
+    		File selectedFile = new File("JSON_FILE2.xml");
+    		FileOutputStream stream = new FileOutputStream(selectedFile); 
+    		out = new PrintWriter( stream );
+    		out.println("<?xml version=\"1.0\"?>");
+    		out.println("<svaeGame version=\"1.0\">");
+         
+    		for (int i = 0; i < games.size(); i++) {
+    			out.println("<Game>");
+    			GameInfo jsongames =games.get(i);
+    	        for (Map.Entry<Integer, Tower> entry : jsongames.getTowerCollection().entrySet()) {
+    	        	 Tower tower =entry.getValue();
+    	        	 out.println("<Tower type='" + tower.getClass().getSimpleName() + "' index='" +
+    	        			 	entry.getKey() + "' level='" + tower.getLevel() + "' strategy='" +
+    	        			 	tower.getTowerShootingBehavior().getShootingStrategy().getClass().getSimpleName() + "' range='" + 
+    			        	    tower.getRange() + "' x='" + tower.getPosition().getX() + "' y='" + tower.getPosition().getY()  + "' />");
+    	        } 
+    	        
+    	        for (Log gameLogInfo : jsongames.getLogList()) {
+    	        	 out.println("<Log currentTime='" + gameLogInfo.getCurrentTime() + "' content='" +
+    	        			 	gameLogInfo.getContent() + "' id='" + gameLogInfo.getId()+ "' logType='" +
+    	        			 	gameLogInfo.getWho().toString() + "' />");
+    			}
+    	        
+    	        out.println("<WaveNumber>" + jsongames.getWaveNum() + "</WaveNumber>");
+    	        out.println("<MapName>" + jsongames.getMapName()+ "</MapName>");
+    	        out.println("<Coins>" + jsongames.getCoins() + "</Coins>");
+    	        out.println("<Balance>"  + jsongames.getGold() +"</Balance>");
+    	        out.println("<GameName>" + jsongames.getGameName() + "</GameName>");
+    	        out.println("</Game>");
+    			}
+    	
+    			out.println("</svaeGame>");
+    			out.close();
+    	} catch (Exception e) {
+    		System.out.println("Cannot Write To File ");
+    	}
+    }
 		
-		/**
-		 * Read game info from xml file 
-		 * @throws Exception file exception
-		 */
-		public void loadGame() throws Exception{
-			
-          	HashMap<Integer,Tower> towersCollection = new HashMap<Integer,Tower> ();
-          	ArrayList<Log> gameLog= new ArrayList<>();
-        	double balance = 0;
-        	String gameName = "" ;
-			String mapName = "" ;
-			int waveNum = 0;
-			int coins = 0;
-			
-			try{
-			 Document xmldoc;
-			 DocumentBuilder docReader = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-             xmldoc = docReader.parse("JSON_FILE2.xml");
-             Element rootElement = xmldoc.getDocumentElement();
-             if ( ! rootElement.getNodeName().equals("svaeGame") )
-            	 throw new Exception("File is not a svaeGame file.");
-                    NodeList nodes = rootElement.getChildNodes();
-                    for (int i = 0; i < nodes.getLength(); i++){
-                        if (nodes.item(i) instanceof Element) {
-                            Element element = (Element)nodes.item(i);
-                            if (element.getTagName().equals("Game")) {
-                            	NodeList curveNodesGame = element.getChildNodes();
-                            	 for (int j = 0; j < curveNodesGame.getLength(); j++) {
-                                     if (curveNodesGame.item(j) instanceof Element) {
-                                         Element curveOfGameElement = (Element)curveNodesGame.item(j);
-                                         if (curveOfGameElement.getTagName().equals("GameName")) {
-                                        	 gameName = curveOfGameElement.getTextContent();
-                                         }else if (curveOfGameElement.getTagName().equals("MapName")) { 
-                                        	 mapName =curveOfGameElement.getTextContent();
-                                         }else if(curveOfGameElement.getTagName().equals("WaveNumber")) {
-                                        	  waveNum = Integer.parseInt(curveOfGameElement.getTextContent());
-                                         }else if(curveOfGameElement.getTagName().equals("Coins")){
-                                        	 coins = Integer.parseInt(curveOfGameElement.getTextContent());
-                                         }else if(curveOfGameElement.getTagName().equals("Balance")){
-                                        	 balance = Double.parseDouble(curveOfGameElement.getTextContent());
-                                         }else if(curveOfGameElement.getTagName().equals("Log")){
-                                        	    String currentTime = curveOfGameElement.getAttribute("currentTime");
-                                        	    String content = curveOfGameElement.getAttribute("content");
-                                        	    String who = curveOfGameElement.getAttribute("logType");
-                                        	    int id = Integer.parseInt(curveOfGameElement.getAttribute("id"));
-                                        	    LogType whoIs = null;
-                                                switch(who){
-                                                	case "Game":
-                                                		whoIs = LogType.Game;
-                                                		break;
-                                                	case "Map":
-                                                		whoIs = LogType.Map;
-                                                		break;
-                                                	case "Tower":
-                                                		whoIs = LogType.Tower;
-                                                		break;
-                                                	case "Wave":
-                                                		whoIs = LogType.Wave;
-                                                		break;
-                                                	}
-                                                
-                                        	    if(! who.equals("Tower")){
-                                        	    	Log logNotTower = new Log(whoIs , content); 
-                                        	    	gameLog.add(logNotTower);
-                                        	    } else {
-                                        	    	Log logTower = new Log(whoIs ,id, content); 
-                                        	    	gameLog.add(logTower);
-                                        	    }
-                                        	    	
-                                         }else if(curveOfGameElement.getTagName().equals("Tower")){
-                                        	 String towerType = curveOfGameElement.getAttribute("type");
-                                        	 String towerStrategy = curveOfGameElement.getAttribute("Strategy");
-                                        	 int range =  Integer.parseInt(curveOfGameElement.getAttribute("range"));
-                                        	 int posX = Integer.parseInt(curveOfGameElement.getAttribute("x"));
-                                        	 int posY = Integer.parseInt(curveOfGameElement.getAttribute("y"));
-                                        	 int index = Integer.parseInt(curveOfGameElement.getAttribute("index"));
-                                        	 int level = Integer.parseInt(curveOfGameElement.getAttribute("level"));
-                                        	 Tower tower = null ;
-                                        	  switch(towerType){
-                                              case "BurningTower":
-                                                   tower = TowerFactory.sharedInstance().getTower(TowerType.BurningTower1);
-                                                   break;
-                                               case "IceTower":
-                                                   tower = TowerFactory.sharedInstance().getTower(TowerType.IceTower1);
-                                                   break;
-                                                case "SplashTower":
-                                                    tower = TowerFactory.sharedInstance().getTower(TowerType.SplashTower1);
-                                                    break;	 
-                                                        	 }
-                                        	
-                                        	 switch(towerStrategy){
-                                        	 	case "TargetBasedOnNearest":
-                                        	 				tower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnNearest());
-                                        	 				break;
-                                                case "TargetBasedOnStrongest":
-                                                	tower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnStrongest());
-                                                	break;
-                                                case "TargetBasedOnWeakest":
-                                                	tower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnWeakest());
-                                                	break;
-                                                case "TowerBasedOnClosestToTower":
-                                                	tower.getTowerShootingBehavior().setShootingStrategy(new TowerBasedOnClosestToTower());
-                                                	break;	 	 
-                                                          }
-                     
-                                            tower.setPosition(new Position(posX,posY));
-                                            tower.setLevel(level);
-                                            towersCollection.put(index, tower);     
-                                                    	
-                                        	 }
-                                                          
-                                                             
-                                        }
-                                     
-                            	 }
-                            	 GameInfo gameInfo = new GameInfo(towersCollection, gameLog , balance,coins,waveNum,gameName,mapName );
-                            	 towersCollection = new HashMap<Integer,Tower> ();
-                            	 gameLog = new ArrayList<>();
-                                 games.add(gameInfo);
-                           }
-                      }
-                        
+	/**
+	 * Read game info from xml file 
+	 * @throws Exception file exception
+	 */
+	public void loadGame() throws Exception{
 		
-                 }
-             } catch(Exception e){
-            	 System.out.println("Cannot Read From File");
-           }
-	}
+      	HashMap<Integer,Tower> towersCollection = new HashMap<Integer,Tower> ();
+      	ArrayList<Log> gameLog= new ArrayList<>();
+    	double balance = 0;
+    	String gameName = "" ;
+		String mapName = "" ;
+		int waveNum = 0;
+		int coins = 0;
 		
-	
-}
+		try { 
+            Document xmldoc;
+            DocumentBuilder docReader = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            xmldoc = docReader.parse("JSON_FILE2.xml");
+            Element rootElement = xmldoc.getDocumentElement();
 
-                                                    	
-                      
+            if ( ! rootElement.getNodeName().equals("svaeGame") ) {
+                throw new Exception("File is not a svaeGame file.");   
+            }
+        	 
+            NodeList nodes = rootElement.getChildNodes();
+            for (int i = 0; i < nodes.getLength(); i++) {
+                if (nodes.item(i) instanceof Element) {
+                    Element element = (Element)nodes.item(i);
+
+                    if (element.getTagName().equals("Game")) {
+                    	NodeList curveNodesGame = element.getChildNodes();
+                	    for (int j = 0; j < curveNodesGame.getLength(); j++) {
+                            if (curveNodesGame.item(j) instanceof Element) {
+                                Element curveOfGameElement = (Element)curveNodesGame.item(j);
+                                if (curveOfGameElement.getTagName().equals("GameName")) {
+                                    gameName = curveOfGameElement.getTextContent();
+                                } else if (curveOfGameElement.getTagName().equals("MapName")) { 
+                                	 mapName =curveOfGameElement.getTextContent();
+                                } else if(curveOfGameElement.getTagName().equals("WaveNumber")) {
+                                	  waveNum = Integer.parseInt(curveOfGameElement.getTextContent());
+                                } else if(curveOfGameElement.getTagName().equals("Coins")) {
+                                	 coins = Integer.parseInt(curveOfGameElement.getTextContent());
+                                } else if(curveOfGameElement.getTagName().equals("Balance")) {
+                                	 balance = Double.parseDouble(curveOfGameElement.getTextContent());
+                                } else if(curveOfGameElement.getTagName().equals("Log")) {
+                            	    String currentTime = curveOfGameElement.getAttribute("currentTime");
+                            	    String content = curveOfGameElement.getAttribute("content");
+                            	    String who = curveOfGameElement.getAttribute("logType");
+                            	    int id = Integer.parseInt(curveOfGameElement.getAttribute("id"));
+                            	    LogType whoIs = null;
+
+                                    switch (who) {
+                                    	case "Game" :
+                                    		whoIs = LogType.Game;
+                                    		break;
+                                    	case "Map" :
+                                    		whoIs = LogType.Map;
+                                    		break;
+                                    	case "Tower" :
+                                    		whoIs = LogType.Tower;
+                                    		break;
+                                    	case "Wave" :
+                                    		whoIs = LogType.Wave;
+                                    		break;
+                                	}
+                                    
+                            	    if (! who.equals("Tower")) {
+                            	    	Log logNotTower = new Log(whoIs , content); 
+                            	    	gameLog.add(logNotTower);
+                            	    } else {
+                            	    	Log logTower = new Log(whoIs ,id, content); 
+                            	    	gameLog.add(logTower);
+                            	    }
+                                	    	
+                                } else if(curveOfGameElement.getTagName().equals("Tower")) {
+                                    String towerType = curveOfGameElement.getAttribute("type");
+                                    String towerStrategy = curveOfGameElement.getAttribute("Strategy");
+                                    int range =  Integer.parseInt(curveOfGameElement.getAttribute("range"));
+                                    int posX = Integer.parseInt(curveOfGameElement.getAttribute("x"));
+                                    int posY = Integer.parseInt(curveOfGameElement.getAttribute("y"));
+                                    int index = Integer.parseInt(curveOfGameElement.getAttribute("index"));
+                                    int level = Integer.parseInt(curveOfGameElement.getAttribute("level"));
+                                    Tower tower = null ;
+
+                                    switch (towerType) {
+                                        case "BurningTower":
+                                           tower = TowerFactory.sharedInstance().getTower(TowerType.BurningTower1);
+                                           break;
+                                        case "IceTower":
+                                           tower = TowerFactory.sharedInstance().getTower(TowerType.IceTower1);
+                                           break;
+                                        case "SplashTower":
+                                            tower = TowerFactory.sharedInstance().getTower(TowerType.SplashTower1);
+                                            break;	 
+                                    }
+                                	
+                                	switch (towerStrategy) {
+                                	 	case "TargetBasedOnNearest":
+                                            tower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnNearest());
+                                            break;
+                                        case "TargetBasedOnStrongest":
+                                        	tower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnStrongest());
+                                        	break;
+                                        case "TargetBasedOnWeakest":
+                                        	tower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnWeakest());
+                                        	break;
+                                        case "TargetBasedOnClosestToTower":
+                                        	tower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnClosestToTower());
+                                        	break;	 	 
+                                    }
+             
+                                    tower.setPosition(new Position(posX,posY));
+                                    tower.setLevel(level);
+                                    towersCollection.put(index, tower);     
+                                            	
+                                }
+                            }
+                    	}
+                        GameInfo gameInfo = new GameInfo(towersCollection, gameLog , balance,coins,waveNum,gameName,mapName );
+                        towersCollection = new HashMap<Integer,Tower> ();
+                        gameLog = new ArrayList<>();
+                        games.add(gameInfo);
+                    }
+                }
+            }
+        } catch(Exception e) {
+        	System.out.println("Cannot Read From File");
+        }
+    }
+}

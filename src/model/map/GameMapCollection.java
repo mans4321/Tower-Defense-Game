@@ -23,7 +23,7 @@ public class GameMapCollection {
      * constructor
      * create a new arraylist
      */
-    public GameMapCollection(){
+    public GameMapCollection() {
         this.maps = new ArrayList<>();
     }
 
@@ -53,8 +53,8 @@ public class GameMapCollection {
 
     public int findGameMapInCollection(GameMap gameMap) { // based on map name
         int index = 0;
-        for(int i = 0; i < maps.size(); i++){
-            if(gameMap.getMapName().equals(maps.get(i).getMapName())){
+        for(int i = 0; i < maps.size(); i++) {
+            if(gameMap.getMapName().equals(maps.get(i).getMapName())) {
                 index = i;
                 break;
             }

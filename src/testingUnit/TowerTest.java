@@ -39,7 +39,7 @@ public class TowerTest {
      * setting the critters to test tower strategies
      */
     @Before
-    public void setValues(){
+    public void setValues() {
         
         crriter1 = new Critter(CritterType.CritterA);
         crriter2 = new Critter(CritterType.CritterA);

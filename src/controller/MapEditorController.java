@@ -42,7 +42,7 @@ public class MapEditorController {
         mapEditorView.topView.widthList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() instanceof JComboBox){
+                if (e.getSource() instanceof JComboBox) {
                     JComboBox cb = (JComboBox)(e.getSource());
                     String string = (String)cb.getSelectedItem();
                     gameMap.setmCols(Integer.parseInt(string));
@@ -53,10 +53,10 @@ public class MapEditorController {
         });
         mapEditorView.topView.heightList.setSelectedIndex(Helper.getIndexFrom(TopView.heightStrings, gameMap.getmRows()));
         mapEditorView.topView.heightList.setActionCommand("height");
-        mapEditorView.topView.heightList.addActionListener(new ActionListener(){
+        mapEditorView.topView.heightList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() instanceof JComboBox){
+                if (e.getSource() instanceof JComboBox) {
                     JComboBox cb = (JComboBox)(e.getSource());
                     String string = (String)cb.getSelectedItem();
                     gameMap.setmRows(Integer.parseInt(string));
@@ -77,9 +77,9 @@ public class MapEditorController {
 
                 if (e.getButton() == MouseEvent.BUTTON1) {
                     // Left Click to set maps path
-                    if(cellList.get(index) == CellState.Grass){
+                    if(cellList.get(index) == CellState.Grass) {
                         cellList.set(index, CellState.Path);
-                    } else if(cellList.get(index) == CellState.Path){
+                    } else if(cellList.get(index) == CellState.Path) {
                         cellList.set(index, CellState.Grass);
                     } else if(cellList.get(index) == CellState.Entrance || cellList.get(index) == CellState.Exit) {
                         cellList.set(index, CellState.Path);
@@ -121,7 +121,7 @@ public class MapEditorController {
             }
         });
 
-        mapEditorView.topView.discardButton.addActionListener(new ActionListener(){
+        mapEditorView.topView.discardButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int n = JOptionPane.showConfirmDialog(
@@ -129,7 +129,7 @@ public class MapEditorController {
                         "Are you Sure, all unsaved changes will be discarded!!",
                         "Warning",
                         JOptionPane.YES_NO_OPTION);
-                if(n == 0){ // User select "yes"
+                if(n == 0) { // User select "yes"
                     clearGameMap();
                     mapEditorView.setVisible(false);
                     new MainMenuController().mainMenuView.setVisible(true);
@@ -138,8 +138,8 @@ public class MapEditorController {
         });
     }
 
-    public void clearGameMap(){
-        for(int i = 0; i < gameMap.getCells().size(); i++){
+    public void clearGameMap() {
+        for(int i = 0; i < gameMap.getCells().size(); i++) {
             gameMap.getCells().set(i, CellState.Grass);
         }
         delegate.refreshMap(gameMap);
@@ -148,7 +148,7 @@ public class MapEditorController {
     public void saveDataToFile() {
         GameMapCollection mapCollection = GameMapCollection.loadMapsFromFile();
         boolean isReadyToCreate = true;
-        if(!gameMap.getMapName().equals("")){// old map
+        if(!gameMap.getMapName().equals("")) {// old map
             JOptionPane.showMessageDialog(mapEditorView, "Saved Successful!");
 
             //load -> edit -> save back
@@ -203,14 +203,6 @@ public class MapEditorController {
                 mapEditorView.setVisible(false);
                 new MainMenuController().mainMenuView.setVisible(true);
             } else JOptionPane.showMessageDialog(mapEditorView, "File name invalidate");
-
         }
-
-
-
     }
-
-
-
-
 }
