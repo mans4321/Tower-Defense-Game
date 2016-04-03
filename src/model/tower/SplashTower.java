@@ -22,7 +22,7 @@ public class SplashTower extends Tower {
 
     private void initTower() {
         this.specification = "<html>" + "Splash Tower" + "<br> Level: " + level + "<br> Good at attack all the critters in the shooting range</html>";
-        switch(level) {
+        switch (level) {
             case 1:
                 buyPrice = 40.0;
                 sellPrice = 20.0;
@@ -67,7 +67,7 @@ public class SplashTower extends Tower {
     public void setPosition(Position position) {
         this.position = position;
         towerShootingRangeView = new TowerShootingRangeView(position, range);
-        switch(level) {
+        switch (level) {
             case 1:
                 towerShootingView = new TowerShootingView(position, range, new ShootingEffect(Color.BLUE, 3));
                 break;

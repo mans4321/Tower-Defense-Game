@@ -79,7 +79,7 @@ public class IceTower extends Tower {
     public void setPosition(Position position) {
         this.position = position;
         towerShootingRangeView = new TowerShootingRangeView(position, range);
-        switch(level) {
+        switch (level) {
             case 1:
                 towerShootingView = new TowerShootingView(position, new ShootingEffect(java.awt.Color.WHITE, 3));
                 break;
