@@ -11,6 +11,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	IceTowerShootingBehaviorTest.class, 
 	SplashTowerShootingBehaviorTest.class,
 	TargetBasedOnWeakestTest.class,
+	TargetBasedOnStrongestTest.class,
 	
 	CoordinateConverter.class, 
 	CritterTest.class,

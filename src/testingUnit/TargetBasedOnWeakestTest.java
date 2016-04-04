@@ -16,7 +16,7 @@ import view.critter.CritterType;
 import view.map.Position;
 
 /**
- * Test burning tower shooting behavior
+ * Test target strategy, target on the weakest
  * @author LiChong
  * @since 4/4/2016
  * @version 1.2
@@ -49,12 +49,12 @@ public class TargetBasedOnWeakestTest {
 		TargetBasedOnWeakest targetBasedOnWeakest = new TargetBasedOnWeakest();
 		Critter weakestCritter = targetBasedOnWeakest.targetOnCritters(crittersInRange, new Position(10,10));
 		if(weakestCritter.getCritterType() == critter1.getCritterType()){
-		assertTrue("find the weakest", ((weakestCritter.getCurrentHealth() < critter2.getCurrentHealth())
+			assertTrue("find the weakest", ((weakestCritter.getCurrentHealth() < critter2.getCurrentHealth())
 						&&(weakestCritter.getCurrentHealth() < critter3.getCurrentHealth())));
 		}else if(weakestCritter.getCritterType() == critter2.getCritterType()){
 			assertTrue("find the weakest", ((weakestCritter.getCurrentHealth() < critter1.getCurrentHealth())
 					&&(weakestCritter.getCurrentHealth() < critter3.getCurrentHealth())));
-		}if(weakestCritter.getCritterType() == critter3.getCritterType()){
+		}else if(weakestCritter.getCritterType() == critter3.getCritterType()){
 			assertTrue("find the weakest", ((weakestCritter.getCurrentHealth() < critter1.getCurrentHealth())
 					&&(weakestCritter.getCurrentHealth() < critter2.getCurrentHealth())));
 	}
