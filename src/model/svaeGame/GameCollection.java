@@ -43,7 +43,7 @@ public class GameCollection implements Serializable {
 
 	private  ArrayList<GameInfo> games;
 	private Log Log;
-	
+	private  final String gamesFile ="Game_Info.xml";
 	/**
 	 * Constructor for GameCollection
 	 */
@@ -97,7 +97,7 @@ public class GameCollection implements Serializable {
     	
     	try {
     		PrintWriter out;
-    		File selectedFile = new File("Game_Info.xml");
+    		File selectedFile = new File(gamesFile);
     		FileOutputStream stream = new FileOutputStream(selectedFile); 
     		out = new PrintWriter( stream );
     		out.println("<?xml version=\"1.0\"?>");
@@ -152,7 +152,7 @@ public class GameCollection implements Serializable {
 		try { 
             Document xmldoc;
             DocumentBuilder docReader = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            xmldoc = docReader.parse("JSON_FILE2.xml");
+            xmldoc = docReader.parse(gamesFile);
             Element rootElement = xmldoc.getDocumentElement();
 
             if ( ! rootElement.getNodeName().equals("svaeGame") ) {
@@ -184,8 +184,8 @@ public class GameCollection implements Serializable {
                             	    String content = curveOfGameElement.getAttribute("content");
                             	    String who = curveOfGameElement.getAttribute("logType");
                             	    int id = Integer.parseInt(curveOfGameElement.getAttribute("id"));
+                            	    
                             	    LogType whoIs = null;
-
                                     switch (who) {
                                     	case "Game" :
                                     		whoIs = LogType.Game;
