@@ -66,7 +66,7 @@
 //        targetBasedOnWeakest = new TargetBasedOnWeakest();
 //
 //
-//        assertTrue(crriter2.equals(targetBasedOnWeakest.targetOnCritters(crittersInRange)) );
+//        assertTrue(crriter2.equals(targetBasedOnWeakest.targetOnCritters(crittersInRange, new Position(0,0))) );
 //    }
 //
 //    /**
@@ -77,7 +77,7 @@
 //
 //        targetBasedOnStrongest = new TargetBasedOnStrongest();
 //
-//        assertTrue(crriter1.equals(targetBasedOnStrongest.targetOnCritters(crittersInRange)));
+//        assertTrue(crriter1.equals(targetBasedOnStrongest.targetOnCritters(crittersInRange,new Position(0,0))));
 //    }
 //
 ////    /**

@@ -652,7 +652,7 @@ public class MainGameController {
 
             if (isReadyToCreate) {
             	GameInfo game = new GameInfo(towerCollection.getTowers() , LoggerCollection.getInstance().getLogList() ,account.getBalance(),coins,currentWaveNum,userGameName, gameMap.getMapName());
-               	gameCollection.addgame(game);
+               	gameCollection.addGame(game);
                	SavedGamesMaps mapCollection = SavedGamesMaps.loadMapsFromFile();
                	if (mapCollection == null) {
                		mapCollection = new  SavedGamesMaps();
