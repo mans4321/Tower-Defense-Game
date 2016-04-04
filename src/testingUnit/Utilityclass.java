@@ -19,9 +19,9 @@ import utility.Helper;
 public class Utilityclass {
 
     
-    private String[] arr;
-    Dimension imgSize;
-    Dimension boundary;
+    private String[] array;
+    Dimension imageSize;
+    Dimension imageBoundary;
     Dimension newDimension;
     
     /**
@@ -29,8 +29,7 @@ public class Utilityclass {
      */
     @Before
     public void setValues() {
-        
-        arr = new String[]{"11","21","41","31","1"};
+        array = new String[]{"11","21","41","31","1"};
     }
     
     /**
@@ -38,8 +37,7 @@ public class Utilityclass {
      */
     @Test
     public void maxValueTest() {
-        
-        assertEquals(41,Helper.getMaxValueFrom(arr));
+        assertEquals(41,Helper.getMaxValueFrom(array));
     }
     
     /**
@@ -47,11 +45,9 @@ public class Utilityclass {
      */
     @Test
     public void getScaledDimension() {
-        
-        imgSize = new Dimension(500, 100);
-        boundary = new Dimension(200, 200);
-        
-        newDimension = Helper.getScaledDimension(imgSize, boundary);
+        imageSize = new Dimension(500, 100);
+        imageBoundary = new Dimension(200, 200);
+        newDimension = Helper.getScaledDimension(imageSize, imageBoundary);
         assertTrue((int)newDimension.getWidth() == 200);
         assertTrue((int)newDimension.getHeight() == 40);
         
