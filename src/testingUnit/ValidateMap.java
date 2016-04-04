@@ -1,4 +1,4 @@
-package testingUnit;
+package testingunit;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -12,7 +12,6 @@ import org.junit.Test;
 import model.map.CellState;
 import model.map.GameMap;
 import model.map.mapvalidation.CirclePathValidator;
-import model.map.mapvalidation.ContinousPathValidator;
 import model.map.mapvalidation.EntranceExitInMiddlePathValidator;
 import model.map.mapvalidation.ExtraPathValidator;
 import model.map.mapvalidation.LengthValidator;

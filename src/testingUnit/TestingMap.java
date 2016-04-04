@@ -1,5 +1,5 @@
 
-package testingUnit;
+package testingunit;
 
 import static org.junit.Assert.assertTrue;
 

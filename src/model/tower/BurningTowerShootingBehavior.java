@@ -19,7 +19,6 @@ public class BurningTowerShootingBehavior extends TowerShootingBehavior {
         this.power = power;
         this.rateOfFire = rateOfFire;
         this.burningDamage = burningDamage;
-        
         crittersInRange = new HashSet<>();
         towerTimer = new Timer(1000 - rateOfFire, new ActionListener() {
             @Override

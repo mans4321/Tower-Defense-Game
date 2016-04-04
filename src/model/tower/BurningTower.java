@@ -1,5 +1,6 @@
 package model.tower;
 
+import model.tower.shootingstrategy.TowerShootingStrategy;
 import view.map.Position;
 import model.tower.shootingstrategy.TargetBasedOnWeakest;
 import view.tower.TowerShootingRangeView;
@@ -12,7 +13,7 @@ import view.tower.TowerView;
  */
 
 public class BurningTower extends Tower {
-
+    private TowerShootingStrategy baseShootingStrategy;
     public BurningTower(int level) {
         if (level <= MAX_LEVEL) {
             this.level = level;
@@ -44,11 +45,13 @@ public class BurningTower extends Tower {
                 sellPrice = 15.0;
                 towerType = TowerType.BurningTower2;
                 range = 150;
+                baseShootingStrategy = towerShootingBehavior.getShootingStrategy();
                 towerShootingBehavior = new BurningTowerShootingBehavior(
                     basePower * level, 
                     baseRateOfFire * level, 
                     baseBurningDamage * level
                 );
+                towerShootingBehavior.setShootingStrategy(baseShootingStrategy);
                 towerView = new TowerView(towerType);
                 break;
             case 3:
@@ -56,11 +59,13 @@ public class BurningTower extends Tower {
                 sellPrice = 20.0;
                 towerType = TowerType.BurningTower3;
                 range = 180;
+                baseShootingStrategy = towerShootingBehavior.getShootingStrategy();
                 towerShootingBehavior = new BurningTowerShootingBehavior(
                     basePower * level, 
                     baseRateOfFire * level, 
                     baseBurningDamage * (level + 1)
                 );
+                towerShootingBehavior.setShootingStrategy(baseShootingStrategy);
                 towerView = new TowerView(towerType);
                 break;
         }

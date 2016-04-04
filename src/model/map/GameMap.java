@@ -1,10 +1,7 @@
 package model.map;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * GameMap class for the Game
@@ -24,8 +21,6 @@ public class GameMap {
     private String createTime;
     private ArrayList<String> editedTimeList = new ArrayList<>();
     private ArrayList<Double> scoreList = new ArrayList<>();
-
-    private ArrayList<String> playedTimeList = new ArrayList<>();
     private HashMap<String, String> resultMap = new HashMap<>();
 
 
@@ -255,14 +250,6 @@ public class GameMap {
         this.editedTimeList.add(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(editedTime));
     }
 
-    public ArrayList<String> getPlayedTimeList() {
-        return playedTimeList;
-    }
-
-    public void addPlayedTime(Date playedTime) {
-        this.playedTimeList.add(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(playedTime));
-    }
-
     public ArrayList<Double> getScoreList() {
         return scoreList;
     }
@@ -300,9 +287,22 @@ public class GameMap {
         return editedTimeList.get(editedTimeList.size() - 1);
     }
 
-    public String getLastPlayedTime() {
-        return playedTimeList.get(playedTimeList.size() - 1);
+    public String getAllEditTime() {
+        StringBuilder sb = new StringBuilder();
+        for(String date: editedTimeList) {
+            sb.append(date + ", \n");
+        }
+        return sb.toString();
     }
+
+    public String getAllResults() {
+        StringBuilder sb = new StringBuilder();
+        for(Map.Entry<String, String> results : resultMap.entrySet()) {
+            sb.append(results.getKey().toString() + " : " + results.getValue().toString() + "\n");
+        }
+        return sb.toString();
+    }
+
 
 
 }
