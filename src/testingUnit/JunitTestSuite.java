@@ -11,7 +11,6 @@ import org.junit.runners.Suite.SuiteClasses;
 	CoordinateConverter.class, CritterTest.class,
 	EntranceExitPoint.class, 
 	IceTowerShootingBehaviorTest.class, 
-	SpecialDamageEffectsTest.class,
 	SplashTowerShootingBehaviorTest.class, 
 	TestingMap.class, 
 	TowerFactoryTest.class, 
