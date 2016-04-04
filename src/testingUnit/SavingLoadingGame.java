@@ -44,7 +44,7 @@ public class SavingLoadingGame {
 		  }
 
 	  @Test
-		public void testSaveGmae() {
+	  public void testSaveGmae() {
 		  game = new GameInfo(null , null ,1000,100,4,"GameTest", "GameTest");
 		  gameCollection.addGame(game);
 		  gameCollection.saveGame();
