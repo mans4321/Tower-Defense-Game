@@ -18,7 +18,7 @@ public class BurningTowerShootingBehavior extends TowerShootingBehavior {
     public BurningTowerShootingBehavior(int power, int rateOfFire, int burningDamage) {
         this.power = power;
         this.rateOfFire = rateOfFire;
-        this.burningDamage = burningDamage;
+        this.setBurningDamage(burningDamage);
         crittersInRange = new HashSet<>();
         towerTimer = new Timer(1000 - rateOfFire, new ActionListener() {
             @Override
@@ -45,7 +45,7 @@ public class BurningTowerShootingBehavior extends TowerShootingBehavior {
             critterUnderAttack.getSpecicalEffectTimer().start();
 
             Timer losingHealthTimer = new Timer(200, critterUnderAttack);
-            critterUnderAttack.setDamage(burningDamage);
+            critterUnderAttack.setDamage(getBurningDamage());
             critterUnderAttack.setInnerTimer(losingHealthTimer);
             critterUnderAttack.getInnerTimer().start();
 
@@ -56,4 +56,12 @@ public class BurningTowerShootingBehavior extends TowerShootingBehavior {
             crittersInRange.remove(critterUnderAttack);
         }
     }
+
+	public int getBurningDamage() {
+		return burningDamage;
+	}
+
+	public void setBurningDamage(int burningDamage) {
+		this.burningDamage = burningDamage;
+	}
 }

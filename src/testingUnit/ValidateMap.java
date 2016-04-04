@@ -1,4 +1,4 @@
-package testingunit;
+package testingUnit;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -12,6 +12,7 @@ import org.junit.Test;
 import model.map.CellState;
 import model.map.GameMap;
 import model.map.mapvalidation.CirclePathValidator;
+import model.map.mapvalidation.ContinousPathValidator;
 import model.map.mapvalidation.EntranceExitInMiddlePathValidator;
 import model.map.mapvalidation.ExtraPathValidator;
 import model.map.mapvalidation.LengthValidator;
@@ -48,7 +49,7 @@ public class ValidateMap {
         
         for (int i = 0; i < 30 * 15; i++) {
             cellLisTest.add(CellState.Grass );
-        }
+            }
     }
     
     /**
@@ -62,7 +63,7 @@ public class ValidateMap {
         checkMap = enteranceExitPoint.validate();
         assertFalse(checkMap);
         
-    }
+        }
     
     /**
      * test when only one  Enterer and Exist point.
@@ -154,7 +155,7 @@ public class ValidateMap {
     
         checkMap = lengthValidator.validate();
         assertFalse(checkMap);
-    }
+}
     
     /**
      * test if the path is not short.
@@ -181,7 +182,7 @@ public class ValidateMap {
     
         
         
-        for (int i= 0 ; i < 7 ; i++){
+        for(int i= 0 ; i < 7 ; i++){
         countMap.put(i, i);
         }
         CirclePathValidator circlePathValidator = new CirclePathValidator(countMap);     ////  ask 
@@ -189,7 +190,7 @@ public class ValidateMap {
         checkMap = circlePathValidator.validate();
          assertTrue(checkMap);
          
-    }
+}
 //    /**
 //     * test Continous Path
 //     */
@@ -197,7 +198,7 @@ public class ValidateMap {
 //    public void testContinousPathValidator() {
 //    
 //        
-//        for (int i= 0 ; i < 7 ; i++){
+//        for(int i= 0 ; i < 7 ; i++){
 //        countMap.put(i, i);
 //        }
 //        
@@ -318,7 +319,7 @@ public class ValidateMap {
         
         for (int i = 0; i < 20 ; i++) {
             cellLisTest.set(i , CellState.Path );
-        }
+    }
         
         cellLisTest.set(0,CellState.Entrance );
         cellLisTest.set(19,CellState.Exit );
@@ -329,7 +330,7 @@ public class ValidateMap {
         
         countMap = mapValidator.getCountMap();
         
-        boolean validate = new ExtraPathValidator(countMap,cellLisTest).validate();
+        boolean validate =new ExtraPathValidator(countMap,cellLisTest).validate();
         assertTrue(validate);
-    }    
+}    
 }
