@@ -1,6 +1,8 @@
 package model.gamelog;
 
 
+import model.map.GameMap;
+
 import java.util.ArrayList;
 
 /**
@@ -32,9 +34,13 @@ public class LoggerCollection {
 
     }
 
+    public void clearAllLogs() {
+        logList.clear();
+    }
+
     public String showAllLog() {
         StringBuilder stringBuilder = new StringBuilder();
-        for(Log log: logList) {
+        for (Log log: logList) {
             stringBuilder.append(log.toString());
         }
         return stringBuilder.toString();
@@ -42,8 +48,8 @@ public class LoggerCollection {
 
     public String showAllTowerLog() {
         StringBuilder stringBuilder = new StringBuilder();
-        for(Log log: logList) {
-            if(log.getWho() == LogType.Tower) {
+        for (Log log: logList) {
+            if (log.getWho() == LogType.Tower) {
                 stringBuilder.append(log.toString());
             }
         }
@@ -52,9 +58,9 @@ public class LoggerCollection {
 
     public String showTowerLogAtIndex(int index) {
         StringBuilder stringBuilder = new StringBuilder();
-        for(Log log: logList) {
-            if(log.getWho() == LogType.Tower) {
-                if(index == log.getId()) {
+        for (Log log: logList) {
+            if (log.getWho() == LogType.Tower) {
+                if (index == log.getId()) {
                     stringBuilder.append(log.toString());
                 }
             }
@@ -64,8 +70,8 @@ public class LoggerCollection {
 
     public String showWaveLog() {
         StringBuilder stringBuilder = new StringBuilder();
-        for(Log log: logList) {
-            if(log.getWho() == LogType.Wave) {
+        for (Log log: logList) {
+            if (log.getWho() == LogType.Wave) {
                 stringBuilder.append(log.toString());
             }
         }
@@ -74,14 +80,25 @@ public class LoggerCollection {
 
     public String showMapLog() {
         StringBuilder stringBuilder = new StringBuilder();
-        for(Log log: logList) {
-            if(log.getWho() == LogType.Map) {
+        for (Log log: logList) {
+            if (log.getWho() == LogType.Map) {
                 stringBuilder.append(log.toString());
             }
         }
         return stringBuilder.toString();
     }
 
+    public void addAllMapLog(GameMap gameMap) {
+        addLog(new Log(LogType.Map, "Player created this Map at: " + gameMap.getCreateTime()));
+
+        String editedTime = gameMap.getAllEditTime();
+        if(!editedTime.equals(""))
+            addLog(new Log(LogType.Map, "Player edited this Map at: \n" + editedTime));
 
 
+        String results = gameMap.getAllResults();
+        if(!results.equals(""))
+            addLog(new Log(LogType.Map, "The result of each play: \n" + results));
+
+    }
 }

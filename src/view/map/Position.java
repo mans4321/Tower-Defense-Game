@@ -7,7 +7,7 @@ public class Position {
     private int x;
     private int y;
 
-    public Position(int x, int y){
+    public Position(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -28,14 +28,13 @@ public class Position {
         this.y = y;
     }
 
-    public int distanceTo(Position p){
+    public int distanceTo(Position p) {
         int dx = p.x - this.x;
         int dy = p.y - this.y;
         return (int) Math.sqrt(dx * dx + dy * dy);
     }
 
-    public Position getCenterPosition(){
+    public Position getCenterPosition() {
         return new Position(x + Drawing.CELL_SIZE / 2, y + Drawing.CELL_SIZE / 2);
     }
-
 }

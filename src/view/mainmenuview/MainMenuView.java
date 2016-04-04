@@ -12,7 +12,7 @@ public class MainMenuView extends JFrame {
 
     private final static int WINDOW_WIDTH = 400;
     private final static int WINDOW_HEIGHT = 222;
-    private final String MENU_TITLE = "Defence of the Tower";
+    private final String MENU_TITLE = "Defense of the Tower";
     public JButton editorButton;
     public JButton startGameButton;
     public JButton loadGame;
@@ -35,7 +35,7 @@ public class MainMenuView extends JFrame {
         this.setResizable(false);
         this.pack();
         this.setLocationRelativeTo(null);
-        editorButton = new JButton("Map Editor");
+        editorButton = new JButton("Create New Map");
         startGameButton = new JButton("Start Game");
         loadGame = new JButton("Load Game");
         Container c = this.getContentPane();

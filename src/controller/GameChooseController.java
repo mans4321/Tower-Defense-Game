@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-import model.svaeGame.GameCollection;
+import model.savegame.GameCollection;
 import view.mapchooseview.GameChooseView;
 
 /**
@@ -22,7 +22,7 @@ public class GameChooseController {
     
     GameCollection gameCollection;
     
-	public GameChooseController(){
+	public GameChooseController() {
 		
 		listModel = new DefaultListModel();
 		gameCollection = new GameCollection();
@@ -35,7 +35,7 @@ public class GameChooseController {
 		}
 		
 		int size = gameCollection.getGames().size();
-		if(size > 0){
+		if (size > 0) {
 			
 			for (int i = 0; i < size; i++) {
 				listModel.addElement(gameCollection.getGames().get(i).getGameName());
@@ -55,8 +55,7 @@ public class GameChooseController {
 				}
 			});
 
-		}
-		else {
+		} else {
 			JOptionPane.showMessageDialog(gameChooseView, "There is no Games please play and save");
 			new MainMenuController().mainMenuView.setVisible(true);
 		}

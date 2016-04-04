@@ -51,9 +51,6 @@ public class CritterTest {
 	@Test
 	public void testBuildingCritter() {
 
-
-
-
 		sizeBeforAddingCritterWave= critterCollection.getCritters().size();
 
 		new WaveBuilder(1).critterA(10);

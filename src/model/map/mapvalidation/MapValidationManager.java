@@ -215,7 +215,7 @@ public class MapValidationManager {
     }
     /*
 	public int getCountEntranceOrExit() {
-		for(int i=0;i<cellList.size();i++) {
+		for (int i=0;i<cellList.size();i++) {
 			if (cellList.get(i) == CellState.ENTRANCE) numberOfEntrance++;
 			if (cellList.get(i) == CellState.EXIT) numberOfExit++;
 		}

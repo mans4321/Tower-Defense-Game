@@ -15,7 +15,7 @@ public class TowerFactory {
 
     private TowerFactory() {}
 
-    public Tower getTower(TowerType name){
+    public Tower getTower(TowerType name) {
         switch (name) {
             case BurningTower1:
                 return new BurningTower(1);
@@ -39,6 +39,4 @@ public class TowerFactory {
                 return null;
         }
     }
-
-
 }

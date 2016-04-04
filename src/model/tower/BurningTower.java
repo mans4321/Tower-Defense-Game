@@ -1,5 +1,6 @@
 package model.tower;
 
+import model.tower.shootingstrategy.TowerShootingStrategy;
 import view.map.Position;
 import model.tower.shootingstrategy.TargetBasedOnWeakest;
 import view.tower.TowerShootingRangeView;
@@ -12,23 +13,31 @@ import view.tower.TowerView;
  */
 
 public class BurningTower extends Tower {
-
+    private TowerShootingStrategy baseShootingStrategy;
     public BurningTower(int level) {
-        if(level <= MAX_LEVEL) {
+        if (level <= MAX_LEVEL) {
             this.level = level;
             initTower();
         }
     }
 
-    private void initTower(){
+    private void initTower() {
         this.specification = "<html>" + "Burning Tower" + "<br> Level: " + level + "<br> Good at attack normal creature</html>";
-        switch(level){
+        int basePower = 5;
+        int baseRateOfFire = 100;
+        int baseBurningDamage = 5;
+        
+        switch (level) {
             case 1:
                 buyPrice = 20.0;
                 sellPrice = 10.0;
                 towerType = TowerType.BurningTower1;
                 range = 120;
-                towerShootingBehavior = new BurningTowerShootingBehavior(5, 100, 5);
+                towerShootingBehavior = new BurningTowerShootingBehavior(
+                    basePower, 
+                    baseRateOfFire, 
+                    baseBurningDamage
+                );
                 towerView = new TowerView(towerType);
                 break;
             case 2:
@@ -36,7 +45,13 @@ public class BurningTower extends Tower {
                 sellPrice = 15.0;
                 towerType = TowerType.BurningTower2;
                 range = 150;
-                towerShootingBehavior = new BurningTowerShootingBehavior(10, 200, 10);
+                baseShootingStrategy = towerShootingBehavior.getShootingStrategy();
+                towerShootingBehavior = new BurningTowerShootingBehavior(
+                    basePower * level, 
+                    baseRateOfFire * level, 
+                    baseBurningDamage * level
+                );
+                towerShootingBehavior.setShootingStrategy(baseShootingStrategy);
                 towerView = new TowerView(towerType);
                 break;
             case 3:
@@ -44,7 +59,13 @@ public class BurningTower extends Tower {
                 sellPrice = 20.0;
                 towerType = TowerType.BurningTower3;
                 range = 180;
-                towerShootingBehavior = new BurningTowerShootingBehavior(15, 300, 20);
+                baseShootingStrategy = towerShootingBehavior.getShootingStrategy();
+                towerShootingBehavior = new BurningTowerShootingBehavior(
+                    basePower * level, 
+                    baseRateOfFire * level, 
+                    baseBurningDamage * (level + 1)
+                );
+                towerShootingBehavior.setShootingStrategy(baseShootingStrategy);
                 towerView = new TowerView(towerType);
                 break;
         }
@@ -62,7 +83,7 @@ public class BurningTower extends Tower {
     public void setPosition(Position position) {
         this.position = position;
         towerShootingRangeView = new TowerShootingRangeView(position, range);
-        switch(level){
+        switch (level) {
             case 1:
                 towerShootingView = new TowerShootingView(position, new ShootingEffect(java.awt.Color.RED, 3));
                 break;
@@ -73,7 +94,9 @@ public class BurningTower extends Tower {
                 towerShootingView = new TowerShootingView(position, new ShootingEffect(java.awt.Color.RED, 5));
                 break;
         }
+        
         towerShootingBehavior.setTowerDidShotDelegate(towerShootingView);
+        towerShootingBehavior.setTowerPosition(this.getPosition());
     }
 
     @Override

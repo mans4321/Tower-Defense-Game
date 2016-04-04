@@ -28,6 +28,7 @@ public class MapChooseView extends BaseWindowView {
         list = new JList<>(listModel);
         list.setSelectedIndex(0);
         pane = new JScrollPane(list);
+
         setLayout(new BorderLayout());
         add(pane, BorderLayout.PAGE_START);
         add(editMapButton, BorderLayout.LINE_START);

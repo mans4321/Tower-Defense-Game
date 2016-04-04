@@ -1,5 +1,5 @@
 package model.tower;
-import model.tower.shootingstrategy.TargetBasedOnWeakest;
+import model.tower.shootingstrategy.TowerShootingStrategy;
 import view.map.Position;
 import view.tower.TowerShootingRangeView;
 import view.tower.TowerShootingView;
@@ -12,23 +12,29 @@ import view.tower.TowerView;
  */
 // Freezing the critter for a time (have a higher priority to poison tower)
 public class IceTower extends Tower {
-
-    public IceTower(int level){
-        if(level <= MAX_LEVEL) {
+    private TowerShootingStrategy baseShootingStrategy;
+    public IceTower(int level) {
+        if (level <= MAX_LEVEL) {
             this.level = level;
             initTower();
         }
     }
 
-    private void initTower(){
+    private void initTower() {
         this.specification = "<html>" + "Ice Tower" + "<br> Level: " + level + "<br> Good at attack fast creatures with its freezing effect</html>";
-        switch(level){
+        int baseFrozenTime = 1000;
+        int baseRateOfFire = 10;
+
+        switch (level) {
             case 1:
                 buyPrice = 30.0;
                 sellPrice = 15.0;
                 towerType = TowerType.IceTower1;
                 range = 80;
-                towerShootingBehavior = new IceTowerShootingBehavior(1000, 10);
+                towerShootingBehavior = new IceTowerShootingBehavior(
+                    baseFrozenTime,
+                    baseRateOfFire
+                );
                 towerView = new TowerView(towerType);
                 break;
             case 2:
@@ -36,7 +42,12 @@ public class IceTower extends Tower {
                 sellPrice = 20.0;
                 towerType = TowerType.IceTower2;
                 range = 90;
-                towerShootingBehavior = new IceTowerShootingBehavior(1500, 20);
+                baseShootingStrategy = towerShootingBehavior.getShootingStrategy();
+                towerShootingBehavior = new IceTowerShootingBehavior(
+                    baseFrozenTime * Double.valueOf(level * 0.75).intValue(),
+                    baseRateOfFire * level
+                );
+                towerShootingBehavior.setShootingStrategy(baseShootingStrategy);
                 towerView = new TowerView(towerType);
                 break;
             case 3:
@@ -44,7 +55,12 @@ public class IceTower extends Tower {
                 sellPrice = 25.0;
                 towerType = TowerType.IceTower3;
                 range = 100;
-                towerShootingBehavior = new IceTowerShootingBehavior(2000, 30);
+                baseShootingStrategy = towerShootingBehavior.getShootingStrategy();
+                towerShootingBehavior = new IceTowerShootingBehavior(
+                    baseFrozenTime * Double.valueOf(level * 0.66).intValue(), 
+                    baseRateOfFire * level
+                );
+                towerShootingBehavior.setShootingStrategy(baseShootingStrategy);
                 towerView = new TowerView(towerType);
                 break;
         }
@@ -67,7 +83,7 @@ public class IceTower extends Tower {
     public void setPosition(Position position) {
         this.position = position;
         towerShootingRangeView = new TowerShootingRangeView(position, range);
-        switch(level){
+        switch (level) {
             case 1:
                 towerShootingView = new TowerShootingView(position, new ShootingEffect(java.awt.Color.WHITE, 3));
                 break;
@@ -79,6 +95,6 @@ public class IceTower extends Tower {
                 break;
         }
         towerShootingBehavior.setTowerDidShotDelegate(towerShootingView);
+        towerShootingBehavior.setTowerPosition(this.getPosition());
     }
-
 }

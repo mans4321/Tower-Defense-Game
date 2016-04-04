@@ -2,6 +2,8 @@ package model.tower;
 
 import model.critter.Critter;
 import model.tower.shootingstrategy.TowerShootingStrategy;
+import view.map.Position;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +18,7 @@ public class BurningTowerShootingBehavior extends TowerShootingBehavior {
     public BurningTowerShootingBehavior(int power, int rateOfFire, int burningDamage) {
         this.power = power;
         this.rateOfFire = rateOfFire;
-        this.burningDamage = burningDamage;
+        this.setBurningDamage(burningDamage);
         crittersInRange = new HashSet<>();
         towerTimer = new Timer(1000 - rateOfFire, new ActionListener() {
             @Override
@@ -25,10 +27,11 @@ public class BurningTowerShootingBehavior extends TowerShootingBehavior {
             }
         });
     }
-
+    
     public void shoot() {
-        Critter critterUnderAttack = shootingStrategy.targetOnCritters(crittersInRange);
-        if(critterUnderAttack != null && !critterUnderAttack.isKilled()) {
+        Critter critterUnderAttack = shootingStrategy.targetOnCritters(crittersInRange, this.getTowerPosition());
+
+        if (critterUnderAttack != null && !critterUnderAttack.isKilled()) {
             towerDidShotDelegate.towerDidShotAt(critterUnderAttack.getMovingBehavior().getCurrentPosition());
             int health = critterUnderAttack.getCurrentHealth();
             health -= power;
@@ -42,13 +45,23 @@ public class BurningTowerShootingBehavior extends TowerShootingBehavior {
             critterUnderAttack.getSpecicalEffectTimer().start();
 
             Timer losingHealthTimer = new Timer(200, critterUnderAttack);
-            critterUnderAttack.setDamage(burningDamage);
+            critterUnderAttack.setDamage(getBurningDamage());
             critterUnderAttack.setInnerTimer(losingHealthTimer);
             critterUnderAttack.getInnerTimer().start();
 
-        } else  towerDidShotDelegate.towerDidShotAt(null);
+        } else {
+            towerDidShotDelegate.towerDidShotAt(null);
+        }
         if (critterUnderAttack.getCurrentHealth() <= 0) {
             crittersInRange.remove(critterUnderAttack);
         }
     }
+
+	public int getBurningDamage() {
+		return burningDamage;
+	}
+
+	public void setBurningDamage(int burningDamage) {
+		this.burningDamage = burningDamage;
+	}
 }

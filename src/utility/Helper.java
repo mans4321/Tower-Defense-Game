@@ -18,11 +18,11 @@ public class Helper {
 	 */
     public static int getMaxValueFrom(String[] strArr) {
         ArrayList<Integer> arr = new ArrayList<>();
-        for (String s : strArr){
+        for (String s : strArr) {
             arr.add(Integer.parseInt(s));
         }
         int max = arr.get(0);
-        for(int i = 1; i < arr.size(); i++){
+        for (int i = 1; i < arr.size(); i++) {
             if (arr.get(i) > max)
                 max = arr.get(i);
         }
@@ -82,10 +82,4 @@ public class Helper {
 
     	return new Dimension(new_width, new_height);
     }
-
-
-
-
-
-
 }

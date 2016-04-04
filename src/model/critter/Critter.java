@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by yongpinggao on 3/13/16.
  */
-public class Critter implements ActionListener{
+public class Critter implements ActionListener {
 
     private CritterType critterType;
     private CritterView critterView;
@@ -40,7 +40,8 @@ public class Critter implements ActionListener{
     public void setDamage(int damage) {
         this.damage = damage;
     }
-
+//new add an constructor
+  //  public Critter(){}
     public Critter(CritterType critterType) {
         this.critterType = critterType;
         this.critterView = new CritterView(critterType);
@@ -94,7 +95,7 @@ public class Critter implements ActionListener{
 
     public void setKilled(boolean killed) {
         isKilled = killed;
-        if(killed) {
+        if (killed) {
             movingBehavior.getMovingTimer().stop();
         }
     }
@@ -163,12 +164,12 @@ public class Critter implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand() != null) {
-            if(e.getActionCommand().equals("ICE_TOWER")) {
+        if (e.getActionCommand() != null) {
+            if (e.getActionCommand().equals("ICE_TOWER")) {
                 movingBehavior.getMovingTimer().start();
                 specicalEffectTimer.stop();
             }
-            if(e.getActionCommand().equals("BURNING_TOWER")) {
+            if (e.getActionCommand().equals("BURNING_TOWER")) {
                 specicalEffectTimer.stop();
                 innerTimer.stop();
             }

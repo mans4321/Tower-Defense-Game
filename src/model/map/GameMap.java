@@ -1,10 +1,7 @@
 package model.map;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * GameMap class for the Game
@@ -24,8 +21,6 @@ public class GameMap {
     private String createTime;
     private ArrayList<String> editedTimeList = new ArrayList<>();
     private ArrayList<Double> scoreList = new ArrayList<>();
-
-    private ArrayList<String> playedTimeList = new ArrayList<>();
     private HashMap<String, String> resultMap = new HashMap<>();
 
 
@@ -50,7 +45,7 @@ public class GameMap {
         int mCols = 30;
         int mRows = 15;
         ArrayList<CellState> cells = new ArrayList<>();
-        for(int i = 0; i < mCols * mRows; i++){
+        for (int i = 0; i < mCols * mRows; i++) {
             cells.add(CellState.Grass);
         }
         String imageName = "";
@@ -140,7 +135,7 @@ public class GameMap {
         for (int i = 0; i < cells.size(); i++) {
             if (cells.get(i) == CellState.Grass) {
                 cells.set(i, CellState.ToPlaceTower);
-            } else if(cells.get(i) == CellState.Chosen) {
+            } else if (cells.get(i) == CellState.Chosen) {
                 cells.set(i, CellState.Tower);
             }
         }
@@ -149,7 +144,7 @@ public class GameMap {
     /**
      * change toPlaceTower state back to grass state
      */ 
-    public void setToGrassState(){
+    public void setToGrassState() {
         for (int i = 0; i < cells.size(); i++) {
             if (cells.get(i) == CellState.ToPlaceTower) {
                 cells.set(i, CellState.Grass);
@@ -161,7 +156,7 @@ public class GameMap {
      * toggle chosen state of cell
      * @param index the index of cells
      */
-    public void toggleChosenState(int index){
+    public void toggleChosenState(int index) {
 
         for (int i = 0; i < cells.size(); i++) {
             if (cells.get(i) == CellState.Chosen) {
@@ -203,7 +198,7 @@ public class GameMap {
      * find exit index of game map
      * @return
      */
-    public int findExitIndex(){
+    public int findExitIndex() {
         for (int i = 0; i < cells.size() ; i++) {
             if (cells.get(i) == CellState.Exit) { // Entrance -> indexEntrance
                 return i;
@@ -255,14 +250,6 @@ public class GameMap {
         this.editedTimeList.add(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(editedTime));
     }
 
-    public ArrayList<String> getPlayedTimeList() {
-        return playedTimeList;
-    }
-
-    public void addPlayedTime(Date playedTime) {
-        this.playedTimeList.add(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(playedTime));
-    }
-
     public ArrayList<Double> getScoreList() {
         return scoreList;
     }
@@ -277,12 +264,12 @@ public class GameMap {
     public ArrayList<Double> getFiveHighestScore() {
         int size = scoreList.size();
         ArrayList<Double> fiveHighestList = new ArrayList<>();
-        if(size <= 5) {
-            for(Double score: scoreList) {
+        if (size <= 5) {
+            for (Double score: scoreList) {
                 fiveHighestList.add(score);
             }
         } else {
-            for(int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
                 fiveHighestList.add(scoreList.get(i));
         }
         return fiveHighestList;
@@ -300,9 +287,22 @@ public class GameMap {
         return editedTimeList.get(editedTimeList.size() - 1);
     }
 
-    public String getLastPlayedTime() {
-        return playedTimeList.get(playedTimeList.size() - 1);
+    public String getAllEditTime() {
+        StringBuilder sb = new StringBuilder();
+        for(String date: editedTimeList) {
+            sb.append(date + ", \n");
+        }
+        return sb.toString();
     }
+
+    public String getAllResults() {
+        StringBuilder sb = new StringBuilder();
+        for(Map.Entry<String, String> results : resultMap.entrySet()) {
+            sb.append(results.getKey().toString() + " : " + results.getValue().toString() + "\n");
+        }
+        return sb.toString();
+    }
+
 
 
 }
