@@ -13,7 +13,8 @@ import model.savegame.GameInfo;
  * 
  * This test build on the assumption there is at last one saved game in the file 
  * @author m_lzahra
- *@version 4/4/2016
+ * @since 4/4/2016
+ * @version 1.0
  */
 public class SavingLoadingGame {
 
