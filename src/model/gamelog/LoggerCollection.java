@@ -1,6 +1,8 @@
 package model.gamelog;
 
 
+import model.map.GameMap;
+
 import java.util.ArrayList;
 
 /**
@@ -30,6 +32,10 @@ public class LoggerCollection {
 	public void addLog(Log log) {
         logList.add(log);
 
+    }
+
+    public void clearAllLogs() {
+        logList.clear();
     }
 
     public String showAllLog() {
@@ -80,5 +86,19 @@ public class LoggerCollection {
             }
         }
         return stringBuilder.toString();
+    }
+
+    public void addAllMapLog(GameMap gameMap) {
+        addLog(new Log(LogType.Map, "Player created this Map at: " + gameMap.getCreateTime()));
+
+        String editedTime = gameMap.getAllEditTime();
+        if(!editedTime.equals(""))
+            addLog(new Log(LogType.Map, "Player edited this Map at: \n" + editedTime));
+
+
+        String results = gameMap.getAllResults();
+        if(!results.equals(""))
+            addLog(new Log(LogType.Map, "The result of each play: \n" + results));
+
     }
 }

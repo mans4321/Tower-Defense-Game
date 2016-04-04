@@ -17,9 +17,9 @@ public class IceTowerShootingBehavior extends TowerShootingBehavior {
     private int frozenTime;
 
     public IceTowerShootingBehavior(int frozenTime, int rateOfFire) {
-        this.frozenTime = frozenTime;
+        this.setFrozenTime(frozenTime);
         this.rateOfFire = rateOfFire;
-       
+
         crittersInRange = new HashSet<>();
         towerTimer = new Timer(1000 - rateOfFire, new ActionListener() {
             @Override
@@ -36,7 +36,7 @@ public class IceTowerShootingBehavior extends TowerShootingBehavior {
             towerDidShotDelegate.towerDidShotAt(critterUnderAttack.getMovingBehavior().getCurrentPosition());
             critterUnderAttack.getMovingBehavior().getMovingTimer().stop();
             Timer frozenTimer = new Timer(0, critterUnderAttack);
-            frozenTimer.setInitialDelay(frozenTime);
+            frozenTimer.setInitialDelay(getFrozenTime());
             frozenTimer.setRepeats(false);
             frozenTimer.setActionCommand("ICE_TOWER");
             critterUnderAttack.setSpecicalEffectTimer(frozenTimer);
@@ -47,4 +47,12 @@ public class IceTowerShootingBehavior extends TowerShootingBehavior {
             crittersInRange.remove(critterUnderAttack);
         }
     }
+
+	public int getFrozenTime() {
+		return frozenTime;
+	}
+
+	public void setFrozenTime(int frozenTime) {
+		this.frozenTime = frozenTime;
+	}
 }

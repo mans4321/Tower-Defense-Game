@@ -22,10 +22,9 @@ import model.gamelog.LoggerCollection;
 import model.map.CellState;
 import model.map.GameMap;
 import model.map.GameMapCollection;
-import model.svaeGame.GameCollection;
-import model.svaeGame.GameInfo;
-import model.svaeGame.SavedGamesMaps;
-import model.svaeGame.GameInfo;
+import model.savegame.GameCollection;
+import model.savegame.GameInfo;
+import model.savegame.SavedGamesMaps;
 import model.tower.Tower;
 import model.tower.TowerCollection;
 import model.tower.TowerFactory;
@@ -99,12 +98,8 @@ public class MainGameController {
     private boolean loadGame = false;
 
     public MainGameController(GameMap gameMap) {
-
-      
-
-         this.gameMap = gameMap;
-
-        //initializeProtocol();
+        this.gameMap = gameMap;
+        LoggerCollection.getInstance().addAllMapLog(gameMap);
         initBankAccount();
         initializeProtocol();
         initPaintingTimers();
@@ -137,11 +132,11 @@ public class MainGameController {
    	 		gameMap.getCells().set(entry.getKey(), CellState.Tower);
    	 	}
 		
-		balance = gameInfo.getGold();
+		balance = gameInfo.getBalance();
         coins = gameInfo.getCoins();
         currentWaveNum = gameInfo.getWaveNum();
-        System.out.println(currentWaveNum);
-        gameName = gameInfo.getGameName(); 
+        gameName = gameInfo.getGameName();
+        LoggerCollection.getInstance().addAllMapLog(gameMap);
         LoggerCollection.getInstance().setLogList(gameInfo.getLogList());
         
         initBankAccount();
@@ -153,13 +148,12 @@ public class MainGameController {
         initFunctionalButtonsInTopPanel();
         initWaveTimers();
         initMapArea();
+        showHighScoreList();
         
     }
 
     private void initializeProtocol() {
     	
-        System.out.println("Highest score:" + gameMap.getFiveHighestScore());
-        
         mainGameView = new MainGameView();
         gameLogController = new GameLogController();
         drawingMapInGameDelegate = mainGameView.mapView.mapPanel;
@@ -225,6 +219,8 @@ public class MainGameController {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				saveGame();
+                LoggerCollection.getInstance().addLog(new Log(LogType.Map, "Player saved the game"));
+                gameShouldFinishedWithUserWin();
 			}
         }); 
     }
@@ -307,6 +303,7 @@ public class MainGameController {
 	                    		break;
 				        }
                         if(!oldStrategy.equals(strategy)) {
+                        	towerCollection.addTowerAtIndex(currentIndex, currentTower);
                             LoggerCollection.getInstance().addLog(new Log(LogType.Tower, currentIndex, "Player set a \"" + strategy + "\" strategy to " + currentTower.getTowerType() + " at position " + currentIndex));
                         }
                     }
@@ -453,9 +450,11 @@ public class MainGameController {
                     continue;
                 } else break;
             }
-            if (count == critterCollection.getCritters().size()) {
+            if (count == critterCollection.getCritters().size() && count != 0) {
+                LoggerCollection.getInstance().addLog(new Log(LogType.Wave, "Wave Preparation Phase..."));
                 mainGameView.topView.gameDataPanel.waveStartButton.setEnabled(true);
                 mainGameView.topView.gameDataPanel.saveGame.setEnabled(true);
+                critterCollection.clearAllCritters();
             }
         }
     }
@@ -472,6 +471,12 @@ public class MainGameController {
                 }
             }
         }
+    }
+
+    private void gameShouldFinishedWithUserWin() {
+        clearGame();
+        mainGameView.setVisible(false);
+        new MainMenuController().mainMenuView.setVisible(true);
     }
 
     private void gameShouldFinishedWithUserWin(boolean win) {
@@ -511,6 +516,10 @@ public class MainGameController {
         gameLogController.gameLogView.setVisible(false);
         gameLogController = null;
         currentTower = null;
+        currentCritterIndex = 0;
+        currentIndex = 0;
+        currentWaveNum = 0;
+        LoggerCollection.getInstance().clearAllLogs();
     }
 
     private void initWaveTimers() {
@@ -602,7 +611,7 @@ public class MainGameController {
             GameInfo game = new GameInfo(towerCollection.getTowers(),LoggerCollection.getInstance().getLogList() ,account.getBalance(),coins,currentWaveNum,gameName, gameMap.getMapName());
             gameCollection.getGames().set(gameCollection.findGameInCollection(gameName),game);
             try {
-            	gameCollection.saveGame();;
+            	gameCollection.saveGame();
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}

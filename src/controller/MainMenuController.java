@@ -59,7 +59,7 @@ public class MainMenuController {
 				
 				try {
                     mainMenuView.setVisible(false);
-					new GameChooseController();
+					new GameChooseController().gameChooseView.setVisible(true);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

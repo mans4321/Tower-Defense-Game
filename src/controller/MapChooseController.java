@@ -45,15 +45,8 @@ public class MapChooseController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mapChooseView.setVisible(false);
-
-                //load -> edit -> save back
                 GameMapCollection mapCollection = GameMapCollection.loadMapsFromFile();
                 GameMap gameMap = mapCollection.getMaps().get(mapChooseView.list.getSelectedIndex());
-                gameMap.addPlayedTime(new Date());
-                mapCollection.getMaps().set(mapCollection.findGameMapInCollection(gameMap), gameMap);
-                GameMapCollection.saveMapsToFile(mapCollection);
-                LoggerCollection.getInstance().addLog(new Log(LogType.Map, "Player played game using this Map at " + gameMap.getLastPlayedTime()));
-
                 new MainGameController(gameMap).mainGameView.setVisible(true);
             }
         });

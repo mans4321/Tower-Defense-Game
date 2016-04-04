@@ -40,7 +40,8 @@ public class Critter implements ActionListener {
     public void setDamage(int damage) {
         this.damage = damage;
     }
-
+//new add an constructor
+  //  public Critter(){}
     public Critter(CritterType critterType) {
         this.critterType = critterType;
         this.critterView = new CritterView(critterType);
