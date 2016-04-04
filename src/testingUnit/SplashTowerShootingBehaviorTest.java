@@ -57,7 +57,6 @@ public class SplashTowerShootingBehaviorTest {
 		int currentHealth1 = critter1.getCurrentHealth();
 		assertTrue("check health",(priorHealth-currentHealth) > 0);
 		assertEquals("check health",0,(priorHealth1-currentHealth1));
-	//	assertTrue("splashTimer works",critter.isKilled());
 	}
 
 	/**
