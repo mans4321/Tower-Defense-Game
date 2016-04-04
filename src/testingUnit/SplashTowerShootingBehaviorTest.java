@@ -7,7 +7,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import model.critter.Critter;
+import model.tower.BurningTower;
+import model.tower.BurningTowerShootingBehavior;
+import model.tower.SplashTower;
 import model.tower.SplashTowerShootingBehavior;
+import view.critter.CritterType;
 
 /**
  * Test burning tower shooting behavior
@@ -17,7 +22,10 @@ import model.tower.SplashTowerShootingBehavior;
  *
  */
 public class SplashTowerShootingBehaviorTest {
-
+	private SplashTower splashTower;
+	private SplashTowerShootingBehavior splashTowerShootingBehavior;
+	private Critter critter;
+	private Critter critter1;
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -30,6 +38,11 @@ public class SplashTowerShootingBehaviorTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		critter = new Critter(CritterType.CritterA);
+		critter1 = new Critter(CritterType.CritterA);
+		splashTower = new SplashTower(1);
+		splashTowerShootingBehavior = new SplashTowerShootingBehavior(10, 100);
+		splashTowerShootingBehavior.getCrittersInRange().add(critter);
 	}
 
 	/**
@@ -37,7 +50,14 @@ public class SplashTowerShootingBehaviorTest {
 	 */
 	@Test
 	public void testShoot() {
-		fail("Not yet implemented");
+		int priorHealth = critter.getCurrentHealth();
+		int priorHealth1 = critter1.getCurrentHealth();
+		splashTowerShootingBehavior.shoot();
+		int currentHealth = critter.getCurrentHealth();
+		int currentHealth1 = critter1.getCurrentHealth();
+		assertTrue("check health",(priorHealth-currentHealth) > 0);
+		assertEquals("check health",0,(priorHealth1-currentHealth1));
+	//	assertTrue("splashTimer works",critter.isKilled());
 	}
 
 	/**
