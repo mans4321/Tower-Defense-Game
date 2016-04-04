@@ -8,10 +8,13 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ 
 	Bank.class, 
 	BurningTowerShootingBehaviorTest.class,
-	CoordinateConverter.class, CritterTest.class,
-	EntranceExitPoint.class, 
 	IceTowerShootingBehaviorTest.class, 
-	SplashTowerShootingBehaviorTest.class, 
+	SplashTowerShootingBehaviorTest.class,
+	TargetBasedOnWeakestTest.class,
+	
+	CoordinateConverter.class, 
+	CritterTest.class,
+	EntranceExitPoint.class,  
 	TestingMap.class, 
 	TowerFactoryTest.class, 
 	Utilityclass.class,
