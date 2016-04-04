@@ -97,7 +97,7 @@ public class GameCollection implements Serializable {
     	
     	try {
     		PrintWriter out;
-    		File selectedFile = new File("JSON_FILE2.xml");
+    		File selectedFile = new File("Game_Info.xml");
     		FileOutputStream stream = new FileOutputStream(selectedFile); 
     		out = new PrintWriter( stream );
     		out.println("<?xml version=\"1.0\"?>");
@@ -105,8 +105,8 @@ public class GameCollection implements Serializable {
          
     		for (int i = 0; i < games.size(); i++) {
     			out.println("<Game>");
-    			GameInfo jsongames =games.get(i);
-    	        for (Map.Entry<Integer, Tower> entry : jsongames.getTowerCollection().entrySet()) {
+    			GameInfo game =games.get(i);
+    	        for (Map.Entry<Integer, Tower> entry : game.getTowerCollection().entrySet()) {
     	        	 Tower tower =entry.getValue();
     	        	 out.println("<Tower type='" + tower.getClass().getSimpleName() + "' index='" +
     	        			 	entry.getKey() + "' level='" + tower.getLevel() + "' strategy='" +
@@ -114,17 +114,17 @@ public class GameCollection implements Serializable {
     			        	    tower.getRange() + "' x='" + tower.getPosition().getX() + "' y='" + tower.getPosition().getY()  + "' />");
     	        } 
     	        
-    	        for (Log gameLogInfo : jsongames.getLogList()) {
+    	        for (Log gameLogInfo : game.getLogList()) {
     	        	 out.println("<Log currentTime='" + gameLogInfo.getCurrentTime() + "' content='" +
     	        			 	gameLogInfo.getContent() + "' id='" + gameLogInfo.getId()+ "' logType='" +
     	        			 	gameLogInfo.getWho().toString() + "' />");
     			}
     	        
-    	        out.println("<WaveNumber>" + jsongames.getWaveNum() + "</WaveNumber>");
-    	        out.println("<MapName>" + jsongames.getMapName()+ "</MapName>");
-    	        out.println("<Coins>" + jsongames.getCoins() + "</Coins>");
-    	        out.println("<Balance>"  + jsongames.getGold() +"</Balance>");
-    	        out.println("<GameName>" + jsongames.getGameName() + "</GameName>");
+    	        out.println("<WaveNumber>" + game.getWaveNum() + "</WaveNumber>");
+    	        out.println("<MapName>" + game.getMapName()+ "</MapName>");
+    	        out.println("<Coins>" + game.getCoins() + "</Coins>");
+    	        out.println("<Balance>"  + game.getBalance() +"</Balance>");
+    	        out.println("<GameName>" + game.getGameName() + "</GameName>");
     	        out.println("</Game>");
     			}
     	

@@ -93,14 +93,14 @@ public class GameInfo{
 	 * getter for player balance 
 	 * @return player balance 
 	 */
-	public double getGold() {
+	public double getBalance() {
 		return balance;
 	}
 	/**
 	 * setter for player blance 
 	 * @param balance player balance 
 	 */
-	public void setGold(double balance) {
+	public void setBalance(double balance) {
 		this.balance = balance;
 	}
 	/**

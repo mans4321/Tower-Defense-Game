@@ -137,7 +137,7 @@ public class MainGameController {
    	 		gameMap.getCells().set(entry.getKey(), CellState.Tower);
    	 	}
 		
-		balance = gameInfo.getGold();
+		balance = gameInfo.getBalance();
         coins = gameInfo.getCoins();
         currentWaveNum = gameInfo.getWaveNum();
         System.out.println(currentWaveNum);
