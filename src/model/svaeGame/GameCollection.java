@@ -211,7 +211,8 @@ public class GameCollection implements Serializable {
                                 	    	
                                 } else if (curveOfGameElement.getTagName().equals("Tower")) {
                                     String towerType = curveOfGameElement.getAttribute("type");
-                                    String towerStrategy = curveOfGameElement.getAttribute("Strategy");
+                                    String towerStrategy = curveOfGameElement.getAttribute("strategy");
+                                    
                                     int range =  Integer.parseInt(curveOfGameElement.getAttribute("range"));
                                     int posX = Integer.parseInt(curveOfGameElement.getAttribute("x"));
                                     int posY = Integer.parseInt(curveOfGameElement.getAttribute("y"));
@@ -230,6 +231,9 @@ public class GameCollection implements Serializable {
                                             tower = TowerFactory.sharedInstance().getTower(TowerType.SplashTower1);
                                             break;	 
                                     }
+                                    
+                                    tower.setPosition(new Position(posX,posY));
+                                    tower.setLevel(level);
                                 	
                                 	switch (towerStrategy) {
                                 	 	case "TargetBasedOnNearest":
@@ -243,11 +247,9 @@ public class GameCollection implements Serializable {
                                         	break;
                                         case "TargetBasedOnClosestToTower":
                                         	tower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnClosestToTower());
-                                        	break;	 	 
+                                        	break;
                                     }
-             
-                                    tower.setPosition(new Position(posX,posY));
-                                    tower.setLevel(level);
+                                	
                                     towersCollection.put(index, tower);     
                                             	
                                 }

@@ -307,6 +307,7 @@ public class MainGameController {
 	                    		break;
 				        }
                         if(!oldStrategy.equals(strategy)) {
+                        	towerCollection.addTowerAtIndex(currentIndex, currentTower);
                             LoggerCollection.getInstance().addLog(new Log(LogType.Tower, currentIndex, "Player set a \"" + strategy + "\" strategy to " + currentTower.getTowerType() + " at position " + currentIndex));
                         }
                     }
