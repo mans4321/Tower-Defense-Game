@@ -16,17 +16,15 @@ import model.bankaccount.BankAccount;
  */
 public class Bank {
 
-
     private BankAccount bankAccount;
-    private double  afterSetting;
-    private double beforeSetting;
+    private double  afterAddingBalance;
+    private double beforeAddingBalance;
     
     /**
      * setting values.
      */
     @Before 
     public void setValues() {
-        
         bankAccount = new BankAccount();
     }
     
@@ -35,33 +33,26 @@ public class Bank {
      */
     @Test
     public void testSetBalance() {
-        
-        beforeSetting = bankAccount.getBalance();
+    	beforeAddingBalance = bankAccount.getBalance();
         bankAccount.setBalance(100);
-        
-        afterSetting =  bankAccount.getBalance() ;
-    
-        assertTrue(beforeSetting < afterSetting );
-
+        afterAddingBalance =  bankAccount.getBalance() ;
+        assertTrue(beforeAddingBalance < afterAddingBalance );
     }
     
     @Test
     public void testdeposit() {
-        beforeSetting = bankAccount.getBalance();
+    	beforeAddingBalance = bankAccount.getBalance();
         bankAccount.deposit(100);
-        afterSetting =  bankAccount.getBalance() ;
-        assertTrue(beforeSetting < afterSetting );
+        afterAddingBalance =  bankAccount.getBalance() ;
+        assertTrue(beforeAddingBalance < afterAddingBalance );
     }
     
     @Test
-    public void testWithDraw() {
-        
+    public void testWithdraw() {
         bankAccount.setBalance(100);
-        beforeSetting = bankAccount.getBalance();
-        
+        beforeAddingBalance = bankAccount.getBalance();
         bankAccount.withDraw(20);
-        afterSetting =  bankAccount.getBalance() ;
-        
-        assertTrue(beforeSetting > afterSetting );
+        afterAddingBalance =  bankAccount.getBalance() ;
+        assertTrue(beforeAddingBalance > afterAddingBalance );
     }
 }

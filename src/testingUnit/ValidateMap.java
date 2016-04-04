@@ -12,7 +12,7 @@ import org.junit.Test;
 import model.map.CellState;
 import model.map.GameMap;
 import model.map.mapvalidation.CirclePathValidator;
-import model.map.mapvalidation.ContinousPathValidator;
+
 import model.map.mapvalidation.EntranceExitInMiddlePathValidator;
 import model.map.mapvalidation.ExtraPathValidator;
 import model.map.mapvalidation.LengthValidator;
@@ -29,26 +29,26 @@ import model.map.mapvalidation.SeperateEntranceAndExitValidator;
  */
 public class ValidateMap {
 
-    private ArrayList<CellState> cellLisTest;
+    private ArrayList<CellState> cellListTest;
     private HashMap<Integer, Integer> countMap;
-    private NoEntranceNoExitMoreEntranceMoreExitValidator  enteranceExitPoint;
+    private NoEntranceNoExitMoreEntranceMoreExitValidator  noEntranceNoExitMoreEntranceMoreExitValidator;
     private boolean checkMap;
-    private SeperateEntranceAndExitValidator seperate;
+    private SeperateEntranceAndExitValidator seperateEntranceAndExitValidator;
     private LengthValidator lengthValidator;
-    private EntranceExitInMiddlePathValidator middel;
-    private MapValidationManager mapValidator;
+    private EntranceExitInMiddlePathValidator entranceExitInMiddlePathValidator;
+    private MapValidationManager mapValidationManager;
     private GameMap gameMap;
+    
     /**
      * set values 
      */
     @Before
     public void setValues() {
         
-        cellLisTest = new ArrayList<CellState>();
+    	cellListTest = new ArrayList<CellState>();
         countMap = new HashMap<Integer, Integer>();
-        
         for (int i = 0; i < 30 * 15; i++) {
-            cellLisTest.add(CellState.Grass );
+        	cellListTest.add(CellState.Grass );
             }
     }
     
@@ -56,27 +56,21 @@ public class ValidateMap {
      * test no Enterer or Exist point 
      */
     @Test
-    public void testNoEnEX() {
-        
-        enteranceExitPoint = new NoEntranceNoExitMoreEntranceMoreExitValidator(cellLisTest);
-        
-        checkMap = enteranceExitPoint.validate();
+    public void testNoEntranceOrExit() {  
+    	noEntranceNoExitMoreEntranceMoreExitValidator = new NoEntranceNoExitMoreEntranceMoreExitValidator(cellListTest);
+        checkMap = noEntranceNoExitMoreEntranceMoreExitValidator.validate();
         assertFalse(checkMap);
-        
         }
     
     /**
      * test when only one  Enterer and Exist point.
      */
     @Test
-    public void testOneEnterEXit() {
-        
-        cellLisTest.set(0, CellState.Entrance );
-        cellLisTest.set(100, CellState.Exit );
-        
-        enteranceExitPoint= new NoEntranceNoExitMoreEntranceMoreExitValidator(cellLisTest);
-        
-        checkMap = enteranceExitPoint.validate();
+    public void testOneEntranceOrExit() {
+    	cellListTest.set(0, CellState.Entrance );
+    	cellListTest.set(100, CellState.Exit );
+    	noEntranceNoExitMoreEntranceMoreExitValidator= new NoEntranceNoExitMoreEntranceMoreExitValidator(cellListTest);
+        checkMap = noEntranceNoExitMoreEntranceMoreExitValidator.validate();
         assertTrue(checkMap);
     }
     
@@ -84,16 +78,14 @@ public class ValidateMap {
      * test when more then one  Enterer and Exist point.
      */
     @Test
-    public void testMoreThenOneEnterEXit() {
+    public void testMoreThenOneEntranceOrExit() {
+    	cellListTest.set(0, CellState.Entrance );
+    	cellListTest.set(100, CellState.Exit );
+    	cellListTest.set(5, CellState.Entrance );
+    	cellListTest.set(6, CellState.Exit );
         
-        cellLisTest.set(0, CellState.Entrance );
-        cellLisTest.set(100, CellState.Exit );
-        cellLisTest.set(5, CellState.Entrance );
-        cellLisTest.set(6, CellState.Exit );
-        
-        enteranceExitPoint= new NoEntranceNoExitMoreEntranceMoreExitValidator(cellLisTest);
-        checkMap = enteranceExitPoint.validate();
-        
+    	noEntranceNoExitMoreEntranceMoreExitValidator= new NoEntranceNoExitMoreEntranceMoreExitValidator(cellListTest);
+        checkMap = noEntranceNoExitMoreEntranceMoreExitValidator.validate();
         assertFalse(checkMap);
     }
 
@@ -102,20 +94,16 @@ public class ValidateMap {
      * TEST Separate entrance and exit point.
      */
     @Test
-    public void testSeperateEnex() {
-        
+    public void testSeperateEntranceAndExit() {
         for (int i = 0; i <20 ; i++){
-            cellLisTest.set(i,CellState.Path );
+        	cellListTest.set(i,CellState.Path );
         }
+        cellListTest.set(5,CellState.Grass );
+        cellListTest.set(0,CellState.Entrance);
+        cellListTest.set(19,CellState.Exit);
         
-        cellLisTest.set(5,CellState.Grass );
-        cellLisTest.set(0,CellState.Entrance);
-        cellLisTest.set(19,CellState.Exit);
-        
-        seperate = new SeperateEntranceAndExitValidator(10,cellLisTest);
-        
-        checkMap = seperate.validate();
-        
+        seperateEntranceAndExitValidator = new SeperateEntranceAndExitValidator(10,cellListTest);
+        checkMap = seperateEntranceAndExitValidator.validate();
         assertTrue(checkMap);
     }
     
@@ -124,19 +112,15 @@ public class ValidateMap {
      * TEST not Separate entrance and exit point 
      */
     @Test
-    public void testNotSeperateEnex() {
-        
+    public void testNotEntranceAndExit() {
         for (int i = 0; i < 20 ; i++){
-            cellLisTest.set(i,CellState.Path );
+        	cellListTest.set(i,CellState.Path );
         }
+        cellListTest.set(0,CellState.Entrance);
+        cellListTest.set(19,CellState.Exit);
         
-        cellLisTest.set(0,CellState.Entrance);
-        cellLisTest.set(19,CellState.Exit);
-        
-        seperate = new SeperateEntranceAndExitValidator(10,cellLisTest);
-        
-        checkMap = seperate.validate();
-        
+        seperateEntranceAndExitValidator = new SeperateEntranceAndExitValidator(10,cellListTest);
+        checkMap = seperateEntranceAndExitValidator.validate();
         assertTrue(checkMap);
     }
     
@@ -144,15 +128,13 @@ public class ValidateMap {
      * test if the path is short.
      */
     @Test
-    public void testToshortmaP() {
-        
+    public void testToShortMap() {
         for (int i = 0; i < 9; i++) {
         
-        cellLisTest.set(i, CellState.Path );
+        	cellListTest.set(i, CellState.Path );
         }
 
-        lengthValidator = new LengthValidator(cellLisTest);
-    
+        lengthValidator = new LengthValidator(cellListTest);
         checkMap = lengthValidator.validate();
         assertFalse(checkMap);
 }
@@ -161,15 +143,14 @@ public class ValidateMap {
      * test if the path is not short.
      */
     @Test
-    public void testNotToshortmaP() {
+    public void testNotToShortMap() {
         
         for (int i = 0; i < 25; i++) {
             
-            cellLisTest.set(i, CellState.Path );
+        	cellListTest.set(i, CellState.Path );
             }
 
-            lengthValidator = new LengthValidator(cellLisTest);
-        
+            lengthValidator = new LengthValidator(cellListTest);
             checkMap = lengthValidator.validate();
             assertTrue(checkMap);
     }
@@ -178,17 +159,14 @@ public class ValidateMap {
      * test Circle Path.
      */
     @Test
-    public void testCirclePathValidator() {
-    
-        
-        
+    public void testCirclePath() {
         for(int i= 0 ; i < 7 ; i++){
         countMap.put(i, i);
         }
-        CirclePathValidator circlePathValidator = new CirclePathValidator(countMap);     ////  ask 
         
+        CirclePathValidator circlePathValidator = new CirclePathValidator(countMap);    
         checkMap = circlePathValidator.validate();
-         assertTrue(checkMap);
+        assertTrue(checkMap);
          
 }
 //    /**
@@ -202,7 +180,7 @@ public class ValidateMap {
 //        countMap.put(i, i);
 //        }
 //        
-//        ContinousPathValidator testPath = new ContinousPathValidator(countMap, cellLisTest, 30);
+//        ContinousPathValidator testPath = new ContinousPathValidator(countMap, cellListTest, 30);
 //        
 //        boolean testContinousPath =testPath.validate();                             /// ask
 //        
@@ -214,48 +192,38 @@ public class ValidateMap {
      * test entrance  In middle path.
      */
     @Test
-    public void testExitInMiddlePathValidator() {
-
+    public void testExitInMiddleOfPath() {
         gameMap =new GameMap();
-        
         for (int i = 0; i < 20; i++) {
-            cellLisTest.set(i,CellState.Path );
+        	cellListTest.set(i,CellState.Path );
         }
-    
-       cellLisTest.set(0,CellState.Entrance );
-       cellLisTest.set(15,CellState.Exit );
-
-       gameMap.setCells(cellLisTest);
-       mapValidator = new MapValidationManager(gameMap);
+        cellListTest.set(0,CellState.Entrance );
+        cellListTest.set(15,CellState.Exit );
+       gameMap.setCells(cellListTest);
        
-       countMap = mapValidator.getCountMap();
-       middel = new EntranceExitInMiddlePathValidator(cellLisTest, countMap);
-       
-       assertFalse(middel.validate());
+       mapValidationManager = new MapValidationManager(gameMap);
+       countMap = mapValidationManager.getCountMap();
+       entranceExitInMiddlePathValidator = new EntranceExitInMiddlePathValidator(cellListTest, countMap);
+       assertFalse(entranceExitInMiddlePathValidator.validate());
     }
     
     /**
      * test entrance  In middle path.
      */
     @Test
-    public void testEmteranceInMiddlePathValidator() {
-        
+    public void testEnteranceInMiddlePathValidator() {
         gameMap = new GameMap();
-        
         for (int i = 0; i < 20; i++) {
-            cellLisTest.set(i,CellState.Path );
+        	cellListTest.set(i,CellState.Path );
         }
-    
-        cellLisTest.set(4,CellState.Entrance );
-        cellLisTest.set(19,CellState.Exit );
+        cellListTest.set(4,CellState.Entrance );
+        cellListTest.set(19,CellState.Exit );
+        gameMap.setCells(cellListTest);
         
-        gameMap.setCells(cellLisTest);
-        
-        mapValidator = new MapValidationManager(gameMap);
-         countMap = mapValidator.getCountMap();
-         
-           middel = new EntranceExitInMiddlePathValidator(cellLisTest, countMap);
-           assertFalse(middel.validate());
+        mapValidationManager = new MapValidationManager(gameMap);
+        countMap = mapValidationManager.getCountMap();
+        entranceExitInMiddlePathValidator = new EntranceExitInMiddlePathValidator(cellListTest, countMap);
+        assertFalse(entranceExitInMiddlePathValidator.validate());
     }
     
 
@@ -263,47 +231,39 @@ public class ValidateMap {
      * test no entrance or Exit  In middle path.
      */
     @Test
-    public void testEnteranceNotInMiddlePathValidator() {
-        
+    public void testEnteranceNotInMiddlePath() {
         gameMap = new GameMap();
-        
         for (int i = 0; i < 20; i++) {
-            cellLisTest.set(i,CellState.Path );
+        	cellListTest.set(i,CellState.Path );
         }
+        cellListTest.set(0,CellState.Entrance);
+        cellListTest.set(19,CellState.Exit );
+        gameMap.setCells(cellListTest);
         
-        cellLisTest.set(0,CellState.Entrance);
-        cellLisTest.set(19,CellState.Exit );
-        
-        gameMap.setCells(cellLisTest);
-        
-        mapValidator = new MapValidationManager(gameMap);
-        countMap = mapValidator.getCountMap();
-        middel = new EntranceExitInMiddlePathValidator(cellLisTest, countMap);
-        
-        assertTrue(middel.validate());
+        mapValidationManager = new MapValidationManager(gameMap);
+        countMap = mapValidationManager.getCountMap();
+        entranceExitInMiddlePathValidator = new EntranceExitInMiddlePathValidator(cellListTest, countMap);
+        assertTrue(entranceExitInMiddlePathValidator.validate());
     }
     
     /**
      * test  Extra Path.
      */
     @Test
-    public void ExtraPathValidator(){
-        
+    public void ExtraPath(){
         gameMap = new GameMap();
         for (int i = 0; i < 21 ; i++) {
-            cellLisTest.set(i , CellState.Path );
-    }
+        	cellListTest.set(i , CellState.Path );
+        }
+        cellListTest.set(0,CellState.Entrance );
+        cellListTest.set(19,CellState.Exit );
+        cellListTest.set(200, CellState.Path);
+        gameMap.setCells(cellListTest);
         
-        cellLisTest.set(0,CellState.Entrance );
-        cellLisTest.set(19,CellState.Exit );
-        cellLisTest.set(200, CellState.Path);
-        
-        gameMap.setCells(cellLisTest);
-        mapValidator = new MapValidationManager(gameMap);
-        countMap = mapValidator.getCountMap();
-        
-        boolean validate =new ExtraPathValidator(countMap,cellLisTest).validate();
-        assertTrue(validate);
+        mapValidationManager = new MapValidationManager(gameMap);
+        countMap = mapValidationManager.getCountMap();
+        checkMap =new ExtraPathValidator(countMap,cellListTest).validate();
+        assertTrue(checkMap);
     }
     
     
@@ -313,24 +273,18 @@ public class ValidateMap {
      * test no Extra Path
      */
     @Test
-    public void noExtraPathValidator() {
-    
+    public void noExtraPath() {
         gameMap = new GameMap();
-        
         for (int i = 0; i < 20 ; i++) {
-            cellLisTest.set(i , CellState.Path );
+            cellListTest.set(i , CellState.Path );
     }
+        cellListTest.set(0,CellState.Entrance );
+        cellListTest.set(19,CellState.Exit );
+        gameMap.setCells(cellListTest);
         
-        cellLisTest.set(0,CellState.Entrance );
-        cellLisTest.set(19,CellState.Exit );
-        
-        
-        gameMap.setCells(cellLisTest);
-        mapValidator = new MapValidationManager(gameMap);
-        
-        countMap = mapValidator.getCountMap();
-        
-        boolean validate =new ExtraPathValidator(countMap,cellLisTest).validate();
-        assertTrue(validate);
+        mapValidationManager = new MapValidationManager(gameMap);
+        countMap = mapValidationManager.getCountMap();
+        checkMap =new ExtraPathValidator(countMap,cellListTest).validate();
+        assertTrue(checkMap);
 }    
 }

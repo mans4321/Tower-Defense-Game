@@ -24,10 +24,8 @@ public class TowerFactoryTest {
 	 */
 	@Test
 	public void getTowerTest() {
-
 	     tower = TowerFactory.sharedInstance().getTower(TowerType.BurningTower1);
-
-    	assertTrue(tower.getClass().getName().equals("model.tower.BurningTower"));  // name
+    	assertTrue(tower.getClass().getName().equals("model.tower.BurningTower")); 
 
 	}
 }

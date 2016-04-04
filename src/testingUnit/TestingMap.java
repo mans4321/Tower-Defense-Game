@@ -21,31 +21,24 @@ import model.map.GameMapCollection;
  */
 public class TestingMap {
 
-    GameMapCollection mapCollection;
+    GameMapCollection gameMapCollection;
     GameMap gameMap;
-    int beforAdding;
-    int afterAdding;
+    int beforAddingMap;
+    int afterAddingMap;
     int index;
-    ArrayList<CellState> cellList;
+    ArrayList<CellState> cellListTest;
     /**
      * test adding map
      */
 
     @Test
-    public void testAddMap() {
-        
-        mapCollection = new GameMapCollection();
-        
+    public void testAddingMap() {
+    	gameMapCollection = new GameMapCollection();
         gameMap = new GameMap(2,2,null,"MANS");
-        beforAdding = mapCollection.getMaps().size();
-        
-        mapCollection.addMap(gameMap);
-        afterAdding = mapCollection.getMaps().size();
-        
-        assertTrue(beforAdding < afterAdding);
-        
-        mapCollection.getMaps().remove(gameMap);
-        
+        beforAddingMap = gameMapCollection.getMaps().size();
+        gameMapCollection.addMap(gameMap);
+        afterAddingMap = gameMapCollection.getMaps().size();
+        assertTrue(beforAddingMap < afterAddingMap);
     }
    
     /**
@@ -53,42 +46,32 @@ public class TestingMap {
      */
     @Test
     public void testDeleteMap() {
-       mapCollection = new GameMapCollection();
-        
+    	gameMapCollection = new GameMapCollection();
         gameMap = new GameMap(2,2,null,"MANS");
-        beforAdding = mapCollection.getMaps().size();
-        
-        mapCollection.addMap(gameMap);
-        
-        index = mapCollection.getMaps().indexOf(gameMap);
-        
-        mapCollection.deleteMap(index);
-        afterAdding = mapCollection.getMaps().size();
-        
-        assertTrue(beforAdding == afterAdding);
+        beforAddingMap = gameMapCollection.getMaps().size();
+        gameMapCollection.addMap(gameMap);
+        index = gameMapCollection.getMaps().indexOf(gameMap);
+        gameMapCollection.deleteMap(index);
+        afterAddingMap = gameMapCollection.getMaps().size();
+        assertTrue(beforAddingMap == afterAddingMap);
     }
     
     /**
      * test map path.
      */
     @Test
-    public void testPathTest() {
-        
-         cellList = new ArrayList<CellState>();
-        
+    public void testFindingPathInMap() {
+         cellListTest = new ArrayList<CellState>();
          for (int i = 0 ; i < 15 * 30 ; i++) { 
-             cellList.add(CellState.Grass);
+             cellListTest.add(CellState.Grass);
          }
-         
          for (int i = 0 ; i < 20 ; i++) { 
-             cellList.add(CellState.Path);
+             cellListTest.add(CellState.Path);
          }
-         cellList.set(0, CellState.Entrance);
-         cellList.set(19,CellState.Exit );
-         
+         cellListTest.set(0, CellState.Entrance);
+         cellListTest.set(19,CellState.Exit );
         gameMap = new GameMap();
-        gameMap.setCells(cellList);
-    
+        gameMap.setCells(cellListTest);
         assertTrue(gameMap.findPathList().size() == 20);
     }
 }
