@@ -28,10 +28,10 @@ public class BurningTowerShootingBehavior extends TowerShootingBehavior {
         });
     }
     
-    public void shoot() {
+    public void shoot() {    	
         Critter critterUnderAttack = shootingStrategy.targetOnCritters(crittersInRange, this.getTowerPosition());
-
         if (critterUnderAttack != null && !critterUnderAttack.isKilled()) {
+        	if(towerDidShotDelegate != null) 
             towerDidShotDelegate.towerDidShotAt(critterUnderAttack.getMovingBehavior().getCurrentPosition());
             int health = critterUnderAttack.getCurrentHealth();
             health -= power;
