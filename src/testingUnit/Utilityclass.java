@@ -1,4 +1,4 @@
-package testingunit;
+package testingUnit;
 
 import static org.junit.Assert.*;
 
@@ -16,7 +16,7 @@ import utility.Helper;
  *@version 1.0
  *@since 14/2/2016
  */
-public class UtilityClass {
+public class Utilityclass {
 
     
     private String[] arr;

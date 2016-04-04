@@ -1,4 +1,4 @@
-package testingunit;
+package testingUnit;
 
 import static org.junit.Assert.assertTrue;
 
@@ -50,9 +50,6 @@ public class CritterTest {
 	 */
 	@Test
 	public void testBuildingCritter() {
-
-
-
 
 		sizeBeforAddingCritterWave= critterCollection.getCritters().size();
 
