@@ -90,7 +90,7 @@ public class GameCollection implements Serializable {
     * Store all saved games info in xml file 
     * @throws FileNotFoundException file not found exception
     */
-    public void saveGame() throws FileNotFoundException{
+    public void saveGame(){
     	
     	try {
     		PrintWriter out;

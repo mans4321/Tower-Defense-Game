@@ -607,15 +607,15 @@ public class MainGameController {
 		}
         boolean isReadyToCreate = true;
         if (!gameName.equals("")) {// old game
-            JOptionPane.showMessageDialog(mainGameView, "Saved Successful!");
+           
             GameInfo game = new GameInfo(towerCollection.getTowers(),LoggerCollection.getInstance().getLogList() ,account.getBalance(),coins,currentWaveNum,gameName, gameMap.getMapName());
             gameCollection.getGames().set(gameCollection.findGameInCollection(gameName),game);
             try {
             	gameCollection.saveGame();
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(mainGameView, "Game Not saved!!!");
 			}
-
+            JOptionPane.showMessageDialog(mainGameView, "Saved Successful!");
         } else {//brand new map
             String userGameName = (String) JOptionPane.showInputDialog(mainGameView,
                     "Type in the game name:",
@@ -663,9 +663,8 @@ public class MainGameController {
                	
             	try {
             		gameCollection.saveGame();
-				} catch (FileNotFoundException e) {
-					JOptionPane.showMessageDialog(mainGameView, "Game Not saved");
-					e.printStackTrace();
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(mainGameView, "Game Not saved!!!");
 				}
             	gameName = userGameName;   /// more then one save while playing the game 
             }
