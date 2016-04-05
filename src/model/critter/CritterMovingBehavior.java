@@ -20,7 +20,9 @@ public class CritterMovingBehavior implements ActionListener {
     private Position currentPosition;
     private int nextIndex;
     private ArrayList<Integer> pathList;
+    
     public void setPathList(ArrayList<Integer> pathList) {
+    	//this.nextIndex= index; 
 		this.pathList = pathList;
 	}
 

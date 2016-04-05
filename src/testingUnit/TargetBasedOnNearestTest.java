@@ -12,6 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import model.critter.Critter;
+import model.critter.CritterMovingBehavior;
 import model.map.CellState;
 import model.map.GameMap;
 import model.tower.BurningTower;
@@ -23,8 +24,8 @@ import view.map.Position;
 /**
  * Test target strategy, target on the weakest
  * @author LiChong
- * @since 4/4/2016
- * @version 1.2
+ * @since 5/4/2016
+ * @version 1.3
  *
  */
 public class TargetBasedOnNearestTest {
@@ -32,8 +33,8 @@ public class TargetBasedOnNearestTest {
 	private Critter critter1;
 	private Critter critter2;
 	private Critter critter3;
-	private BurningTower burningTower;
 	private GameMap gameMap;
+    private ArrayList<CellState> cells;
     private ArrayList<Integer> pathList1;
     private ArrayList<Integer> pathList2;
     private ArrayList<Integer> pathList3;
@@ -50,31 +51,46 @@ public class TargetBasedOnNearestTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		burningTower = new BurningTower(1);
-		critterInRange = new HashSet();
+		critterInRange = new HashSet<>();
 		critter1 = new Critter(CritterType.CritterA);
 		critter2 = new Critter(CritterType.CritterB);
 		critter3 = new Critter(CritterType.CritterC);
 		critterInRange.add(critter1);
 		critterInRange.add(critter2);
 		critterInRange.add(critter3);
+		cells = new ArrayList<>();
+		for(int i = 0; i < 20 ; i++){
+			cells.add(CellState.Path);
+		}
+		cells.add(0, CellState.Entrance);
+		cells.add(19, CellState.Exit);
+		
+		gameMap = new GameMap(10, 15, cells, "myGame");
+		CritterMovingBehavior critterMovingBehavior = new CritterMovingBehavior(gameMap, 10);
 		
 		pathList1 = new ArrayList<>();
 		pathList2 = new ArrayList<>();
 		pathList3 = new ArrayList<>();
 		
-		for(int i = 0; i < 10 ; i++){
+		for(int i = 5; i < cells.size(); i++) {
 			pathList1.add(i);
 		}
-		for(int i = 0; i < 20 ; i++){
+		for(int i = 4; i < cells.size(); i++) {
 			pathList2.add(i);
 		}
-		for(int i = 0; i < 30 ; i++){
+		for(int i = 3; i < cells.size(); i++) {
 			pathList3.add(i);
-		}		
+		}
+		
+		critter1.setMovingBehavior(critterMovingBehavior);
+		critter2.setMovingBehavior(critterMovingBehavior);
+		critter3.setMovingBehavior(critterMovingBehavior);
+		
 		critter1.getMovingBehavior().setPathList(pathList1);
 		critter2.getMovingBehavior().setPathList(pathList2);
 		critter3.getMovingBehavior().setPathList(pathList3);
+		
+		
 	}
 
 	/**
@@ -83,18 +99,11 @@ public class TargetBasedOnNearestTest {
 	@Test
 	public void testTargetOnCritters() {
 		TargetBasedOnNearest targetBasedOnNearest = new TargetBasedOnNearest();
-		Critter nearestCritter = targetBasedOnNearest.targetOnCritters(critterInRange, new Position(10,10));
-		BurningTowerShootingBehavior btsb = new BurningTowerShootingBehavior(5,100,5);
-		btsb.getCrittersInRange().add(critter1);
-		btsb.getCrittersInRange().add(critter2);
-		btsb.getCrittersInRange().add(critter3);
-		btsb.shoot();
-	//	burningTower.getTowerShootingBehavior().shoot();
-		int size1 = critter1.getMovingBehavior().getPathList().size();
-		int size2 = critter2.getMovingBehavior().getPathList().size();
-		int size3 = critter3.getMovingBehavior().getPathList().size();
-	//	assertTrue("who is the nearest to Exit",size3 < size1 && size3 < size2);
-		assertEquals("who is the nearest to Exit",nearestCritter.getMovingBehavior().getPathList().size(),size3);
+		
+		Critter nearestCritter = targetBasedOnNearest.targetOnCritters(critterInRange, null);
+		assertSame("who is the nearest to Exit",nearestCritter,critter1);
+		assertNotSame("who is the nearest to Exit",nearestCritter,critter2);
+		assertNotSame("who is the nearest to Exit",nearestCritter,critter3);
 	}
 
 }
