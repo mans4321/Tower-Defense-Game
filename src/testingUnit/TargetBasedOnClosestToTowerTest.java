@@ -15,6 +15,7 @@ import model.map.CellState;
 import model.map.GameMap;
 import model.tower.shootingstrategy.TargetBasedOnClosestToTower;
 import view.critter.CritterType;
+import view.map.Position;
 
 /**
  * Test target strategy, target on the weakest
@@ -24,13 +25,15 @@ import view.critter.CritterType;
  *
  */
 public class TargetBasedOnClosestToTowerTest {
-	private Set<Critter> critterInRange;
+	private Set<Critter> crittersInRange;
 	private Critter critter1;
 	private Critter critter2;
 	private Critter critter3;
 
     private ArrayList<CellState> cellList;
 	private GameMap gameMap;
+	
+	private Position towerPosition;
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -38,16 +41,18 @@ public class TargetBasedOnClosestToTowerTest {
 	public void setUp() throws Exception {
 		gameMap = new GameMap();
 		cellList = gameMap.getCells();
-		critterInRange = new HashSet();
+		crittersInRange = new HashSet();
 		critter1 = new Critter(CritterType.CritterA);
 		critter2 = new Critter(CritterType.CritterB);
 		critter3 = new Critter(CritterType.CritterC);
-		critterInRange.add(critter1);
-		critterInRange.add(critter2);
-		critterInRange.add(critter3);
+		crittersInRange.add(critter1);
+		crittersInRange.add(critter2);
+		crittersInRange.add(critter3);
 		
-		cellList.set(1, CellState.Exit);
-		gameMap.setCells(cellList);
+		towerPosition = new Position(10, 10);
+		
+	//	cellList.set(1, CellState.Exit);
+	//	gameMap.setCells(cellList);
 	}
 
 	/**
@@ -55,7 +60,9 @@ public class TargetBasedOnClosestToTowerTest {
 	 */
 	@Test
 	public void testTargetOnCritters() {
-		fail("Not yet implemented");
+		TargetBasedOnClosestToTower targetBasedOnClosestToTower = new TargetBasedOnClosestToTower();
+		targetBasedOnClosestToTower.targetOnCritters(crittersInRange, towerPosition);
+		assertTrue("find the critter who is closest to tower",);
 	}
 
 }
