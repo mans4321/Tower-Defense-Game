@@ -74,4 +74,31 @@ public class TestingMap {
         gameMap.setCells(cellListTest);
         assertTrue(gameMap.findPathList().size() == 20);
     }
+    
+    /**
+     * test loading maps form files.
+     */
+    @Test
+    public void testLoadingMap() {
+    	GameMapCollection gameCollection = new GameMapCollection();
+    	int sizeBeforLoading = gameCollection.getMaps().size();
+    	GameMapCollection loadedGameCollection = GameMapCollection.loadMapsFromFile();
+    	int sizeAfterLoading = loadedGameCollection.getMaps().size();
+    	assertTrue(sizeBeforLoading < sizeAfterLoading );
+    }
+    
+    /**
+     * test Saving maps to files.
+     */
+    @Test
+    public void testSavingMap() {
+    	GameMapCollection gameCollection = GameMapCollection.loadMapsFromFile();
+    	gameMap = new GameMap(2,2,null,"MANS");
+    	gameCollection.addMap(gameMap);
+    	assertTrue(gameCollection.saveMapsToFile(gameCollection));
+    	// deleting  saved map and rewrite the file without 
+    	int index = gameCollection.findGameMapInCollection(gameMap);
+    	gameCollection.deleteMap(index);
+    	gameCollection.saveMapsToFile(gameCollection);
+    }
 }

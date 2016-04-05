@@ -1,19 +1,22 @@
 
 package testingUnit;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import model.critter.Critter;
-import model.tower.BurningTower;
-import model.tower.BurningTowerShootingBehavior;
-import model.tower.IceTower;
+import model.critter.CritterMovingBehavior;
+import model.map.GameMap;
 import model.tower.IceTowerShootingBehavior;
+import model.tower.Tower;
+import model.tower.TowerFactory;
 import view.critter.CritterType;
+import view.map.Position;
+import view.tower.TowerType;
 
 /**
  * Test ice tower shooting behavior
@@ -24,7 +27,7 @@ import view.critter.CritterType;
  */
 public class IceTowerShootingBehaviorTest {
 	private Critter critter;
-	private IceTower iceTower;
+	private Tower iceTower;
 	private IceTowerShootingBehavior iceTowerShootingBehavior;
 	
 	/**
@@ -38,10 +41,6 @@ public class IceTowerShootingBehaviorTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		critter = new Critter(CritterType.CritterA);
-		iceTower = new IceTower(1);
-		iceTowerShootingBehavior = new IceTowerShootingBehavior(1000, 10);
-		iceTowerShootingBehavior.getCrittersInRange().add(critter);
 		
 	}
 
@@ -50,8 +49,16 @@ public class IceTowerShootingBehaviorTest {
 	 */
 	@Test
 	public void testShoot() {
-		iceTowerShootingBehavior.shoot();
-		assertTrue("iceShooting works",critter.getSpecicalEffectTimer().isRunning());
+		Critter critter =new Critter(CritterType.CritterA);
+		critter.setMovingBehavior(new CritterMovingBehavior(new GameMap(), 7));
+		critter.getMovingBehavior().setCurrentPosition(new Position(0,0));
+		critter.getMovingBehavior().move();
+		iceTower = TowerFactory.sharedInstance().getTower(TowerType.IceTower1);
+		iceTower.setPosition(new Position(0,0));
+		iceTower.getTowerShootingBehavior().getCrittersInRange().add(critter);
+		iceTower.getTowerShootingBehavior().setShooting(true);
+		iceTower.getTowerShootingBehavior().shoot();
+		assertTrue( critter.getSpecicalEffectTimer().isRunning());
 	}
 
 	/**
@@ -59,6 +66,7 @@ public class IceTowerShootingBehaviorTest {
 	 */
 	@Test
 	public void testIceTowerShootingBehavior() {
+		IceTowerShootingBehavior iceTowerShootingBehavior = new IceTowerShootingBehavior(1000,10);
 		assertEquals("forzen equal",1000,iceTowerShootingBehavior.getFrozenTime());
 		assertEquals("rateOfFire equal",10,iceTowerShootingBehavior.getRateOfFire());
 	}

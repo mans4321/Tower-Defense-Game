@@ -36,7 +36,11 @@ public class TowerShootingBehavior {
         return rateOfFire;
     }
 
-    public Set<Critter> getCrittersInRange() {
+    public void setCrittersInRange(Set<Critter> crittersInRange) {
+		this.crittersInRange = crittersInRange;
+	}
+
+	public Set<Critter> getCrittersInRange() {
         return crittersInRange;
     }
 
