@@ -12,7 +12,7 @@ import model.tower.Tower;
  * @since 3/30/16.
  * @version 2.0 
  */
-public class GameInfo{
+public class GameInfo {
 				
 	private double balance;
 	private int waveNum;
@@ -32,7 +32,15 @@ public class GameInfo{
 	 * @param gameName game name pick by user 
 	 * @param mapName  map name 
 	 */
-	public GameInfo( HashMap<Integer, Tower> towerCollection,ArrayList<Log> logList, double balance,int coins,int waveNum, String gameName,String mapName ) {
+	public GameInfo(
+		HashMap<Integer, Tower> towerCollection,
+		ArrayList<Log> logList, 
+		double balance,
+		int coins,
+		int waveNum, 
+		String gameName,
+		String mapName 
+	) {
 	
 		this.towerCollection = towerCollection;
 		this.logList = logList;

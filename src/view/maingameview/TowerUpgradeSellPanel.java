@@ -52,7 +52,7 @@ public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegat
 
     @Override
     public void reloadPanelBasedOnTower(Tower tower) {
-        if (tower != null){
+        if (tower != null) {
             if (tower.getPosition() != null) {
                 sellButton.setEnabled(true);
                 upgradeButton.setEnabled(true);

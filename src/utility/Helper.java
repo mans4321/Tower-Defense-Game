@@ -23,8 +23,9 @@ public class Helper {
         }
         int max = arr.get(0);
         for (int i = 1; i < arr.size(); i++) {
-            if (arr.get(i) > max)
+            if (arr.get(i) > max) {
                 max = arr.get(i);
+            }
         }
 
         return max;

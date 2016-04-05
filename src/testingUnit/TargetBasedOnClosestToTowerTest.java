@@ -49,7 +49,7 @@ public class TargetBasedOnClosestToTowerTest {
 		crittersInRange.add(critter3);
 		cells = new ArrayList<>();
 
-		for (int i = 0; i < 20; i++){
+		for (int i = 0; i < 20; i++) {
 			cells.add(CellState.Path);
 		}
 		cells.add(0, CellState.Entrance);

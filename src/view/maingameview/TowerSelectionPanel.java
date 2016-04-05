@@ -9,7 +9,7 @@ import java.awt.*;
 /**
  * Created by yongpinggao on 3/13/16.
  */
-public class TowerSelectionPanel extends JPanel{
+public class TowerSelectionPanel extends JPanel {
 
     public JButton towerAButton;
     public JButton towerBButton;

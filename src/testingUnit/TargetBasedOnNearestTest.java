@@ -53,7 +53,7 @@ public class TargetBasedOnNearestTest {
 		critterInRange.add(critter2);
 		critterInRange.add(critter3);
 		cells = new ArrayList<>();
-		for (int i = 0; i < 20 ; i++){
+		for (int i = 0; i < 20 ; i++) {
 			cells.add(CellState.Path);
 		}
 		cells.add(0, CellState.Entrance);
