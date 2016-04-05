@@ -289,7 +289,7 @@ public class GameMap {
 
     public String getAllEditTime() {
         StringBuilder sb = new StringBuilder();
-        for(String date: editedTimeList) {
+        for (String date: editedTimeList) {
             sb.append(date + ", \n");
         }
         return sb.toString();
@@ -297,7 +297,7 @@ public class GameMap {
 
     public String getAllResults() {
         StringBuilder sb = new StringBuilder();
-        for(Map.Entry<String, String> results : resultMap.entrySet()) {
+        for (Map.Entry<String, String> results : resultMap.entrySet()) {
             sb.append(results.getKey().toString() + " : " + results.getValue().toString() + "\n");
         }
         return sb.toString();

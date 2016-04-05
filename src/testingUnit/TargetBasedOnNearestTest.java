@@ -53,7 +53,7 @@ public class TargetBasedOnNearestTest {
 		critterInRange.add(critter2);
 		critterInRange.add(critter3);
 		cells = new ArrayList<>();
-		for(int i = 0; i < 20 ; i++){
+		for (int i = 0; i < 20 ; i++){
 			cells.add(CellState.Path);
 		}
 		cells.add(0, CellState.Entrance);
@@ -68,13 +68,13 @@ public class TargetBasedOnNearestTest {
 		critter2.setMovingBehavior(critterMovingBehavior2);
 		critter3.setMovingBehavior(critterMovingBehavior3);
 
-		for(int i = 1; i < 5; i++) {
+		for (int i = 1; i < 5; i++) {
 			critter1.getMovingBehavior().getPathList().remove(i);
 		}
-		for(int i = 1; i < 4; i++) {
+		for (int i = 1; i < 4; i++) {
 			critter2.getMovingBehavior().getPathList().remove(i);
 		}
-		for(int i = 1; i < 3; i++) {
+		for (int i = 1; i < 3; i++) {
 			critter3.getMovingBehavior().getPathList().remove(i);
 		}		
 	}

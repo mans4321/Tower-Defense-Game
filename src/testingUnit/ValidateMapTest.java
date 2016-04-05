@@ -148,7 +148,7 @@ public class ValidateMapTest {
 	 */
 	@Test
 	public void testCirclePath() {
-		for(int i= 0 ; i < 7 ; i++){
+		for (int i= 0 ; i < 7 ; i++){
 			countMap.put(i, i);
 		}
 
@@ -162,7 +162,7 @@ public class ValidateMapTest {
 	 */
 	@Test
 	public void testContinousPathValidator() {	        
-		for(int i= 0 ; i < 7 ; i++){
+		for (int i= 0 ; i < 7 ; i++){
 			countMap.put(i, i);
 		}    
 		ContinousPathValidator testPath = new ContinousPathValidator(countMap, cellListTest, 30);        
