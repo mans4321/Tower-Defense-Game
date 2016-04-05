@@ -18,7 +18,7 @@ import model.map.GameMap;
  * @version 1.0
  * @since 14/3/2016
  */
-public class EntranceExitPoint {
+public class EntranceExitPointTest {
 
     private GameMap  gameMap;
     private ArrayList<CellState> cellListTest;

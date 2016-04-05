@@ -19,7 +19,7 @@ import model.map.GameMapCollection;
  * @since 15/2/2016
  * @version 1.0
  */
-public class TestingMap {
+public class TestingMapTest {
 
     GameMapCollection gameMapCollection;
     GameMap gameMap;

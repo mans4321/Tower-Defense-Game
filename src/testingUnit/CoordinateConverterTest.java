@@ -15,7 +15,7 @@ import view.map.Position;
  * @version 1.0
  * @since 14/2/2016
  */
-public class CoordinateConverter {
+public class CoordinateConverterTest {
  
 	private int xCoordinate;
 	private int yCoordinate;
