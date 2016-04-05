@@ -35,7 +35,7 @@ public class SavingLoadingGameTest {
 	 */
 	@After
 	public void deletTestGameFromFile() {
-		if(game != null){
+		if (game != null) {
 			int index = gameCollection.findGameInCollection("GameTest");
 			gameCollection.removeGame(index);
 			gameCollection.saveGame();  
@@ -61,7 +61,7 @@ public class SavingLoadingGameTest {
 	@Test
 	public void testLoadGame() {
 		gmaeCollectionSize = gameCollection.getGames().size();
-		if(gameCollection.loadGame())// otherwise means file not exist yet because no game has been saved 
+		if (gameCollection.loadGame())// otherwise means file not exist yet because no game has been saved 
 			assertTrue(gmaeCollectionSize < gameCollection.getGames().size() );
 	}
 
@@ -71,7 +71,7 @@ public class SavingLoadingGameTest {
 	@Test
 	public void testLoadGameAndGetInfo() {
 		gameCollection.loadGame();
-		if(gameCollection.getGames().size() > 0){  // otherwise no game had been saved to file  
+		if (gameCollection.getGames().size() > 0) {  // otherwise no game had been saved to file  
 			GameInfo gameExtractInfo = gameCollection.getGames().get(0);
 			assertTrue(gameExtractInfo.getGameName() != null);
 			assertTrue(gameExtractInfo.getMapName() != null);

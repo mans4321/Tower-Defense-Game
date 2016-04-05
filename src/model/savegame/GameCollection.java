@@ -99,7 +99,7 @@ public class GameCollection implements Serializable {
     * Store all saved games info in xml file 
     * @throws FileNotFoundException file not found exception
     */
-    public boolean saveGame(){
+    public boolean saveGame() {
     	
     	try {
     		PrintWriter out;
@@ -148,7 +148,7 @@ public class GameCollection implements Serializable {
 	 * Read game info from xml file 
 	 * @throws Exception file exception
 	 */
-	public boolean loadGame(){
+	public boolean loadGame() {
 		
       	HashMap<Integer,Tower> towersCollection = new HashMap<Integer,Tower> ();
       	ArrayList<Log> gameLog= new ArrayList<>();

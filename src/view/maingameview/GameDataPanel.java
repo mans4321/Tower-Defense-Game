@@ -8,7 +8,7 @@ import java.awt.*;
 /**
  * Created by yongpinggao on 3/13/16.
  */
-public class GameDataPanel extends JPanel implements DrawingDataPanelDelegate{
+public class GameDataPanel extends JPanel implements DrawingDataPanelDelegate {
 
 
 

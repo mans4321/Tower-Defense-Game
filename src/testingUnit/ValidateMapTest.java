@@ -90,7 +90,7 @@ public class ValidateMapTest {
 	 */
 	@Test
 	public void testSeperateEntranceAndExit() {
-		for (int i = 0; i <20 ; i++){
+		for (int i = 0; i <20 ; i++) {
 			cellListTest.set(i,CellState.Path );
 		}
 		cellListTest.set(5,CellState.Grass );
@@ -106,7 +106,7 @@ public class ValidateMapTest {
 	 */
 	@Test
 	public void testNotEntranceAndExit() {
-		for (int i = 0; i < 20 ; i++){
+		for (int i = 0; i < 20 ; i++) {
 			cellListTest.set(i,CellState.Path );
 		}
 		cellListTest.set(0,CellState.Entrance);
@@ -148,7 +148,7 @@ public class ValidateMapTest {
 	 */
 	@Test
 	public void testCirclePath() {
-		for(int i= 0 ; i < 7 ; i++){
+		for (int i= 0 ; i < 7 ; i++) {
 			countMap.put(i, i);
 		}
 
@@ -162,11 +162,11 @@ public class ValidateMapTest {
 	 */
 	@Test
 	public void testContinousPathValidator() {	        
-		for(int i= 0 ; i < 7 ; i++){
+		for (int i= 0 ; i < 7 ; i++) {
 			countMap.put(i, i);
 		}    
 		ContinousPathValidator testPath = new ContinousPathValidator(countMap, cellListTest, 30);        
-		boolean testContinousPath =testPath.validate();
+		boolean testContinousPath = testPath.validate();
 		assertTrue(testContinousPath);    
 	}
 
@@ -228,7 +228,7 @@ public class ValidateMapTest {
 	 * Test ExtraPath.
 	 */
 	@Test
-	public void ExtraPath(){
+	public void ExtraPath() {
 		gameMap = new GameMap();
 		for (int i = 0; i < 21 ; i++) {
 			cellListTest.set(i , CellState.Path );
@@ -240,7 +240,7 @@ public class ValidateMapTest {
 
 		mapValidationManager = new MapValidationManager(gameMap);
 		countMap = mapValidationManager.getCountMap();
-		checkMap =new ExtraPathValidator(countMap,cellListTest).validate();
+		checkMap = new ExtraPathValidator(countMap,cellListTest).validate();
 		assertTrue(checkMap);
 	}
 
@@ -258,7 +258,7 @@ public class ValidateMapTest {
 		gameMap.setCells(cellListTest);
 		mapValidationManager = new MapValidationManager(gameMap);
 		countMap = mapValidationManager.getCountMap();
-		checkMap =new ExtraPathValidator(countMap,cellListTest).validate();
+		checkMap = new ExtraPathValidator(countMap,cellListTest).validate();
 		assertTrue(checkMap);
 	}    
 }
