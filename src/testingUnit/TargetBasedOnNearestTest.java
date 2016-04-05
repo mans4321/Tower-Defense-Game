@@ -59,18 +59,22 @@ public class TargetBasedOnNearestTest {
 		critterInRange.add(critter2);
 		critterInRange.add(critter3);
 		
+		pathList1 = new ArrayList<>();
+		pathList2 = new ArrayList<>();
+		pathList3 = new ArrayList<>();
+		
 		for(int i = 0; i < 10 ; i++){
-			pathList1.add(i, 1);
+			pathList1.add(i);
 		}
 		for(int i = 0; i < 20 ; i++){
-			pathList2.add(i, 2);
+			pathList2.add(i);
 		}
 		for(int i = 0; i < 30 ; i++){
-			pathList3.add(i, 3);
+			pathList3.add(i);
 		}		
 		critter1.getMovingBehavior().setPathList(pathList1);
-		critter1.getMovingBehavior().setPathList(pathList2);
-		critter1.getMovingBehavior().setPathList(pathList3);
+		critter2.getMovingBehavior().setPathList(pathList2);
+		critter3.getMovingBehavior().setPathList(pathList3);
 	}
 
 	/**
@@ -79,7 +83,7 @@ public class TargetBasedOnNearestTest {
 	@Test
 	public void testTargetOnCritters() {
 		TargetBasedOnNearest targetBasedOnNearest = new TargetBasedOnNearest();
-		targetBasedOnNearest.targetOnCritters(critterInRange, new Position(10,10));
+		Critter nearestCritter = targetBasedOnNearest.targetOnCritters(critterInRange, new Position(10,10));
 		BurningTowerShootingBehavior btsb = new BurningTowerShootingBehavior(5,100,5);
 		btsb.getCrittersInRange().add(critter1);
 		btsb.getCrittersInRange().add(critter2);
@@ -89,7 +93,8 @@ public class TargetBasedOnNearestTest {
 		int size1 = critter1.getMovingBehavior().getPathList().size();
 		int size2 = critter2.getMovingBehavior().getPathList().size();
 		int size3 = critter3.getMovingBehavior().getPathList().size();
-		assertTrue("who is the nearest to Exit",size3 < size1 && size3 < size2);
+	//	assertTrue("who is the nearest to Exit",size3 < size1 && size3 < size2);
+		assertEquals("who is the nearest to Exit",nearestCritter.getMovingBehavior().getPathList().size(),size3);
 	}
 
 }

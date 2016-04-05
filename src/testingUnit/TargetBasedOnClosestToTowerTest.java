@@ -50,9 +50,9 @@ public class TargetBasedOnClosestToTowerTest {
 		crittersInRange.add(critter3);
 		
 		towerPosition = new Position(10, 10);
-		
-	//	cellList.set(1, CellState.Exit);
-	//	gameMap.setCells(cellList);
+		critter1.getMovingBehavior().setCurrentPosition(new Position(1,1));
+		critter2.getMovingBehavior().setCurrentPosition(new Position(4,4));
+		critter3.getMovingBehavior().setCurrentPosition(new Position(9,9));
 	}
 
 	/**
@@ -61,8 +61,11 @@ public class TargetBasedOnClosestToTowerTest {
 	@Test
 	public void testTargetOnCritters() {
 		TargetBasedOnClosestToTower targetBasedOnClosestToTower = new TargetBasedOnClosestToTower();
-		targetBasedOnClosestToTower.targetOnCritters(crittersInRange, towerPosition);
-		assertTrue("find the critter who is closest to tower",);
+		Critter closestCritter = targetBasedOnClosestToTower.targetOnCritters(crittersInRange, towerPosition);
+		
+		assertEquals("find the critter who is closest to tower",
+				closestCritter.getMovingBehavior().getCurrentPosition().distanceTo(towerPosition.getCenterPosition()),
+				critter3.getMovingBehavior().getCurrentPosition().distanceTo(towerPosition.getCenterPosition()));
 	}
 
 }
