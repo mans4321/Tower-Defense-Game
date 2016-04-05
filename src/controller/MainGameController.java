@@ -96,7 +96,11 @@ public class MainGameController {
     private int coins = 10;
     private boolean preWavePhase = true;
     private boolean loadGame = false;
-
+    
+    /**
+     * A constuctor to start a new game
+     * @param gameMap game map for the game
+     */
     public MainGameController(GameMap gameMap) {
         this.gameMap = gameMap;
         LoggerCollection.getInstance().addAllMapLog(gameMap);
@@ -112,7 +116,7 @@ public class MainGameController {
     }
 
     /**
-     * A constructor to start the game with saved a game 
+     * A constructor to start a loaded game 
      * @param gameInfo loaded game info
      */
     public MainGameController(GameInfo gameInfo) {
@@ -152,6 +156,9 @@ public class MainGameController {
         
     }
 
+    /**
+     * Initialize  all view observer
+     */
     private void initializeProtocol() {
     	
         mainGameView = new MainGameView();
@@ -167,7 +174,9 @@ public class MainGameController {
         drawingDataPanelDelegate.reloadBalanceDataView(account.getBalance());
         drawingDataPanelDelegate.reloadWaveDataView(currentWaveNum);
     }
-    
+    /**
+     * Initialize player balance
+     */
 	private void initBankAccount() {
 		account =  new BankAccount();
 		if (!loadGame) {
@@ -178,6 +187,9 @@ public class MainGameController {
     }
 
 
+	/**
+	 * Launch waves 
+	 */
     private void startNextWave() {
         if (!preWavePhase) {
             if (currentWaveNum >= WaveFactory.MAX_WAVE_NUM) {
@@ -190,10 +202,16 @@ public class MainGameController {
         }
     }
 
+    /**
+     * Initialize listener for buttons in the top panel
+     */
     private void initFunctionalButtonsInTopPanel() {
         LoggerCollection.getInstance().addLog(new Log(LogType.Wave, "Wave Preparation Phase..."));
         // waveStartButton
         mainGameView.topView.gameDataPanel.waveStartButton.addActionListener(new ActionListener() {
+        	/**
+        	 * a listener for stating wave 
+        	 */
             @Override
             public void actionPerformed(ActionEvent e) {
                 preWavePhase = false;
@@ -203,6 +221,9 @@ public class MainGameController {
             }
         });
 
+        /**
+         * listener for game log button to show game log
+         */
         mainGameView.topView.gameDataPanel.showLogButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -213,9 +234,10 @@ public class MainGameController {
                 }
             }
         });
-        
+        /**
+         * a listener for saving game button 
+         */
         mainGameView.topView.gameDataPanel.saveGame.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				saveGame();
@@ -227,7 +249,10 @@ public class MainGameController {
     
     
     	
-
+    /**
+     * Initialize  waves and add the new wave to the log
+     * @param waveNum wave number
+     */
     private void initCrittersForWave(int waveNum) {
         for (Tower t: towerCollection.getTowers().values()) {
             t.getTowerShootingBehavior().getCrittersInRange().clear();
@@ -237,7 +262,13 @@ public class MainGameController {
         LoggerCollection.getInstance().addLog(new Log(LogType.Wave, "Now in wave " + currentWaveNum + " : " + critterCollection.getCritters().size() + " critters have been created"));
     }
 
+    /**
+     * define the listeners for selling,upgrading,and changing strategy for towers
+     */
     private void initSellUpgradeButtons() {
+    	/**
+    	 * listener for upgrading tower
+    	 */
         mainGameView.endView.towerUpgradeSellPanel.upgradeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -263,6 +294,9 @@ public class MainGameController {
                 }
             }
         });
+        /**
+         * a listener for selling tower 
+         */
         mainGameView.endView.towerUpgradeSellPanel.sellButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -278,7 +312,9 @@ public class MainGameController {
                 }
             }
         });
-        
+        /**
+         * a listener for changing tower strategy
+         */
         mainGameView.endView.towerUpgradeSellPanel.strategyComboBox.addActionListener(new ActionListener() {
         	
         	@Override
@@ -314,6 +350,9 @@ public class MainGameController {
         });
     }
 
+    /**
+     * refresh game view 
+     */
     private void refreshGamePanelsView() {
         drawingMapInGameDelegate.refreshMap(gameMap, towerCollection);
         drawingSpecificationPanelDelegate.reloadPanelBasedOnTower(currentTower);
@@ -322,7 +361,13 @@ public class MainGameController {
     }
 
 
+    /**
+     * define the listener for the game map area
+     */
     private void initMapArea() {
+    	/**
+    	 * listener for mouse click
+    	 */
         mainGameView.mapView.mapPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -383,7 +428,13 @@ public class MainGameController {
 
     }
 
+    /**
+     * define the listener for towers selection buttons 
+     */
     private void initTowerButtons() {
+    	/**
+    	 * listener for burning tower button
+    	 */
         mainGameView.topView.towerSelectionPanel.towerAButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -398,6 +449,9 @@ public class MainGameController {
                 }
             }
         });
+        /**
+         * Listen for ice tower button
+         */
         mainGameView.topView.towerSelectionPanel.towerBButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -412,6 +466,9 @@ public class MainGameController {
                 }
             }
         });
+        /**
+         * Listener for splash tower button
+         */
         mainGameView.topView.towerSelectionPanel.towerCButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -428,6 +485,9 @@ public class MainGameController {
         });
     }
 
+    /**
+     * Initialize  the timer to refresh game view 
+     */
     private void initPaintingTimers() {
         paintingTimer = new Timer(REFRESH_RATE, new ActionListener() {
             @Override
@@ -441,6 +501,9 @@ public class MainGameController {
         paintingTimer.start();
     }
 
+    /**
+     * detecting when next wave should start
+     */
     private void detectingNextWaveShouldStart() {
         int count = 0;
         if(critterCollection != null) {
@@ -458,7 +521,9 @@ public class MainGameController {
             }
         }
     }
-
+    /**
+     * detecting critters stole coins by reaching the exist point  
+     */
     private void detectingCrittersStoleCoins() {
         for (Critter c : critterCollection.getCritters()) {
             if (c.getMovingBehavior() != null) {
@@ -473,12 +538,19 @@ public class MainGameController {
         }
     }
 
+    /**
+     * deals with the game ending actions
+     */
     private void gameShouldFinishedWithUserWin() {
         clearGame();
         mainGameView.setVisible(false);
         new MainMenuController().mainMenuView.setVisible(true);
     }
 
+    /**
+     * deals with the game ending when the player win
+     * @param win player won 
+     */
     private void gameShouldFinishedWithUserWin(boolean win) {
 
         GameMapCollection mapCollection = GameMapCollection.loadMapsFromFile();
@@ -506,6 +578,9 @@ public class MainGameController {
 
     }
 
+    /**
+     * to clear the game when it ends 
+     */
     private void clearGame() {
         critterCollection = null;
         towerCollection = null;
@@ -522,6 +597,9 @@ public class MainGameController {
         LoggerCollection.getInstance().clearAllLogs();
     }
 
+    /**
+     * initialize wave timer to build waves 
+     */
     private void initWaveTimers() {
 
         critterGeneratorTimer = new Timer(CRITTER_GENERATE_TIME, new ActionListener() {
@@ -539,6 +617,9 @@ public class MainGameController {
         critterGeneratorTimer.start();
     }
 
+    /**
+     * detecting critters in towers range
+     */
     private void detectingCrittersInRange() {
         for (Tower t: towerCollection.getTowers().values()) {
             for (Critter c : critterCollection.getCritters()) {
@@ -569,7 +650,9 @@ public class MainGameController {
             }
         }
     }
-
+    /**
+     * shows the higher scores the player got by current map 
+     */
     private void showHighScoreList() {
         ArrayList<Double> scoreList = gameMap.getFiveHighestScore();
         if (!scoreList.isEmpty()) {

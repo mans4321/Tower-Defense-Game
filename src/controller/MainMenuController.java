@@ -51,7 +51,9 @@ public class MainMenuController {
                 }
             }
         });
-        
+        /**
+         * Sets listener for starting the game view.
+         */
         mainMenuView.loadGame.addActionListener(new ActionListener() {
 
 			@Override
