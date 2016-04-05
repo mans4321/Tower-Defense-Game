@@ -11,17 +11,19 @@ import org.junit.Before;
 import org.junit.Test;
 
 import model.critter.Critter;
+import model.critter.CritterMovingBehavior;
 import model.map.CellState;
 import model.map.GameMap;
 import model.tower.shootingstrategy.TargetBasedOnClosestToTower;
 import view.critter.CritterType;
+import view.map.Drawing;
 import view.map.Position;
 
 /**
- * Test target strategy, target on the weakest
+ * Test target strategy, target on the closest to Exit
  * @author LiChong
- * @since 4/4/2016
- * @version 1.2
+ * @since 5/4/2016
+ * @version 1.3
  *
  */
 public class TargetBasedOnClosestToTowerTest {
@@ -30,7 +32,7 @@ public class TargetBasedOnClosestToTowerTest {
 	private Critter critter2;
 	private Critter critter3;
 
-    private ArrayList<CellState> cellList;
+    private ArrayList<CellState> cells;
 	private GameMap gameMap;
 	
 	private Position towerPosition;
@@ -39,20 +41,31 @@ public class TargetBasedOnClosestToTowerTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		gameMap = new GameMap();
-		cellList = gameMap.getCells();
-		crittersInRange = new HashSet();
+		crittersInRange = new HashSet<>();
 		critter1 = new Critter(CritterType.CritterA);
 		critter2 = new Critter(CritterType.CritterB);
 		critter3 = new Critter(CritterType.CritterC);
 		crittersInRange.add(critter1);
 		crittersInRange.add(critter2);
 		crittersInRange.add(critter3);
+		cells = new ArrayList<>();
+			
+		for(int i = 0; i < 20; i++){
+			cells.add(CellState.Path);
+		}
+		cells.add(0, CellState.Entrance);
+		cells.add(19,CellState.Exit);
+		gameMap = new GameMap(10,15, cells, "myMap");
+		CritterMovingBehavior critterMovingBehavior = new CritterMovingBehavior(gameMap, 10);
+		towerPosition = new Position(Drawing.CELL_SIZE * 3, Drawing.CELL_SIZE);
 		
-		towerPosition = new Position(10, 10);
-		critter1.getMovingBehavior().setCurrentPosition(new Position(1,1));
-		critter2.getMovingBehavior().setCurrentPosition(new Position(4,4));
-		critter3.getMovingBehavior().setCurrentPosition(new Position(9,9));
+		critter1.setMovingBehavior(critterMovingBehavior);
+		critter2.setMovingBehavior(critterMovingBehavior);
+		critter3.setMovingBehavior(critterMovingBehavior);
+		
+		critter1.getMovingBehavior().setCurrentPosition(new Position(0,0));
+		critter2.getMovingBehavior().setCurrentPosition(new Position(Drawing.CELL_SIZE * 3,0));
+		critter3.getMovingBehavior().setCurrentPosition(new Position(Drawing.CELL_SIZE * 6,0));
 	}
 
 	/**
@@ -62,10 +75,9 @@ public class TargetBasedOnClosestToTowerTest {
 	public void testTargetOnCritters() {
 		TargetBasedOnClosestToTower targetBasedOnClosestToTower = new TargetBasedOnClosestToTower();
 		Critter closestCritter = targetBasedOnClosestToTower.targetOnCritters(crittersInRange, towerPosition);
-		
-		assertEquals("find the critter who is closest to tower",
-				closestCritter.getMovingBehavior().getCurrentPosition().distanceTo(towerPosition.getCenterPosition()),
-				critter3.getMovingBehavior().getCurrentPosition().distanceTo(towerPosition.getCenterPosition()));
+		assertSame("find the critter who is closest to tower",closestCritter,critter2);
+		assertNotSame("find the critter who is closest to tower",closestCritter,critter1);
+		assertNotSame("find the critter who is closest to tower",closestCritter,critter3);
 	}
 
 }

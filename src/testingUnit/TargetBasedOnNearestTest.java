@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -22,7 +23,7 @@ import view.critter.CritterType;
 import view.map.Position;
 
 /**
- * Test target strategy, target on the weakest
+ * Test target strategy, target on the nearest
  * @author LiChong
  * @since 5/4/2016
  * @version 1.3
@@ -42,19 +43,12 @@ public class TargetBasedOnNearestTest {
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
 	@Before
 	public void setUp() throws Exception {
 		critterInRange = new HashSet<>();
 		critter1 = new Critter(CritterType.CritterA);
-		critter2 = new Critter(CritterType.CritterB);
-		critter3 = new Critter(CritterType.CritterC);
+		critter2 = new Critter(CritterType.CritterA);
+		critter3 = new Critter(CritterType.CritterA);
 		critterInRange.add(critter1);
 		critterInRange.add(critter2);
 		critterInRange.add(critter3);
@@ -88,9 +82,7 @@ public class TargetBasedOnNearestTest {
 		
 		critter1.getMovingBehavior().setPathList(pathList1);
 		critter2.getMovingBehavior().setPathList(pathList2);
-		critter3.getMovingBehavior().setPathList(pathList3);
-		
-		
+		critter3.getMovingBehavior().setPathList(pathList3);		
 	}
 
 	/**
@@ -101,9 +93,23 @@ public class TargetBasedOnNearestTest {
 		TargetBasedOnNearest targetBasedOnNearest = new TargetBasedOnNearest();
 		
 		Critter nearestCritter = targetBasedOnNearest.targetOnCritters(critterInRange, null);
+		System.out.println(nearestCritter);
+		System.out.println("1" + critter1);
+		System.out.println("2" + critter2);
+		System.out.println("3" + critter3);
 		assertSame("who is the nearest to Exit",nearestCritter,critter1);
 		assertNotSame("who is the nearest to Exit",nearestCritter,critter2);
 		assertNotSame("who is the nearest to Exit",nearestCritter,critter3);
 	}
+	
+	@After
+	public void tearDown() {
+		critter1 = null;
+		critter2 = null;
+		critter3 = null;
+	}
+	
+	
+	
 
 }
