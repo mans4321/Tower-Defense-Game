@@ -4,19 +4,21 @@ package testingUnit;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import model.critter.Critter;
 import model.critter.CritterMovingBehavior;
+import model.map.CellState;
 import model.map.GameMap;
+import model.tower.IceTower;
 import model.tower.IceTowerShootingBehavior;
-import model.tower.Tower;
-import model.tower.TowerFactory;
 import view.critter.CritterType;
 import view.map.Position;
-import view.tower.TowerType;
 
 /**
  * Test ice tower shooting behavior
@@ -26,9 +28,10 @@ import view.tower.TowerType;
  *
  */
 public class IceTowerShootingBehaviorTest {
-	private Critter critter;
-	private Tower iceTower;
+	private IceTower iceTower;
 	private IceTowerShootingBehavior iceTowerShootingBehavior;
+	private Critter critter;
+
 	
 	/**
 	 * @throws java.lang.Exception
@@ -41,7 +44,21 @@ public class IceTowerShootingBehaviorTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		
+		critter = new Critter(CritterType.CritterB);
+		GameMap gameMap = new GameMap();
+		ArrayList<CellState>cellListTest = new ArrayList<CellState>();
+        for (int i = 0; i < 20; i++) {
+        	cellListTest.add(CellState.Grass );
+            }
+        cellListTest.set(0, CellState.Entrance);
+        cellListTest.set(19, CellState.Exit);
+        gameMap.setCells(cellListTest);
+		critter.setMovingBehavior(new CritterMovingBehavior(gameMap,3));
+		critter.getMovingBehavior().setCurrentPosition(new Position(0,0));
+		critter.getMovingBehavior().move();
+		iceTower = new IceTower(1);
+		iceTower.setPosition(new Position(0,0));
+		iceTower.getTowerShootingBehavior().getCrittersInRange().add(critter);
 	}
 
 	/**
@@ -49,14 +66,6 @@ public class IceTowerShootingBehaviorTest {
 	 */
 	@Test
 	public void testShoot() {
-		Critter critter =new Critter(CritterType.CritterA);
-		critter.setMovingBehavior(new CritterMovingBehavior(new GameMap(), 7));
-		critter.getMovingBehavior().setCurrentPosition(new Position(0,0));
-		critter.getMovingBehavior().move();
-		iceTower = TowerFactory.sharedInstance().getTower(TowerType.IceTower1);
-		iceTower.setPosition(new Position(0,0));
-		iceTower.getTowerShootingBehavior().getCrittersInRange().add(critter);
-		iceTower.getTowerShootingBehavior().setShooting(true);
 		iceTower.getTowerShootingBehavior().shoot();
 		assertTrue( critter.getSpecicalEffectTimer().isRunning());
 	}

@@ -24,8 +24,8 @@ import view.critter.CritterType;
 public class SplashTowerShootingBehaviorTest {
 	private SplashTower splashTower;
 	private SplashTowerShootingBehavior splashTowerShootingBehavior;
-	private Critter critter;
-	private Critter critter1;
+	private Critter critterA;
+	private Critter critterB;
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -38,11 +38,13 @@ public class SplashTowerShootingBehaviorTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		critter = new Critter(CritterType.CritterA);
-		critter1 = new Critter(CritterType.CritterA);
+		critterA = new Critter(CritterType.CritterA);
+		critterB = new Critter(CritterType.CritterA);
 		splashTower = new SplashTower(1);
 		splashTowerShootingBehavior = new SplashTowerShootingBehavior(10, 100);
-		splashTowerShootingBehavior.getCrittersInRange().add(critter);
+		splashTowerShootingBehavior.getCrittersInRange().add(critterA);
+		splashTowerShootingBehavior.getCrittersInRange().add(critterB);
+		
 	}
 
 	/**
@@ -50,13 +52,13 @@ public class SplashTowerShootingBehaviorTest {
 	 */
 	@Test
 	public void testShoot() {
-		int priorHealth = critter.getCurrentHealth();
-		int priorHealth1 = critter1.getCurrentHealth();
+		int priorHealthCritterA = critterA.getCurrentHealth();
+		int priorHealth1CritterB = critterB.getCurrentHealth();
 		splashTowerShootingBehavior.shoot();
-		int currentHealth = critter.getCurrentHealth();
-		int currentHealth1 = critter1.getCurrentHealth();
-		assertTrue("check health",(priorHealth-currentHealth) > 0);
-		assertEquals("check health",0,(priorHealth1-currentHealth1));
+		int currentHealthCritterA = critterA.getCurrentHealth();
+		int currentHealth1CritterB = critterB.getCurrentHealth();
+		assertTrue("check health critterA", priorHealthCritterA > currentHealthCritterA);
+		assertTrue("check health critterB",(priorHealth1CritterB > currentHealth1CritterB));
 	}
 
 	/**

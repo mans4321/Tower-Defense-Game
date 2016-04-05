@@ -54,9 +54,9 @@ public class BurningTowerShootingBehaviorTest {
 	public void testShoot() {
 		burningTowerShootingBehavior.shoot();
 //		Timer burningTimer = new Timer(0, c);
-		assertTrue( "burningTimer works",! critter.getInnerTimer().isRunning());
+		assertTrue( "burningTimer works", critter.getInnerTimer().isRunning());
 //		Timer losingHealthTimer = new Timer(200, c);
-		assertTrue("losingHealthTimer works",! critter.getSpecicalEffectTimer().isRunning());
+		assertTrue("losingHealthTimer works", critter.getSpecicalEffectTimer().isRunning());
 	}
 
 	/**
