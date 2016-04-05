@@ -48,16 +48,7 @@ public class TargetBasedOnWeakestTest {
 	public void testTargetOnCritters() {
 		TargetBasedOnWeakest targetBasedOnWeakest = new TargetBasedOnWeakest();
 		Critter weakestCritter = targetBasedOnWeakest.targetOnCritters(crittersInRange, new Position(10,10));
-		if(weakestCritter.getCritterType() == critter1.getCritterType()){
-			assertTrue("find the weakest", ((weakestCritter.getCurrentHealth() < critter2.getCurrentHealth())
-						&&(weakestCritter.getCurrentHealth() < critter3.getCurrentHealth())));
-		}else if(weakestCritter.getCritterType() == critter2.getCritterType()){
-			assertTrue("find the weakest", ((weakestCritter.getCurrentHealth() < critter1.getCurrentHealth())
-					&&(weakestCritter.getCurrentHealth() < critter3.getCurrentHealth())));
-		}else if(weakestCritter.getCritterType() == critter3.getCritterType()){
-			assertTrue("find the weakest", ((weakestCritter.getCurrentHealth() < critter1.getCurrentHealth())
-					&&(weakestCritter.getCurrentHealth() < critter2.getCurrentHealth())));
-	}
+		assertTrue("find the weakest",weakestCritter.getCritterType() == critter2.getCritterType());
 	}
 
 }

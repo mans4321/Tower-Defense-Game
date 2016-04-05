@@ -55,16 +55,7 @@ public class TargetBasedOnStrongestTest {
 	public void testTargetOnCritters() {
 		TargetBasedOnStrongest targetBasedOnStrongest = new TargetBasedOnStrongest();
 		Critter strongestCritter = targetBasedOnStrongest.targetOnCritters(crittersInRange, new Position(10,10));
-		if(strongestCritter.getCritterType() == critter1.getCritterType()){
-			assertTrue((strongestCritter.getCurrentHealth() > (critter2.getCurrentHealth())
-					&&(strongestCritter.getCurrentHealth() > (critter3.getCurrentHealth()))));
-		}else if(strongestCritter.getCritterType() == critter2.getCritterType()){
-			assertTrue((strongestCritter.getCurrentHealth() > (critter1.getCurrentHealth())
-					&&(strongestCritter.getCurrentHealth() > (critter3.getCurrentHealth()))));
-		}else if(strongestCritter.getCritterType() == critter3.getCritterType()){
-			assertTrue((strongestCritter.getCurrentHealth() > (critter1.getCurrentHealth())
-					&&(strongestCritter.getCurrentHealth() > (critter2.getCurrentHealth()))));
-		}
+		assertTrue("find the strongest",strongestCritter.getCritterType() == critter3.getCritterType());
 		
 	}
 
