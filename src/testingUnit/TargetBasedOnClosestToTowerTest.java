@@ -62,7 +62,7 @@ public class TargetBasedOnClosestToTowerTest {
 	public void testTargetOnCritters() {
 		TargetBasedOnClosestToTower targetBasedOnClosestToTower = new TargetBasedOnClosestToTower();
 		targetBasedOnClosestToTower.targetOnCritters(crittersInRange, towerPosition);
-		assertTrue("find the critter who is closest to tower",);
+		//assertTrue("find the critter who is closest to tower");
 	}
 
 }
