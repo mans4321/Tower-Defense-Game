@@ -338,7 +338,7 @@ public class MainGameController {
 	                    		currentTower.getTowerShootingBehavior().setShootingStrategy(new TargetBasedOnClosestToTower());
 	                    		break;
 				        }
-                        if(!oldStrategy.equals(strategy)) {
+                        if (!oldStrategy.equals(strategy)) {
                         	towerCollection.addTowerAtIndex(currentIndex, currentTower);
                             LoggerCollection.getInstance().addLog(new Log(LogType.Tower, currentIndex, "Player set a \"" + strategy + "\" strategy to " + currentTower.getTowerType() + " at position " + currentIndex));
                         }
@@ -506,7 +506,7 @@ public class MainGameController {
      */
     private void detectingNextWaveShouldStart() {
         int count = 0;
-        if(critterCollection != null) {
+        if (critterCollection != null) {
             for (Critter c : critterCollection.getCritters()) {
                 if (c.isKilled() || c.isDonated()) {
                     count++;

@@ -92,12 +92,12 @@ public class LoggerCollection {
         addLog(new Log(LogType.Map, "Player created this Map at: " + gameMap.getCreateTime()));
 
         String editedTime = gameMap.getAllEditTime();
-        if(!editedTime.equals(""))
+        if (!editedTime.equals(""))
             addLog(new Log(LogType.Map, "Player edited this Map at: \n" + editedTime));
 
 
         String results = gameMap.getAllResults();
-        if(!results.equals(""))
+        if (!results.equals(""))
             addLog(new Log(LogType.Map, "The result of each play: \n" + results));
 
     }

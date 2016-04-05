@@ -52,8 +52,8 @@ public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegat
 
     @Override
     public void reloadPanelBasedOnTower(Tower tower) {
-        if(tower != null){
-            if(tower.getPosition() != null) {
+        if (tower != null){
+            if (tower.getPosition() != null) {
                 sellButton.setEnabled(true);
                 upgradeButton.setEnabled(true);
             } else {
@@ -62,7 +62,7 @@ public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegat
             }
             towerImageLabel.setIcon(new ImageIcon(tower.getHdImageName()));
             strategyComboBox.setSelectedItem(tower.getTowerShootingBehavior().getShootingStrategy().toString());
-            if(tower instanceof SplashTower) {
+            if (tower instanceof SplashTower) {
                 strategyComboBox.setEnabled(false);
             } else {
                 strategyComboBox.setEnabled(true);
@@ -81,6 +81,4 @@ public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegat
         towerLogArea.setText("");
         towerLogArea.append(LoggerCollection.getInstance().showTowerLogAtIndex(index));
     }
-
-
 }
