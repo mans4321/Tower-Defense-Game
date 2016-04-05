@@ -14,7 +14,7 @@ import model.bankaccount.BankAccount;
  *@version 1.0
  *@since 16/2/2016
  */
-public class Bank {
+public class BankTest {
 
     private BankAccount bankAccount;
     private double  afterAddingBalance;

@@ -19,7 +19,7 @@ import view.map.Position;
  * Test target strategy, target on the strongest
  * @author LiChong
  * @since 4/4/2016
- * @version 1.2
+ * @version 1.3
  *
  */
 public class TargetBasedOnStrongestTest {

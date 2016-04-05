@@ -16,7 +16,7 @@ import utility.Helper;
  *@version 1.0
  *@since 14/2/2016
  */
-public class Utilityclass {
+public class UtilityclassTest {
 
     
     private String[] array;

@@ -16,7 +16,7 @@ import model.savegame.GameInfo;
  * @since 4/4/2016
  * @version 1.0
  */
-public class SavingLoadingGame {
+public class SavingLoadingGameTest {
 
 	GameCollection gameCollection ;
 	int gmaeCollectionSize;

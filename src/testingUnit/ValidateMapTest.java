@@ -27,7 +27,7 @@ import model.map.mapvalidation.SeperateEntranceAndExitValidator;
  * @version 1.0
  * @since 14/3/2016
  */
-public class ValidateMap {
+public class ValidateMapTest {
 
     private ArrayList<CellState> cellListTest;
     private HashMap<Integer, Integer> countMap;
