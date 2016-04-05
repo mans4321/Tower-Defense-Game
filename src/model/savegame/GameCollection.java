@@ -56,11 +56,20 @@ public class GameCollection implements Serializable {
 	 * add a new game
 	 * @param game game for file or saved game
 	 */
-	public void addgame(GameInfo game) {
+	public void addGame(GameInfo game) {
 		
 		games.add(game);
 	}
+	
 
+	/**
+	 * remove a game
+	 * @param index index of the game to be removed
+	 */
+	public void removeGame(int index) {
+		
+		games.remove(index);
+	}
 	/**
 	 * getter for game 
 	 * @return arrayList of all games
@@ -90,7 +99,7 @@ public class GameCollection implements Serializable {
     * Store all saved games info in xml file 
     * @throws FileNotFoundException file not found exception
     */
-    public void saveGame() throws FileNotFoundException{
+    public boolean saveGame(){
     	
     	try {
     		PrintWriter out;
@@ -127,16 +136,19 @@ public class GameCollection implements Serializable {
     	
     			out.println("</SaveGame>");
     			out.close();
+    			
     	} catch (Exception e) {
     		System.out.println("Cannot Write To File ");
+    		return false;
     	}
+    	return true;
     }
 		
 	/**
 	 * Read game info from xml file 
 	 * @throws Exception file exception
 	 */
-	public void loadGame() throws Exception{
+	public boolean loadGame(){
 		
       	HashMap<Integer,Tower> towersCollection = new HashMap<Integer,Tower> ();
       	ArrayList<Log> gameLog= new ArrayList<>();
@@ -261,7 +273,9 @@ public class GameCollection implements Serializable {
             }
         } catch(Exception e) {
         	System.out.println("Cannot Read From File");
+        	return false;
         }
+		return true;
     }
 }
 

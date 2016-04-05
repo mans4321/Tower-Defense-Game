@@ -24,4 +24,5 @@ public enum CellState {
     public String getCellStateName() {
         return cellStateName;
     }
+
 }

@@ -2,6 +2,8 @@ package testingUnit;
 
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
+
 import model.wave.WaveBuilder;
 import org.junit.Test;
 
@@ -21,28 +23,30 @@ public class CritterTest {
 
 	int sizeAfterAddingCritter;
 	int sizeBeforAddingCritter;
-	int sizeBeforAddingCritterWave;
-	int sizeAfterAddingCritterWave;
+	int waveNumber;
+	Critter critter ;
+	CritterCollection critterCollection ;
+	WaveBuilder waveBuilder;
+	Critter critterInHigherWaveNumber ;
 
-	Critter critterD ;
-	CritterCollection critterCollection = new CritterCollection();
+	/**
+	 * set values 
+	 */
+	@Before
+	public void setValues() {
+		critterCollection = new CritterCollection();
+		waveNumber = 1;
+		waveBuilder = new WaveBuilder(waveNumber).critterA(1);
+	}
 	/**
 	 * test adding critter to critter store
 	 */
 	@Test
 	public void testAddingCritterToStore() {
-
-        sizeBeforAddingCritter = critterCollection.getCritters().size();
-
-       	critterD = new Critter(CritterType.CritterD);
-		critterCollection.getCritters().add(critterD);
-
-       sizeAfterAddingCritter = critterCollection.getCritters().size();
-
-       assertTrue(sizeBeforAddingCritter< sizeAfterAddingCritter);
-
-       critterCollection.getCritters().remove (critterD);
-
+		sizeBeforAddingCritter = critterCollection.getCritters().size();
+		critterCollection.getCritters().add(critter);
+		sizeAfterAddingCritter = critterCollection.getCritters().size();
+		assertTrue(sizeBeforAddingCritter< sizeAfterAddingCritter);
 	}
 
 	/**
@@ -50,13 +54,40 @@ public class CritterTest {
 	 */
 	@Test
 	public void testBuildingCritter() {
+		sizeBeforAddingCritter= waveBuilder.getCritterCollection().getCritters().size();
+		waveBuilder.critterA(1);
+		sizeAfterAddingCritter = waveBuilder.getCritterCollection().getCritters().size();
+		assertTrue(sizeBeforAddingCritter < sizeAfterAddingCritter);
 
-		sizeBeforAddingCritterWave= critterCollection.getCritters().size();
+	}
 
-		new WaveBuilder(1).critterA(10);
-	    sizeAfterAddingCritterWave = critterCollection.getCritters().size();
+	/**
+	 * test critter speed increase by wave number
+	 */
+	@Test
+	public void testCritterIncreasingSpeedWithEveryWave() {
+		int critterSpeedInlowerWaveNumber;
+		int critterSpeedInHigherWaveNumber;
+		critter = waveBuilder.getCritterCollection().getCritters().get(0);
+		critterSpeedInlowerWaveNumber = critter.getMovingSpeed();
+		waveBuilder = new WaveBuilder(2).critterA(1);
+		critterInHigherWaveNumber = waveBuilder.getCritterCollection().getCritters().get(0);
+		critterSpeedInHigherWaveNumber = critterInHigherWaveNumber.getMovingSpeed();
+		assertTrue(critterSpeedInlowerWaveNumber < critterSpeedInHigherWaveNumber);
+	}
 
-		assertTrue(sizeBeforAddingCritterWave < sizeAfterAddingCritterWave);
-
+	/**
+	 * test critter speed increase by wave number
+	 */
+	@Test
+	public void testCritterIncreasingHealthWithEveryWave() {
+		int critterHealthInlowerWaveNumber;
+		int critterHealthInHigherWaveNumber;
+		critter = waveBuilder.getCritterCollection().getCritters().get(0);
+		critterHealthInlowerWaveNumber = critter.getCurrentHealth();
+		waveBuilder = new WaveBuilder(2).critterD(1);
+		critterInHigherWaveNumber = waveBuilder.getCritterCollection().getCritters().get(0);
+		critterHealthInHigherWaveNumber = critterInHigherWaveNumber.getCurrentHealth();
+		assertTrue(critterHealthInlowerWaveNumber < critterHealthInHigherWaveNumber);
 	}
 }

@@ -42,7 +42,7 @@ public class Critter implements ActionListener {
     }
 
     public Critter(CritterType critterType) {
-        this.critterType = critterType;
+        this.setCritterType(critterType);
         this.critterView = new CritterView(critterType);
 
         switch (critterType) {
@@ -176,5 +176,13 @@ public class Critter implements ActionListener {
             currentHealth -= damage;
         }
     }
+
+	public CritterType getCritterType() {
+		return critterType;
+	}
+
+	public void setCritterType(CritterType critterType) {
+		this.critterType = critterType;
+	}
 }
 
