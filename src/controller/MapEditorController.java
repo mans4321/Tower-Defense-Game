@@ -211,8 +211,11 @@ public class MapEditorController {
                                             null,
                                             "map1");
                                 } while (mapName.equals(mapRename));
-                                if (mapRename != null) mapName = mapRename;
-                                else isReadyToCreate = false;
+                                if (mapRename != null) {
+                                    mapName = mapRename;
+                                } else {
+                                    isReadyToCreate = false;
+                                }
                             }
                         }
                     } else mapCollection = new GameMapCollection();
@@ -228,7 +231,9 @@ public class MapEditorController {
                 clearGameMap();
                 mapEditorView.setVisible(false);
                 new MainMenuController().mainMenuView.setVisible(true);
-            } else JOptionPane.showMessageDialog(mapEditorView, "File name invalidate");
+            } else {
+                JOptionPane.showMessageDialog(mapEditorView, "File name invalidate");
+            }
         }
     }
 }
