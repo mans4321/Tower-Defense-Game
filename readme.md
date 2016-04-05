@@ -12,7 +12,7 @@
 	- [x] burning (inflicts damage over time after a critter has been hit), 
 	- [x] freezing (slows down the critter for some time).
 - [ ] The towers can target the critters using the following mandatory strategies: 
-	- [ ] nearest to the tower, 
+	- [x] nearest to the tower, 
 	- [x] nearest to the end point, 
 	- [x] weakest critter, 
 	- [x] strongest critter. 
