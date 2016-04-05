@@ -31,18 +31,17 @@ public class SavingLoadingGameTest {
 		  gameCollection.loadGame();
 		  
 	  }
-	     /**
-		 * deleting test info from file
-		 */
-		  @After
-		    public void deletTestGameFromFile() {
-			  if(game != null){
-					 int index = gameCollection.findGameInCollection("GameTest");
-					 gameCollection.removeGame(index);
-					 gameCollection.saveGame();  
-			  }
-			  
+	  /**
+	   * deleting test info from file
+	   */
+	  @After
+	  public void deletTestGameFromFile() {
+		  if(game != null){
+			  int index = gameCollection.findGameInCollection("GameTest");
+			  gameCollection.removeGame(index);
+			  gameCollection.saveGame();  
 		  }
+	  }
 
 	  @Test
 	  public void testSaveGmae() {
