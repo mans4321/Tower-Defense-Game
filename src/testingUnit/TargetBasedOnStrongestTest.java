@@ -56,7 +56,7 @@ public class TargetBasedOnStrongestTest {
 		TargetBasedOnStrongest targetBasedOnStrongest = new TargetBasedOnStrongest();
 		Critter strongestCritter = targetBasedOnStrongest.targetOnCritters(crittersInRange, new Position(10,10));
 		assertTrue("find the strongest",strongestCritter.getCritterType() == critter3.getCritterType());
-		
+
 	}
 
 }

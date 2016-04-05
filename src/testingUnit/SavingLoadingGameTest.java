@@ -21,44 +21,53 @@ public class SavingLoadingGameTest {
 	GameCollection gameCollection ;
 	int gmaeCollectionSize;
 	GameInfo game;
-	
+
 	/**
 	 * setting values 
 	 */
-	  @Before
-	    public void setValues() {
-		  gameCollection = new GameCollection(); 
-		  gameCollection.loadGame();
-		  
-	  }
-	  /**
-	   * deleting test info from file
-	   */
-	  @After
-	  public void deletTestGameFromFile() {
-		  if(game != null){
-			  int index = gameCollection.findGameInCollection("GameTest");
-			  gameCollection.removeGame(index);
-			  gameCollection.saveGame();  
-		  }
-	  }
-
-	  @Test
-	  public void testSaveGmae() {
-		  game = new GameInfo(null , null ,1000,100,4,"GameTest", "GameTest");
-		  gameCollection.addGame(game);
-		  gameCollection.saveGame();
-		  gameCollection.loadGame(); // load the file again with the new game added on 
-		  gmaeCollectionSize = gameCollection.getGames().size();
-		  assertTrue(gmaeCollectionSize == gameCollection.getGames().size() );
+	@Before
+	public void setValues() {
+		gameCollection = new GameCollection(); 
+		gameCollection.loadGame();  
+	}
+	/**
+	 * deleting test info from file
+	 */
+	@After
+	public void deletTestGameFromFile() {
+		if(game != null){
+			int index = gameCollection.findGameInCollection("GameTest");
+			gameCollection.removeGame(index);
+			gameCollection.saveGame();  
 		}
-	
+	}
+
+	/**
+	 * Test saving game.
+	 */
+	@Test
+	public void testSaveGame() {
+		game = new GameInfo(null , null ,1000,100,4,"GameTest", "GameTest");
+		gameCollection.addGame(game);
+		gameCollection.saveGame();
+		gameCollection.loadGame(); // load the file again with the new game added on 
+		gmaeCollectionSize = gameCollection.getGames().size();
+		assertTrue(gmaeCollectionSize == gameCollection.getGames().size() );
+	}
+
+	/**
+	 * Test loading game.
+	 */
 	@Test
 	public void testLoadGame() {
 		gmaeCollectionSize = gameCollection.getGames().size();
 		if(gameCollection.loadGame())// otherwise means file not exist yet because no game has been saved 
-		assertTrue(gmaeCollectionSize < gameCollection.getGames().size() );
+			assertTrue(gmaeCollectionSize < gameCollection.getGames().size() );
 	}
+
+	/**
+	 * Test loading game and getting information.
+	 */
 	@Test
 	public void testLoadGameAndGetInfo() {
 		gameCollection.loadGame();

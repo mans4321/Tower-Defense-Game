@@ -23,17 +23,9 @@ import view.critter.CritterType;
  *
  */
 public class BurningTowerShootingBehaviorTest {
-
 	private BurningTower burningTower;
 	private BurningTowerShootingBehavior burningTowerShootingBehavior;
 	private Critter critter;
-	/**
-	 * @throws java.lang.Exception
-	 */
-	
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {}
-
 	/**
 	 * Set up a new burning tower whose level is 1.
 	 * @throws java.lang.Exception
@@ -44,7 +36,6 @@ public class BurningTowerShootingBehaviorTest {
 		burningTower = new BurningTower(1);
 		burningTowerShootingBehavior = new BurningTowerShootingBehavior(5, 100, 5);
 		burningTowerShootingBehavior.getCrittersInRange().add(critter);
-		
 	}
 
 	/**
@@ -53,9 +44,7 @@ public class BurningTowerShootingBehaviorTest {
 	@Test
 	public void testShoot() {
 		burningTowerShootingBehavior.shoot();
-//		Timer burningTimer = new Timer(0, c);
 		assertTrue( "burningTimer works", critter.getInnerTimer().isRunning());
-//		Timer losingHealthTimer = new Timer(200, c);
 		assertTrue("losingHealthTimer works", critter.getSpecicalEffectTimer().isRunning());
 	}
 

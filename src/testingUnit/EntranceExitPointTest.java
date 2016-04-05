@@ -10,7 +10,6 @@ import org.junit.Test;
 import model.map.CellState;
 import model.map.GameMap;
 
-
 /**
  * test getting the exist and entrance form map file.
  * 
@@ -20,34 +19,34 @@ import model.map.GameMap;
  */
 public class EntranceExitPointTest {
 
-    private GameMap  gameMap;
-    private ArrayList<CellState> cellListTest;
+	private GameMap  gameMap;
+	private ArrayList<CellState> cellListTest;
 
-    /**
-     * Setting the pointer for gameMap.
-     */
-    @Before
-    public void setValus() {
-          gameMap = new GameMap();
-          cellListTest = gameMap.getCells();
-          cellListTest.set(0, CellState.Entrance);
-          cellListTest.set(10, CellState.Exit);
-          gameMap.setCells(cellListTest);
-    }
-    
-    /**
-     * test get the entrance.
-     */
-    @Test
-    public void getExtrancePosition() {
-        assertTrue(gameMap.findEntranceIndex() == 0);
-    }
-    
-    /**
-     * test get the exist.
-     */
-    @Test
-    public void getExitPosition() {
-        assertTrue(gameMap.findExitIndex() == 10);
-    }
+	/**
+	 * Setting the pointer for gameMap.
+	 */
+	@Before
+	public void setValus() {
+		gameMap = new GameMap();
+		cellListTest = gameMap.getCells();
+		cellListTest.set(0, CellState.Entrance);
+		cellListTest.set(10, CellState.Exit);
+		gameMap.setCells(cellListTest);
+	}
+
+	/**
+	 * test get the entrance.
+	 */
+	@Test
+	public void getExtrancePosition() {
+		assertTrue(gameMap.findEntranceIndex() == 0);
+	}
+
+	/**
+	 * test get the exist.
+	 */
+	@Test
+	public void getExitPosition() {
+		assertTrue(gameMap.findExitIndex() == 10);
+	}
 }

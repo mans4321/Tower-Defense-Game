@@ -24,6 +24,7 @@ public class TargetBasedOnWeakestTest {
 	private Critter critter1;
 	private Critter critter2;
 	private Critter critter3;
+	
 	/**
 	 * @throws java.lang.Exception
 	 */

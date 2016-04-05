@@ -35,10 +35,10 @@ public class TargetBasedOnNearestTest {
 	private Critter critter2;
 	private Critter critter3;
 	private GameMap gameMap;
-    private ArrayList<CellState> cells;
-    private ArrayList<Integer> pathList1;
-    private ArrayList<Integer> pathList2;
-    private ArrayList<Integer> pathList3;
+	private ArrayList<CellState> cells;
+	private ArrayList<Integer> pathList1;
+	private ArrayList<Integer> pathList2;
+	private ArrayList<Integer> pathList3;
 
 	/**
 	 * @throws java.lang.Exception
@@ -58,31 +58,25 @@ public class TargetBasedOnNearestTest {
 		}
 		cells.add(0, CellState.Entrance);
 		cells.add(19, CellState.Exit);
-		
+
 		gameMap = new GameMap(10, 15, cells, "myGame");
-		CritterMovingBehavior critterMovingBehavior = new CritterMovingBehavior(gameMap, 10);
-		
-		pathList1 = new ArrayList<>();
-		pathList2 = new ArrayList<>();
-		pathList3 = new ArrayList<>();
-		
-		for(int i = 5; i < cells.size(); i++) {
-			pathList1.add(i);
+		CritterMovingBehavior critterMovingBehavior1 = new CritterMovingBehavior(gameMap, 10);
+		CritterMovingBehavior critterMovingBehavior2 = new CritterMovingBehavior(gameMap, 10);
+		CritterMovingBehavior critterMovingBehavior3 = new CritterMovingBehavior(gameMap, 10);
+
+		critter1.setMovingBehavior(critterMovingBehavior1);
+		critter2.setMovingBehavior(critterMovingBehavior2);
+		critter3.setMovingBehavior(critterMovingBehavior3);
+
+		for(int i = 1; i < 5; i++) {
+			critter1.getMovingBehavior().getPathList().remove(i);
 		}
-		for(int i = 4; i < cells.size(); i++) {
-			pathList2.add(i);
+		for(int i = 1; i < 4; i++) {
+			critter2.getMovingBehavior().getPathList().remove(i);
 		}
-		for(int i = 3; i < cells.size(); i++) {
-			pathList3.add(i);
-		}
-		
-		critter1.setMovingBehavior(critterMovingBehavior);
-		critter2.setMovingBehavior(critterMovingBehavior);
-		critter3.setMovingBehavior(critterMovingBehavior);
-		
-		critter1.getMovingBehavior().setPathList(pathList1);
-		critter2.getMovingBehavior().setPathList(pathList2);
-		critter3.getMovingBehavior().setPathList(pathList3);		
+		for(int i = 1; i < 3; i++) {
+			critter3.getMovingBehavior().getPathList().remove(i);
+		}		
 	}
 
 	/**
@@ -91,7 +85,6 @@ public class TargetBasedOnNearestTest {
 	@Test
 	public void testTargetOnCritters() {
 		TargetBasedOnNearest targetBasedOnNearest = new TargetBasedOnNearest();
-		
 		Critter nearestCritter = targetBasedOnNearest.targetOnCritters(critterInRange, null);
 		System.out.println(nearestCritter);
 		System.out.println("1" + critter1);
@@ -101,15 +94,4 @@ public class TargetBasedOnNearestTest {
 		assertNotSame("who is the nearest to Exit",nearestCritter,critter2);
 		assertNotSame("who is the nearest to Exit",nearestCritter,critter3);
 	}
-	
-	@After
-	public void tearDown() {
-		critter1 = null;
-		critter2 = null;
-		critter3 = null;
-	}
-	
-	
-	
-
 }

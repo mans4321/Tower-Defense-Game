@@ -31,11 +31,10 @@ public class TargetBasedOnClosestToTowerTest {
 	private Critter critter1;
 	private Critter critter2;
 	private Critter critter3;
-
-    private ArrayList<CellState> cells;
+	private ArrayList<CellState> cells;
 	private GameMap gameMap;
-	
 	private Position towerPosition;
+
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -49,20 +48,21 @@ public class TargetBasedOnClosestToTowerTest {
 		crittersInRange.add(critter2);
 		crittersInRange.add(critter3);
 		cells = new ArrayList<>();
-			
+
 		for(int i = 0; i < 20; i++){
 			cells.add(CellState.Path);
 		}
 		cells.add(0, CellState.Entrance);
 		cells.add(19,CellState.Exit);
 		gameMap = new GameMap(10,15, cells, "myMap");
-		CritterMovingBehavior critterMovingBehavior = new CritterMovingBehavior(gameMap, 10);
+		CritterMovingBehavior critterMovingBehavior1 = new CritterMovingBehavior(gameMap, 10);
+		CritterMovingBehavior critterMovingBehavior2 = new CritterMovingBehavior(gameMap, 10);
+		CritterMovingBehavior critterMovingBehavior3 = new CritterMovingBehavior(gameMap, 10);
 		towerPosition = new Position(Drawing.CELL_SIZE * 3, Drawing.CELL_SIZE);
-		
-		critter1.setMovingBehavior(critterMovingBehavior);
-		critter2.setMovingBehavior(critterMovingBehavior);
-		critter3.setMovingBehavior(critterMovingBehavior);
-		
+
+		critter1.setMovingBehavior(critterMovingBehavior1);
+		critter2.setMovingBehavior(critterMovingBehavior2);
+		critter3.setMovingBehavior(critterMovingBehavior3);
 		critter1.getMovingBehavior().setCurrentPosition(new Position(0,0));
 		critter2.getMovingBehavior().setCurrentPosition(new Position(Drawing.CELL_SIZE * 3,0));
 		critter3.getMovingBehavior().setCurrentPosition(new Position(Drawing.CELL_SIZE * 6,0));

@@ -32,7 +32,6 @@ public class IceTowerShootingBehaviorTest {
 	private IceTowerShootingBehavior iceTowerShootingBehavior;
 	private Critter critter;
 
-	
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -47,12 +46,12 @@ public class IceTowerShootingBehaviorTest {
 		critter = new Critter(CritterType.CritterB);
 		GameMap gameMap = new GameMap();
 		ArrayList<CellState>cellListTest = new ArrayList<CellState>();
-        for (int i = 0; i < 20; i++) {
-        	cellListTest.add(CellState.Grass );
-            }
-        cellListTest.set(0, CellState.Entrance);
-        cellListTest.set(19, CellState.Exit);
-        gameMap.setCells(cellListTest);
+		for (int i = 0; i < 20; i++) {
+			cellListTest.add(CellState.Grass );
+		}
+		cellListTest.set(0, CellState.Entrance);
+		cellListTest.set(19, CellState.Exit);
+		gameMap.setCells(cellListTest);
 		critter.setMovingBehavior(new CritterMovingBehavior(gameMap,3));
 		critter.getMovingBehavior().setCurrentPosition(new Position(0,0));
 		critter.getMovingBehavior().move();

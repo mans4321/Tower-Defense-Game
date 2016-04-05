@@ -44,7 +44,6 @@ public class SplashTowerShootingBehaviorTest {
 		splashTowerShootingBehavior = new SplashTowerShootingBehavior(10, 100);
 		splashTowerShootingBehavior.getCrittersInRange().add(critterA);
 		splashTowerShootingBehavior.getCrittersInRange().add(critterB);
-		
 	}
 
 	/**
