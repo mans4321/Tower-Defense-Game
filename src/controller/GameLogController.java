@@ -26,9 +26,9 @@ public class GameLogController {
     public GameLogController() {
         gameLogView = new GameLogView();
         refreshTimer = new Timer(100, new ActionListener() {
-        	/**
-        	 * listener to refresh the log 
-        	 */
+            /**
+             * listener to refresh the log 
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 switch (currentLogType) {

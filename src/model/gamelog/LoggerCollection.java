@@ -22,14 +22,14 @@ public class LoggerCollection {
     private ArrayList<Log> logList = new ArrayList<>();
 
     public ArrayList<Log> getLogList() {
-		return logList;
-	}
+        return logList;
+    }
 
-	public void setLogList(ArrayList<Log> logList) {
-		this.logList = logList;
-	}
+    public void setLogList(ArrayList<Log> logList) {
+        this.logList = logList;
+    }
 
-	public void addLog(Log log) {
+    public void addLog(Log log) {
         logList.add(log);
 
     }

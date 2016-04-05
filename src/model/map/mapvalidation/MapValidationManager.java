@@ -202,9 +202,9 @@ public class MapValidationManager {
                 countMap.put(posIndex, count);
                 count = 0;
                 break;
-        	}
+            }
         }
-	}
+    }
     
     /**
      * Getter for count Map.
@@ -214,16 +214,16 @@ public class MapValidationManager {
         return countMap;
     }
     /*
-	public int getCountEntranceOrExit() {
-		for (int i=0;i<cellList.size();i++) {
-			if (cellList.get(i) == CellState.ENTRANCE) numberOfEntrance++;
-			if (cellList.get(i) == CellState.EXIT) numberOfExit++;
-		}
-		if (numberOfEntrance == 0 || numberOfEntrance > 1 || numberOfExit == 0 || numberOfExit > 1) {
-			numberOfEntranceOrExit++;
-		}
-		return numberOfEntranceOrExit;
-	}*/
+    public int getCountEntranceOrExit() {
+        for (int i=0;i<cellList.size();i++) {
+            if (cellList.get(i) == CellState.ENTRANCE) numberOfEntrance++;
+            if (cellList.get(i) == CellState.EXIT) numberOfExit++;
+        }
+        if (numberOfEntrance == 0 || numberOfEntrance > 1 || numberOfExit == 0 || numberOfExit > 1) {
+            numberOfEntranceOrExit++;
+        }
+        return numberOfEntranceOrExit;
+    }*/
 
     /**
      * Get error message
@@ -240,7 +240,7 @@ public class MapValidationManager {
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
-	
+    
     /**
      * Verification of valid maps will return invalid and error message 
      * 
@@ -266,13 +266,13 @@ public class MapValidationManager {
             return false;
         } else if (! new CirclePathValidator(countMap).validate()) {
             errorMessage = "Path cannot be a circle!";
-            return false;	
+            return false;    
         } else if (! new ExtraPathValidator(countMap, cellList).validate()) {
             errorMessage = "There is extra path in your map!";
             return false;
         } else if (! new ContinousPathValidator( countMap, cellList,  cols).validate()) {
             errorMessage = "Your path is not continous!";
-            return false;	
+            return false;    
         } else if (! new SeperateEntranceAndExitValidator(cols, cellList).validate()) {
             errorMessage = "Entrance can not be the neighbour of Exit!";
             return false;

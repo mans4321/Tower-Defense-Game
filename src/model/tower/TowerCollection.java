@@ -25,10 +25,10 @@ public class TowerCollection {
     }
 
     public void setTowers(HashMap<Integer, Tower> towers) {
-		this.towers = towers;
-	}
+        this.towers = towers;
+    }
 
-	public void addTowerAtIndex(int index, Tower tower) {
+    public void addTowerAtIndex(int index, Tower tower) {
         towers.put(index, tower);
     }
 

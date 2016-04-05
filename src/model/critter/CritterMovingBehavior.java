@@ -22,11 +22,11 @@ public class CritterMovingBehavior implements ActionListener {
     private ArrayList<Integer> pathList;
     
     public void setPathList(ArrayList<Integer> pathList) {
-    	//this.nextIndex= index; 
-		this.pathList = pathList;
-	}
+        //this.nextIndex= index; 
+        this.pathList = pathList;
+    }
 
-	private int cols;
+    private int cols;
     private int entranceIndex;
 
     private boolean arrivedAtExit;

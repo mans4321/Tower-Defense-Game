@@ -32,7 +32,7 @@ public class BurningTowerShootingBehavior extends TowerShootingBehavior {
         Critter critterUnderAttack = shootingStrategy.targetOnCritters(crittersInRange, this.getTowerPosition());
 
         if (critterUnderAttack != null && !critterUnderAttack.isKilled()) {
-        	if (towerDidShotDelegate != null) {
+            if (towerDidShotDelegate != null) {
                 towerDidShotDelegate.towerDidShotAt(critterUnderAttack.getMovingBehavior().getCurrentPosition());
             }
             int health = critterUnderAttack.getCurrentHealth();
@@ -59,11 +59,11 @@ public class BurningTowerShootingBehavior extends TowerShootingBehavior {
         }
     }
 
-	public int getBurningDamage() {
-		return burningDamage;
-	}
+    public int getBurningDamage() {
+        return burningDamage;
+    }
 
-	public void setBurningDamage(int burningDamage) {
-		this.burningDamage = burningDamage;
-	}
+    public void setBurningDamage(int burningDamage) {
+        this.burningDamage = burningDamage;
+    }
 }

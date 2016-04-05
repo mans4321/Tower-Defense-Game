@@ -14,7 +14,7 @@ import java.util.Set;
  * @version 2.0  
  */
 public class TargetBasedOnWeakest implements TowerShootingStrategy {
-	/**
+    /**
      * Overrides targetOnCritters
      * {@inheritDoc}
      */

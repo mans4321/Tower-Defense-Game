@@ -48,11 +48,11 @@ public class IceTowerShootingBehavior extends TowerShootingBehavior {
         }
     }
 
-	public int getFrozenTime() {
-		return frozenTime;
-	}
+    public int getFrozenTime() {
+        return frozenTime;
+    }
 
-	public void setFrozenTime(int frozenTime) {
-		this.frozenTime = frozenTime;
-	}
+    public void setFrozenTime(int frozenTime) {
+        this.frozenTime = frozenTime;
+    }
 }

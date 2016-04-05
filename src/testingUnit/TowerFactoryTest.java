@@ -16,15 +16,15 @@ import static org.junit.Assert.*;
  * @since 15/2/2016
  */
 public class TowerFactoryTest {
-	Tower tower ;
+    Tower tower ;
 
-	/**
-	 * Test getting instance function return the wanted tower instance.
-	 */
-	@Test
-	public void getTowerTest() {
-		tower = TowerFactory.sharedInstance().getTower(TowerType.BurningTower1);
-		assertTrue(tower.getClass().getName().equals("model.tower.BurningTower")); 
+    /**
+     * Test getting instance function return the wanted tower instance.
+     */
+    @Test
+    public void getTowerTest() {
+        tower = TowerFactory.sharedInstance().getTower(TowerType.BurningTower1);
+        assertTrue(tower.getClass().getName().equals("model.tower.BurningTower")); 
 
-	}
+    }
 }

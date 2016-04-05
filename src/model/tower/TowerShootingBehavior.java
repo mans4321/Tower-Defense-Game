@@ -37,10 +37,10 @@ public class TowerShootingBehavior {
     }
 
     public void setCrittersInRange(Set<Critter> crittersInRange) {
-		this.crittersInRange = crittersInRange;
-	}
+        this.crittersInRange = crittersInRange;
+    }
 
-	public Set<Critter> getCrittersInRange() {
+    public Set<Critter> getCrittersInRange() {
         return crittersInRange;
     }
 
@@ -70,14 +70,14 @@ public class TowerShootingBehavior {
     }
 
     public TowerShootingStrategy getShootingStrategy() {
-		return shootingStrategy;
-	}
+        return shootingStrategy;
+    }
 
-	public void setShootingStrategy(TowerShootingStrategy shootingStrategy) {
-		this.shootingStrategy = shootingStrategy;
-	}
+    public void setShootingStrategy(TowerShootingStrategy shootingStrategy) {
+        this.shootingStrategy = shootingStrategy;
+    }
 
-	public void shoot() {}
+    public void shoot() {}
 
     public void setTowerPosition(Position towerPosition) {
         this.towerPosition = towerPosition;

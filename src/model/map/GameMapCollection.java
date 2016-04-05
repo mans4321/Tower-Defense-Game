@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class GameMapCollection {
 
-	
+    
     private static String JSON_FILE = "maps.json";
 
     private ArrayList<GameMap> maps;

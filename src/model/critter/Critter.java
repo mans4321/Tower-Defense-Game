@@ -177,12 +177,11 @@ public class Critter implements ActionListener {
         }
     }
 
-	public CritterType getCritterType() {
-		return critterType;
-	}
+    public CritterType getCritterType() {
+        return critterType;
+    }
 
-	public void setCritterType(CritterType critterType) {
-		this.critterType = critterType;
-	}
+    public void setCritterType(CritterType critterType) {
+        this.critterType = critterType;
+    }
 }
-
