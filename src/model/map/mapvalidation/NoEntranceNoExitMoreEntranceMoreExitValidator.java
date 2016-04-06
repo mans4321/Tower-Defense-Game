@@ -19,14 +19,12 @@ public class NoEntranceNoExitMoreEntranceMoreExitValidator implements MapValidat
 
     private ArrayList<CellState> cellList;
 
-    
     /**
      * {@inheritDoc}
      */
     @Override
     public boolean validate() {
-        // TODO Auto-generated method stub
-        
+        // TODO Auto-generated method stub 
         int numberOfEntrance = 0;
         int numberOfExit = 0;
         
@@ -37,8 +35,7 @@ public class NoEntranceNoExitMoreEntranceMoreExitValidator implements MapValidat
             if (cellList.get(i) == CellState.Exit) {
                 numberOfExit++;
             }
-        }
-        
+        }   
         if (numberOfEntrance == 0 || numberOfEntrance > 1 || numberOfExit == 0 || numberOfExit > 1) {
             return false;
         } else {

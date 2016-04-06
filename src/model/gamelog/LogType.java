@@ -1,7 +1,10 @@
 package model.gamelog;
 
 /**
- * Created by yongpinggao on 3/25/16.
+ * An enum of log types
+ * @author yongpinggao
+ * @since 3/25/16.
+ * @version 2.0 
  */
 public enum LogType {
     Game,

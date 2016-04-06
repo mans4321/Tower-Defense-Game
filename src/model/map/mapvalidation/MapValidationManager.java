@@ -6,13 +6,12 @@ import model.map.GameMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 /**
  * This class manage all map validation 
  *  
  * @author LiChong
  * @version 1.0 
- * @since 
+ * @since 5/4/2016
  */
 public class MapValidationManager {
 
@@ -24,9 +23,10 @@ public class MapValidationManager {
     
     private HashMap<Integer,Integer> flagMap;
     private HashMap<Integer,Integer> countMap;
-    
-
-
+    /**
+     * Constructor of MapValidationManager
+     * @param gameMap it represents who will be managed.
+     */
     public MapValidationManager(GameMap gameMap) {
         this.cellList = gameMap.getCells();
         this.cols = gameMap.getmCols();
@@ -213,17 +213,6 @@ public class MapValidationManager {
     public HashMap<Integer, Integer> getCountMap() {
         return countMap;
     }
-    /*
-	public int getCountEntranceOrExit() {
-		for (int i=0;i<cellList.size();i++) {
-			if (cellList.get(i) == CellState.ENTRANCE) numberOfEntrance++;
-			if (cellList.get(i) == CellState.EXIT) numberOfExit++;
-		}
-		if (numberOfEntrance == 0 || numberOfEntrance > 1 || numberOfExit == 0 || numberOfExit > 1) {
-			numberOfEntranceOrExit++;
-		}
-		return numberOfEntranceOrExit;
-	}*/
 
     /**
      * Get error message

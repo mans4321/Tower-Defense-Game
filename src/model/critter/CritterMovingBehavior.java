@@ -7,12 +7,14 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 /**
- * Created by yongpinggao on 3/18/16.
+ * Critter moving behavior who implements ActionListener interface
+ * 
+ * @author yongpinggao
+ * @version 1.0
+ * @since 3/13/16
  */
 public class CritterMovingBehavior implements ActionListener {
-
     private final int DELAY = 50;
     private Timer movingTimer;
     private int initialMoveSpeed;
@@ -20,62 +22,87 @@ public class CritterMovingBehavior implements ActionListener {
     private Position currentPosition;
     private int nextIndex;
     private ArrayList<Integer> pathList;
-    
-    public void setPathList(ArrayList<Integer> pathList) {
-    	//this.nextIndex= index; 
-		this.pathList = pathList;
-	}
 
-	private int cols;
+    private int cols;
     private int entranceIndex;
-
     private boolean arrivedAtExit;
-
+    /**
+     * Set path list for critter.
+     * @param pathList it represents a series of path
+     */
+    public void setPathList(ArrayList<Integer> pathList) {
+        this.pathList = pathList;
+    }
+    /**
+     * Constructor of CritterMovingBehavior class.
+     * @param gameMap it represents which game map will be used
+     * @param movingSpeed it represent moving speed of crietter
+     */
     public CritterMovingBehavior(GameMap gameMap, int movingSpeed) {
         pathList = gameMap.findPathList();
         cols = gameMap.getmCols();
         entranceIndex = gameMap.findEntranceIndex();
         currentPosition = Drawing.indexToCoordinateConverter(entranceIndex, cols);
         nextIndex = entranceIndex;
-
         initialMoveSpeed = movingSpeed;
     }
-
+    /**
+     * Whether the critter arrive at Exit.
+     * @return a boolean value
+     */
     public boolean isArrivedAtExit() {
         return arrivedAtExit;
     }
-
-
-
+    /**
+     * Get path list
+     * @return pathList which represents critter's path 
+     */
     public ArrayList<Integer> getPathList() {
         return pathList;
     }
-
+    /**
+     * Get current position of critter
+     * @return cuurentPosition of critter
+     */
     public Position getCurrentPosition() {
         return currentPosition;
     }
-
+    /**
+     * Set currentPosition of critter.
+     * @param currentPosition it represents current position of critter
+     */
     public void setCurrentPosition(Position currentPosition) {
         this.currentPosition = currentPosition;
     }
-
-    // x, y -> current position
+    /**
+     * Let critter move one step towards right.
+     */
     private void moveRight() {
         currentPosition.setX(currentPosition.getX() + 1);
     }
-
+    /**
+     * Let critter move one step towards down.
+     */
     private void moveDown() {
         currentPosition.setY(currentPosition.getY() + 1);
     }
-
+    /**
+     * Let critter move one step towards left.
+     */
     private void moveLeft() {
         currentPosition.setX(currentPosition.getX() - 1);
     }
-
+    /**
+     * Let critter move one step towards up.
+     */
     private void moveUp() {
         currentPosition.setY(currentPosition.getY() - 1);
     }
-
+    /**
+     * Get destination of critter.
+     * @param index  it represents critter's current position
+     * @return next index of move
+     */
     private int getDestination(int index) {
         int iLeft = index - 1;
         int iRight = index + 1;
@@ -96,12 +123,17 @@ public class CritterMovingBehavior implements ActionListener {
         pathList.remove(new Integer(index));
         return nextIndex;
     }
-
+    /**
+     * Get moving timer
+     * @return a Timer represents moving timer
+     */
     public Timer getMovingTimer() {
         return movingTimer;
     }
-
-    // recursion make it consecutive
+    /**
+     * recursion make it consecutive,following index
+     * @param index it represents critter's current position
+     */
     private void moveToIndex(int index) {
         Position position = Drawing.indexToCoordinateConverter(index, cols);
         int x = position.getX();
@@ -130,12 +162,16 @@ public class CritterMovingBehavior implements ActionListener {
             }
         }
     }
-
+    /**
+     * Move method
+     */
     public void move() {
         movingTimer = new Timer(DELAY - initialMoveSpeed, this);
         movingTimer.start();
     }
-
+    /**
+     * Override actionPerformed method,when event e happens, move to next index.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         moveToIndex(nextIndex);
