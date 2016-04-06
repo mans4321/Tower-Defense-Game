@@ -65,9 +65,9 @@ public class SplashTowerShootingBehaviorTest {
      */
     @Test
     public void testSplashTowerShootingBehavior() {
-        SplashTowerShootingBehavior stsb = new SplashTowerShootingBehavior(10, 100);
-        assertEquals("power equal",10,stsb.getPower());
-        assertEquals("rateOfFire equal",100,stsb.getRateOfFire());
+        SplashTowerShootingBehavior splashTowerShootingBehavior = new SplashTowerShootingBehavior(10, 100);
+        assertEquals("power equal",10,splashTowerShootingBehavior.getPower());
+        assertEquals("rateOfFire equal",100,splashTowerShootingBehavior.getRateOfFire());
     }
 
 }

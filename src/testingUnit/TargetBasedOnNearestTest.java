@@ -36,9 +36,6 @@ public class TargetBasedOnNearestTest {
     private Critter critter3;
     private GameMap gameMap;
     private ArrayList<CellState> cells;
-    private ArrayList<Integer> pathList1;
-    private ArrayList<Integer> pathList2;
-    private ArrayList<Integer> pathList3;
 
     /**
      * @throws java.lang.Exception
@@ -86,10 +83,6 @@ public class TargetBasedOnNearestTest {
     public void testTargetOnCritters() {
         TargetBasedOnNearest targetBasedOnNearest = new TargetBasedOnNearest();
         Critter nearestCritter = targetBasedOnNearest.targetOnCritters(critterInRange, null);
-        System.out.println(nearestCritter);
-        System.out.println("1" + critter1);
-        System.out.println("2" + critter2);
-        System.out.println("3" + critter3);
         assertSame("who is the nearest to Exit",nearestCritter,critter1);
         assertNotSame("who is the nearest to Exit",nearestCritter,critter2);
         assertNotSame("who is the nearest to Exit",nearestCritter,critter3);
