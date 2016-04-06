@@ -9,14 +9,16 @@ import model.tower.Tower;
  * @version 1.0 
  */
 public interface DrawingPanelDelegate {
-	/**
-	 * refresh tower base on the provided tower 
-	 * @param tower tower 
-	 */
-	void reloadPanelBasedOnTower(Tower tower);
-	/**
-	 * refresh tower in specific coordinate 
-	 * @param index  tower coordinate 
-	 */
-	void reloadLogPanelBasedOnIndexOfTower(int index);
+
+    /**
+     * refresh tower base on the provided tower 
+     * @param tower tower 
+     */
+    void reloadPanelBasedOnTower(Tower tower);
+    
+    /**
+     * refresh tower in specific coordinate 
+     * @param index  tower coordinate 
+     */
+    void reloadLogPanelBasedOnIndexOfTower(int index);
 }

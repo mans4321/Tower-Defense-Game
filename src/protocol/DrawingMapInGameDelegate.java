@@ -14,12 +14,13 @@ import model.tower.TowerCollection;
 // for map in the game(towers, critters, etc.)
 public interface DrawingMapInGameDelegate extends DrawingMapDelegate {
 
-	/**
-	 * refreshing map  and towers
-	 * @param map game map 
-	 * @param towerCollection  all towers on the map
-	 */
+    /**
+     * refreshing map  and towers
+     * @param map game map 
+     * @param towerCollection  all towers on the map
+     */
     void refreshMap(GameMap map, TowerCollection towerCollection);
+    
     /**
      * refreshing critters
      * @param critterCollection  all critter on map 

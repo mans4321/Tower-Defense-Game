@@ -22,8 +22,8 @@ public class MapChooseView extends BaseWindowView {
      * @param  listModel list of map options.
      */
     public MapChooseView(DefaultListModel listModel) {
-    	
-		super(260, 200, "Choose a Map");
+        
+        super(260, 200, "Choose a Map");
         startGameButton = new JButton("Start Game");
         editMapButton = new JButton("Edit the Map");
         list = new JList<>(listModel);

@@ -36,11 +36,11 @@ import view.tower.TowerType;
  */
 public class GameCollection implements Serializable {
     private  ArrayList<GameInfo> games;
-    private Log Log;	
+    private Log Log;    
     /**
      * Constructor for GameCollection
      */
-    public GameCollection() {		
+    public GameCollection() {        
         this.games = new ArrayList<>();
     }
 
@@ -48,7 +48,7 @@ public class GameCollection implements Serializable {
      * add a new game
      * @param game game for file or saved game
      */
-    public void addGame(GameInfo game) {		
+    public void addGame(GameInfo game) {        
         games.add(game);
     }
 
@@ -56,9 +56,10 @@ public class GameCollection implements Serializable {
      * remove a game
      * @param index index of the game to be removed
      */
-    public void removeGame(int index) {	
+    public void removeGame(int index) {    
         games.remove(index);
     }
+
     /**
      * getter for game 
      * @return arrayList of all games
@@ -87,7 +88,7 @@ public class GameCollection implements Serializable {
      * Store all saved games info in xml file 
      * @throws FileNotFoundException file not found exception
      */
-    public boolean saveGame() {   	
+    public boolean saveGame() {       
         try {
             PrintWriter out;
             File selectedFile = new File("Game_Info.xml");
@@ -101,16 +102,20 @@ public class GameCollection implements Serializable {
                 GameInfo game =games.get(i);
                 for (Map.Entry<Integer, Tower> entry : game.getTowerCollection().entrySet()) {
                     Tower tower =entry.getValue();
-                    out.println("<Tower type='" + tower.getClass().getSimpleName() + "' index='" +
-                            entry.getKey() + "' level='" + tower.getLevel() + "' strategy='" +
-                            tower.getTowerShootingBehavior().getShootingStrategy().getClass().getSimpleName() + "' range='" + 
-                            tower.getRange() + "' x='" + tower.getPosition().getX() + "' y='" + tower.getPosition().getY()  + "' />");
+                    out.println(
+                        "<Tower type='" + tower.getClass().getSimpleName() + "' index='" +
+                        entry.getKey() + "' level='" + tower.getLevel() + "' strategy='" +
+                        tower.getTowerShootingBehavior().getShootingStrategy().getClass().getSimpleName() + "' range='" + 
+                        tower.getRange() + "' x='" + tower.getPosition().getX() + "' y='" + tower.getPosition().getY()  + "' />"
+                    );
                 } 
 
                 for (Log gameLogInfo : game.getLogList()) {
-                    out.println("<Log currentTime='" + gameLogInfo.getCurrentTime() + "' content='" +
-                            gameLogInfo.getContent() + "' id='" + gameLogInfo.getId()+ "' logType='" +
-                            gameLogInfo.getWho().toString() + "' />");
+                    out.println(
+                        "<Log currentTime='" + gameLogInfo.getCurrentTime() + "' content='" +
+                        gameLogInfo.getContent() + "' id='" + gameLogInfo.getId()+ "' logType='" +
+                        gameLogInfo.getWho().toString() + "' />"
+                    );
                 }
 
                 out.println("<WaveNumber>" + game.getWaveNum() + "</WaveNumber>");
@@ -135,7 +140,7 @@ public class GameCollection implements Serializable {
      * Read game info from xml file 
      * @throws Exception file exception
      */
-    public boolean loadGame() {		
+    public boolean loadGame() {        
         HashMap<Integer,Tower> towersCollection = new HashMap<Integer,Tower> ();
         ArrayList<Log> gameLog= new ArrayList<>();
         double balance = 0;
@@ -224,7 +229,7 @@ public class GameCollection implements Serializable {
                                         break;
                                     case "SplashTower":
                                         tower = TowerFactory.sharedInstance().getTower(TowerType.SplashTower1);
-                                        break;	 
+                                        break;     
                                     }
 
                                     tower.setPosition(new Position(posX,posY));

@@ -16,10 +16,10 @@ import java.awt.*;
  */
 public class SplashTower extends Tower {
 
-	/**
-	 * A constructor for SplashTower
-	 * @param level tower level 
-	 */
+    /**
+     * A constructor for SplashTower
+     * @param level tower level 
+     */
     public SplashTower(int level) {
         if (level <= MAX_LEVEL) {
             this.level = level;
@@ -69,6 +69,7 @@ public class SplashTower extends Tower {
     public String getHdImageName() {
         return "res/towerC_high.png";
     }
+    
     /**
      * set tower level 
      * @param level tower level 

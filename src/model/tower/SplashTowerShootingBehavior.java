@@ -15,11 +15,11 @@ import java.util.HashSet;
  */
 public class SplashTowerShootingBehavior extends TowerShootingBehavior {
 
-	/**
-	 * A constructor for  SplashTowerShootingBehavior
-	 * @param power tower power 
-	 * @param rateOfFire tower rate of fire 
-	 */
+    /**
+     * A constructor for  SplashTowerShootingBehavior
+     * @param power tower power 
+     * @param rateOfFire tower rate of fire 
+     */
     public SplashTowerShootingBehavior(int power, int rateOfFire) {
         isShooting = true;
         this.power = power;

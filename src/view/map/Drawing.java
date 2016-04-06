@@ -10,16 +10,18 @@ package view.map;
 public class Drawing {
     // input: coordinate(x,y)(pixels), cell size of a cell. And cols number
     // output: nth cell in whole map
-	/**
-	 * 
-	 * @param x x coordinate 
-	 * @param y y coordinate 
-	 * @param cols number of columns 
-	 * @return index 
-	 */
+    
+    /**
+     * 
+     * @param x x coordinate 
+     * @param y y coordinate 
+     * @param cols number of columns 
+     * @return index 
+     */
     public static int coordinateToIndexConverter(int x, int y, int cols) {
         return x / CELL_SIZE + (y / CELL_SIZE) * cols;
     }
+    
     /**
      * get the position base on the index 
      * @param index the cell index 

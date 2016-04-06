@@ -36,6 +36,7 @@ public class IceTowerShootingBehavior extends TowerShootingBehavior {
             }
         });
     }
+    
     /**
      * defines the shooting effect on critter when tower shoot it.
      */
@@ -62,15 +63,15 @@ public class IceTowerShootingBehavior extends TowerShootingBehavior {
      * get tower freezing time   
      * @return freezing time 
      */
-	public int getFrozenTime() {
-		return frozenTime;
-	}
+    public int getFrozenTime() {
+        return frozenTime;
+    }
 
-	/**
-	 * set tower freezing time   
-	 * @param frozenTime freezing time 
-	 */
-	public void setFrozenTime(int frozenTime) {
-		this.frozenTime = frozenTime;
-	}
+    /**
+     * set tower freezing time   
+     * @param frozenTime freezing time 
+     */
+    public void setFrozenTime(int frozenTime) {
+        this.frozenTime = frozenTime;
+    }
 }

@@ -22,7 +22,7 @@ import view.BaseWindowView;
  */
 public class GameChooseView extends BaseWindowView {
 
-	public JButton startGameButton;
+    public JButton startGameButton;
     public JScrollPane pane;
     public JList list;
 
@@ -30,9 +30,9 @@ public class GameChooseView extends BaseWindowView {
      * Constructs the list of options for games.
      * @param listModel listModel list of game options.
      */
-	public GameChooseView(DefaultListModel listModel) {
-		
-		super(260, 200, "Choose a Game");
+    public GameChooseView(DefaultListModel listModel) {
+        
+        super(260, 200, "Choose a Game");
         startGameButton = new JButton("Start Game");
         list = new JList<>(listModel);
         list.setSelectedIndex(0);
@@ -40,5 +40,5 @@ public class GameChooseView extends BaseWindowView {
         setLayout(new BorderLayout());
         add(pane, BorderLayout.PAGE_START);
         add(startGameButton, BorderLayout.LINE_END);
-	}
+    }
 }

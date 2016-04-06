@@ -18,12 +18,14 @@ public class TowerCollection {
 
 
     private HashMap<Integer, Tower> towers;
+
     /**
      * Constructor of TowerCollection
      */
     public TowerCollection() {
         this.towers = new HashMap<>();
     }
+
     /**
      * Get all towers
      * @return all tower on the map 
@@ -31,23 +33,25 @@ public class TowerCollection {
     public HashMap<Integer, Tower> getTowers() {
         return towers;
     }
-    /**
-     * Using index to add tower into map
-     * @param index represents map position
-     * @param tower represents tower
-     */
-    public void setTowers(HashMap<Integer, Tower> towers) {
-		this.towers = towers;
-	}
 
     /**
      * Using index to add tower into map
      * @param index represents map position
      * @param tower represents tower
      */
-	public void addTowerAtIndex(int index, Tower tower) {
+    public void setTowers(HashMap<Integer, Tower> towers) {
+        this.towers = towers;
+    }
+
+    /**
+     * Using index to add tower into map
+     * @param index represents map position
+     * @param tower represents tower
+     */
+    public void addTowerAtIndex(int index, Tower tower) {
         towers.put(index, tower);
     }
+    
     /**
      * Remove tower by index
      * @param index represents tower position

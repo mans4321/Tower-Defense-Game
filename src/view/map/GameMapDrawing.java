@@ -13,11 +13,12 @@ import java.util.ArrayList;
  * @version 2.0 
  */
 public class GameMapDrawing extends Drawing {
-	/**
-	 * drawing the game map 
-	 * @param g graphics 
-	 * @param map the game map 
-	 */
+
+    /**
+     * drawing the game map 
+     * @param g graphics 
+     * @param map the game map 
+     */
     public static void drawGameMap(Graphics g, GameMap map) {
         Graphics2D g2d = (Graphics2D) g.create();
         ArrayList<CellState> cellList = map.getCells();
@@ -53,10 +54,4 @@ public class GameMapDrawing extends Drawing {
         }
         g2d.dispose();
     }
-
-
-
-
-
-
 }

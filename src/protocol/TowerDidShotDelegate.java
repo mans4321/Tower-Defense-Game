@@ -9,9 +9,10 @@ import view.map.Position;
  *@version 1.0 
  */
 public interface TowerDidShotDelegate {
-	/**
-	 * refreshing tower shooting 
-	 * @param critterPosition critter coordinate 
-	 */
+	
+    /**
+     * refreshing tower shooting 
+     * @param critterPosition critter coordinate 
+     */
     void towerDidShotAt(Position critterPosition);
 }

@@ -36,6 +36,7 @@ public class BurningTowerShootingBehavior extends TowerShootingBehavior {
             }
         });
     }
+    
     /**
      * defines the shooting effect on critter when tower shoot it.
      */
@@ -43,7 +44,7 @@ public class BurningTowerShootingBehavior extends TowerShootingBehavior {
         Critter critterUnderAttack = shootingStrategy.targetOnCritters(crittersInRange, this.getTowerPosition());
 
         if (critterUnderAttack != null && !critterUnderAttack.isKilled()) {
-        	if (towerDidShotDelegate != null) {
+            if (towerDidShotDelegate != null) {
                 towerDidShotDelegate.towerDidShotAt(critterUnderAttack.getMovingBehavior().getCurrentPosition());
             }
             int health = critterUnderAttack.getCurrentHealth();
@@ -74,15 +75,15 @@ public class BurningTowerShootingBehavior extends TowerShootingBehavior {
      * getter for tower effect on critter
      * @return the amount of damage cause by the tower 
      */
-	public int getBurningDamage() {
-		return burningDamage;
-	}
+    public int getBurningDamage() {
+        return burningDamage;
+    }
 
-	/**
-	 * set amount of damge for the tower 
-	 * @param burningDamage amount of damge for the tower  
-	 */
-	public void setBurningDamage(int burningDamage) {
-		this.burningDamage = burningDamage;
-	}
+    /**
+     * set amount of damge for the tower 
+     * @param burningDamage amount of damge for the tower  
+     */
+    public void setBurningDamage(int burningDamage) {
+        this.burningDamage = burningDamage;
+    }
 }

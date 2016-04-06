@@ -11,18 +11,20 @@ import view.critter.CritterType;
  * @version 2.0 
  */
 public class WaveBuilder {
-	private int waveNum;
-	private final int  icreacingSpeedRation = 2;
-	private final int  increasingHealthRation = 4;
+    private int waveNum;
+    private final int  icreacingSpeedRation = 2;
+    private final int  increasingHealthRation = 4;
     private CritterCollection critterCollection = new CritterCollection();
+
     /**
      * Constructor of WaveBuilder.
      * @param waveNum it represents the wave order
      */
     public WaveBuilder(int waveNum) {
-    	this.waveNum = waveNum;
+        this.waveNum = waveNum;
         if (critterCollection != null) critterCollection.clearAllCritters();
     }
+
     /**
      * Build critterA in wave.
      * @param num the number of critterA
@@ -32,13 +34,14 @@ public class WaveBuilder {
         for (int i = 0; i < num; ++i) {
             Critter critter = new Critter(CritterType.CritterA);
             if (waveNum > 1 && waveNum <= 6 ) {
-            	critter.setCurrentHealth(critter.getCurrentHealth() + (waveNum *increasingHealthRation));
-            	critter.setMovingSpeed(critter.getMovingSpeed()+ waveNum + icreacingSpeedRation);
+                critter.setCurrentHealth(critter.getCurrentHealth() + (waveNum *increasingHealthRation));
+                critter.setMovingSpeed(critter.getMovingSpeed()+ waveNum + icreacingSpeedRation);
             }
             critterCollection.addCritter(critter);
         }
         return this;
     }
+
     /**
      * Build critterB in wave.
      * @param num the number of critterB
@@ -48,13 +51,14 @@ public class WaveBuilder {
         for (int i = 0; i < num; ++i) {
             Critter critter = new Critter(CritterType.CritterB);
             if (waveNum > 1 && waveNum <= 6 ) {
-            	critter.setCurrentHealth(critter.getCurrentHealth() + (waveNum *increasingHealthRation));
-            	critter.setMovingSpeed(critter.getMovingSpeed()+ waveNum + icreacingSpeedRation);
+                critter.setCurrentHealth(critter.getCurrentHealth() + (waveNum *increasingHealthRation));
+                critter.setMovingSpeed(critter.getMovingSpeed()+ waveNum + icreacingSpeedRation);
             }
             critterCollection.addCritter(critter);
         }
         return this;
     }
+
     /**
      * Build critterC in wave.
      * @param num the number of critterC
@@ -64,13 +68,14 @@ public class WaveBuilder {
         for (int i = 0; i < num; ++i) {
             Critter critter = new Critter(CritterType.CritterC);
             if (waveNum > 1 && waveNum <= 6 ) {
-            	critter.setCurrentHealth(critter.getCurrentHealth() + (waveNum *increasingHealthRation));
-            	critter.setMovingSpeed(critter.getMovingSpeed()+ waveNum + icreacingSpeedRation);
+                critter.setCurrentHealth(critter.getCurrentHealth() + (waveNum *increasingHealthRation));
+                critter.setMovingSpeed(critter.getMovingSpeed()+ waveNum + icreacingSpeedRation);
             }
             critterCollection.addCritter(critter);
         }
         return this;
     }
+
     /**
      * Build critterD in wave.
      * @param num the number of critterD
@@ -80,13 +85,14 @@ public class WaveBuilder {
         for (int i = 0; i < num; ++i) {
             Critter critter = new Critter(CritterType.CritterD);
             if (waveNum > 1 && waveNum <= 6 ) {
-            	critter.setCurrentHealth(critter.getCurrentHealth() + (waveNum *increasingHealthRation));
-            	critter.setMovingSpeed(critter.getMovingSpeed()+ waveNum + icreacingSpeedRation);
+                critter.setCurrentHealth(critter.getCurrentHealth() + (waveNum *increasingHealthRation));
+                critter.setMovingSpeed(critter.getMovingSpeed()+ waveNum + icreacingSpeedRation);
             }
             critterCollection.addCritter(critter);
         }
         return this;
     }
+    
     /**
      * Get critter collection
      * @return a collection which gather critters.

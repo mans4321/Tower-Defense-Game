@@ -20,33 +20,33 @@ import view.map.Position;
  *
  */
 public class TargetBasedOnWeakestTest {
-	private Set<Critter> crittersInRange;
-	private Critter critter1;
-	private Critter critter2;
-	private Critter critter3;
-	
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	public void setUp() throws Exception {
-		critter1 = new Critter(CritterType.CritterA);
-		critter2 = new Critter(CritterType.CritterB);
-		critter3 = new Critter(CritterType.CritterC);
-		crittersInRange = new HashSet();
-		crittersInRange.add(critter1);
-		crittersInRange.add(critter2);
-		crittersInRange.add(critter3);
-	}
+    private Set<Critter> crittersInRange;
+    private Critter critter1;
+    private Critter critter2;
+    private Critter critter3;
+    
+    /**
+     * @throws java.lang.Exception
+     */
+    @Before
+    public void setUp() throws Exception {
+        critter1 = new Critter(CritterType.CritterA);
+        critter2 = new Critter(CritterType.CritterB);
+        critter3 = new Critter(CritterType.CritterC);
+        crittersInRange = new HashSet();
+        crittersInRange.add(critter1);
+        crittersInRange.add(critter2);
+        crittersInRange.add(critter3);
+    }
 
-	/**
-	 * Test method for {@link model.tower.shootingstrategy.TargetBasedOnWeakest#targetOnCritters(java.util.Set, view.map.Position)}.
-	 */
-	@Test
-	public void testTargetOnCritters() {
-		TargetBasedOnWeakest targetBasedOnWeakest = new TargetBasedOnWeakest();
-		Critter weakestCritter = targetBasedOnWeakest.targetOnCritters(crittersInRange, new Position(10,10));
-		assertTrue("find the weakest",weakestCritter.getCritterType() == critter2.getCritterType());
-	}
+    /**
+     * Test method for {@link model.tower.shootingstrategy.TargetBasedOnWeakest#targetOnCritters(java.util.Set, view.map.Position)}.
+     */
+    @Test
+    public void testTargetOnCritters() {
+        TargetBasedOnWeakest targetBasedOnWeakest = new TargetBasedOnWeakest();
+        Critter weakestCritter = targetBasedOnWeakest.targetOnCritters(crittersInRange, new Position(10,10));
+        assertTrue("find the weakest",weakestCritter.getCritterType() == critter2.getCritterType());
+    }
 
 }

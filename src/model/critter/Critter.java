@@ -5,6 +5,7 @@ import view.critter.CritterView;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 /**
  * Critter implements ActionListener interface
  * @author yongpinggao
@@ -33,15 +34,17 @@ public class Critter implements ActionListener {
      * @return a boolean value that represents whether players get the donation.
      */
     public boolean isDonated() {
-    	return isDonated;
+        return isDonated;
     }
+
     /**
      * set donation value for killing a critter.
      * @param donated donation value
      */
     public void setDonated(boolean donated) {
-    	isDonated = donated;
+        isDonated = donated;
     }
+
     /**
      * set damage value.
      * @param damage damage value
@@ -49,6 +52,7 @@ public class Critter implements ActionListener {
     public void setDamage(int damage) {
         this.damage = damage;
     }
+
     /**
      * Constructor of Critter. 
      * @param critterType 
@@ -70,6 +74,7 @@ public class Critter implements ActionListener {
                 initCritterD();
         }
     }
+
     /**
      * Initialize CritterA
      */
@@ -79,6 +84,7 @@ public class Critter implements ActionListener {
         worth = 20;
         movingSpeed = 20;
     }
+
     /**
      * Initialize CritterB
      */
@@ -88,6 +94,7 @@ public class Critter implements ActionListener {
         worth = 30;
         movingSpeed = 40;
     }
+
     /**
      * Initialize CritterC
      */
@@ -97,6 +104,7 @@ public class Critter implements ActionListener {
         worth = 40;
         movingSpeed = 10;
     }
+
     /**
      * Initialize CritterD
      */
@@ -106,6 +114,7 @@ public class Critter implements ActionListener {
         worth = 50;
         movingSpeed = 10;
     }
+
     /**
      * Judge whether the critter has been killed.
      * @return A boolean value represents whether the critter has been killed.
@@ -113,6 +122,7 @@ public class Critter implements ActionListener {
     public boolean isKilled() {
         return isKilled;
     }
+
     /**
      * Set kill value.
      * @param killed
@@ -123,6 +133,7 @@ public class Critter implements ActionListener {
             movingBehavior.getMovingTimer().stop();
         }
     }
+
     /**
      * Worth for a critter
      * @return critter's worth
@@ -130,6 +141,7 @@ public class Critter implements ActionListener {
     public double getWorth() {
         return worth;
     }
+
     /**
      * Get critter's health bar length.
      * @return length
@@ -137,6 +149,7 @@ public class Critter implements ActionListener {
     public float getHealthBarLength() {
         return (float)(currentHealth) / maxHealth;
     }
+
     /**
      * Get critter's moving behavior.
      * @return movingBehavior
@@ -144,6 +157,7 @@ public class Critter implements ActionListener {
     public CritterMovingBehavior getMovingBehavior() {
         return movingBehavior;
     }
+
     /**
      * Set critter's moving behavior.
      * @param movingBehavior The parameter represents moving behavior
@@ -151,6 +165,7 @@ public class Critter implements ActionListener {
     public void setMovingBehavior(CritterMovingBehavior movingBehavior) {
         this.movingBehavior = movingBehavior;
     }
+
     /**
      * Get moving speed.
      * @return moving speed
@@ -158,6 +173,7 @@ public class Critter implements ActionListener {
     public int getMovingSpeed() {
         return movingSpeed;
     }
+
     /**
      * Set moving speed.
      * @param movingSpeed it represents moving speed
@@ -165,6 +181,7 @@ public class Critter implements ActionListener {
     public void setMovingSpeed(int movingSpeed) {
         this.movingSpeed = movingSpeed;
     }
+
     /**
      * Get critter's current health value.
      * @return current health value
@@ -172,6 +189,7 @@ public class Critter implements ActionListener {
     public int getCurrentHealth() {
         return currentHealth;
     }
+
     /**
      * Set current health value of critter.
      * @param currentHealth it represents critter's health
@@ -179,6 +197,7 @@ public class Critter implements ActionListener {
     public void setCurrentHealth(int currentHealth) {
         this.currentHealth = currentHealth;
     }
+
     /**
      * Decide whether the critter is visible after creating.
      * @return a boolean value means whether is visible
@@ -186,6 +205,7 @@ public class Critter implements ActionListener {
     public boolean isVisible() {
         return isVisible;
     }
+
     /**
      * Set visible critter.
      * @param visible a boolean value means whether is visible
@@ -193,6 +213,7 @@ public class Critter implements ActionListener {
     public void setVisible(boolean visible) {
         isVisible = visible;
     }
+
     /**
      * Get critter view.
      * @return critterView
@@ -200,6 +221,7 @@ public class Critter implements ActionListener {
     public CritterView getCritterView() {
         return critterView;
     }
+
     /**
      * Get critter inner timer.
      * @return
@@ -207,6 +229,7 @@ public class Critter implements ActionListener {
     public Timer getInnerTimer() {
         return innerTimer;
     }
+
     /**
      * Set critter's inner timer.
      * @param innerTimer it represents a timer of critter itself
@@ -214,6 +237,7 @@ public class Critter implements ActionListener {
     public void setInnerTimer(Timer innerTimer) {
         this.innerTimer = innerTimer;
     }
+
     /**
      * Get special effect timer.
      * @return specicalEffectTimer
@@ -221,6 +245,7 @@ public class Critter implements ActionListener {
     public Timer getSpecicalEffectTimer() {
         return specicalEffectTimer;
     }
+
     /**
      * Set special effect timer.
      * @param specicalEffectTimer it represents a timer of special effects
@@ -228,6 +253,7 @@ public class Critter implements ActionListener {
     public void setSpecicalEffectTimer(Timer specicalEffectTimer) {
         this.specicalEffectTimer = specicalEffectTimer;
     }
+
     /**
      * For event e, perform actions, different tower have to do various action.
      */
@@ -246,19 +272,21 @@ public class Critter implements ActionListener {
             currentHealth -= damage;
         }
     }
+
     /**
      * Get critter type.
      * @return critterType
      */
-	public CritterType getCritterType() {
-		return critterType;
-	}
-	/**
-	 * Set critter type.
-	 * @param critterType it represents critter's type
-	 */
-	public void setCritterType(CritterType critterType) {
-		this.critterType = critterType;
-	}
+    public CritterType getCritterType() {
+        return critterType;
+    }
+
+    /**
+     * Set critter type.
+     * @param critterType it represents critter's type
+     */
+    public void setCritterType(CritterType critterType) {
+        this.critterType = critterType;
+    }
 }
 

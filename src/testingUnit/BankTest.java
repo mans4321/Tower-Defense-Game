@@ -16,47 +16,47 @@ import model.bankaccount.BankAccount;
  */
 public class BankTest {
 
-	private BankAccount bankAccount;
-	private double  afterAddingBalance;
-	private double beforeAddingBalance;
+    private BankAccount bankAccount;
+    private double  afterAddingBalance;
+    private double beforeAddingBalance;
 
-	/**
-	 * setting values.
-	 */
-	@Before 
-	public void setValues() {
-		bankAccount = new BankAccount();
-	}
+    /**
+     * setting values.
+     */
+    @Before 
+    public void setValues() {
+        bankAccount = new BankAccount();
+    }
 
-	/**
-	 * Testing setting the player Balance.
-	 */
-	@Test
-	public void testSetBalance() {
-		beforeAddingBalance = bankAccount.getBalance();
-		bankAccount.setBalance(100);
-		afterAddingBalance =  bankAccount.getBalance() ;
-		assertTrue(beforeAddingBalance < afterAddingBalance );
-	}
-	/**
-	 * Testing player deposit.
-	 */
-	@Test
-	public void testdeposit() {
-		beforeAddingBalance = bankAccount.getBalance();
-		bankAccount.deposit(100);
-		afterAddingBalance =  bankAccount.getBalance() ;
-		assertTrue(beforeAddingBalance < afterAddingBalance );
-	}
-	/**
-	 * Testing player withdraw.
-	 */
-	@Test
-	public void testWithdraw() {
-		bankAccount.setBalance(100);
-		beforeAddingBalance = bankAccount.getBalance();
-		bankAccount.withDraw(20);
-		afterAddingBalance =  bankAccount.getBalance() ;
-		assertTrue(beforeAddingBalance > afterAddingBalance );
-	}
+    /**
+     * Testing setting the player Balance.
+     */
+    @Test
+    public void testSetBalance() {
+        beforeAddingBalance = bankAccount.getBalance();
+        bankAccount.setBalance(100);
+        afterAddingBalance =  bankAccount.getBalance() ;
+        assertTrue(beforeAddingBalance < afterAddingBalance );
+    }
+    /**
+     * Testing player deposit.
+     */
+    @Test
+    public void testdeposit() {
+        beforeAddingBalance = bankAccount.getBalance();
+        bankAccount.deposit(100);
+        afterAddingBalance =  bankAccount.getBalance() ;
+        assertTrue(beforeAddingBalance < afterAddingBalance );
+    }
+    /**
+     * Testing player withdraw.
+     */
+    @Test
+    public void testWithdraw() {
+        bankAccount.setBalance(100);
+        beforeAddingBalance = bankAccount.getBalance();
+        bankAccount.withDraw(20);
+        afterAddingBalance =  bankAccount.getBalance() ;
+        assertTrue(beforeAddingBalance > afterAddingBalance );
+    }
 }

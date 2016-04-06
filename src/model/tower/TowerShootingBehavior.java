@@ -52,25 +52,27 @@ public class TowerShootingBehavior {
      * @param crittersInRange critter in tower range 
      */
     public void setCrittersInRange(Set<Critter> crittersInRange) {
-		this.crittersInRange = crittersInRange;
-	}
+        this.crittersInRange = crittersInRange;
+    }
 
     /**
      * get the critters in tower range 
      * @return critters in tower range 
      */
-	public Set<Critter> getCrittersInRange() {
+    public Set<Critter> getCrittersInRange() {
         return crittersInRange;
     }
-	/**
-	 * get whether tower shooting or not 
-	 * @return whether tower shooting or not 
-	 */
+
+    /**
+     * get whether tower shooting or not 
+     * @return whether tower shooting or not 
+     */
     public boolean isShooting() {
         return isShooting;
     }
 
-    /**set whether tower shooting or not 
+    /**
+     * set whether tower shooting or not 
      * @param shooting  whether tower shooting or not
      */
     public void setShooting(boolean shooting) {
@@ -81,6 +83,7 @@ public class TowerShootingBehavior {
         }
         isShooting = shooting;
     }
+
     /**
      * get whether is time for the tower to shoot or not
      * @return  whether time to shoot or not
@@ -110,26 +113,26 @@ public class TowerShootingBehavior {
      * @return tower strategy 
      */
     public TowerShootingStrategy getShootingStrategy() {
-		return shootingStrategy;
-	}
+        return shootingStrategy;
+    }
 
     /**
      * set tower shooting strategy
      * @param shootingStrategy
      */
-	public void setShootingStrategy(TowerShootingStrategy shootingStrategy) {
-		this.shootingStrategy = shootingStrategy;
-	}
+    public void setShootingStrategy(TowerShootingStrategy shootingStrategy) {
+        this.shootingStrategy = shootingStrategy;
+    }
 
-	/**
-	 * defines shoot methood for all towers 
-	 */
-	public void shoot() {}
+    /**
+     * defines shoot methood for all towers 
+     */
+    public void shoot() {}
 
-	/**
-	 * set tower position 
-	 * @param towerPosition tower position 
-	 */
+    /**
+     * set tower position 
+     * @param towerPosition tower position 
+     */
     public void setTowerPosition(Position towerPosition) {
         this.towerPosition = towerPosition;
     }

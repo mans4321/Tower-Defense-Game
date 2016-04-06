@@ -13,9 +13,10 @@ import utility.FileProcessing;
  * @since 3/30/16.
  * @version 2.0 
  */
-public class SavedGamesMaps {		
+public class SavedGamesMaps {        
     private static  String JSON_FILE = "GamesMaps.json";
-    private ArrayList<GameMap> maps;	    
+    private ArrayList<GameMap> maps;
+
     /**
      * constructor
      * create a new arraylist
@@ -23,13 +24,15 @@ public class SavedGamesMaps {
     public SavedGamesMaps() {
         this.maps = new ArrayList<>();
     }
+
     /**
-     * g
-     * @return
+     * getter for all maps
+     * @return ArrayList maps
      */
     public ArrayList<GameMap> getMaps() {
         return maps;
     }
+
     /**
      * Add map to maps list.
      * @param map
@@ -37,6 +40,7 @@ public class SavedGamesMaps {
     public void addMap(GameMap map) {
         this.maps.add(map);
     }
+
     /**
      * Delete a map from maps list.
      * @param index it represents the order of specific map
@@ -44,6 +48,7 @@ public class SavedGamesMaps {
     public void deleteMap(int index) {
         this.maps.remove(index);
     }
+    
     /**
      * Save maps to file.
      * @param maps it represents who will be saved
@@ -52,6 +57,7 @@ public class SavedGamesMaps {
     public static boolean saveMapsToFile(SavedGamesMaps maps) {
         return FileProcessing.sharedInstance().writeToJsonFile(JSON_FILE, maps);
     }
+    
     /**
      * Load maps from file.
      * @return read Json file

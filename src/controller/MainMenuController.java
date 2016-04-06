@@ -42,7 +42,14 @@ public class MainMenuController {
             public void actionPerformed(ActionEvent e) {
                 mainMenuView.setVisible(false);
                 if (GameMapCollection.loadMapsFromFile() == null) {
-                    JOptionPane.showMessageDialog(mainMenuView, "No Saved Maps, please go to create a new map", "Error", JOptionPane.YES_OPTION);
+
+                    JOptionPane.showMessageDialog(
+                        mainMenuView, 
+                        "No Saved Maps, please go to create a new map",
+                        "Error",
+                        JOptionPane.YES_OPTION
+                    );
+                    
                     mainMenuView.setVisible(false);
                     new MapEditorController(new GameMap()).mapEditorView.setVisible(true);
                 } else {
@@ -56,17 +63,17 @@ public class MainMenuController {
          */
         mainMenuView.loadGame.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				try {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                try {
                     mainMenuView.setVisible(false);
-					new GameChooseController().gameChooseView.setVisible(true);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-				
-			}
+                    new GameChooseController().gameChooseView.setVisible(true);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+                
+            }
     });
 }
 }
