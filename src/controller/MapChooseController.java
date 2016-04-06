@@ -1,17 +1,23 @@
 package controller;
 
+import model.gamelog.Log;
+import model.gamelog.LogType;
+import model.gamelog.LoggerCollection;
+import model.map.GameMap;
 import model.map.GameMapCollection;
 import view.mapchooseview.MapChooseView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import javax.swing.*;
 
 
 /**
  * Controller for the map select view
  * @author yongpinggao
- * @version 1.0 3/12/16.
+ * @version 1.0
+ * @since 1.0 3/12/16.
  */
 public class MapChooseController {
 
@@ -27,7 +33,7 @@ public class MapChooseController {
         mapCollection = GameMapCollection.loadMapsFromFile();
         
         for (int i = 0; i < mapCollection.getMaps().size(); i++) {
-            listModel.addElement(mapCollection.getMaps().get(i).getImageName());
+            listModel.addElement(mapCollection.getMaps().get(i).getMapName());
         }
 
         mapChooseView = new MapChooseView(listModel);
@@ -39,7 +45,9 @@ public class MapChooseController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mapChooseView.setVisible(false);
-                new MainGameController(mapCollection.getMaps().get(mapChooseView.list.getSelectedIndex())).mainGameView.setVisible(true);
+                GameMapCollection mapCollection = GameMapCollection.loadMapsFromFile();
+                GameMap gameMap = mapCollection.getMaps().get(mapChooseView.list.getSelectedIndex());
+                new MainGameController(gameMap).mainGameView.setVisible(true);
             }
         });
 

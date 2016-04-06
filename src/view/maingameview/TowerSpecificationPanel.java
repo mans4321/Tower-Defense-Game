@@ -1,14 +1,16 @@
 package view.maingameview;
 
-import java.awt.*;
-import javax.swing.*;
 import protocol.DrawingPanelDelegate;
 import model.tower.Tower;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
- * Class for the representation of tower specification.
- * @author yongpinggao
- * @version 1.0 3/13/16
+ * class for tower specification view 
+ *@author yongpinggao 
+ *@since 3/13/16.
+ *@version 2.0
  */
 public class TowerSpecificationPanel extends JPanel implements DrawingPanelDelegate {
     public JLabel specificationLabel;
@@ -17,9 +19,8 @@ public class TowerSpecificationPanel extends JPanel implements DrawingPanelDeleg
     public JLabel rangeLabel;
     public JLabel powerLabel;
     public JLabel rateOfFireLabel;
-
     /**
-     * Default constructor. Sets all information to empty.
+     * constructor for TowerSpecificationPanel
      */
     public TowerSpecificationPanel() {
         setBackground(Color.white);
@@ -37,11 +38,11 @@ public class TowerSpecificationPanel extends JPanel implements DrawingPanelDeleg
         add(rangeLabel);
         add(powerLabel);
         add(rateOfFireLabel);
-    }
 
+
+    }
     /**
-     * Method that will display the information of a certain tower.
-     * @param tower selected tower placed in the map
+     * refresh tower specificationPanel base on the tower.
      */
     @Override
     public void reloadPanelBasedOnTower(Tower tower) {
@@ -50,8 +51,8 @@ public class TowerSpecificationPanel extends JPanel implements DrawingPanelDeleg
             buyPriceLabel.setText("Buy Price: " + tower.getBuyPrice()+"");
             sellPriceLabel.setText("Sell Price: " + tower.getSellPrice() + "");
             rangeLabel.setText("Shooting Range: " + tower.getRange());
-            powerLabel.setText("Shooting Power: " + tower.getPower());
-            rateOfFireLabel.setText("Shooting Rate: " + tower.getRateOfFire());
+            powerLabel.setText("Shooting Power: " + tower.getTowerShootingBehavior().getPower());
+            rateOfFireLabel.setText("Shooting Rate: " + tower.getTowerShootingBehavior().getRateOfFire());
         } else {
             specificationLabel.setText("");
             buyPriceLabel.setText("");
@@ -62,4 +63,9 @@ public class TowerSpecificationPanel extends JPanel implements DrawingPanelDeleg
         }
 
     }
+    /**
+     *refresh tower specificationPanel base on the tower index. 
+     */
+    @Override
+    public void reloadLogPanelBasedOnIndexOfTower(int index) {}
 }

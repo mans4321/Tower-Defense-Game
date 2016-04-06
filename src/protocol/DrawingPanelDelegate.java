@@ -3,17 +3,22 @@ package protocol;
 import model.tower.Tower;
 
 /**
- * draw all the panels interface
- * @author yongpinggao
- * @since 3/16/16.
- * @version 2.0 
+ * interface for refeshing the tower view 
+ * @author yongpinggao 
+ * @since 3/13/16.
+ * @version 1.0 
  */
 public interface DrawingPanelDelegate {
-    
-  
-	/**
-	 * reload Panel Based On Tower
-     * @param Tower tower 
-	 */
+
+    /**
+     * refresh tower base on the provided tower 
+     * @param tower tower 
+     */
     void reloadPanelBasedOnTower(Tower tower);
+    
+    /**
+     * refresh tower in specific coordinate 
+     * @param index  tower coordinate 
+     */
+    void reloadLogPanelBasedOnIndexOfTower(int index);
 }

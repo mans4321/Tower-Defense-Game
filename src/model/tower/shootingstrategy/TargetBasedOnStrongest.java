@@ -1,6 +1,8 @@
 package model.tower.shootingstrategy;
 
 import model.critter.Critter;
+import view.map.Position;
+
 import java.util.Iterator;
 import java.util.Set;
 
@@ -12,12 +14,14 @@ import java.util.Set;
  * @version 2.0  
  */
 public class TargetBasedOnStrongest implements TowerShootingStrategy {
-	/**
+    /**
      * Overrides targetOnCritters
      * {@inheritDoc}
+     * Constructor of targetOnCritter.
+     * And target on strongest critter in towers attack range.
      */
     @Override
-    public Critter targetOnCritters(Set<Critter> crittersInRange) {
+    public Critter targetOnCritters(Set<Critter> crittersInRange, Position towerPosition) {
         if (crittersInRange.size() > 0) {
             Iterator<Critter> iterator = crittersInRange.iterator();
             Critter strongestCritter = iterator.next();
@@ -31,5 +35,12 @@ public class TargetBasedOnStrongest implements TowerShootingStrategy {
         } else {
             return null;
         }
+    }
+    /**
+     * a method to return a specific string.
+     */
+    @Override
+    public String toString() {
+        return "Target On Strongest";
     }
 }

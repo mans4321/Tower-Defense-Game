@@ -7,9 +7,9 @@ package model.map.mapvalidation;
  */
 public interface  MapValidator {
 /**
- * Validated the path  	
+ * Validated the path      
  * 
  * @return path validation result 
  */
-	boolean validate(); 
+    boolean validate(); 
 }

@@ -1,31 +1,29 @@
 package protocol;
 
+import model.critter.CritterCollection;
 import model.map.GameMap;
 import model.tower.TowerCollection;
 
+
 /**
- * draw map interface in the game (towers, critters, etc.)
- * @author yongpinggao
- * @since 3/16/16.
- * @version 2.0 
+ * interface for refeshing map and critter on map
+ *@author yongpinggao 
+ *@since 3/14/16.
+ *@version 1.0
  */
+// for map in the game(towers, critters, etc.)
 public interface DrawingMapInGameDelegate extends DrawingMapDelegate {
- 
-	/**
-	 * refresh Map
-     * @param GameMap game map 
-     * @param TowerCollection towerCollection
-	 */
+
+    /**
+     * refreshing map  and towers
+     * @param map game map 
+     * @param towerCollection  all towers on the map
+     */
     void refreshMap(GameMap map, TowerCollection towerCollection);
-   
+    
     /**
-     * refresh Critters In Map
+     * refreshing critters
+     * @param critterCollection  all critter on map 
      */
-    void refreshCrittersInMap();
- 
-    /**
-     * refresh Map
-     * @param TowerCollection towerCollection
-     */
-    void refreshShootingEffectInMap(TowerCollection towerCollection);
+    void refreshCrittersInMap(CritterCollection critterCollection);
 }

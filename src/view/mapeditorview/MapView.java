@@ -1,23 +1,25 @@
 package view.mapeditorview;
 
-import java.awt.*;
-import javax.swing.*;
-import model.drawing.GameMapDrawing;
 import model.map.GameMap;
 import protocol.DrawingMapDelegate;
 import view.BaseWindowView;
+import view.map.GameMapDrawing;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
- * Class for the map view.
+ * a class for the map view 
  * @author yongpinggao 
- * @version  1.0 3/12/16
+ * @since 3/12/16.
+ * @version 1.0
  */
 public class MapView extends JPanel {
 
     public MapPanel mapPanel;
 
     /**
-     * Default constructor sets size and defult properties.
+     * A constructor MapView
      */
     public MapView() {
         setPreferredSize(new Dimension(BaseWindowView.WINDOW_WIDTH, BaseWindowView.WINDOW_HEIGHT / 10 * 9));
@@ -27,38 +29,37 @@ public class MapView extends JPanel {
         c.fill = GridBagConstraints.CENTER;
         add(mapPanel, c);
     }
-
     /**
-     * Inner class for the map panel
+     * class for drawing on map view 
+     * @author yongpinggao 
+     * @since 3/12/16.
+     * @version 1.0
      */
     public class MapPanel extends JPanel implements DrawingMapDelegate {
 
         private GameMap map = new GameMap();
-
         /**
-         * {@inheritDoc}
-         * 
+         * getter for the map view dimension 
+         * @return view dimension
          */
         @Override
         public Dimension getPreferredSize() {
             return new Dimension(GameMapDrawing.CELL_SIZE * map.getmCols(), GameMapDrawing.CELL_SIZE * map.getmRows());
         }
-
         /**
-         * {@inheritDoc}
-         * @param g graphic object
+         * paint component 
          */
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            GameMapDrawing.drawMapAndTower(g, map, null, this);
+            GameMapDrawing.drawGameMap(g, map);
         }
 
         /**
-         * {@inheritDoc}
-         * @param map game map
+         * Refresh map view and tower collection
+         * @param map  game map.
          */
-        @Override   
+        @Override
         public void refreshMap(GameMap map) {
             this.map = map;
             mapPanel.revalidate();

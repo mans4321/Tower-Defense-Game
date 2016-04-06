@@ -6,13 +6,12 @@ import model.map.GameMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 /**
  * This class manage all map validation 
  *  
  * @author LiChong
  * @version 1.0 
- * @since 
+ * @since 5/4/2016
  */
 public class MapValidationManager {
 
@@ -24,9 +23,10 @@ public class MapValidationManager {
     
     private HashMap<Integer,Integer> flagMap;
     private HashMap<Integer,Integer> countMap;
-    
-
-
+    /**
+     * Constructor of MapValidationManager
+     * @param gameMap it represents who will be managed.
+     */
     public MapValidationManager(GameMap gameMap) {
         this.cellList = gameMap.getCells();
         this.cols = gameMap.getmCols();
@@ -202,9 +202,9 @@ public class MapValidationManager {
                 countMap.put(posIndex, count);
                 count = 0;
                 break;
-        	}
+            }
         }
-	}
+    }
     
     /**
      * Getter for count Map.
@@ -213,17 +213,6 @@ public class MapValidationManager {
     public HashMap<Integer, Integer> getCountMap() {
         return countMap;
     }
-    /*
-	public int getCountEntranceOrExit() {
-		for(int i=0;i<cellList.size();i++) {
-			if (cellList.get(i) == CellState.ENTRANCE) numberOfEntrance++;
-			if (cellList.get(i) == CellState.EXIT) numberOfExit++;
-		}
-		if (numberOfEntrance == 0 || numberOfEntrance > 1 || numberOfExit == 0 || numberOfExit > 1) {
-			numberOfEntranceOrExit++;
-		}
-		return numberOfEntranceOrExit;
-	}*/
 
     /**
      * Get error message
@@ -240,7 +229,7 @@ public class MapValidationManager {
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
-	
+    
     /**
      * Verification of valid maps will return invalid and error message 
      * 
@@ -266,13 +255,13 @@ public class MapValidationManager {
             return false;
         } else if (! new CirclePathValidator(countMap).validate()) {
             errorMessage = "Path cannot be a circle!";
-            return false;	
+            return false;    
         } else if (! new ExtraPathValidator(countMap, cellList).validate()) {
             errorMessage = "There is extra path in your map!";
             return false;
         } else if (! new ContinousPathValidator( countMap, cellList,  cols).validate()) {
             errorMessage = "Your path is not continous!";
-            return false;	
+            return false;    
         } else if (! new SeperateEntranceAndExitValidator(cols, cellList).validate()) {
             errorMessage = "Entrance can not be the neighbour of Exit!";
             return false;

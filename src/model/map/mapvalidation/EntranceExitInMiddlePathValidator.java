@@ -43,7 +43,6 @@ public class EntranceExitInMiddlePathValidator implements MapValidator {
         return true;
     }
 
-
      /**
       * Sets the Map and cell list for validation.
       * @param cellList ArrayList of map
