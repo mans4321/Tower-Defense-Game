@@ -36,7 +36,7 @@ public class IceTower extends Tower {
                 buyPrice = 30.0;
                 sellPrice = 15.0;
                 towerType = TowerType.IceTower1;
-                range = 80;
+                range = 110;
                 towerShootingBehavior = new IceTowerShootingBehavior(
                     baseFrozenTime,
                     baseRateOfFire
@@ -47,7 +47,7 @@ public class IceTower extends Tower {
                 buyPrice = 40.0;
                 sellPrice = 20.0;
                 towerType = TowerType.IceTower2;
-                range = 90;
+                range = 120;
                 baseShootingStrategy = towerShootingBehavior.getShootingStrategy();
                 towerShootingBehavior = new IceTowerShootingBehavior(
                     baseFrozenTime * Double.valueOf(level * 0.75).intValue(),
@@ -60,7 +60,7 @@ public class IceTower extends Tower {
                 buyPrice = 50.0;
                 sellPrice = 25.0;
                 towerType = TowerType.IceTower3;
-                range = 100;
+                range = 130;
                 baseShootingStrategy = towerShootingBehavior.getShootingStrategy();
                 towerShootingBehavior = new IceTowerShootingBehavior(
                     baseFrozenTime * Double.valueOf(level * 0.66).intValue(), 
