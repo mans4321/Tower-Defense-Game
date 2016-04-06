@@ -8,7 +8,10 @@ import java.awt.*;
 import java.util.HashMap;
 
 /**
- * Created by yongpinggao on 3/12/16.
+ * class for linking the cell states for their image 
+ * @author yongpinggao 
+ * @since 3/12/16.
+ * @version 2.0
  */
 public class MapImageCollection {
 
@@ -16,7 +19,9 @@ public class MapImageCollection {
     private static final String PNG = ".png";
 
     public static HashMap<CellState, Image> mapImages = new HashMap<>();
-
+    /**
+     * store the cell states and their images in hash map 
+     */
     static {
         mapImages.put(CellState.Grass, new ImageIcon(BASE_URL + CellState.Grass.getCellStateName() + PNG).getImage());
         mapImages.put(CellState.Path, new ImageIcon(BASE_URL + CellState.Path.getCellStateName() + PNG).getImage());
