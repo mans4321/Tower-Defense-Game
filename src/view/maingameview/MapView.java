@@ -14,12 +14,17 @@ import java.awt.*;
 
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * class for the map view in the game 
+ * @author yongpinggao 
+ * @since 3/13/16.
+ *@version 2.0
  */
 public class MapView extends JPanel {
 
     public MapPanel mapPanel;
-
+    /**
+     * A constructor for MapView
+     */
     public MapView() {
         mapPanel = new MapPanel();
         setBackground(Color.black);
@@ -29,27 +34,43 @@ public class MapView extends JPanel {
         add(mapPanel, c);
     }
 
-
+    /**
+     * a class for drawing in the map view 
+     * @author yongpinggao
+     * @version 2.0 
+     * @since 3/13/16.
+     *
+     */
     public class MapPanel extends JPanel implements DrawingMapInGameDelegate {
 
         private GameMap gameMap = new GameMap();
         private TowerCollection towerCollection = new TowerCollection();
         private CritterCollection critterCollection = new CritterCollection();
 
-
+        /**
+         * getter for the map view dimension 
+         * @return view dimension
+         */
         @Override
         public Dimension getPreferredSize() {
             return new Dimension(GameMapDrawing.CELL_SIZE * gameMap.getmCols(), GameMapDrawing.CELL_SIZE * gameMap.getmRows());
         }
 
-
+        /**
+         * Refresh map view and tower collection
+         * @param map  game map.
+         * @param towerCollection towers on the map view 
+         */
         @Override
         public void refreshMap(GameMap map, TowerCollection towerCollection) {
             this.gameMap = map;
             this.towerCollection = towerCollection;
             repaint();
         }
-
+        /**
+         * Refresh map view
+         * @param map game map 
+         */
         @Override
         public void refreshMap(GameMap map) {
             this.gameMap = map;
@@ -57,13 +78,17 @@ public class MapView extends JPanel {
             repaint();
         }
 
-
+        /**
+         * refresh critter view in the map view 
+         */
         @Override
         public void refreshCrittersInMap(CritterCollection critterCollection) {
             this.critterCollection = critterCollection;
             repaint();
         }
-
+        /**
+         * paint component on map view 
+         */
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
@@ -74,21 +99,30 @@ public class MapView extends JPanel {
             drawTowerShootingRange(g);
             drawShootingView(g);
         }
-
+        /**
+         * draw towers 
+         * @param g graphics
+         */
         private void drawTowers(Graphics g) {
             Graphics2D g2d = (Graphics2D) g.create();
             for (Tower tower: towerCollection.getTowers().values()) {
                 g2d.drawImage(tower.getTowerView().getTowerImage(), tower.getPosition().getX(), tower.getPosition().getY(), null);
             }
         }
-
+        /**
+         * draw tower shooting range 
+         * @param g graphics
+         */
         private void drawTowerShootingRange(Graphics g) {
             Graphics2D g2d = (Graphics2D) g.create();
             for (Tower tower: towerCollection.getTowers().values()) {
                 g2d.draw(tower.getTowerShootingRangeView().getTowerRangeCircle());
             }
         }
-
+        /**
+         * draw critter 
+         * @param g graphics
+         */
         private void drawCritters(Graphics g) {
             Graphics2D g2d = (Graphics2D) g.create();
             for (Critter c : critterCollection.getCritters()) {
@@ -98,7 +132,10 @@ public class MapView extends JPanel {
             }
             g2d.dispose();
         }
-
+        /**
+         * draw critter health bar 
+         * @param g graphics
+         */
         public void drawHealthBar(Graphics g) {
             Graphics2D g2d = (Graphics2D) g.create();
             for (Critter c : critterCollection.getCritters()) {
@@ -114,7 +151,10 @@ public class MapView extends JPanel {
             }
             g2d.dispose();
         }
-
+        /**
+         * draw tower shooting 
+         * @param g graphics
+         */
         public void drawShootingView(Graphics g) {
             for (Tower tower: towerCollection.getTowers().values()) {
                 if (tower.getTowerShootingBehavior().isShooting() && tower.getTowerShootingBehavior().isTimeToShoot()) {

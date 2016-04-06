@@ -14,7 +14,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import view.BaseWindowView;
-
+/**
+ * class for game choose view 
+ * @author m_lzahra
+ *@version 1.0 
+ *@since  3/30/2016
+ */
 public class GameChooseView extends BaseWindowView {
 
 		public JButton startGameButton;

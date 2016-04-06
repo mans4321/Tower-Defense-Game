@@ -1,7 +1,10 @@
 package view.tower;
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * set constants for towers   
+ * @author yongpinggao 
+ * @since 3/19/16.
+ * @version 1.0
  */
 public enum TowerType {
     TowerNull(""),
@@ -23,11 +26,17 @@ public enum TowerType {
 
 
     private String towerImageName;
-
+    /**
+     * A constructor for TowerType 
+     * @param towerImageName tower name 
+     */
     TowerType(String towerImageName) {
         this.towerImageName = towerImageName;
     }
-
+    /**
+     * getter for tower name 
+     * @return tower name 
+     */
     public String getTowerImageName() {
         return towerImageName;
     }

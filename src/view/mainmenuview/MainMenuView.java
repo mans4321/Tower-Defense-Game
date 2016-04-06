@@ -4,9 +4,10 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- * Class to represent the main menu.
- * @author yongpinggao 
- * @version 1.0 3/12/16
+ * A class static functions to converter coordinate system from x and y coordinate to index and vice versa.  
+ * @author yongpinggao  
+ * @since 3/15/16.
+ * @version 2.0
  */
 public class MainMenuView extends JFrame {
 
@@ -17,8 +18,9 @@ public class MainMenuView extends JFrame {
     public JButton startGameButton;
     public JButton loadGame;
 
+
     /**
-     * Default constructor, calls init.
+     * Default constructor, calls initializing  method .
      */
     public MainMenuView() {
         initMenuWindow();

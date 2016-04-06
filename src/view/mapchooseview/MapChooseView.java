@@ -7,7 +7,8 @@ import view.BaseWindowView;
 /**
  * Class for the map selection menu
  * @author yongpinggao
- * @version 1.0 3/12/16
+ * @version 1.0
+ * @since  3/12/16
  */
 public class MapChooseView extends BaseWindowView {
 

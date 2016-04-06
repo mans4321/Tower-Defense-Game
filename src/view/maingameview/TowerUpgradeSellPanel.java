@@ -10,7 +10,10 @@ import java.awt.*;
 import java.util.Date;
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * class for upgrading and selling towers view 
+ * @author yongpinggao  
+ * @version 2.0.
+ * @since 3/13/16.
  */
 public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegate {
 
@@ -22,7 +25,9 @@ public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegat
     public JComboBox strategyComboBox;
     public JTextArea towerLogArea;
     public JScrollPane towerLogScrollPane;
-
+    /**
+     * Constructor TowerUpgradeSellPanel.
+     */
     public TowerUpgradeSellPanel() {
         setBackground(Color.black);
         sellButton = new JButton("Sell");
@@ -49,7 +54,9 @@ public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegat
         towerLogScrollPane.setBounds(0, 218, 240, 70);
         towerLogArea.setCaretPosition(towerLogArea.getDocument().getLength());
     }
-
+    /**
+     * refresh the view base on selected tower
+     */
     @Override
     public void reloadPanelBasedOnTower(Tower tower) {
         if (tower != null) {
@@ -75,7 +82,9 @@ public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegat
         }
 
     }
-
+    /**
+     * refresh tower base on tower index
+     */
     @Override
     public void reloadLogPanelBasedOnIndexOfTower(int index) {
         towerLogArea.setText("");
