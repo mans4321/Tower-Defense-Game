@@ -56,14 +56,14 @@ public class MainMenuController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				try {
                     mainMenuView.setVisible(false);
 					new GameChooseController().gameChooseView.setVisible(true);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				
+
 			}
     });
 }

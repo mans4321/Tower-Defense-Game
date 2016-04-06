@@ -22,7 +22,7 @@ public class Critter implements ActionListener {
 
     private int damage;
     private Timer innerTimer;
-    private Timer specicalEffectTimer = new Timer(0, this);
+    private Timer specicalEffectTimer;
 
     private boolean isVisible;
     private boolean isKilled;
@@ -71,7 +71,7 @@ public class Critter implements ActionListener {
         maxHealth = 60;
         currentHealth = maxHealth;
         worth = 30;
-        movingSpeed = 40;
+        movingSpeed = 30;
     }
 
     private void initCritterC() {
