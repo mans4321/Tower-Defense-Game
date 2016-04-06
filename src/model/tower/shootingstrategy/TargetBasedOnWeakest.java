@@ -14,9 +14,11 @@ import java.util.Set;
  * @version 2.0  
  */
 public class TargetBasedOnWeakest implements TowerShootingStrategy {
-	/**
+    /**
      * Overrides targetOnCritters
      * {@inheritDoc}
+     * Constructor of targetOnCritter.
+     * And target on weakest critter in towers attack range.
      */
     @Override
     public Critter targetOnCritters(Set<Critter> crittersInRange, Position towerPosition) {
@@ -34,7 +36,9 @@ public class TargetBasedOnWeakest implements TowerShootingStrategy {
             return null;
         }
     }
-
+    /**
+     * a method to return a specific string.
+     */
     @Override
     public String toString() {
         return "Target On Weakest";

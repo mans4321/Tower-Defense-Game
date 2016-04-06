@@ -14,8 +14,6 @@ import java.util.ArrayList;
 public class GameMapCollection {
     private static String JSON_FILE = "maps.json";
     private ArrayList<GameMap> maps;
-    private String name = "The mans";
-    private String name2 = "The ++++ mans";
     /**
      * constructor
      * create a new arraylist
