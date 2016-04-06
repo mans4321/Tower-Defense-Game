@@ -4,6 +4,9 @@ import model.map.CellState;
 
 import java.util.ArrayList;
 
+
+
+
 /**
  * This class is to validate whether Entrance is the neighbour of Exit.
  * If they are neighbours of each other, it is illegal.
@@ -13,6 +16,7 @@ import java.util.ArrayList;
  * @author LiChong
  * @version 1.0
  * 
+ *
  */
 public class SeperateEntranceAndExitValidator implements MapValidator {
 

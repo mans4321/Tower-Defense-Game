@@ -7,8 +7,7 @@ import javax.swing.*;
 /**
  * Class for the top view, use in the game play view.
  * @author  yongpinggao
- * @version  1.0 
- * @since 3/12/16
+ * @version  1.0 3/12/16
  */
 public class TopView extends JPanel {
 

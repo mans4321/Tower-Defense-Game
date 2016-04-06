@@ -20,16 +20,13 @@ public class FileProcessing {
     }
 
     private static Gson gson;
-    /**
-     * Constructor for FileProcessing
-     */
     private FileProcessing() {
         gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
     /**
      * write to json file
-     * @param fileName file name 
+     * @param fileName 
      * @param t general type
      * @return true if it is successful
      */

@@ -31,6 +31,7 @@ public class ExtraPathValidator implements MapValidator {
                 return false;  // extra path
             }
         }
+        
         return true;
     }
     

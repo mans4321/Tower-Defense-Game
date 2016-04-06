@@ -30,7 +30,8 @@ public class LengthValidator implements MapValidator {
             if (cellList.get(i) == CellState.Path ) {
                 numberOfPath ++; 
             }
-        }     
+        }
+        
         if (numberOfPath < 10 || numberOfPath > (cellList.size()) / 2) {
             return false;
         } else {

@@ -6,9 +6,7 @@ import java.awt.*;
 /**
  * Class to define the view for game play.
  * @author yongpinggao 
- * @version 2.0  
- * @since 3/13/16.
- * 
+ * @version  1.0 3/13/16.
  */
 public class MainGameView extends BaseWindowView {
 

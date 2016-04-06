@@ -1,7 +1,6 @@
 package model.tower.shootingstrategy;
 
 import model.critter.Critter;
-import view.map.Position;
 
 import java.util.Set;
 
@@ -12,5 +11,6 @@ import java.util.Set;
  * @version 2.0  
  */
 public interface TowerShootingStrategy {
-     Critter targetOnCritters(Set<Critter> crittersInRange, Position towerPosition);
+
+     Critter targetOnCritters(Set<Critter> crittersInRange);
 }

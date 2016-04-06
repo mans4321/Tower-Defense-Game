@@ -6,8 +6,7 @@ import view.BaseWindowView;
 /**
  * Class for the map edition.
  * @author yongpinggao 
- * @version 1.0 
- * @since 1/24/16
+ * @version 1.0 1/24/16
  */
 public class MapEditorView extends BaseWindowView {
 

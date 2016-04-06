@@ -1,292 +1,466 @@
 package model.critter;
 
-import view.critter.CritterType;
-import view.critter.CritterView;
+import model.imagecollection.CritterImageCollection;
+import model.map.GameMap;
+import model.drawing.GameMapDrawing;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
- * Critter implements ActionListener interface
+ * Critter Base class
  * @author yongpinggao
- * @version 1.0
- * @since 3/13/16
+ * @since 3/16/16.
+ * @version 2.0 
  */
 public class Critter implements ActionListener {
-    private CritterType critterType;
-    private CritterView critterView;
-    private CritterMovingBehavior movingBehavior;
-    private int currentHealth;
-    private int maxHealth;
-    private double worth;
-    private int movingSpeed;
+    protected CritterName critterName;
+    protected int currentHealth;
+    protected int maxHealth;
+    protected double worth;
+    protected int currentMoveSpeed;
+    protected int initialMoveSpeed;
+    protected boolean isVisible;
+    protected boolean isKilled;
+    protected boolean isSucceed;
 
-    private int damage;
-    private Timer innerTimer;
-    private Timer specicalEffectTimer = new Timer(0, this);
-    
-    private boolean isVisible;
-    private boolean isKilled;
-    private boolean isDonated;
-    
+    protected Timer movingTimer;
+    protected Timer innerTimer;
+    protected int continuesDamage;
+
+    // current position
+    protected int currentPosX;
+    protected int currentPosY;
+
+    private int nextIndex;
+    private int cols;
+    private ArrayList<Integer> pathList;
+    private int entranceIndex;
+    private int exitIndex;
+
     /**
-     * Donation for killing a critter.
-     * @return a boolean value that represents whether players get the donation.
+     * set the gamemap for a critter
+     * @param gameMap
      */
-    public boolean isDonated() {
-        return isDonated;
+    public void setGameMap(GameMap gameMap) {
+        pathList = gameMap.findPathList();
+        cols = gameMap.getmCols();
+        entranceIndex = gameMap.findEntranceIndex();
+        exitIndex = gameMap.findExitIndex();
+        int[] currentPosition = GameMapDrawing.indexToCoordinateConverter(entranceIndex, cols);
+        currentPosX = currentPosition[0];
+        currentPosY = currentPosition[1];
+        nextIndex = entranceIndex;
     }
 
     /**
-     * set donation value for killing a critter.
-     * @param donated donation value
-     */
-    public void setDonated(boolean donated) {
-        isDonated = donated;
-    }
-
-    /**
-     * set damage value.
-     * @param damage damage value
-     */
-    public void setDamage(int damage) {
-        this.damage = damage;
-    }
-
-    /**
-     * Constructor of Critter. 
-     * @param critterType 
-     */
-    public Critter(CritterType critterType) {
-        this.setCritterType(critterType);
-        this.critterView = new CritterView(critterType);
-        switch (critterType) {
-            case CritterA:
-                initCritterA();
-                break;
-            case CritterB:
-                initCritterB();
-                break;
-            case CritterC:
-                initCritterC();
-                break;
-            case CritterD:
-                initCritterD();
-        }
-    }
-
-    /**
-     * Initialize CritterA
-     */
-    private void initCritterA() {
-        maxHealth = 100;
-        currentHealth = maxHealth;
-        worth = 20;
-        movingSpeed = 20;
-    }
-
-    /**
-     * Initialize CritterB
-     */
-    private void initCritterB() {
-        maxHealth = 60;
-        currentHealth = maxHealth;
-        worth = 30;
-        movingSpeed = 40;
-    }
-
-    /**
-     * Initialize CritterC
-     */
-    private void initCritterC() {
-        maxHealth = 200;
-        currentHealth = maxHealth;
-        worth = 40;
-        movingSpeed = 10;
-    }
-
-    /**
-     * Initialize CritterD
-     */
-    private void initCritterD() {
-        maxHealth = 400;
-        currentHealth = maxHealth;
-        worth = 50;
-        movingSpeed = 10;
-    }
-
-    /**
-     * Judge whether the critter has been killed.
-     * @return A boolean value represents whether the critter has been killed.
+     * check if critter is killed 
+     * getter method
+     * @return critter life state
      */
     public boolean isKilled() {
         return isKilled;
     }
 
     /**
-     * Set kill value.
+     * check if critter is killed 
+     * setter method
      * @param killed
      */
     public void setKilled(boolean killed) {
         isKilled = killed;
-        if (killed) {
-            movingBehavior.getMovingTimer().stop();
-        }
     }
 
     /**
-     * Worth for a critter
-     * @return critter's worth
+     * critter worth after it is killed
+     * getter method 
+     * @return critter worth
      */
     public double getWorth() {
         return worth;
     }
 
     /**
-     * Get critter's health bar length.
-     * @return length
+     * critter worth after it is killed
+     * setter method 
+     * 
      */
-    public float getHealthBarLength() {
-        return (float)(currentHealth) / maxHealth;
+    public void setWorth(double worth) {
+        this.worth = worth;
     }
 
     /**
-     * Get critter's moving behavior.
-     * @return movingBehavior
+     * a critter's path cell index
+     * getter method
+     * @return critter path
      */
-    public CritterMovingBehavior getMovingBehavior() {
-        return movingBehavior;
+    public ArrayList<Integer> getPathList() {
+        return pathList;
     }
 
     /**
-     * Set critter's moving behavior.
-     * @param movingBehavior The parameter represents moving behavior
+     * a critter's path cell index
+     * setter method
+     * 
      */
-    public void setMovingBehavior(CritterMovingBehavior movingBehavior) {
-        this.movingBehavior = movingBehavior;
+    public void setPathList(ArrayList<Integer> pathList) {
+        this.pathList = pathList;
     }
 
     /**
-     * Get moving speed.
-     * @return moving speed
+     * check if critter has stole the coins successfully
+     * getter method
+     * @return whether critter reached the exsit point
      */
-    public int getMovingSpeed() {
-        return movingSpeed;
+    public boolean isSucceed() {
+        return isSucceed;
     }
 
     /**
-     * Set moving speed.
-     * @param movingSpeed it represents moving speed
+     * check if critter has stole the coins successfully
+     * setter method
+     * 
      */
-    public void setMovingSpeed(int movingSpeed) {
-        this.movingSpeed = movingSpeed;
+    public void setSucceed(boolean succeed) {
+        isSucceed = succeed;
+    }
+    
+    /**
+     * special effect timer for a critter
+     * getter method
+     * @return timer for moving critter
+     */
+    public Timer getMovingTimer() {
+        return movingTimer;
     }
 
     /**
-     * Get critter's current health value.
-     * @return current health value
+     * special effect: moving speed affected timer for a critter 
+     * setter method
+     * 
      */
-    public int getCurrentHealth() {
-        return currentHealth;
+    public void setMovingTimer(Timer movingTimer) {
+        this.movingTimer = movingTimer;
     }
 
     /**
-     * Set current health value of critter.
-     * @param currentHealth it represents critter's health
-     */
-    public void setCurrentHealth(int currentHealth) {
-        this.currentHealth = currentHealth;
-    }
-
-    /**
-     * Decide whether the critter is visible after creating.
-     * @return a boolean value means whether is visible
-     */
-    public boolean isVisible() {
-        return isVisible;
-    }
-
-    /**
-     * Set visible critter.
-     * @param visible a boolean value means whether is visible
-     */
-    public void setVisible(boolean visible) {
-        isVisible = visible;
-    }
-
-    /**
-     * Get critter view.
-     * @return critterView
-     */
-    public CritterView getCritterView() {
-        return critterView;
-    }
-
-    /**
-     * Get critter inner timer.
-     * @return
+     * special effect: poison affected timer for a critter
+     * getter method
+     * @return critter inner timer
      */
     public Timer getInnerTimer() {
         return innerTimer;
     }
 
     /**
-     * Set critter's inner timer.
-     * @param innerTimer it represents a timer of critter itself
+     * continues damage for a critter
+     * getter method
+     * 
+     */
+    public int getContinuesDamage() {
+        return continuesDamage;
+    }
+
+    /**
+     * continues damage for a critter
+     * setter method
+     * @return Continues Damage
+     */
+    public void setContinuesDamage(int continuesDamage) {
+        this.continuesDamage = continuesDamage;
+    }
+
+    /**
+     * special effect: poison affected timer for a critter
+     * setter method
+     * 
      */
     public void setInnerTimer(Timer innerTimer) {
         this.innerTimer = innerTimer;
     }
 
     /**
-     * Get special effect timer.
-     * @return specicalEffectTimer
+     * initial move speed for a critter
+     * getter method
+     * @return initial critter moving speed
      */
-    public Timer getSpecicalEffectTimer() {
-        return specicalEffectTimer;
+    public int getInitialMoveSpeed() {
+        return initialMoveSpeed;
     }
 
     /**
-     * Set special effect timer.
-     * @param specicalEffectTimer it represents a timer of special effects
+     * initial move speed for a critter
+     * setter method
+     * 
      */
-    public void setSpecicalEffectTimer(Timer specicalEffectTimer) {
-        this.specicalEffectTimer = specicalEffectTimer;
+    public void setInitialMoveSpeed(int initialMoveSpeed) {
+        this.initialMoveSpeed = initialMoveSpeed;
     }
 
     /**
-     * For event e, perform actions, different tower have to do various action.
+     * get bounds for the crriter for collision detection
+     * getter method
+     * @return critter rectangle 
      */
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand() != null) {
-            if (e.getActionCommand().equals("ICE_TOWER")) {
-                movingBehavior.getMovingTimer().start();
-                specicalEffectTimer.stop();
-            }
-            if (e.getActionCommand().equals("BURNING_TOWER")) {
-                specicalEffectTimer.stop();
-                innerTimer.stop();
+    public Rectangle getBound() {
+        Dimension dimension = CritterImageCollection.getCritterImageSizeOf(critterName);
+        return new Rectangle(currentPosX, currentPosY, dimension.width, dimension.height);
+    }
+    
+    /**
+     * get a hearth bar length for drawing health bar for critter
+     * @return critter HealthBarLength
+     */
+    public float getHealthBarLength() {
+        return (float)(currentHealth) / maxHealth;
+    }
+
+    /**
+     * moving speed for a critter
+     * getter method
+     * @return critter current Moving  Speed
+     */
+    public int getCurrentMoveSpeed() {
+        return currentMoveSpeed;
+    }
+    
+    /**
+     * moving speed for a critter
+     * setter method
+     * 
+     */
+    public void setCurrentMoveSpeed(int currentMoveSpeed) {
+        this.currentMoveSpeed = currentMoveSpeed;
+    }
+
+    /**
+     * critter type
+     * getter method
+     * @return critter name 
+     */
+    public CritterName getCritterName() {
+        return critterName;
+    }
+
+    /**
+     * critter type
+     * setter method
+     * 
+     */
+    public void setCritterName(CritterName critterName) {
+        this.critterName = critterName;
+    }
+
+    /**
+     * check if critter is visible for game drawing
+     * getter method
+     * @return critter visibility state
+     */
+    public boolean isVisible() {
+        return isVisible;
+    }
+    
+    /**
+     * check if critter is visible for game drawing
+     * setter method for critter visibility
+     * 
+     */
+    public void setVisible(boolean visible) {
+        isVisible = visible;
+    }
+
+    /**
+     * move method for critters
+     * move right
+     */
+    private void moveRight() {
+        currentPosX += currentMoveSpeed;
+    }
+
+    /**
+     * move method for critters
+     * move down
+     */
+    private void moveDown() {
+        currentPosY += currentMoveSpeed;
+    }
+
+    /**
+     * move method for critters
+     * move left
+     */
+    private void moverLeft() {
+        currentPosX -= currentMoveSpeed;
+    }
+
+    /**
+     * move method for critters
+     * move up
+     */
+    private void moveUp() {
+        currentPosY -= currentMoveSpeed;
+    }
+
+    /**
+     * position of a critter: x 
+     * getter method
+     * @return critter current X Position 
+     */
+    public int getCurrentPosX() {
+        return currentPosX;
+    }
+
+    /**
+     * set critter: x  position  
+     * setter method
+     * 
+     */
+    public void setCurrentPosX(int currentPosX) {
+        this.currentPosX = currentPosX;
+    }
+
+    /**
+     * position of a critter: y
+     * getter method
+     * @return  critter current Y Position 
+     */
+    public int getCurrentPosY() {
+        return currentPosY;
+    }
+
+    /**
+     * position of a critter: y
+     * setter method
+     * 
+     */
+    public void setCurrentPosY(int currentPosY) {
+        this.currentPosY = currentPosY;
+    }
+
+    /**
+     * current health of critter
+     * getter method
+     * @return critter current Health
+     */
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
+
+    /**
+     * current health of critter
+     * setter method
+     * 
+     */
+    public void setCurrentHealth(int currentHealth) {
+        this.currentHealth = currentHealth;
+    }
+
+    /**
+     * max health of a critter
+     * getter method
+     * @return critter maxHealth
+     */
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    /**
+     * max health of a critter
+     * setter method
+     * 
+     */
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
+    /**
+     * get next index based on current position
+     * 
+     * @return critter next index or -1
+     */
+    private int getDestination(int index) {
+
+        int iLeft = index - 1;
+        int iRight = index + 1;
+        int iDown = index + cols;
+        int iUp = index - cols;
+        // TODO when critter gone, it should stop
+        int nextIndex;
+        if (pathList.contains(iLeft)) {
+            nextIndex = iLeft;
+        } else if (pathList.contains(iRight)) {
+            nextIndex = iRight;
+        } else if (pathList.contains(iDown)) {
+            nextIndex = iDown;
+        } else if (pathList.contains(iUp)) {
+            nextIndex = iUp;
+        } else {
+            return -1;
+        }
+        pathList.remove(new Integer(index));
+        return nextIndex;
+    }
+
+    /**
+     * critter moving method, move to specific index
+     * @param index
+     */
+    private void moveToIndex(int index) {
+        int[] nextPosition = GameMapDrawing.indexToCoordinateConverter(index, cols);
+        int x = nextPosition[0];
+        int y = nextPosition[1];
+
+        if (currentPosX == x && currentPosY == y){
+            nextIndex = getDestination(GameMapDrawing.coordinateToIndexConverter(x, y ,cols));
+            if(nextIndex != -1) {
+                moveToIndex(nextIndex);
+            } else {
+                isVisible = false;
+                isSucceed = true;
             }
         } else {
-            currentHealth -= damage;
+            if (currentPosY - y >= currentMoveSpeed) {
+                moveUp();
+            }
+            else if (y - currentPosY >= currentMoveSpeed) {
+                moveDown();
+            }
+            else if (currentPosX - x >= currentMoveSpeed) {
+                moverLeft();
+            }
+            else if (x - currentPosX >= currentMoveSpeed) {
+                moveRight();
+            } else {
+                currentPosX = x;
+                currentPosY = y;
+            }
         }
     }
 
     /**
-     * Get critter type.
-     * @return critterType
+     * wrapper method for critter
      */
-    public CritterType getCritterType() {
-        return critterType;
+    public void moveThroughPathInMap() {
+        if(isVisible) moveToIndex(nextIndex);
     }
 
     /**
-     * Set critter type.
-     * @param critterType it represents critter's type
+     * listener: observing critter timers
      */
-    public void setCritterType(CritterType critterType) {
-        this.critterType = critterType;
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand() != null){ // critter get poisoned
+            if (e.getActionCommand().equals("POISON")) {
+                currentHealth -= continuesDamage;
+            }
+        } else { // set back to initial speed of frozen state or low speed state
+            if (innerTimer != null) {
+                innerTimer.stop();
+            }
+            setCurrentMoveSpeed(initialMoveSpeed);
+        }
     }
 }
-

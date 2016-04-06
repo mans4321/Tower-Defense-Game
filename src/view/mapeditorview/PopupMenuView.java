@@ -5,8 +5,7 @@ import javax.swing.*;
 /**
  * Class for the pop up use in the map editor
  * @author yongpinggao
- * @version  1.0 
- * @since 3/12/16
+ * @version  1.0 3/12/16
  */
 public class PopupMenuView extends JPopupMenu {
 
