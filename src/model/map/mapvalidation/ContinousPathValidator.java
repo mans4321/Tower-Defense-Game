@@ -52,7 +52,6 @@ public class ContinousPathValidator implements MapValidator {
 					}
 			}
 		}
-		
 		return true;
 	}
 	

@@ -15,12 +15,18 @@ public enum CellState {
     Tower("tower"),
     Chosen("chosen");
 
-
     private String cellStateName;
+    /**
+     * Constructor of CellState
+     * @param name it gives a name to CellState
+     */
     CellState(String name) {
         cellStateName = name;
     }
-
+    /**
+     * Set CellState name
+     * @return 
+     */
     public String getCellStateName() {
         return cellStateName;
     }

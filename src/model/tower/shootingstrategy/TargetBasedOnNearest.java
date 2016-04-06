@@ -7,9 +7,18 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * Created by yongpinggao on 3/14/16.
+ * Target strategy based on closest critter to tower
+ * @author yongpinggao
+ * @since 3/14/16.
+ * @version 1.0 
  */
 public class TargetBasedOnNearest implements TowerShootingStrategy {
+    /**
+     * Overrides targetOnCritters
+     * {@inheritDoc}
+     * Constructor of targetOnCritter.
+     * And target on nearest critter to tower in tower attack range.
+     */
     @Override
     public Critter targetOnCritters(Set<Critter> crittersInRange, Position towerPosition) {
 
@@ -27,7 +36,9 @@ public class TargetBasedOnNearest implements TowerShootingStrategy {
         }
         return null;
     }
-
+    /**
+     * a method to return a specific string.
+     */
     @Override
     public String toString() {
         return "Target On Nearest to End";
