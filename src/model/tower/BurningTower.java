@@ -9,9 +9,11 @@ import view.tower.TowerType;
 import view.tower.TowerView;
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * a class defines tower type burning 
+ * @author yongpinggao
+ * @since 3/13/16.
+ * @version 2.0
  */
-
 public class BurningTower extends Tower {
     private TowerShootingStrategy baseShootingStrategy;
     public BurningTower(int level) {
@@ -20,7 +22,9 @@ public class BurningTower extends Tower {
             initTower();
         }
     }
-
+    /**
+     * initialize buring tower type base on its level 
+     */
     private void initTower() {
         this.specification = "<html>" + "Burning Tower" + "<br> Level: " + level + "<br> Good at attack normal creature</html>";
         int basePower = 5;
@@ -71,6 +75,11 @@ public class BurningTower extends Tower {
         }
     }
 
+    /**
+     * setter for tower level 
+     * @param level tower level 
+     * {@inheritDoc}
+     */
     @Override
     public void setLevel(int level) {
         super.setLevel(level);
@@ -78,7 +87,11 @@ public class BurningTower extends Tower {
         initTower();
         setPosition(position);
     }
-
+    /**
+     * set  tower shooting range base on tower level
+     * @param position tower coordinate
+     * {@inheritDoc}
+     */
     @Override
     public void setPosition(Position position) {
         this.position = position;
@@ -98,7 +111,11 @@ public class BurningTower extends Tower {
         towerShootingBehavior.setTowerDidShotDelegate(towerShootingView);
         towerShootingBehavior.setTowerPosition(this.getPosition());
     }
-
+    /**
+     * getter for tower image 
+     * @return the tower image location 
+     * {@inheritDoc}
+     */
     @Override
     public String getHdImageName() {
         return "res/towerA_high.png";

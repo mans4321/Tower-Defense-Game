@@ -10,7 +10,10 @@ import java.awt.*;
 import java.util.Date;
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * class for upgrading and selling towers view 
+ * @author yongpinggao  
+ * @version 2.0.
+ * @since 3/13/16.
  */
 public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegate {
 
@@ -22,7 +25,9 @@ public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegat
     public JComboBox strategyComboBox;
     public JTextArea towerLogArea;
     public JScrollPane towerLogScrollPane;
-
+    /**
+     * Constructor TowerUpgradeSellPanel.
+     */
     public TowerUpgradeSellPanel() {
         setBackground(Color.black);
         sellButton = new JButton("Sell");
@@ -49,11 +54,13 @@ public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegat
         towerLogScrollPane.setBounds(0, 218, 240, 70);
         towerLogArea.setCaretPosition(towerLogArea.getDocument().getLength());
     }
-
+    /**
+     * refresh the view base on selected tower
+     */
     @Override
     public void reloadPanelBasedOnTower(Tower tower) {
-        if(tower != null){
-            if(tower.getPosition() != null) {
+        if (tower != null) {
+            if (tower.getPosition() != null) {
                 sellButton.setEnabled(true);
                 upgradeButton.setEnabled(true);
             } else {
@@ -62,7 +69,7 @@ public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegat
             }
             towerImageLabel.setIcon(new ImageIcon(tower.getHdImageName()));
             strategyComboBox.setSelectedItem(tower.getTowerShootingBehavior().getShootingStrategy().toString());
-            if(tower instanceof SplashTower) {
+            if (tower instanceof SplashTower) {
                 strategyComboBox.setEnabled(false);
             } else {
                 strategyComboBox.setEnabled(true);
@@ -75,12 +82,12 @@ public class TowerUpgradeSellPanel extends JPanel implements DrawingPanelDelegat
         }
 
     }
-
+    /**
+     * refresh tower base on tower index
+     */
     @Override
     public void reloadLogPanelBasedOnIndexOfTower(int index) {
         towerLogArea.setText("");
         towerLogArea.append(LoggerCollection.getInstance().showTowerLogAtIndex(index));
     }
-
-
 }

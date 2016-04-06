@@ -7,7 +7,8 @@ import view.BaseWindowView;
 /**
  * Class for the map selection menu
  * @author yongpinggao
- * @version 1.0 3/12/16
+ * @version 1.0
+ * @since  3/12/16
  */
 public class MapChooseView extends BaseWindowView {
 
@@ -21,8 +22,8 @@ public class MapChooseView extends BaseWindowView {
      * @param  listModel list of map options.
      */
     public MapChooseView(DefaultListModel listModel) {
-    	
-		super(260, 200, "Choose a Map");
+        
+        super(260, 200, "Choose a Map");
         startGameButton = new JButton("Start Game");
         editMapButton = new JButton("Edit the Map");
         list = new JList<>(listModel);

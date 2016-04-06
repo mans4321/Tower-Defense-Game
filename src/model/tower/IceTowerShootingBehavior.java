@@ -10,14 +10,22 @@ import java.awt.event.ActionListener;
 import java.util.HashSet;
 
 /**
- * Created by yongpinggao on 3/24/16.
+ * a class defines ice tower shooting behavior 
+ * @author yongpinggao
+ * @since 3/24/16.
+ * @version 2.0
  */
 public class IceTowerShootingBehavior extends TowerShootingBehavior {
 
     private int frozenTime;
 
+    /**
+     * A constructor for IceTowerShootingBehavior 
+     * @param frozenTime the frozen time 
+     * @param rateOfFire the rate of fire 
+     */
     public IceTowerShootingBehavior(int frozenTime, int rateOfFire) {
-        this.frozenTime = frozenTime;
+        this.setFrozenTime(frozenTime);
         this.rateOfFire = rateOfFire;
 
         crittersInRange = new HashSet<>();
@@ -29,6 +37,9 @@ public class IceTowerShootingBehavior extends TowerShootingBehavior {
         });
     }
     
+    /**
+     * defines the shooting effect on critter when tower shoot it.
+     */
     public void shoot() {
         super.shoot();
         Critter critterUnderAttack = shootingStrategy.targetOnCritters(crittersInRange, this.getTowerPosition());
@@ -36,7 +47,7 @@ public class IceTowerShootingBehavior extends TowerShootingBehavior {
             towerDidShotDelegate.towerDidShotAt(critterUnderAttack.getMovingBehavior().getCurrentPosition());
             critterUnderAttack.getMovingBehavior().getMovingTimer().stop();
             Timer frozenTimer = new Timer(0, critterUnderAttack);
-            frozenTimer.setInitialDelay(frozenTime);
+            frozenTimer.setInitialDelay(getFrozenTime());
             frozenTimer.setRepeats(false);
             frozenTimer.setActionCommand("ICE_TOWER");
             critterUnderAttack.setSpecicalEffectTimer(frozenTimer);
@@ -46,5 +57,21 @@ public class IceTowerShootingBehavior extends TowerShootingBehavior {
         if (critterUnderAttack.getCurrentHealth() <= 0) {
             crittersInRange.remove(critterUnderAttack);
         }
+    }
+
+    /**
+     * get tower freezing time   
+     * @return freezing time 
+     */
+    public int getFrozenTime() {
+        return frozenTime;
+    }
+
+    /**
+     * set tower freezing time   
+     * @param frozenTime freezing time 
+     */
+    public void setFrozenTime(int frozenTime) {
+        this.frozenTime = frozenTime;
     }
 }

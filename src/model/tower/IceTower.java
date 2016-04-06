@@ -8,7 +8,10 @@ import view.tower.TowerView;
 
 
 /**
- * Created by yongpinggao on 3/15/16.
+ * class defins tower of type ice tower
+ *@author yongpinggao 
+ *@since 3/15/16.
+ *@version 2.0
  */
 // Freezing the critter for a time (have a higher priority to poison tower)
 public class IceTower extends Tower {
@@ -20,6 +23,9 @@ public class IceTower extends Tower {
         }
     }
 
+    /**
+     * initialize the tower base on its level 
+     */
     private void initTower() {
         this.specification = "<html>" + "Ice Tower" + "<br> Level: " + level + "<br> Good at attack fast creatures with its freezing effect</html>";
         int baseFrozenTime = 1000;
@@ -66,11 +72,20 @@ public class IceTower extends Tower {
         }
     }
 
+    /**
+     * getter for tower image 
+     * @return the tower image location 
+     * {@inheritDoc}
+     */
     @Override
     public String getHdImageName() {
         return "res/towerB_high.png";
     }
 
+    /**
+     * set the tower level 
+     * {@inheritDoc}
+     */
     @Override
     public void setLevel(int level) {
         super.setLevel(level);
@@ -79,6 +94,10 @@ public class IceTower extends Tower {
         setPosition(position);
     }
 
+    /**
+     * set tower shooting range base on tower level 
+     * {@inheritDoc}
+     */
     @Override
     public void setPosition(Position position) {
         this.position = position;

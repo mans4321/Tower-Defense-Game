@@ -9,10 +9,17 @@ import view.tower.TowerView;
 import java.awt.*;
 
 /**
- * Created by yongpinggao on 3/24/16.
+ * a class defines tower of type splash
+ *@author yongpinggao 
+ *@since 3/24/16.
+ *@version 2.0
  */
 public class SplashTower extends Tower {
 
+    /**
+     * A constructor for SplashTower
+     * @param level tower level 
+     */
     public SplashTower(int level) {
         if (level <= MAX_LEVEL) {
             this.level = level;
@@ -20,6 +27,9 @@ public class SplashTower extends Tower {
         }
     }
 
+    /**
+     * initialize tower base on its level 
+     */
     private void initTower() {
         this.specification = "<html>" + "Splash Tower" + "<br> Level: " + level + "<br> Good at attack all the critters in the shooting range</html>";
         switch (level) {
@@ -50,11 +60,21 @@ public class SplashTower extends Tower {
         }
     }
 
+    /**
+     * getter for tower image 
+     * @return the tower image location 
+     * {@inheritDoc}
+     */
     @Override
     public String getHdImageName() {
         return "res/towerC_high.png";
     }
-
+    
+    /**
+     * set tower level 
+     * @param level tower level 
+     * {@inheritDoc}
+     */
     @Override
     public void setLevel(int level) {
         super.setLevel(level);
@@ -63,6 +83,10 @@ public class SplashTower extends Tower {
         setPosition(position);
     }
 
+    /**
+     * set tower shooting range base on tower level 
+     * {@inheritDoc}
+     */
     @Override
     public void setPosition(Position position) {
         this.position = position;

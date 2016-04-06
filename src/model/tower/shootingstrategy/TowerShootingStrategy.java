@@ -12,6 +12,5 @@ import java.util.Set;
  * @version 2.0  
  */
 public interface TowerShootingStrategy {
-
      Critter targetOnCritters(Set<Critter> crittersInRange, Position towerPosition);
 }

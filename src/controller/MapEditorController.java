@@ -23,14 +23,19 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Created by yongpinggao on 3/12/16.
+ * Controller for the map editor area.
+ * @author yongpinggao 
+ * @version 1.0 3/12/16.
  */
 public class MapEditorController {
 
     MapEditorView mapEditorView;
     GameMap gameMap;
     DrawingMapDelegate delegate;
-
+    /**
+     * Constructor for the map editor.
+     * @param gameMap base map type for creating the custom map
+     */
     public MapEditorController(GameMap gameMap) {
 
         this.gameMap = gameMap;
@@ -39,6 +44,9 @@ public class MapEditorController {
         delegate = mapEditorView.mapView.mapPanel;
         delegate.refreshMap(gameMap);
         mapEditorView.topView.widthList.setSelectedIndex(Helper.getIndexFrom(TopView.widthStrings, gameMap.getmCols()));
+        /**
+         * Sets listener to react to select list of widths.
+         */
         mapEditorView.topView.widthList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -53,6 +61,9 @@ public class MapEditorController {
         });
         mapEditorView.topView.heightList.setSelectedIndex(Helper.getIndexFrom(TopView.heightStrings, gameMap.getmRows()));
         mapEditorView.topView.heightList.setActionCommand("height");
+        /**
+         * Sets listener to react to select list of heights 
+         */
         mapEditorView.topView.heightList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,7 +76,9 @@ public class MapEditorController {
                 }
             }
         });
-
+        /**
+         * Sets listeners for all the functionalities of the map creation. 
+         */
         mapEditorView.mapView.mapPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -95,6 +108,9 @@ public class MapEditorController {
                                 delegate.refreshMap(gameMap);
                             }
                         });
+                        /**
+                         * Sets listener for the mouse right click 
+                         */
                         popup.menuItem2.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -108,7 +124,9 @@ public class MapEditorController {
             }
         });
 
-
+        /**
+         * Sets listener for the svae button
+         */
         mapEditorView.topView.saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -120,7 +138,9 @@ public class MapEditorController {
                 }
             }
         });
-
+        /**
+         * Sets listener for the discard button
+         */
         mapEditorView.topView.discardButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -138,6 +158,9 @@ public class MapEditorController {
         });
     }
 
+    /**
+     * function to clear all map cell to grass state
+     */
     public void clearGameMap() {
         for (int i = 0; i < gameMap.getCells().size(); i++) {
             gameMap.getCells().set(i, CellState.Grass);
@@ -145,6 +168,9 @@ public class MapEditorController {
         delegate.refreshMap(gameMap);
     }
 
+    /**
+     * saving map to Json file 
+     */
     public void saveDataToFile() {
         GameMapCollection mapCollection = GameMapCollection.loadMapsFromFile();
         boolean isReadyToCreate = true;

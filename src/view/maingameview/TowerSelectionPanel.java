@@ -7,14 +7,19 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * class for towers selection view  
+ * @author yongpinggao 
+ * @since 3/13/16.
+ * @version 2.0
  */
-public class TowerSelectionPanel extends JPanel{
+public class TowerSelectionPanel extends JPanel {
 
     public JButton towerAButton;
     public JButton towerBButton;
     public JButton towerCButton;
-
+    /**
+     * A constructor  for towers selection view 
+     */
     public TowerSelectionPanel() {
         towerAButton = new JButton(new ImageIcon(TowerFactory.sharedInstance().getTower(TowerType.BurningTower1).getHdImageName()));
         towerBButton = new JButton(new ImageIcon(TowerFactory.sharedInstance().getTower(TowerType.IceTower1).getHdImageName()));

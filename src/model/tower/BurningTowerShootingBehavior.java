@@ -10,15 +10,24 @@ import java.awt.event.ActionListener;
 import java.util.HashSet;
 
 /**
- * Created by yongpinggao on 3/24/16.
+ * class defines burning tower shooting behavior 
+ * @author yongpinggao 
+ * @since 3/24/16.
+ * @version 2.0
  */
 public class BurningTowerShootingBehavior extends TowerShootingBehavior {
     private int burningDamage;
 
+    /**
+     * A constructor for BurningTowerShootingBehavior
+     * @param power tower power 
+     * @param rateOfFire  tower rate of fire 
+     * @param burningDamage  amount of damage cause by tower 
+     */
     public BurningTowerShootingBehavior(int power, int rateOfFire, int burningDamage) {
         this.power = power;
         this.rateOfFire = rateOfFire;
-        this.burningDamage = burningDamage;
+        this.setBurningDamage(burningDamage);
         crittersInRange = new HashSet<>();
         towerTimer = new Timer(1000 - rateOfFire, new ActionListener() {
             @Override
@@ -28,11 +37,16 @@ public class BurningTowerShootingBehavior extends TowerShootingBehavior {
         });
     }
     
+    /**
+     * defines the shooting effect on critter when tower shoot it.
+     */
     public void shoot() {
         Critter critterUnderAttack = shootingStrategy.targetOnCritters(crittersInRange, this.getTowerPosition());
 
         if (critterUnderAttack != null && !critterUnderAttack.isKilled()) {
-            towerDidShotDelegate.towerDidShotAt(critterUnderAttack.getMovingBehavior().getCurrentPosition());
+            if (towerDidShotDelegate != null) {
+                towerDidShotDelegate.towerDidShotAt(critterUnderAttack.getMovingBehavior().getCurrentPosition());
+            }
             int health = critterUnderAttack.getCurrentHealth();
             health -= power;
             critterUnderAttack.setCurrentHealth(health);
@@ -45,7 +59,7 @@ public class BurningTowerShootingBehavior extends TowerShootingBehavior {
             critterUnderAttack.getSpecicalEffectTimer().start();
 
             Timer losingHealthTimer = new Timer(200, critterUnderAttack);
-            critterUnderAttack.setDamage(burningDamage);
+            critterUnderAttack.setDamage(getBurningDamage());
             critterUnderAttack.setInnerTimer(losingHealthTimer);
             critterUnderAttack.getInnerTimer().start();
 
@@ -55,5 +69,21 @@ public class BurningTowerShootingBehavior extends TowerShootingBehavior {
         if (critterUnderAttack.getCurrentHealth() <= 0) {
             crittersInRange.remove(critterUnderAttack);
         }
+    }
+
+    /**
+     * getter for tower effect on critter
+     * @return the amount of damage cause by the tower 
+     */
+    public int getBurningDamage() {
+        return burningDamage;
+    }
+
+    /**
+     * set amount of damge for the tower 
+     * @param burningDamage amount of damge for the tower  
+     */
+    public void setBurningDamage(int burningDamage) {
+        this.burningDamage = burningDamage;
     }
 }

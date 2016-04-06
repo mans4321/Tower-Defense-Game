@@ -10,7 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by yongpinggao on 3/26/16.
+ * class to control all log records in the game
+ * @author yongpinggao 
+ * @since 3/26/16.
+ * @version 1.0
  */
 public class GameLogController {
 
@@ -23,6 +26,9 @@ public class GameLogController {
     public GameLogController() {
         gameLogView = new GameLogView();
         refreshTimer = new Timer(100, new ActionListener() {
+            /**
+             * listener to refresh the log 
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 switch (currentLogType) {
@@ -45,6 +51,9 @@ public class GameLogController {
 
         refreshTimer.start();
 
+        /**
+         * listener for game log button to show all log records
+         */
         gameLogView.gameLogButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -53,6 +62,9 @@ public class GameLogController {
             }
         });
 
+        /**
+         * listener to show all towers log
+         */
         gameLogView.towerLogButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -61,6 +73,10 @@ public class GameLogController {
             }
         });
 
+        
+        /**
+         * listener for wave log 
+         */
         gameLogView.waveLogButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -69,6 +85,9 @@ public class GameLogController {
             }
         });
 
+        /**
+         * listener for map log
+         */
         gameLogView.mapLogButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -79,10 +98,17 @@ public class GameLogController {
 
     }
 
+    /**
+     * getter for log.
+     * @return all log records.
+     */
     public String getLog() {
         return log;
     }
-
+    /**
+     * setter for log
+     * @param log the log content
+     */
     public void setLog(String log) {
         this.log = log;
     }
