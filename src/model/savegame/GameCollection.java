@@ -74,7 +74,7 @@ public class GameCollection implements Serializable {
      * @return game index
      */
     public int findGameInCollection(String gameName) { // based on map name
-        int index = 0;
+        int index = -1;
         for (int i = 0; i < games.size(); i++) {
             if (gameName.equalsIgnoreCase(games.get(i).getGameName())) {
                 index = i;

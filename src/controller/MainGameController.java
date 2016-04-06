@@ -122,6 +122,7 @@ public class MainGameController {
     public MainGameController(GameInfo gameInfo) {
  
         loadGame = true;
+        boolean gameFound = false;
         
         SavedGamesMaps mapCollection = SavedGamesMaps.loadMapsFromFile();      
         for (int i = 0 ; i < mapCollection.getMaps().size(); i++ ) {
@@ -129,9 +130,17 @@ public class MainGameController {
             
             if (gameMapName.equalsIgnoreCase(gameInfo.getMapName())) {
                 this.gameMap = mapCollection.getMaps().get(i);
+                gameFound = true;
+                break;
             }
         }
-             
+        
+        if(!gameFound){
+        	JOptionPane.showMessageDialog(mainGameView, "Sorry could not load game!!!");
+        	mainGameView.dispose();
+        	new MainMenuController().mainMenuView.setVisible(true);
+        }
+        
         towerCollection.setTowers(gameInfo.getTowerCollection()); 
         for (Map.Entry<Integer, Tower> entry : towerCollection.getTowers().entrySet()) {         
             gameMap.getCells().set(entry.getKey(), CellState.Tower);
@@ -777,14 +786,19 @@ public class MainGameController {
                 gameName, 
                 gameMap.getMapName()
             );
-
-            gameCollection.getGames().set(gameCollection.findGameInCollection(gameName),game);
+            int gmaeIndex = gameCollection.findGameInCollection(gameName);
+            if(gmaeIndex != -1){
+            gameCollection.getGames().set(gmaeIndex,game);
             try {
                 gameCollection.saveGame();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(mainGameView, "Game Not saved!!!");
             }
             JOptionPane.showMessageDialog(mainGameView, "Saved Successful!");
+            } else {
+            	gameName = "";
+            	saveGame();
+            }
         } else {//brand new map
             String userGameName = (String) JOptionPane.showInputDialog(mainGameView,
                     "Type in the game name:",
