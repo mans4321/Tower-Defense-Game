@@ -8,10 +8,18 @@ import java.util.HashSet;
 
 
 /**
- * Created by yongpinggao on 3/24/16.
+ * a class defines splash tower shooting behavior 
+ * @author yongpinggao
+ * @since 3/24/16.
+ * @version 2.0
  */
 public class SplashTowerShootingBehavior extends TowerShootingBehavior {
 
+	/**
+	 * A constructor for  SplashTowerShootingBehavior
+	 * @param power tower power 
+	 * @param rateOfFire tower rate of fire 
+	 */
     public SplashTowerShootingBehavior(int power, int rateOfFire) {
         isShooting = true;
         this.power = power;
@@ -25,6 +33,9 @@ public class SplashTowerShootingBehavior extends TowerShootingBehavior {
         });
     }
 
+    /**
+     * defines the shooting effect on critter when tower shoot it.
+     */
     public void shoot() {
         // to avoid ConcurrentModificationException for removing item during iteration
         HashSet<Critter> killedCritters = new HashSet<>();

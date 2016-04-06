@@ -10,11 +10,20 @@ import java.awt.event.ActionListener;
 import java.util.HashSet;
 
 /**
- * Created by yongpinggao on 3/24/16.
+ * class defines burning tower shooting behavior 
+ * @author yongpinggao 
+ * @since 3/24/16.
+ * @version 2.0
  */
 public class BurningTowerShootingBehavior extends TowerShootingBehavior {
     private int burningDamage;
 
+    /**
+     * A constructor for BurningTowerShootingBehavior
+     * @param power tower power 
+     * @param rateOfFire  tower rate of fire 
+     * @param burningDamage  amount of damage cause by tower 
+     */
     public BurningTowerShootingBehavior(int power, int rateOfFire, int burningDamage) {
         this.power = power;
         this.rateOfFire = rateOfFire;
@@ -27,7 +36,9 @@ public class BurningTowerShootingBehavior extends TowerShootingBehavior {
             }
         });
     }
-    
+    /**
+     * defines the shooting effect on critter when tower shoot it.
+     */
     public void shoot() {
         Critter critterUnderAttack = shootingStrategy.targetOnCritters(crittersInRange, this.getTowerPosition());
 
@@ -59,10 +70,18 @@ public class BurningTowerShootingBehavior extends TowerShootingBehavior {
         }
     }
 
+    /**
+     * getter for tower effect on critter
+     * @return the amount of damage cause by the tower 
+     */
 	public int getBurningDamage() {
 		return burningDamage;
 	}
 
+	/**
+	 * set amount of damge for the tower 
+	 * @param burningDamage amount of damge for the tower  
+	 */
 	public void setBurningDamage(int burningDamage) {
 		this.burningDamage = burningDamage;
 	}
