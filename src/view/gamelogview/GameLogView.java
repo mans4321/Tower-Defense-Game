@@ -6,7 +6,10 @@ import view.BaseWindowView;
 import javax.swing.*;
 
 /**
- * Created by yongpinggao on 3/26/16.
+ * defines the game log view 
+ * @author yongpinggao 
+ * @since 3/26/16.
+ * @version 2.0
  */
 public class GameLogView extends BaseWindowView {
 
@@ -17,7 +20,9 @@ public class GameLogView extends BaseWindowView {
 
     public JTextArea logArea;
     public JScrollPane logScrollPane;
-
+    /**
+     * Constructor for GameLogView 
+     */
     public GameLogView() {
         super(600, 722, "Game Log");
 
