@@ -27,10 +27,10 @@ public class TargetBasedOnClosestToTower implements TowerShootingStrategy {
             while (iterator.hasNext()) {
                 Critter c = iterator.next();            
                 if (
-                        c.getMovingBehavior().getCurrentPosition().distanceTo(towerPosition.getCenterPosition()) 
-                        <
-                        closestCritter.getMovingBehavior().getCurrentPosition().distanceTo(towerPosition.getCenterPosition())
-                        ) {
+                    c.getMovingBehavior().getCurrentPosition().distanceTo(towerPosition.getCenterPosition()) 
+                    <
+                    closestCritter.getMovingBehavior().getCurrentPosition().distanceTo(towerPosition.getCenterPosition())
+                ) {
                     closestCritter = c;
                 }
             }

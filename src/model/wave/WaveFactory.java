@@ -1,17 +1,35 @@
 package model.wave;
 
+/**
+ * WaveFactory class to create waves
+ * @author yongpinggao
+ * @since 3/16/16.
+ * @version 2.0  
+ */
 public class WaveFactory {
 
     private static WaveFactory ourInstance = new WaveFactory();
 
     public static final int MAX_WAVE_NUM = 6;
 
+    /**
+     * Use shared instance
+     * @return ourInstance
+     */
     public static WaveFactory sharedInstance() {
         return ourInstance;
     }
 
+    /**
+     * Constructor of WaveFactory
+     */
     private WaveFactory() {}
 
+    /**
+     * Get wave by using wave number
+     * @param waveNum the number of wave
+     * @return groups of critters
+     */
     public WaveBuilder getWave(int waveNum) {
         switch (waveNum) {
             case 1:

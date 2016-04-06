@@ -677,6 +677,7 @@ public class MainGameController {
             );
         }
     }
+    
     /**
      * save game info to file
      */
