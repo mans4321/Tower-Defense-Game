@@ -18,11 +18,14 @@ import model.gamelog.LoggerCollection;
  */
 public class GameLogTest {
 
-    Log waveLog,FirstTowerLog,secondTowerLog,mapLog,gameLog;
-    String waveContent ;
-    String firstTowerContent ;
-    String secondTowerContent ;
-    String mapContent ;
+    Log waveLog;
+    Log firstTowerLog;
+    Log secondTowerLog;
+    Log mapLog;
+    String waveContent;
+    String firstTowerContent;
+    String secondTowerContent;
+    String mapContent;
     int firstTowerId;
     int secondTowerId;
     
@@ -36,14 +39,14 @@ public class GameLogTest {
         secondTowerId = 2;
         waveLog = new Log(LogType.Wave,"critter is moving");
         waveContent = waveLog.toString();
-        FirstTowerLog = new Log(LogType.Tower,firstTowerId,"fist Tower");
-        firstTowerContent = FirstTowerLog.toString();
+        firstTowerLog = new Log(LogType.Tower,firstTowerId,"fist Tower");
+        firstTowerContent = firstTowerLog.toString();
         secondTowerLog = new Log(LogType.Tower,secondTowerId,"second Tower");
         secondTowerContent =secondTowerLog.toString() ;
         mapLog = new Log(LogType.Map,"map has played");
         mapContent = mapLog.toString();
         LoggerCollection.getInstance().addLog(waveLog);
-        LoggerCollection.getInstance().addLog(FirstTowerLog);
+        LoggerCollection.getInstance().addLog(firstTowerLog);
         LoggerCollection.getInstance().addLog(secondTowerLog);
         LoggerCollection.getInstance().addLog(mapLog);
     }
@@ -53,8 +56,8 @@ public class GameLogTest {
      */
     @Test
     public void testGetWaveContent() {
-        String waveContentFromLog = LoggerCollection.getInstance().showWaveLog();
-        assertTrue(waveContentFromLog.equals(waveContent));
+        String waveContentFromLogCollection = LoggerCollection.getInstance().showWaveLog();
+        assertTrue(waveContentFromLogCollection.equals(waveContent));
     }
     
     /**
@@ -62,8 +65,8 @@ public class GameLogTest {
      */
     @Test
     public void testGetFristTowerContent() {
-        String fristTowerContentFromLog = LoggerCollection.getInstance().showTowerLogAtIndex(firstTowerId);
-        assertTrue(fristTowerContentFromLog.equals(firstTowerContent));
+        String fristTowerContentFromLogCollection = LoggerCollection.getInstance().showTowerLogAtIndex(firstTowerId);
+        assertTrue(fristTowerContentFromLogCollection.equals(firstTowerContent));
     }
     
     /**
@@ -71,9 +74,9 @@ public class GameLogTest {
      */
     @Test
     public void testGetAllTowersContent() {
-        String allTowersContentFromLog = LoggerCollection.getInstance().showAllTowerLog();
+        String allTowersContentFromLogCollection = LoggerCollection.getInstance().showAllTowerLog();
         String firstTowerAndSecondTower = firstTowerContent + secondTowerContent;
-        assertTrue(allTowersContentFromLog.equals(firstTowerAndSecondTower));
+        assertTrue(allTowersContentFromLogCollection.equals(firstTowerAndSecondTower));
     }
     
     /**
@@ -81,8 +84,8 @@ public class GameLogTest {
      */
     @Test
     public void testGetMapContent() {
-        String mapContenetFromLog = LoggerCollection.getInstance().showMapLog();
-        assertTrue(mapContenetFromLog.equals(mapContent));
+        String mapContenetFromLogCollection = LoggerCollection.getInstance().showMapLog();
+        assertTrue(mapContenetFromLogCollection.equals(mapContent));
     }
     
     /**
@@ -90,9 +93,8 @@ public class GameLogTest {
      */
     @Test
     public void testGetAllLogs() {
-        String allLogFromLog = LoggerCollection.getInstance().showAllLog();
+        String allLogFromLogCollection = LoggerCollection.getInstance().showAllLog();
         String allLogs = waveContent + firstTowerContent + secondTowerContent + mapContent;
-        System.out.println(allLogFromLog);
-        assertTrue(allLogFromLog.equals(allLogs));
+        assertTrue(allLogFromLogCollection.equals(allLogs));
     }
 }

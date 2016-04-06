@@ -46,8 +46,8 @@ public class CoordinateConverterTest {
      */
     @Test
     public void testgettingXAndYCoordinate() {
-        Position arr = Drawing.indexToCoordinateConverter(index, numberOfColumns);
-        assertEquals(arr.getX(), 0);
-        assertEquals(arr.getY(), 0);
+        Position array = Drawing.indexToCoordinateConverter(index, numberOfColumns);
+        assertEquals(array.getX(), 0);
+        assertEquals(array.getY(), 0);
     }
 }
