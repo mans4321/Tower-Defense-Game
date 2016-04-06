@@ -7,7 +7,10 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by yongpinggao on 3/13/16.
+ * class for tower specification view 
+ *@author yongpinggao 
+ *@since 3/13/16.
+ *@version 2.0
  */
 public class TowerSpecificationPanel extends JPanel implements DrawingPanelDelegate {
     public JLabel specificationLabel;
@@ -16,7 +19,9 @@ public class TowerSpecificationPanel extends JPanel implements DrawingPanelDeleg
     public JLabel rangeLabel;
     public JLabel powerLabel;
     public JLabel rateOfFireLabel;
-
+    /**
+     * constructor for TowerSpecificationPanel
+     */
     public TowerSpecificationPanel() {
         setBackground(Color.white);
         specificationLabel = new JLabel("");
@@ -36,7 +41,9 @@ public class TowerSpecificationPanel extends JPanel implements DrawingPanelDeleg
 
 
     }
-
+    /**
+     * refresh tower specificationPanel base on the tower.
+     */
     @Override
     public void reloadPanelBasedOnTower(Tower tower) {
         if (tower != null) {
@@ -56,7 +63,9 @@ public class TowerSpecificationPanel extends JPanel implements DrawingPanelDeleg
         }
 
     }
-
+    /**
+     *refresh tower specificationPanel base on the tower index. 
+     */
     @Override
     public void reloadLogPanelBasedOnIndexOfTower(int index) {}
 }
